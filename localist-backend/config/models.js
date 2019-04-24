@@ -35,8 +35,6 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
- 'connection': 'firebase',
- 
   schema: true,
 
 
