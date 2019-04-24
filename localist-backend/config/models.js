@@ -35,6 +35,8 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
+ 'connection': 'firebase',
+ 
   schema: true,
 
 
@@ -120,5 +122,6 @@ module.exports.models = {
 
   cascadeOnDestroy: true
 
+  
 
 };
