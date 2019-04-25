@@ -15,14 +15,12 @@ module.exports.routes = {
     //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
     'GET /': {
         action: 'view-homepage-or-redirect'
-    }
+    },
 
 
     //  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
     //  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
     //  ╩ ╩╩╚═╝╚═╝  ╩╚═╚═╝═╩╝╩╩╚═╚═╝╚═╝ ╩ ╚═╝  └┘   ═╩╝╚═╝╚╩╝╝╚╝╩═╝╚═╝╩ ╩═╩╝╚═╝
-    '/terms': '/legal/terms',
-    '/logout': '/api/v1/account/logout',
 
 
     //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
@@ -38,7 +36,7 @@ module.exports.routes = {
     // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
     'POST  /signup': {
         action: 'entrance/signup'
-    },
+    }
 
 
 };
