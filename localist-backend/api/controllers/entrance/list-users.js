@@ -48,21 +48,12 @@ module.exports = {
   
     var firebase = require('../../database/firebase.js');
     const functions = require('firebase-functions');
-    var serviceAccount = require('./adminn.json');
-    const admin = require('firebase-admin');
-
-    if (!admin.apps.length){
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount),
-            databaseURL: "https://localist-f915c.firebaseio.com"
-          });
-    }
+    var admin = require('../../database/admin.js')
 
 
         await admin.auth().listUsers(100).then((userRecords) => {
         console.log(userRecords);
         this.res.send(userRecords);
-
         }).catch((error) => console.log(error));
 
     }

@@ -39,6 +39,12 @@ the account verification message.)`,
             maxLength: 200,
             example: 'Jacob Smith',
             description: 'Your name.'
+        },
+
+        admin: {
+            required: true,
+            type: 'boolean',
+            description: 'is Admin?.'
         }
     },
 
@@ -68,18 +74,27 @@ the account verification message.)`,
         // Initialize Firebase
         var firebase = require('../../database/firebase.js');
         var database = firebase.database();
+        var uid = '';
 
         firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
             .then((authData) => {
                 console.log("User created successfully");
                 var newUser = database.ref("users").push(firebase.auth().currentUser.uid);
+                uid = firebase.auth().currentUser.uid;
                 newUser.set({
-                    'uid': firebase.auth().currentUser.uid,
+                    'uid': uid,
                     'name': inputs.name
                 });
             }).catch((_error) => {
                 console.log("Login Failed!", _error);
             })
+
+            if (inputs.admin)
+            {
+                admin.auth().setCustomUserClaims(uid, { admin:true }).then(() => {
+
+                });
+            }
 
         // var newUser = database.ref("users").push();
         // newUser.set({
