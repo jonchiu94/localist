@@ -1,15 +1,15 @@
 <template>
   <form v-on:submit.prevent="signUp">
     <div class="form-group">
-      <label for="email">Email address</label>
+      <label for="email">Email address </label>
         <input type="email" class="form-control" v-model="email" aria-describedby="emailHelp" placeholder="Enter email">
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">Password </label>
       <input type="password" class="form-control" v-model="password" placeholder="Password">
     </div>
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">Name </label>
       <input class="form-control" v-model="name" placeholder="Name">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
