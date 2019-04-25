@@ -33,6 +33,14 @@ the account verification message.)`,
       maxLength: 200,
       example: 'passwordlol',
       description: 'The unencrypted password to use for the new account.'
+    },
+
+    name: {
+      required: true,
+      type: 'string',
+      maxLength: 200,
+      example: 'jacob smith',
+      description: 'Your name.'
     }
   },
 
@@ -61,13 +69,34 @@ the account verification message.)`,
   fn: async function (inputs) {
   // Initialize Firebase
 
-  var database = require('../../database/firebase.js');
+  var firebase = require('../../database/firebase.js');
+  var database = firebase.database();
 
-  var newUser = database.ref("users").push();
-  newUser.set({
-    'email' : inputs.email,
-    'password' : inputs.password
-  });
+  // firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password).catch(function(error) 
+  // {
+  //   // Handle Errors here.
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  //   // ...
+  // });
+
+  firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
+                .then((authData) => {
+                    console.log("User created successfully with payload-", authData);
+                    var newUser = database.ref("users").push(firebase.auth().currentUser.uid);
+                    newUser.set({
+                      'uid': firebase.auth().currentUser.uid,
+                      'name': inputs.name
+                    });
+                }).catch((_error) => {
+                    console.log("Login Failed!", _error);
+                })
+
+  // var newUser = database.ref("users").push();
+  // newUser.set({
+  //   'email' : inputs.email,
+  //   'password' : inputs.password
+  // });
 
   
 
