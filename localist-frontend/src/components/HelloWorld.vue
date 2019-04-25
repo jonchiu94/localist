@@ -29,21 +29,22 @@ export default {
         email: this.email,
         password: this.password
       };
-      // this.$http.post('http://localhost:1337/signup', formData, {emulateJSON: true})
-      // .then(response => {
+      this.$http.post('http://localhost:1337/signup', formData, {emulateJSON: true})
+      .then(response => {
         
-      // }, response => {
-      //   console.error(response.status);
-      // })
-      fetch('http://localhost:1337/signup', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-          'content-type': 'text/plain'
-        }
-      }).then(response => response.json()).then((result) => {
-        
+      }, response => {
+        console.error(response.status);
       })
+      // fetch('http://localhost:1337/signup', 
+      // {
+      //   method: 'POST',
+      //   body: JSON.stringify(formData),
+      //   headers: {
+      //     'content-type': 'text/plain'
+      //   }
+      // }).then(response => response.json()).then((result) => {
+        
+      // })
     }
   }
 }
