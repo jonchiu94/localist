@@ -64,93 +64,6 @@ the account verification message.)`,
     },
 
 
-<<<<<<< HEAD
-  },
-
-
-  fn: async function (inputs) {
-  // Initialize Firebase
-
-  var firebase = require('../../database/firebase.js');
-  var database = firebase.database();
-
-  // firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password).catch(function(error) 
-  // {
-  //   // Handle Errors here.
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  //   // ...
-  // });
-
-  firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
-                .then((authData) => {
-                    var newUser = database.ref("users").push(firebase.auth().currentUser.uid);
-                    newUser.set({
-                      'uid': firebase.auth().currentUser.uid,
-                      'name': inputs.name
-                    });
-                }).catch((_error) => {
-                    console.log("Login Failed!", _error);
-                })
-
-  // var newUser = database.ref("users").push();
-  // newUser.set({
-  //   'email' : inputs.email,
-  //   'password' : inputs.password
-  // });
-
-  
-
-    // var newEmailAddress = inputs.emailAddress.toLowerCase();
-
-    // // Build up data for the new user record and save it to the database.
-    // // (Also use `fetch` to retrieve the new ID so that we can use it below.)
-    // var newUserRecord = await User.create(_.extend({
-    //   emailAddress: newEmailAddress,
-    //   password: await sails.helpers.passwords.hashPassword(inputs.password),
-    //   fullName: inputs.fullName,
-    //   tosAcceptedByIp: this.req.ip
-    // }, sails.config.custom.verifyEmailAddresses? {
-    //   emailProofToken: await sails.helpers.strings.random('url-friendly'),
-    //   emailProofTokenExpiresAt: Date.now() + sails.config.custom.emailProofTokenTTL,
-    //   emailStatus: 'unconfirmed'
-    // }:{}))
-    // .intercept('E_UNIQUE', 'emailAlreadyInUse')
-    // .intercept({name: 'UsageError'}, 'invalid')
-    // .fetch();
-
-    // // If billing feaures are enabled, save a new customer entry in the Stripe API.
-    // // Then persist the Stripe customer id in the database.
-    // if (sails.config.custom.enableBillingFeatures) {
-    //   let stripeCustomerId = await sails.helpers.stripe.saveBillingInfo.with({
-    //     emailAddress: newEmailAddress
-    //   }).timeout(5000).retry();
-    //   await User.updateOne({id: newUserRecord.id})
-    //   .set({
-    //     stripeCustomerId
-    //   });
-    // }
-
-    // // Store the user's new id in their session.
-    // this.req.session.userId = newUserRecord.id;
-
-    // if (sails.config.custom.verifyEmailAddresses) {
-    //   // Send "confirm account" email
-    //   await sails.helpers.sendTemplateEmail.with({
-    //     to: newEmailAddress,
-    //     subject: 'Please confirm your account',
-    //     template: 'email-verify-account',
-    //     templateData: {
-    //       fullName: inputs.fullName,
-    //       token: newUserRecord.emailProofToken
-    //     }
-    //   });
-    // } else {
-    //   sails.log.info('Skipping new account email verification... (since `verifyEmailAddresses` is disabled)');
-    // }
-
-  }
-=======
     fn: async function (inputs) {
         // Initialize Firebase
         var firebase = require('../../database/firebase.js');
@@ -175,6 +88,5 @@ the account verification message.)`,
         // });
 
     }
->>>>>>> dc8c3af8879dd212c5202031d0a5f9bccd1a411c
 
 };
