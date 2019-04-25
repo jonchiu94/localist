@@ -1,6 +1,10 @@
 <template>
   <form v-on:submit.prevent="signUp">
     <div class="form-group">
+      <label for="name">Password</label>
+      <input type="text" class="form-control" id="name" placeholder="Jacob Smith">
+    </div>
+    <div class="form-group">
       <label for="email">Email address</label>
         <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
     </div>
@@ -17,7 +21,8 @@ export default {
   name: 'HelloWorld',
     data: () => ({
       email: '',
-      password: ''
+      password: '',
+      name: ''
   }),
   props: {
     msg: String

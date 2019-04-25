@@ -82,7 +82,6 @@ the account verification message.)`,
 
   firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
                 .then((authData) => {
-                    console.log("User created successfully with payload-", authData);
                     var newUser = database.ref("users").push(firebase.auth().currentUser.uid);
                     newUser.set({
                       'uid': firebase.auth().currentUser.uid,
