@@ -13,12 +13,38 @@ module.exports.routes = {
     //  ╦ ╦╔═╗╔╗ ╔═╗╔═╗╔═╗╔═╗╔═╗
     //  ║║║║╣ ╠╩╗╠═╝╠═╣║ ╦║╣ ╚═╗
     //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
-    'GET /users': {
-        action: 'entrance/list-users'
+    'GET /': {
+        action: 'view-homepage-or-redirect'
     },
+
+
+    //  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
+    //  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
+    //  ╩ ╩╩╚═╝╚═╝  ╩╚═╚═╝═╩╝╩╩╚═╚═╝╚═╝ ╩ ╚═╝  └┘   ═╩╝╚═╝╚╩╝╝╚╝╩═╝╚═╝╩ ╩═╩╝╚═╝
+
+
+    //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
+    //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
+    //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
+    // …
+
+
+  //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
+  //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
+  //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
+  // Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
+  // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
+  'POST  /signup':                                      { action: 'entrance/signup' }, 
+  'GET   /users':                                      { action: 'entrance/list-users' }, 
+
+    //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
+    //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
+    //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
+    // Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
+    // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
     'POST  /signup': {
         action: 'entrance/signup'
-    },
+    }
 
 
 };

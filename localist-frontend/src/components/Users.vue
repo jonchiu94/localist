@@ -5,7 +5,8 @@
         <b-jumbotron bg-variant ="dark" text-variant="white" border-variant="dark">
           <div class="media" v-for="user in users" :key="user.uid">
             <div class="media-body">
-              <h3>name: {{users.name}}</h3>
+                <h1></h1>
+              <h3>email: {{user.email}}</h3>
               <hr>
             </div>
           </div>
@@ -16,21 +17,23 @@
 </template>
 
 <script>
+import router from '../router'
+
 const API_URL = 'http://localhost:1337/users';
 
 export default {
   name: 'Users',
   data: () => ({
     users: [],
-    user: {
-      email: '',
-      name: ''
+    UserRecord: {
+      email: ''
     }
   }),
   mounted() {
-    fetch(API_URL).then(response => response.json()).then((result) => {
-      this.users = result;
-    });
+        const axios = require('axios')
+
+        axios.get(API_URL).then(response => {console.log(response.data);});
+        axios.get(API_URL).then(response => {this.users = response.data.users;});
   }
 }
 </script>
