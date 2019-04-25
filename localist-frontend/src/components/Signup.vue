@@ -17,8 +17,10 @@
 </template>
 
 <script>
+import router from '../router'
+
     export default {
-        name: 'HelloWorld',
+        name: 'Signup',
         data: () => ({
             email: '',
             password: '',

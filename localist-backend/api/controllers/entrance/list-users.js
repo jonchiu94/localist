@@ -1,10 +1,10 @@
 module.exports = {
 
 
-    friendlyName: 'Signup',
+    friendlyName: 'Users',
   
   
-    description: 'Sign up for a new user account.',
+    description: 'list users.',
   
   
     extendedDescription:
@@ -59,9 +59,10 @@ module.exports = {
     }
 
 
-        admin.auth().listUsers(100).then((userRecords) => {
-        userRecords.users.forEach((user) => console.log(user.toJSON()));
-        res.end('Retrieved users list successfully.');
+        await admin.auth().listUsers(100).then((userRecords) => {
+        console.log(userRecords);
+        this.res.send(userRecords);
+
         }).catch((error) => console.log(error));
 
     }

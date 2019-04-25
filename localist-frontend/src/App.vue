@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-      <h1>Localist Signup</h1>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Localist Signup</h1>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    
   }
 }
 </script>
