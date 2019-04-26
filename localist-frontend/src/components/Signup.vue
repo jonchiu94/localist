@@ -12,6 +12,10 @@
       <label for="name">Name</label>
       <input class="form-control" v-model="name" placeholder="Name">
     </div>
+    <div class="form-check">
+        <input type="checkbox" value="administration" @click="administration = !administration" class="form-check-input" id="administration">
+        <label class="form-check-label" for="administration">make me admin</label>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </template>
@@ -24,7 +28,8 @@ import router from '../router'
         data: () => ({
             email: '',
             password: '',
-            name: ''
+            name: '',
+            administration: false
         }),
         props: {
             msg: String
@@ -35,11 +40,12 @@ import router from '../router'
                 const formData = {
                     email: this.email,
                     password: this.password,
-                    name: this.name
+                    name: this.name,
+                    administration: this.administration
                 };
                 axios.post('http://localhost:1337/signup', formData)
                     .then(function(response) {
-                        console.log(response);
+                        router.push('/users')
                     })
                     .catch(function(error) {
                         console.log(error);
