@@ -1,10 +1,10 @@
 module.exports = {
 
 
-    friendlyName: 'Signup',
+    friendlyName: 'Signin',
 
 
-    description: 'Sign up for a new user account.',
+    description: 'Sign in to account.',
 
 
     extendedDescription: `This creates a new user record in the database, signs in the requesting user agent
@@ -31,20 +31,6 @@ the account verification message.)`,
             maxLength: 200,
             example: 'passwordlol',
             description: 'The unencrypted password to use for the new account.'
-        },
-
-        name: {
-            required: true,
-            type: 'string',
-            maxLength: 200,
-            example: 'Jacob Smith',
-            description: 'Your name.'
-        },
-
-        administration: {
-            required: true,
-            type: 'boolean',
-            description: 'is Admin?.'
         }
     },
 
@@ -52,7 +38,7 @@ the account verification message.)`,
     exits: {
 
         success: {
-            description: 'New user account was created successfully.'
+            description: 'Signed in successfully.'
         },
 
         invalid: {
@@ -70,31 +56,39 @@ the account verification message.)`,
     },
 
 
-    fn: async function (inputs) {
+    fn: async function (inputs) 
+    {
         // Initialize Firebase
         var firebase = require('../../database/firebase.js');
-        var database = firebase.database();
         var admin = require('../../database/admin.js')
-        var uid = '';
+        var userData = {
+            uid: '',
+            token: '',
+            administration: false
+        }
 
-        console.log("creating user...")
-        await firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
-            .then((authData) => {
-                console.log("User created successfully");
-                var newUser = database.ref("users").push(firebase.auth().currentUser.uid);
-                uid = firebase.auth().currentUser.uid;
-                newUser.set({
-                    'uid': uid,
-                    'name': inputs.name
-                });
-                if (inputs.administration)
-                {
-                    admin.auth().setCustomUserClaims(uid, { admin:true }).then(() => {
-                        console.log("created admin");
-                    });
-                }
-            }).catch((_error) => {
-                console.log("Login Failed!", _error);
-            })
+        await firebase.auth().signInWithEmailAndPassword(inputs.email, inputs.password)
+        .then(function(firebaseUser) 
+        {
+            userData.uid = firebaseUser.user.uid;
+            return firebase.auth().currentUser.getIdToken(false);
+        })
+        .then(function(idToken) 
+        {
+            userData.token = idToken;
+            return admin.auth().verifyIdToken(userData.token);
+        })
+        .then(function(claims)
+        {
+            if (claims.admin === true) {
+                userData.administration = true;
+            } 
+        })
+        .catch(function(error) 
+        {
+              console.log(error);
+        });
+        var u = (JSON.stringify(userData));
+        this.res.send(u);
     }
 };
