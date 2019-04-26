@@ -44,18 +44,12 @@ module.exports = {
   
   
     fn: async function (inputs) {
-    // Initialize Firebase
   
-    var firebase = require('../../database/firebase.js');
-    const functions = require('firebase-functions');
-    var admin = require('../../database/admin.js')
+      var admin = require('../../database/admin.js')
 
-
-        await admin.auth().listUsers(100).then((userRecords) => {
+      await admin.auth().listUsers(100).then((userRecords) => {
         this.res.send(userRecords);
-        }).catch((error) => console.log(error));
-
+      }).catch((error) => console.log(error));
     }
-  
   };
   
