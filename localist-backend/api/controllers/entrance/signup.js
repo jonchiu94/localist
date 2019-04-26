@@ -77,7 +77,7 @@ the account verification message.)`,
         var admin = require('../../database/admin.js')
         var uid = '';
 
-        firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
+        await firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
             .then((authData) => {
                 console.log("User created successfully");
                 var newUser = database.ref("users").push(firebase.auth().currentUser.uid);
