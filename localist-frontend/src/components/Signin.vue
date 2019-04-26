@@ -13,7 +13,6 @@
                     <input type="text" placeholder="Name" v-model="name" />
                     <input type="email" placeholder="Email" v-model="email" />
                     <input type="password" placeholder="Password" v-model="password" />
-                    </br>
                     <input type="checkbox" value="administration" @click="administration = !administration" class="form-check-input" id="administration" />
                     <label class="form-check-label" for="administration">make me admin</label>
                 </div>
@@ -29,8 +28,8 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your account</span>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="email" placeholder="Email" v-model="email" />
+                <input type="password" placeholder="Password" v-model="password" />
                 <a href="#">Forgot your password?</a>
                 <button type="submit">Sign In</button>
             </form>
@@ -96,7 +95,13 @@ import router from '../router'
                 };
                 axios.post('http://localhost:1337/signin', formData)
                     .then(function(response) {
-                        router.push('/users')
+                        if (response == "admin")
+                        {
+                            router.push('/users')
+                        } else
+                        {
+                            router.push('/home')
+                        }
                     })
                     .catch(function(error) {
                         console.log(error);

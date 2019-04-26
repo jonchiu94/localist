@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 import Signup from '@/components/Signup.vue'
 import Users from '@/components/Users.vue'
 import Signin from '@/components/Signin.vue'
+import Home from '@/components/Home.vue'
 
 export default new VueRouter({
     mode: 'history',
@@ -20,6 +21,11 @@ export default new VueRouter({
           path: '/signup',
           name: 'Signup',
           component: Signup
+        },
+        {
+          path: '/home',
+          name: 'Home',
+          component: Home
         }
   ]
 })

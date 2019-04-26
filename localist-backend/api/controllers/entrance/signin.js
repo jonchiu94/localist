@@ -63,11 +63,22 @@ the account verification message.)`,
         var admin = require('../../database/admin.js')
         var uid = '';
 
-        firebase.auth().signInWithEmailAndPassword(inputs.email, inputs.password)
-          .then(function(firebaseUser) {
-            uid = firebase.auth().currentUser.uid;
+        console.log("signing in...")
+        await firebase.auth().signInWithEmailAndPassword(inputs.email, inputs.password)
+        .then(function(firebaseUser) {
+            admin.auth().verifyIdToken(idToken).then((claims) => {
+                if (claims.admin === true) {
+                  return "admin";
+                } else
+                {
+                    return "non-admin";
+                }
+              });
+            // uid = firebase.auth().currentUser.uid;
+            // console.log(firebaseUser);
+            // return firebaseUser;
         })
-         .catch(function(error) {
+        .catch(function(error) {
               // Error Handling
         });
     }
