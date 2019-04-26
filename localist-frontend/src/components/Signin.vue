@@ -83,7 +83,7 @@ import router from '../router'
                         router.push('/users')
                     })
                     .catch(function(error) {
-                        console.log(error);
+                        alert(error);
                     });
             },
             signIn() 
@@ -94,17 +94,19 @@ import router from '../router'
                     password: this.password
                 };
                 axios.post('http://localhost:1337/signin', formData)
-                    .then(function(response) {
-                        if (response == "admin")
+                    .then(function(response) 
+                    {
+                        if (response.data.administration)
                         {
-                            router.push('/users')
-                        } else
+                            router.push('/users');
+                        } else 
                         {
-                            router.push('/home')
+                            router.push('/home');
                         }
                     })
-                    .catch(function(error) {
-                        console.log(error);
+                    .catch(function(error) 
+                    {
+                        alert(error);
                     });
             },
             signUpButton()

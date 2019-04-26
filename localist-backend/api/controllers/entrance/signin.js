@@ -56,30 +56,39 @@ the account verification message.)`,
     },
 
 
-    fn: async function (inputs) {
+    fn: async function (inputs) 
+    {
         // Initialize Firebase
         var firebase = require('../../database/firebase.js');
-        var database = firebase.database();
         var admin = require('../../database/admin.js')
-        var uid = '';
+        var userData = {
+            uid: '',
+            token: '',
+            administration: false
+        }
 
-        console.log("signing in...")
         await firebase.auth().signInWithEmailAndPassword(inputs.email, inputs.password)
-        .then(function(firebaseUser) {
-            admin.auth().verifyIdToken(idToken).then((claims) => {
-                if (claims.admin === true) {
-                  return "admin";
-                } else
-                {
-                    return "non-admin";
-                }
-              });
-            // uid = firebase.auth().currentUser.uid;
-            // console.log(firebaseUser);
-            // return firebaseUser;
+        .then(function(firebaseUser) 
+        {
+            userData.uid = firebaseUser.user.uid;
+            return firebase.auth().currentUser.getIdToken(false);
         })
-        .catch(function(error) {
-              // Error Handling
+        .then(function(idToken) 
+        {
+            userData.token = idToken;
+            return admin.auth().verifyIdToken(userData.token);
+        })
+        .then(function(claims)
+        {
+            if (claims.admin === true) {
+                userData.administration = true;
+            } 
+        })
+        .catch(function(error) 
+        {
+              console.log(error);
         });
+        var u = (JSON.stringify(userData));
+        this.res.send(u);
     }
 };
