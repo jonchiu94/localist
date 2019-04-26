@@ -13,8 +13,8 @@
       <input class="form-control" v-model="name" placeholder="Name">
     </div>
     <div class="form-check">
-        <input type="checkbox" value="admin" @change="!admin" class="form-check-input" id="admin">
-        <label class="form-check-label" for="admin">make me admin</label>
+        <input type="checkbox" value="administration" @click="administration = !administration" class="form-check-input" id="administration">
+        <label class="form-check-label" for="administration">make me admin</label>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
@@ -29,7 +29,7 @@ import router from '../router'
             email: '',
             password: '',
             name: '',
-            admin: false
+            administration: false
         }),
         props: {
             msg: String
@@ -41,11 +41,10 @@ import router from '../router'
                     email: this.email,
                     password: this.password,
                     name: this.name,
-                    admin: this.admin
+                    administration: this.administration
                 };
                 axios.post('http://localhost:1337/signup', formData)
                     .then(function(response) {
-                        console.log(response);
                         router.push('/users')
                     })
                     .catch(function(error) {

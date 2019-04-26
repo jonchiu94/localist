@@ -52,7 +52,6 @@ module.exports = {
 
 
         await admin.auth().listUsers(100).then((userRecords) => {
-        console.log(userRecords);
         this.res.send(userRecords);
         }).catch((error) => console.log(error));
 
