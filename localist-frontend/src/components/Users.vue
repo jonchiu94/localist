@@ -7,6 +7,7 @@
             <div class="media-body">
                 <h1></h1>
               <h3>email: {{user.email}}</h3>
+              <h3>admin: {{user.admin}}</h3>
               <hr>
             </div>
           </div>
@@ -26,7 +27,8 @@ export default {
   data: () => ({
     users: [],
     UserRecord: {
-      email: ''
+      email: '',
+      admin: ''
     }
   }),
   mounted() {
