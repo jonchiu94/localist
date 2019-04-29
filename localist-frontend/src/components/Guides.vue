@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<!-- Title -->
 		<h1>Guides Page</h1>			
 	</div>
 </template>

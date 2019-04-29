@@ -33,7 +33,8 @@ export default {
   mounted() {
         const axios = require('axios')
 
-        axios.get(API_URL)
+        axios
+          .get(API_URL)
           .then(response => 
           {
             this.users = response.data.users;
