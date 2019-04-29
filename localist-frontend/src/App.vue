@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Localist Signup</h1>
+    <h1>Localist</h1>
     <router-view></router-view>
   </div>
 </template>
