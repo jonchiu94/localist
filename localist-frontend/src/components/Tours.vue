@@ -1,12 +1,13 @@
 <template>
-	<h1>Tours</h1>
     <div id = "tourList">
-        <div v-if="loading">Loading... </div>
-        <div v-else>
+        <h1>Tours</h1>
+        <div>
             <div
                 v-for = "tour in info"
+                :key="tour.id"
                 class = "tour">
-                {{tour.TourTitle}}
+                {{tour.title}}
+                {{tour.description}}
             </div>
         </div>
     </div>
@@ -14,26 +15,19 @@
 
 
 <script>
-    var axios = require('axios');
-    new Vue({
-        el: '#tourList',
-        data () {
-            return {
-                info: null,
-                TourID: null,
-                TourTitle: null,
-                Duration: null,
-                Price: null
-            }
-        },
+    export default{
+        data: () =>({
+                info: []
+        }),
         mounted () {
+            var axios = require('axios');
             axios
                 .get('http://localhost:1337/tours/all')
-                .then(response => (this.info = response.data.bpi))
-                .catch(error => console.log(error))
+                .then(response => this.info =(response.data))
+                .catch(error => alert(error))
                 .finally(() => this.loading = false)
         }
-    })
+    }
 </script>
 
 <style scoped>
