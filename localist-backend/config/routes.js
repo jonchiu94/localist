@@ -34,18 +34,24 @@ module.exports.routes = {
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
   // Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
   // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
-  'POST  /signup':                                      { action: 'entrance/signup' }, 
-  'POST  /signin':                                      { action: 'entrance/signin' }, 
-  'GET   /users':                                      { action: 'entrance/list-users' }, 
+  'POST  /signup':                                   { action: 'entrance/signup' }, 
+  'POST  /signin':                                   { action: 'entrance/signin' }, 
+  'POST  /tours/add':                                { action: 'tours/post-tour' }, 
+  'POST  /guides/add':                               { action: 'guides/post-guide' }, 
+  'GET   /users':                                    { action: 'users/list-users' }, 
+  'GET   /tours/all':                                { action: 'tours/get-all-tours' },
+  'GET   /guides/all':                               { action: 'guides/get-all-guides' }, 
+  'GET   /guides/get/:id':                           { action: 'guides/single-guide' }, 
+  'GET   /tours/get/:id':                            { action: 'tours/single-tour' }, 
+
+   
+
 
     //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
     //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
     //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
     // Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
     // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
-    'POST  /signup': {
-        action: 'entrance/signup'
-    }
 
 
 };
