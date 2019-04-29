@@ -1,34 +1,39 @@
 <template>
-	<div>
-		<!-- Title -->
-		<h1>Tours Page</h1>	
-	</div>
+	<h1>Tours</h1>
+    <div id = "tourList">
+        <div v-if="loading">Loading... </div>
+        <div v-else>
+            <div
+                v-for = "tour in info"
+                class = "tour">
+                {{tour.TourTitle}}
+            </div>
+        </div>
+    </div>
 </template>
 
 
-<script >
-	import router from '../router'
-
-	const API_URL = 'http://localhost:1337/tours/all';
-
-	export default {
-		name: 'Tours',
-		data: () => ({
-            
-        }),
-        methods: {
-
+<script>
+    var axios = require('axios');
+    new Vue({
+        el: '#tourList',
+        data () {
+            return {
+                info: null,
+                TourID: null,
+                TourTitle: null,
+                Duration: null,
+                Price: null
+            }
         },
-	    mounted() {
-	        const axios = require('axios')
-
-	        axios
-	        	.get(API_URL)
-	          	.then(response => (this.tours = response.data.tours))
-	          	.catch(error => console.log(error))
-	          	.finally(() => this.loading = false)
-	    }
-	}
+        mounted () {
+            axios
+                .get('http://localhost:1337/tours/all')
+                .then(response => (this.info = response.data.bpi))
+                .catch(error => console.log(error))
+                .finally(() => this.loading = false)
+        }
+    })
 </script>
 
 <style scoped>
