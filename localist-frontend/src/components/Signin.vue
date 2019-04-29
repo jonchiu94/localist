@@ -13,6 +13,7 @@
                     <input type="text" placeholder="Name" v-model="name" />
                     <input type="email" placeholder="Email" v-model="email" />
                     <input type="password" placeholder="Password" v-model="password" />
+                    </br>
                     <input type="checkbox" value="administration" @click="administration = !administration" class="form-check-input" id="administration" />
                     <label class="form-check-label" for="administration">make me admin</label>
                 </div>
