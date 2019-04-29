@@ -1,5 +1,5 @@
 <template>
-    <h1>Tours</h1>
+	<h1>Tours</h1>
     <div id = "tourList">
         <div v-if="loading">Loading... </div>
         <div v-else>
@@ -11,6 +11,8 @@
         </div>
     </div>
 </template>
+
+
 <script>
     var axios = require('axios');
     new Vue({
@@ -33,3 +35,7 @@
         }
     })
 </script>
+
+<style scoped>
+	
+</style>

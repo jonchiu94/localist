@@ -1,26 +1,26 @@
 <template>
   <div id="app">
-    <h1>Localist Signup</h1>
+    <h1>Localist</h1>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  components: {
-    
+  export default {
+    name: 'App',
+    components: {
+      
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>
