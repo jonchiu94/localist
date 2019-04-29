@@ -37,19 +37,11 @@ module.exports = {
         var database = firebase.database();
         var toursRef = database.ref('tours');
 
-        console.log("tours");
-        var data = '';
-
-        // return toursRef.once('value'), function(snapshot) {
-        //     console.log("1");
-        //     snapshot.forEach(function(childSnapshot) {
-        //         console.log(childSnapshot);
-        //     });
-        // });
-
+        var curr = this;
+        
         return toursRef.once('value')
             .then(function(snapshot) {
-                console.log(snapshot);
+                curr.res.json(snapshot);
             });
         
     }

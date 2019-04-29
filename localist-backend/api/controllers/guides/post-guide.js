@@ -89,6 +89,6 @@ module.exports = {
             }
         });
 
-        console.log(guide.key);
+        this.res.json(guide);
     }
 };

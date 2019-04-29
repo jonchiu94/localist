@@ -43,6 +43,9 @@ module.exports.routes = {
   'GET   /guides/all':                               { action: 'guides/get-all-guides' }, 
   'GET   /guides/get/:id':                           { action: 'guides/single-guide' }, 
   'GET   /tours/get/:id':                            { action: 'tours/single-tour' }, 
+  'DELETE   /tours/delete/:id':                      { action: 'tours/delete-tour' }, 
+  'DELETE   /guides/delete/:id':                      { action: 'guides/delete-guide' }, 
+
 
    
 

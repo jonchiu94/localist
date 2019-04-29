@@ -1,10 +1,10 @@
 module.exports = {
 
 
-    friendlyName: 'single-tours',
+    friendlyName: 'delete-tours',
 
 
-    description: 'Return the tour based on the id',
+    description: 'Delete the tour based on the id',
 
 
     extendedDescription: ``,
@@ -17,7 +17,7 @@ module.exports = {
     exits: {
 
         success: {
-            description: 'Tour returned successfully.'
+            description: 'Tour deleted successfully.'
         },
 
         invalid: {
@@ -35,14 +35,8 @@ module.exports = {
         // Initialize Firebase
         var firebase = require('../../database/firebase.js');
         var database = firebase.database();
-        var toursRef = database.ref('tours/' + this.req.params.id);
+        var toursRef = database.ref('tours');
 
-        var curr = this;
-
-        return toursRef.once('value')
-            .then(function(snapshot) {
-                curr.res.json(snapshot);
-            });
-        
+        var tour = await toursRef.child(this.req.params.id).remove();        
     }
 };

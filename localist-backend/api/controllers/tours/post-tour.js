@@ -93,6 +93,6 @@ module.exports = {
             }
         });
 
-        console.log(tour.key);
+        this.res.json(tour);
     }
 };
