@@ -57,8 +57,8 @@ const router = new VueRouter({
           }
         },
         {
-            path: '/createguide',
-            name: 'CreateGuide',
+            path: '/guides/createguide',
+            name: 'createGuide',
             component: CreateGuide,
             meta: {
                 requiresAuth: true

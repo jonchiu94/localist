@@ -1,6 +1,7 @@
 <template>
 	<div id = "guideList">
 		<h1>Guides</h1>
+		<div>
 			<table class="table table-dark">
 				<tr>
 					<th>First Name</th>
@@ -19,8 +20,10 @@
 					<th>{{guide.info.city}}</th>
 					<th>{{guide.info.country}}</th>
 					<th><router-link :to="'/guides/single/' + guide.key">{{ guide.key }}</router-link></th>
-			</tr>
-		</table>
+				</tr>
+			</table>
+		</div>
+		<router-link to="guides/createguide">Create Guide</router-link>
 	</div>
 </template>
 
