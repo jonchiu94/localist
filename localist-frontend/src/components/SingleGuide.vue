@@ -11,7 +11,6 @@
                 {{guide.info.gender}}
                 {{guide.info.city}}
                 {{guide.info.country}}
-
             </div>
         </div>
     </div>
