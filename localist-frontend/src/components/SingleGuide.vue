@@ -2,15 +2,13 @@
     <div id = "guideList">
         <h1>Guides</h1>
         <div>
-            <div
-                    v-for = "guide in info"
-                    :key="guide.id"
-                    class = "guide">
-                {{guide.info.first_name}}
-                {{guide.info.last_name}}
-                {{guide.info.gender}}
-                {{guide.info.city}}
-                {{guide.info.country}}
+            {{info}}
+            <div>
+                {{info.data.first.name}}
+                {{info.data.last.name}}
+                {{info.data.gender}}
+                {{info.data.city}}
+                {{info.data.country}}
             </div>
         </div>
     </div>
@@ -25,8 +23,7 @@
         mounted () {
             var axios = require('axios');
             axios
-                //add this
-                .get('http://localhost:1337/guides/guide.id')
+                .get('http://localhost:1337/guides/' + this.$route.params.id)
                 .then(response => this.info =(response.data))
                 .catch(error => alert(error))
                 .finally(() => this.loading = false)

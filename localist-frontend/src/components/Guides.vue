@@ -1,19 +1,19 @@
 <template>
 	<div id = "guideList">
 		<h1>Guides</h1>
-		<div>
-			<div
+		<table>
+			<tr
 					v-for = "guide in info"
 					:key="guide.id"
 					class = "guide">
-				{{guide.info.first_name}}
-				{{guide.info.last_name}}
-				{{guide.info.gender}}
-				{{guide.info.city}}
-				{{guide.info.country}}
-
-			</div>
-		</div>
+				<th>{{guide.info.first_name}}</th>
+				<th>{{guide.info.last_name}}</th>
+				<th>{{guide.info.gender}}</th>
+				<th>{{guide.info.city}}</th>
+				<th>{{guide.info.country}}</th>
+                <th><router-link :to="'/tours/' + tour.key">{{ tour.key }}</router-link></th>
+			</tr>
+		</table>
 	</div>
 </template>
 
