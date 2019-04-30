@@ -37,12 +37,18 @@ module.exports = {
         var database = firebase.database();
         var toursRef = database.ref('tours');
 
-        var curr = this;
+        var returnArr = [];
         
-        return toursRef.once('value')
+        await toursRef.once('value')
             .then(function(snapshot) {
-                curr.res.json(snapshot);
+                snapshot.forEach(function(childSnapshot) {
+                    var item = childSnapshot.val();
+                    item.key  = childSnapshot.key;
+
+                    returnArr.push(item);
+                })
             });
         
+        this.res.json(returnArr);
     }
 };

@@ -76,6 +76,7 @@ the account verification message.)`,
         var database = firebase.database();
         var admin = require('../../database/admin.js')
         var uid = '';
+        var curr = this;
 
         console.log("creating user...")
         await firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
@@ -93,8 +94,9 @@ the account verification message.)`,
                         console.log("created admin");
                     });
                 }
-            }).catch((_error) => {
-                console.log("Login Failed!", _error);
+            }).catch((error) => {
+                curr.res.status(409);
+                curr.res.json(error);
             })
     }
 };
