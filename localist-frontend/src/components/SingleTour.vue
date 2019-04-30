@@ -3,9 +3,9 @@
         <h1>Tours</h1>
         <div>
             <div
-                v-for = "tour in info"
-                :key="tour.id"
-                class = "tour">
+                    v-for = "tour in info"
+                    :key="tour.id"
+                    class = "tour">
                 {{tour.title}}
                 {{tour.description}}
                 {{tour.price_low}}
@@ -21,12 +21,13 @@
 <script>
     export default{
         data: () =>({
-                info: []
+            info: []
         }),
         mounted () {
             var axios = require('axios');
             axios
-                .get('http://localhost:1337/tours/all')
+                //add this
+                .get('http://localhost:1337/tours/tour.id')
                 .then(response => this.info =(response.data))
                 .catch(error => alert(error))
                 .finally(() => this.loading = false)
@@ -35,5 +36,5 @@
 </script>
 
 <style scoped>
-	
+
 </style>

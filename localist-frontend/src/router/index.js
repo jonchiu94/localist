@@ -1,10 +1,14 @@
+import Vue from 'vue';
 import VueRouter from 'vue-router'
 import Users from '@/components/Users.vue'
 import Signin from '@/components/Signin.vue'
 import Home from '@/components/Home.vue'
 import Tours from '@/components/Tours.vue'
 import Guides from '@/components/Guides.vue'
+import SingleGuide from "../components/SingleGuide";
+import SingleTour from "../components/SingleTour";
 
+Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',
     routes: [
@@ -48,7 +52,23 @@ const router = new VueRouter({
           meta: {
             requiresAuth: true
           }
-        }
+        },
+        {
+            path: '/guides/:guideID',
+            name: 'guideID',
+            component: SingleGuide,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/tours/:tourID',
+            name: 'tourID',
+            component: SingleTour,
+            meta: {
+                requiresAuth: true
+            }
+        },
   ]
 })
 

@@ -1,11 +1,5 @@
 <template>
   <div>
-    <hr>
-    <router-link to="/">Home</router-link>
-    <router-link to="/tours">Tours</router-link>
-    <router-link to="/guides">Guides</router-link>
-    <hr>
-    <router-view></router-view>
   <b-row>
     <b-col cols="12">
       <div class = "tableDiv">
