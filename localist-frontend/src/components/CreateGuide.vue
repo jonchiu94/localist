@@ -1,12 +1,14 @@
 <template>
 	<div>
         <form v-on:submit.prevent="createGuide">
-    		<input type="text" placeholder="First Name" v-model="first_name" />
-    		<input type="text" placeholder="Last Name" v-model="last_name" />
-            <input type="text" placeholder="Gender" v-model="gender" />
-            <input type="text" placeholder="City" v-model="city" />
-            <input type="text" placeholder="Country" v-model="country" />
-            
+            <div>
+        		<input type="text" placeholder="First Name" v-model="first_name" />
+        		<input type="text" placeholder="Last Name" v-model="last_name" />
+                <input type="text" placeholder="Age" v-model="age" />
+                <input type="text" placeholder="Gender" v-model="gender" />
+                <input type="text" placeholder="City" v-model="city" />
+                <input type="text" placeholder="Country" v-model="country" />
+            </div>
             <button type="submit">Create Guide</button>
         </form>
 	</div>
