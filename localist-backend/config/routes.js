@@ -46,7 +46,7 @@ module.exports.routes = {
   'DELETE   /tours/delete/:id':                      { action: 'tours/delete-tour' }, 
   'DELETE   /guides/delete/:id':                     { action: 'guides/delete-guide' }, 
   'PUT   /tours/update/:id':                         { action: 'tours/update-tour' }, 
-  'PUT   /guides/update/:id':                         { action: 'guides/update-guide' }, 
+  'PUT   /guides/update/:id':                        { action: 'guides/update-guide' }, 
 
 
    

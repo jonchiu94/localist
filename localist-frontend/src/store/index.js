@@ -3,15 +3,18 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-export const store = new Vuex.store({
+const store = new Vuex.Store({
     state: {
+        server_url: 'http://localhost:1337',
         currentUser: null,
         token: '',
-        userId:'',
+        userId: '',
         adminStatus: false
     },
     actions: {
-        clearData({ commit }) {
+        clearData({
+            commit
+        }) {
             commit('currentUser', null)
             commit('token', '')
             commit('userId', '')
@@ -25,7 +28,7 @@ export const store = new Vuex.store({
         setCurrentToken(state, val) {
             state.token = val;
         },
-        setUserId(state,val) {
+        setUserId(state, val) {
             state.userId = val;
         },
         setAdminStatus(state, val) {
@@ -35,9 +38,11 @@ export const store = new Vuex.store({
     getters: {
         getUserId(state) {
             return state.userId;
-        }
+        },
         getAdminStatus(state) {
             return state.adminStatus;
         }
     }
 })
+
+export default store;

@@ -2,34 +2,35 @@
     <div id = "tourList">
         <h1>Tours</h1>
         <div>
-            <div>
-                {{info.data.description}}
-                {{info.data.price.low}}
+                {{info.data.title}} <br>
+                {{info.data.description}}<br>
                 {{info.data.price.high}}
+                {{info.data.price.low}}<br>
+                {{info.data.duration.long}}
                 {{info.data.duration.short}}
-                {{info.data.duration_long}}
-            </div>
         </div>
     </div>
 </template>
 
 
 <script>
-    export default{
-        data: () =>({
+    export default {
+        data: () => ({
             info: ''
         }),
-        mounted () {
+        mounted() {
             var axios = require('axios');
             axios
-                .get('http://localhost:1337/tours/' + this.$route.params.id)
+                .get(this.$store.state.server_url + '/tours/' + this.$route.params.id)
                 .then(response => this.info = response)
                 .catch(error => alert(error))
                 .finally(() => this.loading = false)
         }
     }
+
 </script>
 
 <style scoped>
+
 
 </style>

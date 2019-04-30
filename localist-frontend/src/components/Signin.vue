@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import router from '../router'
+    import router from '../router'
 
     export default {
         name: 'Signin',
@@ -79,7 +79,7 @@ import router from '../router'
                     name: this.name,
                     administration: this.administration
                 };
-                axios.post('http://localhost:1337/signup', formData)
+                axios.post(this.$store.state.server_url + '/signup', formData)
                     .then(function(response) {
                         router.push('/users')
                     })
@@ -87,254 +87,252 @@ import router from '../router'
                         alert(error);
                     });
             },
-            signIn() 
-            {
+            signIn() {
                 var axios = require('axios');
                 const formData = {
                     email: this.email,
                     password: this.password
                 };
-                axios.post('http://localhost:1337/signin', formData)
-                    .then(function(response) 
-                    {
-                        if (response.data.administration)
-                        {
+                axios.post(this.$store.state.server_url + '/signin', formData)
+                    .then(function(response) {
+                        if (response.data.administration) {
                             router.push('/users');
-                        } else 
-                        {
+                        } else {
                             router.push('/home');
                         }
                     })
-                    .catch(function(error) 
-                    {
+                    .catch(function(error) {
                         alert(error);
                     });
             },
-            signUpButton()
-            {
+            signUpButton() {
                 const container = document.getElementById('container');
                 container.classList.add('right-panel-active');
             },
-            signInButton()
-            {
+            signInButton() {
                 const container = document.getElementById('container');
                 container.classList.remove('right-panel-active');
             }
         }
     }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-body {
-    max-width: 800px;
-    margin: auto;
-}
+    body {
+        max-width: 800px;
+        margin: auto;
+    }
 
-h1 {
-    font-weight: bold;
-    font-size: 40px;
-    margin: 0;
-}
+    h1 {
+        font-weight: bold;
+        font-size: 40px;
+        margin: 0;
+    }
 
-p {
-    font-size: 14px;
-    font-weight: 100;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    margin: 20px 0 30px;
-}
+    p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        margin: 20px 0 30px;
+    }
 
-span {
-    font-size: 12px;
-}
+    span {
+        font-size: 12px;
+    }
 
-a {
-    color: #333;
-    font-size: 14px;
-    text-decoration: none;
-    margin: 15px 0;
-}
+    a {
+        color: #333;
+        font-size: 14px;
+        text-decoration: none;
+        margin: 15px 0;
+    }
 
-button {
-    border-radius: 20px;
-    border: 1px solid #FDED2A;
-    background-color: #FDED2A;
-    color: #343009;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
-}
+    button {
+        border-radius: 20px;
+        border: 1px solid #FDED2A;
+        background-color: #FDED2A;
+        color: #343009;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+    }
 
-button:active {
-    transform: scale(0.95);
-}
+    button:active {
+        transform: scale(0.95);
+    }
 
-button:focus {
-    outline: none;
-}
+    button:focus {
+        outline: none;
+    }
 
-button.ghost {
-    background-color: transparent;
-    border-color: #343009;
-}
+    button.ghost {
+        background-color: transparent;
+        border-color: #343009;
+    }
 
-form {
-    background-color: #FFFCDC;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 50px;
-    height: 100%;
-    text-align: center;
-}
+    form {
+        background-color: #FFFCDC;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 50px;
+        height: 100%;
+        text-align: center;
+    }
 
-input {
-    background-color: #eee;
-    border: none;
-    padding: 12px 15px;
-    margin: 8px 0;
-    width: 100%;
-}
+    input {
+        background-color: #eee;
+        border: none;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 100%;
+    }
 
-.social-container {
-    margin: 20px 0;
-}
+    .social-container {
+        margin: 20px 0;
+    }
 
-.social-container a {
-    border: 1px solid #343009;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
-    height: 40px;
-    width: 40px;
-}
+    .social-container a {
+        border: 1px solid #343009;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px;
+        height: 40px;
+        width: 40px;
+    }
 
-.container {
-    background-color: #FFFCDC;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    position: relative;
-    overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-}
+    .container {
+        background-color: #FFFCDC;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        position: relative;
+        overflow: hidden;
+        width: 768px;
+        max-width: 100%;
+        min-height: 480px;
+    }
 
-.form-container {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
-}
+    .form-container {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: all 0.6s ease-in-out;
+    }
 
-.sign-in-container {
-    left: 0;
-    width: 50%;
-    z-index: 2;
-}
+    .sign-in-container {
+        left: 0;
+        width: 50%;
+        z-index: 2;
+    }
 
-.sign-up-container {
-    left: 0;
-    width: 50%;
-    opacity: 0;
-    z-index: 1;
-}
-
-.container.right-panel-active .sign-in-container {
-    transform: translateX(100%);
-}
-
-.container.right-panel-active .sign-up-container {
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: show 0.6s;
-}
-
-@keyframes show {
-    0%,
-    49.99% {
+    .sign-up-container {
+        left: 0;
+        width: 50%;
         opacity: 0;
         z-index: 1;
     }
 
-    50%,
-    100% {
+    .container.right-panel-active .sign-in-container {
+        transform: translateX(100%);
+    }
+
+    .container.right-panel-active .sign-up-container {
+        transform: translateX(100%);
         opacity: 1;
         z-index: 5;
+        animation: show 0.6s;
     }
-}
 
-.overlay-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.6s ease-in-out;
-    z-index: 100;
-}
+    @keyframes show {
+        0%,
+        49.99% {
+            opacity: 0;
+            z-index: 1;
+        }
 
-.container.right-panel-active .overlay-container {
-    transform: translateX(-100%);
-}
+        50%,
+        100% {
+            opacity: 1;
+            z-index: 5;
+        }
+    }
 
-.overlay {
-    background: #1E9600;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FF0000, #FFF200, #1E9600);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FF0000, #FFF200, #1E9600); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 0;
-    color: #343009;
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
-}
+    .overlay-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        transition: transform 0.6s ease-in-out;
+        z-index: 100;
+    }
 
-.container.right-panel-active .overlay {
-    transform: translateX(50%);
-}
+    .container.right-panel-active .overlay-container {
+        transform: translateX(-100%);
+    }
 
-.overlay-panel {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    top: 0;
-    height: 100%;
-    width: 50%;
-    transform: translateX(0);   
-    transition: transform 0.6s ease-in-out;
-}
+    .overlay {
+        background: #1E9600;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #FF0000, #FFF200, #1E9600);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #FF0000, #FFF200, #1E9600);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 0;
+        color: #343009;
+        position: relative;
+        left: -100%;
+        height: 100%;
+        width: 200%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+    }
 
-.overlay-left {
-    transform: translateX(-20%);
-}
+    .container.right-panel-active .overlay {
+        transform: translateX(50%);
+    }
 
-.container.right-panel-active .overlay-left {
-    transform: translateX(0);
-}
+    .overlay-panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+    }
 
-.overlay-right {
-    right: 0;
-    transform: translateX(0);
-}
+    .overlay-left {
+        transform: translateX(-20%);
+    }
 
-.container.right-panel-active .overlay-right {
-    transform: translateX(20%);
-}
+    .container.right-panel-active .overlay-left {
+        transform: translateX(0);
+    }
+
+    .overlay-right {
+        right: 0;
+        transform: translateX(0);
+    }
+
+    .container.right-panel-active .overlay-right {
+        transform: translateX(20%);
+    }
+
 </style>

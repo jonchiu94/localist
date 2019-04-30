@@ -7,6 +7,8 @@ import Tours from '@/components/Tours.vue'
 import Guides from '@/components/Guides.vue'
 import SingleGuide from "../components/SingleGuide";
 import SingleTour from "../components/SingleTour";
+import CreateTour from "../components/CreateTour";
+
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -17,22 +19,19 @@ const router = new VueRouter({
           redirect: '/'
         },
         {
+          path: '/signin',
+          name: 'signin',
+          component: Signin
+        },
+        {
             path: '/',
-            name: 'Signin',
-            component: Signin
+            name: 'home',
+            component: Home
         },
         {
           path: '/users',
           name: 'Users',
           component: Users,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/home',
-          name: 'Home',
-          component: Home,
           meta: {
             requiresAuth: true
           }
@@ -54,7 +53,15 @@ const router = new VueRouter({
           }
         },
         {
-            path: '/guides/:id',
+            path: '/tours/createtour',
+            name: 'createTour',
+            component: CreateTour,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/guides/single/:id',
             name: 'guideID',
             component: SingleGuide,
             meta: {
@@ -62,7 +69,7 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/tours/:id',
+            path: '/tours/single/:id',
             name: 'tourID',
             component: SingleTour,
             meta: {
