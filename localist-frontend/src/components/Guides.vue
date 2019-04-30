@@ -23,6 +23,18 @@
 				</tr>
 			</table>
 		</div>
+		<!-- <div>
+			<div v-for = "guide in guides"
+					:key="guide.id"
+					class = "card" style="width: 18rem;">
+			<img class="card-img-top" src="..." alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">{{guide.info.first_name}}</h5>
+				<p class="card-text">{{guide.info.gender}}</p>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			</div>
+			</div>
+		</div> -->
 		<router-link to="guides/createguide">Create Guide</router-link>
 	</div>
 </template>

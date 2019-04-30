@@ -1,78 +1,42 @@
 <template>
+	<div>
+		<section class="search-sec">
+				<div class="container">
+						<form action="#" method="post" novalidate="novalidate">
+								<div class="row">
+										<div class="col-lg-12">
+												<div class="row">
+														<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+																<input type="text" class="form-control search-slt" placeholder="Enter City">
+														</div>
+														<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+																<input type="text" class="form-control search-slt" placeholder="Enter # of tourists">
+														</div>
+														<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+																<select class="form-control search-slt" id="exampleFormControlSelect1">
+																		<option>Select Tour</option>
+																		<option>Biking</option>
+																		<option>Hiking</option>
+																		<option>Running</option>
+																</select>
+														</div>
+														<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+																<button type="button" class="btn btn-danger wrn-btn">Search</button>
+														</div>
+												</div>
+										</div>
+								</div>
+						</form>
+				</div>
+		</section>
+	</div>
 </template>
 
 <script>
-(() => {
-  const data = [];
-  const allowed = ['label', 'author'];
-  const regex = /\w+:\w+$/g;
-  
-  Vue.component('search-token', {
-    props: [
-      'obj'
-    ],
-    data() {
-      return {
-        data: data,
-      }
-    },
-    template: `
-      <li
-        class="search-token"
-        :class="'search-token-' + obj.token">
-        <span class="token">
-          {{ obj.token }}
-        </span>
-        <span class="value">
-          {{ obj.value }}
-        </span>
-      </li>
-    `,
-  });
-  
-  new Vue({
-    el: '#app',
-    data() {
-      return {
-        search: '',
-        data: data,
-      };
-    },
-    methods: {
-      getTokens() {
-        const matches = this.search.match(regex);
-        
-        if (matches) {
-          const split = matches[0].split(':');
 
-          if (allowed.indexOf(split[0]) !== -1) {
-            this.data.push({
-              token: split[0],
-              value: split[1],
-            });
-
-            this.search = '';
-          }
-        }
-      },
-    },
-    template: `
-      <div class="search-holder">
-        <ul
-          class="search-list">
-          <search-token
-            v-for="obj in data"
-            :obj="obj"></search-token>
-        </ul>
-        <input
-          type="search"
-          class="search-box"
-          placeholder="Search..."
-          v-model="search"
-          @keyup.enter="getTokens" />
-      </div>
-    `,
-  });
-})();
 </script>
+
+<style>
+</style>
+
 

@@ -6,6 +6,7 @@
             <input type="text" placeholder="Gender" v-model="gender" />
             <input type="text" placeholder="City" v-model="city" />
             <input type="text" placeholder="Country" v-model="country" />
+            <input type="text" placeholder="Age" v-model="age" />
             
             <button type="submit">Create Guide</button>
         </form>
@@ -18,15 +19,15 @@
     export default {
         name: 'createGuide',
         data: () => ({
-            first_name:'',
-            last_name:'',
+            first_name: '',
+            last_name: '',
             age: '',
             gender: '',
             city: '',
             country: ''
         }),
         methods: {
-            createGuide() {
+            createGuide(){
                 var axios = require('axios');
                 const formData = {
                     first_name: this.first_name,
