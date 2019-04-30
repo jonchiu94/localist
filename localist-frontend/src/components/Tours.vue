@@ -16,36 +16,39 @@
                     :key="tour.key"
                     class = "tour">
                     <th>{{tour.title}}</th>
-                    <th>{{tour.description}}</th>
+                    <th v-html="tour.description"></th>
                     <th>{{tour.price.low}}</th>
                     <th>{{tour.price.high}}</th>
                     <th>{{tour.duration.short}}</th>
                     <th>{{tour.duration.long}}</th>
                     <th>{{tour.key}}</th>
-                    <th><router-link :to="'/tours/' + tour.key">{{ tour.key }}</router-link></th>
+                    <th><router-link :to="'/tours/single/' + tour.key">{{ tour.key }}</router-link></th>
                 </tr>
             </table>
         </div>
+        <router-link to="tours/createtour">Create Tour</router-link>
     </div>
 </template>
 
 <script>
-    export default{
-        data: () =>({
-                tours: []
+    export default {
+        data: () => ({
+            tours: []
 
         }),
-        mounted () {
+        mounted() {
             var axios = require('axios');
             axios
-                .get('http://localhost:1337/tours/all')
-                .then(response => this.tours =(response.data))
+                .get(this.$store.state.server_url + '/tours/all')
+                .then(response => this.tours = (response.data))
                 .catch(error => alert(error))
                 .finally(() => this.loading = false)
         }
     }
+
 </script>
 
 <style scoped>
-	
+
+
 </style>

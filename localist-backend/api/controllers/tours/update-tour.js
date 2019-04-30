@@ -1,13 +1,13 @@
 module.exports = {
 
 
-    friendlyName: 'post-tour',
+    friendlyName: 'update-tour',
 
 
-    description: 'Post a tour',
+    description: 'Update a tour',
 
 
-    extendedDescription: `This creates a new tour and pushes it to the tours database`,
+    extendedDescription: `This updates a tour based on the id and the input fields`,
 
 
     inputs: {
@@ -55,7 +55,7 @@ module.exports = {
     exits: {
 
         success: {
-            description: 'Signed in successfully.'
+            description: 'Tour updated successfully.'
         },
 
         invalid: {
@@ -64,12 +64,6 @@ module.exports = {
             extendedDescription: 'If this request was sent from a graphical user interface, the request ' +
                 'parameters should have been validated/coerced _before_ they were sent.'
         },
-
-        emailAlreadyInUse: {
-            statusCode: 409,
-            description: 'The provided email address is already in use.',
-        },
-
     },
 
 
@@ -79,8 +73,9 @@ module.exports = {
         var firebase = require('../../database/firebase.js');
         var database = firebase.database();
         var toursRef = database.ref('tours');
+        var key = this.req.params.id;
 
-        var tour = await toursRef.push({
+        var tour = toursRef.child(key).update({
             title: inputs.title,
             description: inputs.description,
             duration: {

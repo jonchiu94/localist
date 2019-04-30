@@ -7,7 +7,9 @@ import Tours from '@/components/Tours.vue'
 import Guides from '@/components/Guides.vue'
 import SingleGuide from "../components/SingleGuide";
 import SingleTour from "../components/SingleTour";
-import GuideSignUp from "../components/GuideSignUp";
+import CreateGuide from "../components/CreateGuide";
+import CreateTour from "../components/CreateTour";
+
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -55,7 +57,23 @@ const router = new VueRouter({
           }
         },
         {
-            path: '/guides/:id',
+            path: '/createguide',
+            name: 'CreateGuide',
+            component: CreateGuide,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/tours/createtour',
+            name: 'createTour',
+            component: CreateTour,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/guides/single/:id',
             name: 'guideID',
             component: SingleGuide,
             meta: {
@@ -63,21 +81,13 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/tours/:id',
+            path: '/tours/single/:id',
             name: 'tourID',
             component: SingleTour,
             meta: {
                 requiresAuth: true
             }
-        },
-        {
-            path: '/guidesignup',
-            name: 'GuideSignUp',
-            component: GuideSignUp,
-            meta: {
-                requiresAuth: true
-            }
-        },
+        }
   ]
 })
 
