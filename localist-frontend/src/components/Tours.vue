@@ -8,6 +8,10 @@
                 class = "tour">
                 {{tour.title}}
                 {{tour.description}}
+                {{tour.price_low}}
+                {{tour.price_high}}
+                {{tour.duration_short}}
+                {{tour.duration_long}}
             </div>
         </div>
     </div>
