@@ -14,22 +14,23 @@
 
 
 <script>
-    export default{
-        data: () =>({
+    export default {
+        data: () => ({
             info: ''
         }),
-        mounted () {
+        mounted() {
             var axios = require('axios');
             axios
-                //add this
-                .get('http://localhost:1337/tours/' + this.$route.params.id)
-                .then(response => {this.info = response; })
+                .get(this.$store.state.server_url + '/tours/' + this.$route.params.id)
+                .then(response => this.info = response)
                 .catch(error => alert(error))
                 .finally(() => this.loading = false)
         }
     }
+
 </script>
 
 <style scoped>
+
 
 </style>

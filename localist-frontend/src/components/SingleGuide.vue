@@ -18,7 +18,7 @@
         data: () =>({
             guides: ''
         }),
-        mounted () {
+        mounted() {
             var axios = require('axios');
             axios
             //add this
@@ -28,8 +28,10 @@
                 .finally(() => this.loading = false)
         }
     }
+
 </script>
 
 <style scoped>
+
 
 </style>

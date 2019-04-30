@@ -26,6 +26,7 @@
 
 
 <script>
+
 	export default{
 		data: () =>({
 			guides: []
@@ -42,5 +43,6 @@
 </script>
 
 <style scoped>
+
 
 </style>
