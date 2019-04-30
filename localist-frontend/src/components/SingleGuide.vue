@@ -18,22 +18,24 @@
 
 
 <script>
-    export default{
-        data: () =>({
+    export default {
+        data: () => ({
             info: []
         }),
-        mounted () {
+        mounted() {
             var axios = require('axios');
             axios
                 //add this
-                .get('http://localhost:1337/guides/guide.id')
-                .then(response => this.info =(response.data))
+                .get(this.$store.state.server_url + '/guides/guide.id')
+                .then(response => this.info = (response.data))
                 .catch(error => alert(error))
                 .finally(() => this.loading = false)
         }
     }
+
 </script>
 
 <style scoped>
+
 
 </style>
