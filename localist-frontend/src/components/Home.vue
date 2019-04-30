@@ -2,11 +2,12 @@
     <div>
 		<h1>User</h1>
 		
-	    <button class="btn btn-primary" onclick="window.location.href = 'http://localhost:8080/tours';"> Tours Page </button> 
-
-	    <br><br>
-
-	    <button class="btn btn-primary" onclick="window.location.href = 'http://localhost:8080/guides';"> Guides Page </button>
+		<hr>
+		<router-link to="/">Home</router-link>
+		<router-link to="/tours">Tours</router-link>
+		<router-link to="/guides">Guides</router-link>
+		<hr>
+		<router-view></router-view>
 	</div>
 </template>
 
