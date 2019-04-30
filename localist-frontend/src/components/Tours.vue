@@ -1,6 +1,12 @@
 <template>
     <div id = "tourList">
         <h1>Tours</h1>
+        <hr>
+        <router-link to="/">Home</router-link>
+        <router-link to="/tours">Tours</router-link>
+        <router-link to="/guides">Guides</router-link>
+        <hr>
+        <router-view></router-view>
         <div>
             <div
                 v-for = "tour in info"
