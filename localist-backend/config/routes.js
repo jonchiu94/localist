@@ -41,10 +41,12 @@ module.exports.routes = {
   'GET   /users':                                    { action: 'users/list-users' }, 
   'GET   /tours/all':                                { action: 'tours/get-all-tours' },
   'GET   /guides/all':                               { action: 'guides/get-all-guides' }, 
-  'GET   /guides/:id':                           { action: 'guides/single-guide' }, 
-  'GET   /tours/:id':                            { action: 'tours/single-tour' }, 
+  'GET   /guides/:id':                               { action: 'guides/single-guide' }, 
+  'GET   /tours/:id':                                { action: 'tours/single-tour' }, 
   'DELETE   /tours/delete/:id':                      { action: 'tours/delete-tour' }, 
   'DELETE   /guides/delete/:id':                     { action: 'guides/delete-guide' }, 
+  'PUT   /tours/update/:id':                         { action: 'tours/update-tour' }, 
+  'PUT   /guides/update/:id':                         { action: 'guides/update-guide' }, 
 
 
    

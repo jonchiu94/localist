@@ -21,7 +21,6 @@
                     <th>{{tour.price.high}}</th>
                     <th>{{tour.duration.short}}</th>
                     <th>{{tour.duration.long}}</th>
-                    <th>{{tour.key}}</th>
                     <th><router-link :to="'/tours/' + tour.key">{{ tour.key }}</router-link></th>
                 </tr>
             </table>
