@@ -20,22 +20,19 @@ const router = new VueRouter({
           redirect: '/'
         },
         {
+          path: '/signin',
+          name: 'signin',
+          component: Signin
+        },
+        {
             path: '/',
-            name: 'Signin',
-            component: Signin
+            name: 'home',
+            component: Home
         },
         {
           path: '/users',
           name: 'Users',
           component: Users,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/home',
-          name: 'Home',
-          component: Home,
           meta: {
             requiresAuth: true
           }
