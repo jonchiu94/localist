@@ -35,8 +35,8 @@ module.exports = {
         // Initialize Firebase
         var firebase = require('../../database/firebase.js');
         var database = firebase.database();
-        var toursRef = database.ref('guides');
+        var guidesRef = database.ref('guides');
 
-        return toursRef.child(this.req.params.id).remove();        
+        return guidesRef.child(this.req.params.id).remove();        
     }
 };

@@ -33,13 +33,13 @@ module.exports = {
     fn: async function (inputs) 
     {
         // Initialize Firebase
-        var firebase = require('../../database/firebase.js');
-        var database = firebase.database();
-        var toursRef = database.ref('guides/' + this.req.params.id);
+        var firebase  = require('../../database/firebase.js');
+        var database  = firebase.database();
+        var guidesRef = database.ref('guides/' + this.req.params.id);
 
         var curr = this;
 
-        return toursRef.once('value')
+        return guidesRef.once('value')
             .then(function(snapshot) {
                 curr.res.json(snapshot);
             });
