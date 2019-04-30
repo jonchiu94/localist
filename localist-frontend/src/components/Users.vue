@@ -1,4 +1,5 @@
 <template>
+  <div>
   <b-row>
     <b-col cols="12">
       <div class = "tableDiv">
@@ -14,6 +15,7 @@
       </div>
     </b-col>
   </b-row>
+  </div>
 </template>
 
 <script>
