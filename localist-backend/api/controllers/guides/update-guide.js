@@ -1,24 +1,25 @@
 module.exports = {
 
 
-    friendlyName: 'post-tour',
+    friendlyName: 'update-guide',
 
 
-    description: 'Post a tour',
+    description: 'Update a guide',
 
 
-    extendedDescription: `This creates a new tour and pushes it to the tours database`,
+    extendedDescription: `This updates a guide based on the id and the input fields`,
 
 
+    
     inputs: {
-        title: {
+        first_name: {
             required: true,
             type: 'string',
             description: 'Title of tour',
             extendedDescription: 'Must be a valid email address.',
         },
 
-        description: {
+        last_name: {
             required: true,
             type: 'string',
             maxLength: 200,
@@ -26,28 +27,26 @@ module.exports = {
             description: 'The unencrypted password to use for the new account.'
         },
 
-        duration_short: {
+        gender: {
             required: true,
-            type: 'number',
+            type: 'string',
             description: 'The minimum duration in min.'
         },
 
-        duration_long: {
+        age: {
             required: true,
             type: 'number',
             description: 'The maximum duration in min.'
         },
 
-        price_low: {
+        city: {
             required: true,
-            type: 'number',
-            description: 'The minimum price in dollars.'
+            type: 'string'
         },
 
-        price_high: {
+        country: {
             required: true,
-            type: 'number',
-            description: 'The maximum price in dollars.'
+            type: 'string'
         }
     },
 
@@ -55,7 +54,7 @@ module.exports = {
     exits: {
 
         success: {
-            description: 'Signed in successfully.'
+            description: 'Updated guide successfully.'
         },
 
         invalid: {
@@ -64,12 +63,6 @@ module.exports = {
             extendedDescription: 'If this request was sent from a graphical user interface, the request ' +
                 'parameters should have been validated/coerced _before_ they were sent.'
         },
-
-        emailAlreadyInUse: {
-            statusCode: 409,
-            description: 'The provided email address is already in use.',
-        },
-
     },
 
 
@@ -78,21 +71,20 @@ module.exports = {
         // Initialize Firebase
         var firebase = require('../../database/firebase.js');
         var database = firebase.database();
-        var toursRef = database.ref('tours');
+        var guidesRef = database.ref('guides');
+        var key = this.req.params.id;
 
-        var tour = await toursRef.push({
-            title: inputs.title,
-            description: inputs.description,
-            duration: {
-                short: inputs.duration_short,
-                long: inputs.duration_long
-            },
-            price: {
-                low: inputs.price_low,
-                high: inputs.price_high
+        var guide = guidesRef.child(key).update({
+            info: {
+                first_name: inputs.first_name,
+                last_name: inputs.last_name,
+                gender: inputs.gender,
+                age: inputs.age,
+                city: inputs.city,
+                country: inputs.country
             }
         });
 
-        this.res.json(tour);
+        this.res.json(guide);
     }
 };
