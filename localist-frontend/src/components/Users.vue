@@ -19,46 +19,48 @@
 </template>
 
 <script>
-import router from '../router'
+    import router from '../router'
 
-const API_URL = 'http://localhost:1337/users';
+    export default {
+        name: 'Users',
+        data: () => ({
+            users: [],
+            UserRecord: {
+                email: '',
+                admin: ''
+            }
+        }),
+        mounted() {
+            const axios = require('axios')
 
-export default {
-  name: 'Users',
-  data: () => ({
-    users: [],
-    UserRecord: {
-      email: '',
-      admin: ''
+            axios
+                .get(this.$store.state.server_url + '/users')
+                .then(response => {
+                    this.users = response.data.users;
+                });
+        }
     }
-  }),
-  mounted() {
-        const axios = require('axios')
 
-        axios
-          .get(API_URL)
-          .then(response => 
-          {
-            this.users = response.data.users;
-          });
-  }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+    h3 {
+        margin: 40px 0 0;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    a {
+        color: #42b983;
+    }
+
 </style>

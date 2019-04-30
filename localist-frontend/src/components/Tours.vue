@@ -30,22 +30,24 @@
 </template>
 
 <script>
-    export default{
-        data: () =>({
-                tours: []
+    export default {
+        data: () => ({
+            tours: []
 
         }),
-        mounted () {
+        mounted() {
             var axios = require('axios');
             axios
-                .get('http://localhost:1337/tours/all')
-                .then(response => this.tours =(response.data))
+                .get(this.$store.state.server_url + '/tours/all')
+                .then(response => this.tours = (response.data))
                 .catch(error => alert(error))
                 .finally(() => this.loading = false)
         }
     }
+
 </script>
 
 <style scoped>
-	
+
+
 </style>

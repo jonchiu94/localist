@@ -19,21 +19,23 @@
 
 
 <script>
-	export default{
-		data: () =>({
-			info: []
-		}),
-		mounted () {
-			var axios = require('axios');
-			axios
-					.get('http://localhost:1337/guides/all')
-					.then(response => this.info =(response.data))
-					.catch(error => alert(error))
-					.finally(() => this.loading = false)
-		}
-	}
+    export default {
+        data: () => ({
+            info: []
+        }),
+        mounted() {
+            var axios = require('axios');
+            axios
+                .get(this.$store.state.server_url + '/guides/all')
+                .then(response => this.info = (response.data))
+                .catch(error => alert(error))
+                .finally(() => this.loading = false)
+        }
+    }
+
 </script>
 
 <style scoped>
+
 
 </style>
