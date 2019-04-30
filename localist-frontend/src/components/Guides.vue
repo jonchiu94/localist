@@ -11,8 +11,8 @@
 				{{guide.info.gender}}
 				{{guide.info.city}}
 				{{guide.info.country}}
-
 			</div>
+			<router-link to="/guidesignup">Create Guide</router-link>
 		</div>
 	</div>
 </template>
