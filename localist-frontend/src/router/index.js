@@ -54,7 +54,7 @@ const router = new VueRouter({
           }
         },
         {
-            path: '/guides/:guideID',
+            path: '/guides/:id',
             name: 'guideID',
             component: SingleGuide,
             meta: {
@@ -62,7 +62,7 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/tours/:tourID',
+            path: '/tours/:id',
             name: 'tourID',
             component: SingleTour,
             meta: {

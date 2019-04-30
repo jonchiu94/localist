@@ -76,9 +76,9 @@ module.exports = {
         // Initialize Firebase
         var firebase = require('../../database/firebase.js');
         var database = firebase.database();
-        var toursRef = database.ref('guides');
+        var guidesRef = database.ref('guides');
 
-        var guide = toursRef.push({
+        var guide = guidesRef.push({
             info: {
                 first_name: inputs.first_name,
                 last_name: inputs.last_name,

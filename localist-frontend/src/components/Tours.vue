@@ -22,13 +22,12 @@
                     <th>{{tour.duration.short}}</th>
                     <th>{{tour.duration.long}}</th>
                     <th>{{tour.key}}</th>
-                    <th><button>More info</button></th>
+                    <th><router-link :to="'/tours/' + tour.key">{{ tour.key }}</router-link></th>
                 </tr>
             </table>
         </div>
     </div>
 </template>
-
 
 <script>
     export default{
