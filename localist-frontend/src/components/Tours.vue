@@ -16,15 +16,17 @@
                     :key="tour.key"
                     class = "tour">
                     <th>{{tour.title}}</th>
-                    <th>{{tour.description}}</th>
+                    <th v-html="tour.description"></th>
                     <th>{{tour.price.low}}</th>
                     <th>{{tour.price.high}}</th>
                     <th>{{tour.duration.short}}</th>
                     <th>{{tour.duration.long}}</th>
-                    <th><router-link :to="'/tours/' + tour.key">{{ tour.key }}</router-link></th>
+                    <th>{{tour.key}}</th>
+                    <th><router-link :to="'/tours/single/' + tour.key">{{ tour.key }}</router-link></th>
                 </tr>
             </table>
         </div>
+        <router-link to="tours/createtour">Create Tour</router-link>
     </div>
 </template>
 

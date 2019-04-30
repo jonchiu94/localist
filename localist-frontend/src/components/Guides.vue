@@ -1,38 +1,45 @@
 <template>
 	<div id = "guideList">
 		<h1>Guides</h1>
-		<div>
-			<div
-					v-for = "guide in info"
+			<table class="table table-dark">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Gender</th>
+					<th>City</th>
+					<th>Country</th>
+				</tr>
+				<tr
+					v-for = "guide in guides"
 					:key="guide.id"
 					class = "guide">
-				{{guide.info.first_name}}
-				{{guide.info.last_name}}
-				{{guide.info.gender}}
-				{{guide.info.city}}
-				{{guide.info.country}}
-
-			</div>
-		</div>
+					<th>{{guide.info.first_name}}</th>
+				<th v-html = "guide.info.last_name"></th>
+					<th>{{guide.info.gender}}</th>
+					<th>{{guide.info.city}}</th>
+					<th>{{guide.info.country}}</th>
+					<th><router-link :to="'/guides/single/' + guide.key">{{ guide.key }}</router-link></th>
+			</tr>
+		</table>
 	</div>
 </template>
 
 
 <script>
-    export default {
-        data: () => ({
-            info: []
-        }),
-        mounted() {
-            var axios = require('axios');
-            axios
-                .get(this.$store.state.server_url + '/guides/all')
-                .then(response => this.info = (response.data))
-                .catch(error => alert(error))
-                .finally(() => this.loading = false)
-        }
-    }
 
+	export default{
+		data: () =>({
+			guides: []
+		}),
+		mounted () {
+			var axios = require('axios');
+			axios
+					.get('http://localhost:1337/guides/all')
+					.then(response => this.guides =(response.data))
+					.catch(error => alert(error))
+					.finally(() => this.loading = false)
+		}
+	}
 </script>
 
 <style scoped>
