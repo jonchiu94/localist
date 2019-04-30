@@ -28,8 +28,8 @@
 </template>
 
 
-<script>
 
+<script>
 	export default{
 		data: () =>({
 			guides: []
@@ -37,7 +37,7 @@
 		mounted () {
 			var axios = require('axios');
 			axios
-					.get('http://localhost:1337/guides/all')
+					.get(this.$store.state.server_url + '/guides/all')
 					.then(response => this.guides =(response.data))
 					.catch(error => alert(error))
 					.finally(() => this.loading = false)
