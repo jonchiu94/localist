@@ -1,13 +1,9 @@
 module.exports = {
+	friendlyName        : 'Signin',
 
+	description         : 'Sign in to account.',
 
-    friendlyName: 'Signin',
-
-
-    description: 'Sign in to account.',
-
-
-    extendedDescription: `This creates a new user record in the database, signs in the requesting user agent
+	extendedDescription : `This creates a new user record in the database, signs in the requesting user agent
 by modifying its [session](https://sailsjs.com/documentation/concepts/sessions), and
 (if emailing with Mailgun is enabled) sends an account verification email.
 
@@ -15,80 +11,76 @@ If a verification email is sent, the new user's account is put in an "unconfirme
 until they confirm they are using a legitimate email address (by clicking the link in
 the account verification message.)`,
 
+	inputs              : {
+		email    : {
+			required            : true,
+			type                : 'string',
+			isEmail             : true,
+			description         :
+				'The email address for the new account, e.g. m@example.com.',
+			extendedDescription : 'Must be a valid email address.'
+		},
 
-    inputs: {
-        email: {
-            required: true,
-            type: 'string',
-            isEmail: true,
-            description: 'The email address for the new account, e.g. m@example.com.',
-            extendedDescription: 'Must be a valid email address.',
-        },
+		password : {
+			required    : true,
+			type        : 'string',
+			maxLength   : 200,
+			example     : 'passwordlol',
+			description :
+				'The unencrypted password to use for the new account.'
+		}
+	},
 
-        password: {
-            required: true,
-            type: 'string',
-            maxLength: 200,
-            example: 'passwordlol',
-            description: 'The unencrypted password to use for the new account.'
-        }
-    },
+	exits               : {
+		success           : {
+			description : 'Signed in successfully.'
+		},
 
+		invalid           : {
+			responseType        : 'badRequest',
+			description         :
+				'The provided fullName, password and/or email address are invalid.',
+			extendedDescription :
+				'If this request was sent from a graphical user interface, the request ' +
+				'parameters should have been validated/coerced _before_ they were sent.'
+		},
 
-    exits: {
+		emailAlreadyInUse : {
+			statusCode  : 409,
+			description : 'The provided email address is already in use.'
+		}
+	},
 
-        success: {
-            description: 'Signed in successfully.'
-        },
+	fn                  : async function (inputs){
+		// Initialize Firebase
+		var firebase = require('../../database/firebase.js')
+		var admin = require('../../database/admin.js')
+		var userData = {
+			uid            : '',
+			token          : '',
+			administration : false
+		}
 
-        invalid: {
-            responseType: 'badRequest',
-            description: 'The provided fullName, password and/or email address are invalid.',
-            extendedDescription: 'If this request was sent from a graphical user interface, the request ' +
-                'parameters should have been validated/coerced _before_ they were sent.'
-        },
-
-        emailAlreadyInUse: {
-            statusCode: 409,
-            description: 'The provided email address is already in use.',
-        },
-
-    },
-
-
-    fn: async function (inputs) 
-    {
-        // Initialize Firebase
-        var firebase = require('../../database/firebase.js');
-        var admin = require('../../database/admin.js')
-        var userData = {
-            uid: '',
-            token: '',
-            administration: false
-        }
-
-        await firebase.auth().signInWithEmailAndPassword(inputs.email, inputs.password)
-        .then(function(firebaseUser) 
-        {
-            userData.uid = firebaseUser.user.uid;
-            return firebase.auth().currentUser.getIdToken(false);
-        })
-        .then(function(idToken) 
-        {
-            userData.token = idToken;
-            return admin.auth().verifyIdToken(userData.token);
-        })
-        .then(function(claims)
-        {
-            if (claims.admin === true) {
-                userData.administration = true;
-            } 
-        })
-        .catch(function(error) 
-        {
-              console.log(error);
-        });
-        var u = (JSON.stringify(userData));
-        this.res.send(u);
-    }
-};
+		await firebase
+			.auth()
+			.signInWithEmailAndPassword(inputs.email, inputs.password)
+			.then(function (firebaseUser){
+				userData.uid = firebaseUser.user.uid
+				return firebase.auth().currentUser.getIdToken(false)
+			})
+			.then(function (idToken){
+				userData.token = idToken
+				return admin.auth().verifyIdToken(userData.token)
+			})
+			.then(function (claims){
+				if (claims.admin === true) {
+					userData.administration = true
+				}
+			})
+			.catch(function (error){
+				console.log(error)
+			})
+		var u = JSON.stringify(userData)
+		this.res.send(u)
+	}
+}
