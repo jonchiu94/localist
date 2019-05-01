@@ -20,14 +20,14 @@ const router = new VueRouter({
           redirect: '/'
         },
         {
+          path: '/',
+          name: 'home',
+          component: Home
+        },
+        {
           path: '/signin',
           name: 'signin',
           component: Signin
-        },
-        {
-            path: '/',
-            name: 'home',
-            component: Home
         },
         {
           path: '/users',

@@ -1,19 +1,17 @@
 <template>
   <div id="app">
-    <Navigation></Navigation>
+    <Navigation id="navBar"></Navigation>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-  import Navigation from '@/components/Navigation.vue'
+  import Navigation from './components/Navigation.vue'
 
   export default {
     name: 'App',
-    components: {
-      Navigation
-    }
+    components: { Navigation }
   }
 </script>
 
@@ -24,6 +22,9 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+  }
+
+  #navBar {
+    margin-bottom: 10px;
   }
 </style>
