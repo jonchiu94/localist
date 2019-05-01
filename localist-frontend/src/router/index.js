@@ -34,7 +34,8 @@ const router = new VueRouter({
 			name      : 'Users',
 			component : Users,
 			meta      : {
-				requiresAuth : true
+				requiresAuth  : true,
+				requiresAdmin : true
 			}
 		},
 		{
@@ -78,9 +79,14 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 	const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
-	const currentUser = store.getters.getAdminStatus
+	const requiresAdmin = to.matched.some((x) => x.meta.requiresAdmin)
+	const currentAdmin = store.getters.getAdminStatus
+	const currentUser = store.getters.getCurrentUser
 
-	if (requiresAuth && !currentUser) {
+	if (requiresAdmin && !currentAdmin) {
+		next('/signin')
+	}
+	else if (requiresAuth && !currentUser) {
 		next('/signin')
 	}
 	else if (requiresAuth && currentUser) {
