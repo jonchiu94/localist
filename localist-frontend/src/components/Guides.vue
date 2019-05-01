@@ -2,22 +2,18 @@
 	<div id = "guideList">
 		<h1>Guides</h1>
 		<router-link class="button" to="guides/createguide">Create Guide</router-link>
-        <div class = "guides">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="col-lg-12">
-					<div class="row pt-md">
-						<div 
-						v-for = "guide in guides"
-						:key="guide.id"
-						class = "col-lg-3 col-md-3 col-sm-4 col-xs-12 guide-card">
-								<div class="card h-100 text-center shadow p-3 mb-5 bg-white rounded border-bottom-0" style="width: 18rem;">
-									<img class="card-img-top rounded-circle" src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1562198400&v=beta&t=BsWTGGTHMroIWmeg-toVM3I5OVGNd45vAsNkSnYDvkY" alt="Card image cap">
-									<div class="card-body">
-										<h5 class="card-title">{{guide.info.first_name}} {{guide.info.last_name}}</h5>
-										<h6>{{guide.info.city}}, {{guide.info.country}}</h6>
-										<router-link class="btn btn-primary" :to="'/guides/single/' + guide.key">View Info</router-link>
-									</div>
-								</div>
+        <div class = "container">
+			<div class="row">
+				<div 
+				v-for = "guide in guides"
+				:key="guide.id"
+				class = "col-sm-3 col-md-3 col-lg-3 pb-2 guide-card">
+					<div class="card h-100 text-center shadow p-3 mb-5 bg-white rounded border-bottom-0 " :id="guide.key">
+						<img class="card-img-top rounded-circle" src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1562198400&v=beta&t=BsWTGGTHMroIWmeg-toVM3I5OVGNd45vAsNkSnYDvkY" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">{{guide.info.first_name}} {{guide.info.last_name}}</h5>
+							<h6>{{guide.info.city}}, {{guide.info.country}}</h6>
+							<router-link class="btn btn-primary" :to="'/guides/single/' + guide.key">View Info</router-link>
 						</div>
 					</div>
 				</div>
@@ -57,7 +53,7 @@
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 
-	.guides {
+	.container {
 		margin-top: 40px;
 	}
 

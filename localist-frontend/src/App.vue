@@ -36,6 +36,6 @@
   }
 
   #navBar {
-    margin-bottom: 10%;
+    margin-bottom: 2%;
   }
 </style>

@@ -64,7 +64,6 @@
 
 <style>
   .nav-bar {
-    margin-bottom: 30px;
     color: black;
     background: #1E9600;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #FF0000, #FFF200, #1E9600);  /* Chrome 10-25, Safari 5.1-6 */
