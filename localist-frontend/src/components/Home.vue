@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id = "home">
 		<section class="search-sec">
 			<div class="container">
 				<form action="#" method="post" novalidate="novalidate">
@@ -37,9 +37,19 @@
 </script>
 
 <style>
-.search-sec {
-	margin-top: 200px;
-}
+	.search-sec {
+		margin-top: 200px;
+	}
+
+	/* #home {
+		min-height: 100%;
+		background: url('https://images.unsplash.com/photo-1555985202-12975b0235dc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1049&q=80') no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('https://images.unsplash.com/photo-1550596334-7bb40a71b6bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+  	} */
 </style>
 
 

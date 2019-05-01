@@ -1,39 +1,29 @@
 <template>
     <div id = "tourList">
         <h1>Tours</h1>
-        <div>
-            <!-- <table class="table table-dark">
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th></th>
-                </tr>
-                <tr
-                    v-for = "tour in tours"
-                    :key="tour.key"
-                    class = "tour">
-                    <th>{{tour.title}}</th>
-                    <th v-html="tour.description"></th>
-                    <th><router-link :to="'/tours/single/' + tour.key">View Info</router-link></th>
-                </tr>
-            </table> -->
-            <div class="card-header" style="width: 18rem;">
-                Featured
-            </div>
-            <div v-for = "tour in tours"
-                    :key="tour.key"
-                    class = "tour">
-                <div class="card text-center" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{tour.title}}</h5>
-                        <h6>$ {{tour.price.low}} - {{tour.price.high}}</h6>
-                        <p class="card-text" v-html="tour.description"></p>
-                        <router-link :to="'/tours/single/' + tour.key">View Info</router-link>
-                    </div>
-                </div>
-            </div>
-        </div>
         <router-link to="tours/createtour">Create Tour</router-link>
+        <div class = "tours">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="col-lg-12">
+					<div class="row pt-md">
+                        <div 
+                            v-for = "tour in tours"
+                            :key="tour.key"
+                            class = "col-lg-3 col-md-3 col-sm-4 col-xs-12 tour-card">
+                            <div class="card h-100 text-center shadow p-3 mb-5 bg-white rounded border-bottom-0" style="width: 18rem;">
+								<img class="card-img-top" src="https://images.unsplash.com/photo-1519331379826-f10be5486c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{tour.title}}</h5>
+                                    <h6>$ {{tour.price.low}} - {{tour.price.high}}</h6>
+                                    <p class="card-text" v-html="tour.description"></p>
+                                    <router-link :to="'/tours/single/' + tour.key">View Info</router-link>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+        </div>
     </div>
 </template>
 
@@ -56,6 +46,12 @@
 </script>
 
 <style scoped>
+    .tour-card {
+        margin-bottom: 90px;
+    }
 
+	.tours {
+		margin-top: 40px;
+	}
 
 </style>

@@ -1,41 +1,28 @@
 <template>
 	<div id = "guideList">
 		<h1>Guides</h1>
-		<div>
-			<table class="table table-dark">
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Gender</th>
-					<th>City</th>
-					<th>Country</th>
-				</tr>
-				<tr
-					v-for = "guide in guides"
-					:key="guide.id"
-					class = "guide">
-					<th>{{guide.info.first_name}}</th>
-					<th v-html = "guide.info.last_name"></th>
-					<th>{{guide.info.gender}}</th>
-					<th>{{guide.info.city}}</th>
-					<th>{{guide.info.country}}</th>
-					<th><router-link :to="'/guides/single/' + guide.key">{{ guide.key }}</router-link></th>
-				</tr>
-			</table>
-		</div>
-		<!-- <div>
-			<div v-for = "guide in guides"
-					:key="guide.id"
-					class = "card" style="width: 18rem;">
-			<img class="card-img-top" src="..." alt="Card image cap">
-			<div class="card-body">
-				<h5 class="card-title">{{guide.info.first_name}}</h5>
-				<p class="card-text">{{guide.info.gender}}</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
+		<router-link class="button" to="guides/createguide">Create Guide</router-link>
+        <div class = "guides">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="col-lg-12">
+					<div class="row pt-md">
+						<div 
+						v-for = "guide in guides"
+						:key="guide.id"
+						class = "col-lg-3 col-md-3 col-sm-4 col-xs-12 guide-card">
+								<div class="card h-100 text-center shadow p-3 mb-5 bg-white rounded border-bottom-0" style="width: 18rem;">
+									<img class="card-img-top rounded-circle" src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1562198400&v=beta&t=BsWTGGTHMroIWmeg-toVM3I5OVGNd45vAsNkSnYDvkY" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">{{guide.info.first_name}} {{guide.info.last_name}}</h5>
+										<h6>{{guide.info.city}}, {{guide.info.country}}</h6>
+										<router-link class="btn btn-primary" :to="'/guides/single/' + guide.key">View Info</router-link>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			</div>
-		</div> -->
-		<router-link to="guides/createguide">Create Guide</router-link>
+        </div>
 	</div>
 </template>
 
@@ -59,5 +46,23 @@
 
 <style scoped>
 
+	.card-img-top {
+		/* border-radius: 40%; */
+		border: 1px solid black;
+		width: 200px;
+		margin: auto;
+	}
+
+	.card-text-center {
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+
+	.guides {
+		margin-top: 40px;
+	}
+
+	.guide-card {
+		margin-bottom: 50px;
+	}
 
 </style>
