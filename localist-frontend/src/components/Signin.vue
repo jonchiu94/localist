@@ -107,18 +107,33 @@ export default {
                 email: this.email,
                 password: this.password
             };
-            axios
-                .post(this.$store.state.server_url + "/signin", formData)
-                .then(function(response) {
-                    if (response.data.administration) {
-                        router.push("/users");
-                    } else {
-                        router.push("/home");
-                    }
-                })
-                .catch(function(error) {
-                    alert(error);
-                });
+            this.$store.dispatch("signin", formData).then(
+                response => {
+                    console.log({
+                        id: this.$store.state.userId,
+                        token: this.$store.state.token,
+                        admin: this.$store.state.adminStatus
+                    });
+                    router.push("users");
+                },
+                error => {
+                    console.error(
+                        "Got nothing from server. Prompt user to check internet connection and try again"
+                    );
+                }
+            );
+            // axios
+            //     .post(this.$store.state.server_url + "/signin", formData)
+            //     .then(function(response) {
+            //         if (response.data.administration) {
+            //             router.push("/users");
+            //         } else {
+            //             router.push("/home");
+            //         }
+            //     })
+            //     .catch(function(error) {
+            //         alert(error);
+            //     });
         },
         signUpButton() {
             const container = document.getElementById("container");

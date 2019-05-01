@@ -58,13 +58,15 @@ the account verification message.)`,
 		var userData = {
 			uid            : '',
 			token          : '',
-			administration : false
+			administration : false,
+			user           : ''
 		}
 
 		await firebase
 			.auth()
 			.signInWithEmailAndPassword(inputs.email, inputs.password)
 			.then(function (firebaseUser){
+				userData.user = firebaseUser
 				userData.uid = firebaseUser.user.uid
 				return firebase.auth().currentUser.getIdToken(false)
 			})
