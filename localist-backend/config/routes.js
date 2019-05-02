@@ -9,54 +9,41 @@
  */
 
 module.exports.routes = {
+	//  ╦ ╦╔═╗╔╗ ╔═╗╔═╗╔═╗╔═╗╔═╗
+	//  ║║║║╣ ╠╩╗╠═╝╠═╣║ ╦║╣ ╚═╗
+	//  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
 
-    //  ╦ ╦╔═╗╔╗ ╔═╗╔═╗╔═╗╔═╗╔═╗
-    //  ║║║║╣ ╠╩╗╠═╝╠═╣║ ╦║╣ ╚═╗
-    //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
-    'GET /': {
-        action: 'view-homepage-or-redirect'
-    },
+	//  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
+	//  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
+	//  ╩ ╩╩╚═╝╚═╝  ╩╚═╚═╝═╩╝╩╩╚═╚═╝╚═╝ ╩ ╚═╝  └┘   ═╩╝╚═╝╚╩╝╝╚╝╩═╝╚═╝╩ ╩═╩╝╚═╝
 
+	//  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
+	//  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
+	//  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
+	// …
 
-    //  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
-    //  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
-    //  ╩ ╩╩╚═╝╚═╝  ╩╚═╚═╝═╩╝╩╩╚═╚═╝╚═╝ ╩ ╚═╝  └┘   ═╩╝╚═╝╚╩╝╝╚╝╩═╝╚═╝╩ ╩═╩╝╚═╝
+	//  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
+	//  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
+	//  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
+	// Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
+	// from the Parasails library, or by using those method names as the `action` in <ajax-form>.
+	'POST       /signup'            : { action: 'entrance/signup' },
+	'POST       /signin'            : { action: 'entrance/signin' },
+	'POST       /tours/add'         : { action: 'tours/post-tour' },
+	'POST       /guides/add'        : { action: 'guides/post-guide' },
+	'GET        /users'             : { action: 'users/list-users' },
+	'GET        /tours/all'         : { action: 'tours/get-all-tours' },
+	'GET        /guides/all'        : { action: 'guides/get-all-guides' },
+	'GET        /guides/:id'        : { action: 'guides/single-guide' },
+	'GET        /tours/:id'         : { action: 'tours/single-tour' },
+	'DELETE     /tours/delete/:id'  : { action: 'tours/delete-tour' },
+	'DELETE     /guides/delete/:id' : { action: 'guides/delete-guide' },
+	'PUT        /tours/update/:id'  : { action: 'tours/update-tour' },
+	'PUT        /guides/update/:id' : { action: 'guides/update-guide' }
 
-
-    //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
-    //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
-    //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
-    // …
-
-
-  //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
-  //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
-  //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-  // Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
-  // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
-  'POST  /signup':                                   { action: 'entrance/signup' }, 
-  'POST  /signin':                                   { action: 'entrance/signin' }, 
-  'POST  /tours/add':                                { action: 'tours/post-tour' }, 
-  'POST  /guides/add':                               { action: 'guides/post-guide' }, 
-  'GET   /users':                                    { action: 'users/list-users' }, 
-  'GET   /tours/all':                                { action: 'tours/get-all-tours' },
-  'GET   /guides/all':                               { action: 'guides/get-all-guides' }, 
-  'GET   /guides/:id':                               { action: 'guides/single-guide' }, 
-  'GET   /tours/:id':                                { action: 'tours/single-tour' }, 
-  'DELETE   /tours/delete/:id':                      { action: 'tours/delete-tour' }, 
-  'DELETE   /guides/delete/:id':                     { action: 'guides/delete-guide' }, 
-  'PUT   /tours/update/:id':                         { action: 'tours/update-tour' }, 
-  'PUT   /guides/update/:id':                        { action: 'guides/update-guide' }, 
-
-
-   
-
-
-    //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
-    //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
-    //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-    // Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
-    // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
-
-
-};
+	//  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
+	//  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
+	//  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
+	// Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
+	// from the Parasails library, or by using those method names as the `action` in <ajax-form>.
+}
