@@ -6,9 +6,7 @@
                     <b-jumbotron bg-variant="dark" text-variant="white" border-variant="dark">
                         <div class="media" v-for="user in users" :key="user.uid">
                             <div class="media-body">
-                                <h1></h1>
                                 <h3>email: {{user.email}}</h3>
-                                <hr>
                             </div>
                         </div>
                     </b-jumbotron>

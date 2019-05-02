@@ -1,5 +1,5 @@
 <template>
-    <div class="container" id="container">
+    <div class="container" id="container" ref="container">
         <div class="form-container sign-up-container">
             <form v-on:submit.prevent="signUp">
                 <h1>Create Account</h1>
@@ -179,11 +179,11 @@ export default {
                 });
         },
         signUpButton() {
-            const container = document.getElementById("container");
+            const container = this.$refs.container;
             container.classList.add("right-panel-active");
         },
         signInButton() {
-            const container = document.getElementById("container");
+            const container = this.$refs.container;
             container.classList.remove("right-panel-active");
         }
     }

@@ -89,12 +89,19 @@
             <v-menu :nudge-width="100" v-if="getUsername">
                 <template v-slot:activator="{ on }">
                     <v-toolbar-title v-on="on">
-                        <span>{{ username }}</span>
-                        <v-icon light>arrow_drop_down_circle</v-icon>
+                        <v-avatar>
+                            <img
+                                src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1562198400&v=beta&t=BsWTGGTHMroIWmeg-toVM3I5OVGNd45vAsNkSnYDvkY"
+                                alt="Jacob Smith"
+                            >
+                        </v-avatar>
                     </v-toolbar-title>
                 </template>
 
                 <v-list>
+                    <v-list-tile>
+                        <v-list-tile-title>{{username}}</v-list-tile-title>
+                    </v-list-tile>
                     <v-list-tile to="/">
                         <v-list-tile-title>Profile</v-list-tile-title>
                     </v-list-tile>
