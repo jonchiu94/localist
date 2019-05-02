@@ -18,7 +18,7 @@
         </v-card>
     </v-footer>
 </template>
-<script>
+    <script>
 export default {
     data: () => ({
         icons: [
