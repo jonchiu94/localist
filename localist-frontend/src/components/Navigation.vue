@@ -130,7 +130,16 @@ export default {
     }),
     methods: {
         signout() {
-            axios.post;
+            axios
+                .post(this.$store.state.server_url + "/signout")
+                .then(function(response) {
+                    if (response.status == 200) {
+                        this.$state.actions.clearData();
+                    }
+                    console.log({ id: this.$state.userId });
+                })
+                .catch(error => alert(error));
+            // .finally(() => (this.loading = false));
         }
     },
     computed: {

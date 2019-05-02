@@ -5,8 +5,7 @@ import VuexPersist from 'vuex-persist'
 Vue.use(Vuex)
 
 const vuexLocalStorage = new VuexPersist({
-	key     : 'localist',
-	storage : window.localStorage
+	storage : window.sessionStorage
 })
 
 const store = new Vuex.Store({
