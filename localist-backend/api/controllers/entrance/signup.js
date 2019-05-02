@@ -70,8 +70,13 @@ the account verification message.)`,
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
 		var admin = require('../../database/admin.js')
-		var uid = ''
-		var curr = this
+		var r = this.res
+		var userData = {
+			uid            : '',
+			token          : '',
+			administration : inputs.administration,
+			user           : ''
+		}
 
 		console.log('creating user...')
 		await firebase
@@ -81,29 +86,34 @@ the account verification message.)`,
 				inputs.password
 			)
 			.then((authData) => {
+				userData.user = authData
 				console.log('User created successfully')
-				var newUser = database
-					.ref('users')
-					.push(firebase.auth().currentUser.uid)
-				uid = firebase.auth().currentUser.uid
+				return firebase.auth().currentUser.getIdToken(false)
+			})
+			.then(function (idToken){
+				userData.token = idToken
+				return firebase.auth().currentUser.uid
+			})
+			.then(function (uid){
+				userData.uid = uid
+				var newUser = database.ref('users').push(uid)
 				newUser.set({
-					uid  : uid,
+					uid  : userData.uid,
 					name : inputs.name
 				})
 				if (inputs.administration) {
-					admin
+					return admin
 						.auth()
 						.setCustomUserClaims(uid, {
-							admin: true
-						})
-						.then(() => {
-							console.log('created admin')
+							admin : true
 						})
 				}
 			})
-			.catch((error) => {
-				curr.res.status(409)
-				curr.res.json(error)
+			.catch(function (error){
+				r.json({ error: error })
+				return
 			})
+
+		this.res.json(userData)
 	}
 }

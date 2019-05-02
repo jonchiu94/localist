@@ -10,15 +10,12 @@ import SingleGuide from '../components/SingleGuide'
 import SingleTour from '../components/SingleTour'
 import CreateGuide from '../components/CreateGuide'
 import CreateTour from '../components/CreateTour'
+import Admin from '../components/Admin'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
 	mode   : 'history',
 	routes : [
-		{
-			path     : '*',
-			redirect : '/'
-		},
 		{
 			path      : '/',
 			name      : 'home',
@@ -34,7 +31,7 @@ const router = new VueRouter({
 			name      : 'Users',
 			component : Users,
 			meta      : {
-				requiresAuth : true
+				requiresAdmin : true
 			}
 		},
 		{
@@ -72,15 +69,29 @@ const router = new VueRouter({
 			path      : '/tours/single/:id',
 			name      : 'tourID',
 			component : SingleTour
+		},
+		{
+			path      : 'admin',
+			name      : 'Admin',
+			component : Admin
+		},
+		{
+			path     : '*',
+			redirect : '/'
 		}
 	]
 })
 
 router.beforeEach((to, from, next) => {
 	const requiresAuth = to.matched.some((x) => x.meta.requiresAuth)
-	const currentUser = store.getters.getAdminStatus
+	const requiresAdmin = to.matched.some((x) => x.meta.requiresAdmin)
+	const currentAdmin = store.getters.getAdminStatus
+	const currentUser = store.getters.getCurrentUser
 
-	if (requiresAuth && !currentUser) {
+	if (requiresAdmin && !currentAdmin) {
+		next('/signin')
+	}
+	else if (requiresAuth && !currentUser) {
 		next('/signin')
 	}
 	else if (requiresAuth && currentUser) {

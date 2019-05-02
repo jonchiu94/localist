@@ -1,18 +1,22 @@
 import Vue from 'vue'
+import store from './store'
 import App from './App.vue'
-import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import router from './router'
-import store from './store'
 import BootstrapVue from 'bootstrap-vue'
+import Vuetify from 'vuetify'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vuetify/dist/vuetify.min.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.config.productionTip = false
 
-Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
+Vue.use(Vuetify, {
+	iconfont : 'md'
+})
 
 new Vue({
 	router,

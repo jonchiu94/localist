@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-navbar toggleable="lg" type="light" variant="info" class="nav-bar">
+        <!-- <b-navbar toggleable="lg" type="light" variant="info" class="nav-bar" absolute>
             <b-navbar-brand to="/" class="nav-item nav-link" active-class="active" exact>Localist</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -19,9 +19,15 @@
                         active-class="active"
                         exact
                     >Guides</b-nav-item>
+                    <b-nav-item
+                        v-if="isAdmin"
+                        to="/users"
+                        class="nav-item nav-link"
+                        active-class="active"
+                        exact
+                    >Admin</b-nav-item>
                 </b-navbar-nav>
 
-                <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                     <b-nav-form>
                         <b-form-input
@@ -38,30 +44,103 @@
                             type="submit"
                         >Search</b-button>
                     </b-nav-form>
-
-                    <!-- <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
-          </b-nav-item-dropdown>
-
-          <b-nav-item-dropdown right>
-            <template slot="button-content"><em>User</em></template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-                    </b-nav-item-dropdown>-->
                     <b-nav-item
+                        v-if="!isLoggedIn"
                         to="/signin"
                         class="nav-item nav-link"
                         active-class="active"
                         exact
-                    >Sign In</b-nav-item>
+                    >Sign In/Sign Up</b-nav-item>
+                    <b-nav-item-dropdown
+                        v-if="getUsername"
+                        id="my-nav-dropdown"
+                        :text="username"
+                        extra-toggle-classes="nav-link-custom"
+                        right
+                    >
+                        <b-dropdown-item to="/profile">Profile</b-dropdown-item>
+                        <b-dropdown-item to="/settings">Settings</b-dropdown-item>
+                        <b-dropdown-divider></b-dropdown-divider>
+                        <b-dropdown-item to="/signout">Sign Out</b-dropdown-item>
+                    </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
-        </b-navbar>
+        </b-navbar>-->
+
+        <v-toolbar class="nav-bar" light>
+            <v-toolbar-side-icon></v-toolbar-side-icon>
+
+            <v-btn to="/" icon>
+                <v-icon>home</v-icon>
+            </v-btn>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn to="/tours" flat>Tours</v-btn>
+                <v-btn to="/guides" flat>Guides</v-btn>
+                <v-btn v-if="isAdmin" to="/users" flat>Admin</v-btn>
+            </v-toolbar-items>
+
+            <v-spacer></v-spacer>
+
+            <v-btn icon>
+                <v-icon>search</v-icon>
+            </v-btn>
+
+            <v-btn dark to="/signin" v-if="!isLoggedIn">Sign In/Sign Up</v-btn>
+            <v-menu :nudge-width="100" v-if="getUsername">
+                <template v-slot:activator="{ on }">
+                    <v-toolbar-title v-on="on">
+                        <v-avatar>
+                            <img
+                                src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1562198400&v=beta&t=BsWTGGTHMroIWmeg-toVM3I5OVGNd45vAsNkSnYDvkY"
+                                alt="Jacob Smith"
+                            >
+                        </v-avatar>
+                    </v-toolbar-title>
+                </template>
+
+                <v-list>
+                    <v-list-tile>
+                        <v-list-tile-title>{{username}}</v-list-tile-title>
+                    </v-list-tile>
+                    <v-list-tile to="/">
+                        <v-list-tile-title>Profile</v-list-tile-title>
+                    </v-list-tile>
+                    <v-list-tile to="/">
+                        <v-list-tile-title>
+                            <v-icon light>settings</v-icon>Settings
+                        </v-list-tile-title>
+                    </v-list-tile>
+                    <v-list-tile to="/">
+                        <v-list-tile-title>Signout</v-list-tile-title>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
+        </v-toolbar>
     </div>
 </template>
+
+<script>
+export default {
+    name: "Navigation",
+    data: () => ({
+        username: "",
+        items: ["Profile", "Settings", "Signout"]
+    }),
+    computed: {
+        isLoggedIn: function() {
+            return this.$store.getters.getCurrentUser;
+        },
+        isAdmin: function() {
+            return this.$store.getters.getAdminStatus;
+        },
+        getUsername: function() {
+            this.username = this.$store.getters.getUsername;
+            return this.$store.getters.getUsername;
+        }
+    }
+};
+</script>
+
 
 <style>
 .nav-bar {
