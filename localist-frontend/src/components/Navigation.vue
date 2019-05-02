@@ -19,6 +19,13 @@
                         active-class="active"
                         exact
                     >Guides</b-nav-item>
+                    <b-nav-item
+                        v-if="isAdmin"
+                        to="/users"
+                        class="nav-item nav-link"
+                        active-class="active"
+                        exact
+                    >Admin</b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->
@@ -38,30 +45,52 @@
                             type="submit"
                         >Search</b-button>
                     </b-nav-form>
-
-                    <!-- <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
-          </b-nav-item-dropdown>
-
-          <b-nav-item-dropdown right>
-            <template slot="button-content"><em>User</em></template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-                    </b-nav-item-dropdown>-->
                     <b-nav-item
+                        v-if="!isLoggedIn"
                         to="/signin"
                         class="nav-item nav-link"
                         active-class="active"
                         exact
-                    >Sign In</b-nav-item>
+                    >Sign In/Sign Up</b-nav-item>
+                    <b-nav-item-dropdown
+                        v-if="getUsername"
+                        id="my-nav-dropdown"
+                        :text="username"
+                        extra-toggle-classes="nav-link-custom"
+                        right
+                    >
+                        <b-dropdown-item to="/profile">Profile</b-dropdown-item>
+                        <b-dropdown-item to="/settings">Settings</b-dropdown-item>
+                        <b-dropdown-divider></b-dropdown-divider>
+                        <b-dropdown-item to="/signout">Sign Out</b-dropdown-item>
+                    </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
     </div>
 </template>
+
+<script>
+export default {
+    name: "Navigation",
+    data: () => ({
+        username: ""
+    }),
+    computed: {
+        isLoggedIn: function() {
+            return this.$store.getters.getCurrentUser;
+        },
+        isAdmin: function() {
+            return this.$store.getters.getAdminStatus;
+        },
+        getUsername: function() {
+            this.username = this.$store.getters.getUsername;
+            return this.$store.getters.getUsername;
+        }
+    }
+};
+</script>
+
 
 <style>
 .nav-bar {

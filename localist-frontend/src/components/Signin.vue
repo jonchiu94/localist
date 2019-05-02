@@ -101,16 +101,25 @@ export default {
                     if (response.data.error) {
                         alert(response.data.error.message);
                     } else {
+                        r.$store.commit(
+                            "setUsername",
+                            response.data.user.user.email
+                        );
                         r.$store.commit("setCurrentUser", response.data.user);
                         r.$store.commit("setCurrentToken", response.data.token);
                         r.$store.commit("setUserId", response.data.uid);
+                        r.$store.commit(
+                            "setUsername",
+                            response.data.user.email
+                        );
                         if (response.data.administration) {
                             r.$store.commit("setAdminStatus", true);
                         }
                         console.log("Signed Up", {
                             id: r.$store.state.userId,
                             token: r.$store.state.token,
-                            admin: r.$store.state.adminStatus
+                            admin: r.$store.state.adminStatus,
+                            user: r.$store.state.user
                         });
                         router.push("/");
                     }
@@ -158,6 +167,10 @@ export default {
                     if (response.data.error) {
                         alert(response.data.error.message);
                     } else {
+                        r.$store.commit(
+                            "setUsername",
+                            response.data.user.user.email
+                        );
                         r.$store.commit("setCurrentUser", response.data.user);
                         r.$store.commit("setCurrentToken", response.data.token);
                         r.$store.commit("setUserId", response.data.uid);
