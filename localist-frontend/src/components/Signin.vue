@@ -19,13 +19,15 @@
                     <input type="text" placeholder="Name" v-model="name">
                     <input type="email" placeholder="Email" v-model="email">
                     <input type="password" placeholder="Password" v-model="password">
-                    <input
-                        type="checkbox"
-                        value="administration"
-                        @click="administration = !administration"
-                        class="form-check-input"
-                        id="administration"
-                    >
+                    <div>
+                        <input
+                            type="checkbox"
+                            value=" "
+                            @click="administration = !administration"
+                            class="form-check-input"
+                            id="administration"
+                        >
+                    </div>
                     <label class="form-check-label" for="administration">make me admin</label>
                 </div>
                 <button type="submit">Sign Up</button>
@@ -71,6 +73,7 @@
 
 <script>
 import router from "../router";
+import axios from "axios";
 
 export default {
     name: "Signin",
@@ -85,7 +88,7 @@ export default {
     },
     methods: {
         signUp() {
-            var axios = require("axios");
+            var r = this;
             const formData = {
                 email: this.email,
                 password: this.password,
@@ -95,45 +98,84 @@ export default {
             axios
                 .post(this.$store.state.server_url + "/signup", formData)
                 .then(function(response) {
-                    router.push("/users");
+                    if (response.data.error) {
+                        alert(response.data.error.message);
+                    } else {
+                        r.$store.commit("setCurrentUser", response.data.user);
+                        r.$store.commit("setCurrentToken", response.data.token);
+                        r.$store.commit("setUserId", response.data.uid);
+                        if (response.data.administration) {
+                            r.$store.commit("setAdminStatus", true);
+                        }
+                        console.log("Signed Up", {
+                            id: r.$store.state.userId,
+                            token: r.$store.state.token,
+                            admin: r.$store.state.adminStatus
+                        });
+                        router.push("/");
+                    }
                 })
                 .catch(function(error) {
-                    alert(error);
+                    console.log(error);
                 });
+            // this.$store.dispatch("signup", formData).then(
+            //     response => {
+            //         console.log({
+            //             id: this.$store.state.userId,
+            //             token: this.$store.state.token,
+            //             admin: this.$store.state.adminStatus
+            //         });
+            //         router.push("/");
+            //     },
+            //     error => {
+            //         console.error();
+            //     }
+            // );
         },
         signIn() {
-            var axios = require("axios");
+            var r = this;
             const formData = {
                 email: this.email,
                 password: this.password
             };
-            this.$store.dispatch("signin", formData).then(
-                response => {
-                    console.log({
-                        id: this.$store.state.userId,
-                        token: this.$store.state.token,
-                        admin: this.$store.state.adminStatus
-                    });
-                    router.push("users");
-                },
-                error => {
-                    console.error(
-                        "Got nothing from server. Prompt user to check internet connection and try again"
-                    );
-                }
-            );
-            // axios
-            //     .post(this.$store.state.server_url + "/signin", formData)
-            //     .then(function(response) {
-            //         if (response.data.administration) {
-            //             router.push("/users");
-            //         } else {
-            //             router.push("/home");
-            //         }
-            //     })
-            //     .catch(function(error) {
-            //         alert(error);
-            //     });
+            // this.$store.dispatch("signin", formData).then(
+            //     response => {
+            //         console.log({
+            //             id: this.$store.state.userId,
+            //             token: this.$store.state.token,
+            //             admin: this.$store.state.adminStatus,
+            //             response: response
+            //         });
+            //         router.push("/");
+            //     },
+            //     error => {
+            //         console.error();
+            //     }
+            // );
+            axios
+                .post(this.$store.state.server_url + "/signin", formData)
+                .then(function(response) {
+                    if (response.data.error) {
+                        alert(response.data.error.message);
+                    } else {
+                        r.$store.commit("setCurrentUser", response.data.user);
+                        r.$store.commit("setCurrentToken", response.data.token);
+                        r.$store.commit("setUserId", response.data.uid);
+                        if (response.data.administration) {
+                            r.$store.commit("setAdminStatus", true);
+                        }
+
+                        console.log("Signed In", {
+                            id: r.$store.state.userId,
+                            token: r.$store.state.token,
+                            admin: r.$store.state.adminStatus
+                        });
+                        router.push("/");
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
         },
         signUpButton() {
             const container = document.getElementById("container");

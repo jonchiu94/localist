@@ -55,6 +55,7 @@ the account verification message.)`,
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var admin = require('../../database/admin.js')
+		var r = this.res
 		var userData = {
 			uid            : '',
 			token          : '',
@@ -80,9 +81,9 @@ the account verification message.)`,
 				}
 			})
 			.catch(function (error){
-				console.log(error)
+				r.json({ error: error })
 			})
-		var u = JSON.stringify(userData)
-		this.res.send(u)
+
+		this.res.json(userData)
 	}
 }
