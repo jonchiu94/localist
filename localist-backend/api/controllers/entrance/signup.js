@@ -1,13 +1,9 @@
 module.exports = {
+	friendlyName        : 'Signup',
 
+	description         : 'Sign up for a new user account.',
 
-    friendlyName: 'Signup',
-
-
-    description: 'Sign up for a new user account.',
-
-
-    extendedDescription: `This creates a new user record in the database, signs in the requesting user agent
+	extendedDescription : `This creates a new user record in the database, signs in the requesting user agent
 by modifying its [session](https://sailsjs.com/documentation/concepts/sessions), and
 (if emailing with Mailgun is enabled) sends an account verification email.
 
@@ -15,88 +11,109 @@ If a verification email is sent, the new user's account is put in an "unconfirme
 until they confirm they are using a legitimate email address (by clicking the link in
 the account verification message.)`,
 
+	inputs              : {
+		email          : {
+			required            : true,
+			type                : 'string',
+			isEmail             : true,
+			description         :
+				'The email address for the new account, e.g. m@example.com.',
+			extendedDescription : 'Must be a valid email address.'
+		},
 
-    inputs: {
-        email: {
-            required: true,
-            type: 'string',
-            isEmail: true,
-            description: 'The email address for the new account, e.g. m@example.com.',
-            extendedDescription: 'Must be a valid email address.',
-        },
+		password       : {
+			required    : true,
+			type        : 'string',
+			maxLength   : 200,
+			example     : 'passwordlol',
+			description :
+				'The unencrypted password to use for the new account.'
+		},
 
-        password: {
-            required: true,
-            type: 'string',
-            maxLength: 200,
-            example: 'passwordlol',
-            description: 'The unencrypted password to use for the new account.'
-        },
+		name           : {
+			required    : true,
+			type        : 'string',
+			maxLength   : 200,
+			example     : 'Jacob Smith',
+			description : 'Your name.'
+		},
 
-        name: {
-            required: true,
-            type: 'string',
-            maxLength: 200,
-            example: 'Jacob Smith',
-            description: 'Your name.'
-        },
+		administration : {
+			required    : true,
+			type        : 'boolean',
+			description : 'is Admin?.'
+		}
+	},
 
-        administration: {
-            required: true,
-            type: 'boolean',
-            description: 'is Admin?.'
-        }
-    },
+	exits               : {
+		success           : {
+			description : 'New user account was created successfully.'
+		},
 
+		invalid           : {
+			responseType        : 'badRequest',
+			description         :
+				'The provided fullName, password and/or email address are invalid.',
+			extendedDescription :
+				'If this request was sent from a graphical user interface, the request ' +
+				'parameters should have been validated/coerced _before_ they were sent.'
+		},
 
-    exits: {
+		emailAlreadyInUse : {
+			statusCode  : 409,
+			description : 'The provided email address is already in use.'
+		}
+	},
 
-        success: {
-            description: 'New user account was created successfully.'
-        },
+	fn                  : async function (inputs){
+		// Initialize Firebase
+		var firebase = require('../../database/firebase.js')
+		var database = firebase.database()
+		var admin = require('../../database/admin.js')
+		var r = this.res
+		var userData = {
+			uid            : '',
+			token          : '',
+			administration : inputs.administration,
+			user           : ''
+		}
 
-        invalid: {
-            responseType: 'badRequest',
-            description: 'The provided fullName, password and/or email address are invalid.',
-            extendedDescription: 'If this request was sent from a graphical user interface, the request ' +
-                'parameters should have been validated/coerced _before_ they were sent.'
-        },
+		console.log('creating user...')
+		await firebase
+			.auth()
+			.createUserWithEmailAndPassword(
+				inputs.email,
+				inputs.password
+			)
+			.then((authData) => {
+				userData.user = authData
+				console.log('User created successfully')
+				return firebase.auth().currentUser.getIdToken(false)
+			})
+			.then(function (idToken){
+				userData.token = idToken
+				return firebase.auth().currentUser.uid
+			})
+			.then(function (uid){
+				userData.uid = uid
+				var newUser = database.ref('users').push(uid)
+				newUser.set({
+					uid  : userData.uid,
+					name : inputs.name
+				})
+				if (inputs.administration) {
+					return admin
+						.auth()
+						.setCustomUserClaims(uid, {
+							admin : true
+						})
+				}
+			})
+			.catch(function (error){
+				r.json({ error: error })
+				return
+			})
 
-        emailAlreadyInUse: {
-            statusCode: 409,
-            description: 'The provided email address is already in use.',
-        },
-
-    },
-
-
-    fn: async function (inputs) {
-        // Initialize Firebase
-        var firebase = require('../../database/firebase.js');
-        var database = firebase.database();
-        var admin = require('../../database/admin.js')
-        var uid = '';
-        var curr = this;
-
-        console.log("creating user...")
-        await firebase.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
-            .then((authData) => {
-                console.log("User created successfully");
-                var newUser = database.ref("users").push(firebase.auth().currentUser.uid);
-                uid = firebase.auth().currentUser.uid;
-                newUser.set({
-                    'uid': uid,
-                    'name': inputs.name
-                });
-                if (inputs.administration)
-                {
-                    admin.auth().setCustomUserClaims(uid, { admin:true }).then(() => {
-                        console.log("created admin");
-                    });
-                }
-            }).catch((error) => {
-                curr.res.status(409);
-                curr.res.json(error);
-            })
-    }
-};
+		this.res.json(userData)
+	}
+}

@@ -1,90 +1,83 @@
 module.exports = {
+	friendlyName        : 'update-guide',
 
+	description         : 'Update a guide',
 
-    friendlyName: 'update-guide',
+	extendedDescription : `This updates a guide based on the id and the input fields`,
 
+	inputs              : {
+		first_name : {
+			required            : true,
+			type                : 'string',
+			description         : 'Title of tour',
+			extendedDescription : 'Must be a valid email address.'
+		},
 
-    description: 'Update a guide',
+		last_name  : {
+			required    : true,
+			type        : 'string',
+			maxLength   : 200,
+			example     : 'passwordlol',
+			description :
+				'The unencrypted password to use for the new account.'
+		},
 
+		gender     : {
+			required    : true,
+			type        : 'string',
+			description : 'The minimum duration in min.'
+		},
 
-    extendedDescription: `This updates a guide based on the id and the input fields`,
+		age        : {
+			required    : true,
+			type        : 'number',
+			description : 'The maximum duration in min.'
+		},
 
+		city       : {
+			required : true,
+			type     : 'string'
+		},
 
-    
-    inputs: {
-        first_name: {
-            required: true,
-            type: 'string',
-            description: 'Title of tour',
-            extendedDescription: 'Must be a valid email address.',
-        },
+		country    : {
+			required : true,
+			type     : 'string'
+		}
+	},
 
-        last_name: {
-            required: true,
-            type: 'string',
-            maxLength: 200,
-            example: 'passwordlol',
-            description: 'The unencrypted password to use for the new account.'
-        },
+	exits               : {
+		success : {
+			description : 'Updated guide successfully.'
+		},
 
-        gender: {
-            required: true,
-            type: 'string',
-            description: 'The minimum duration in min.'
-        },
+		invalid : {
+			responseType        : 'badRequest',
+			description         :
+				'The provided fullName, password and/or email address are invalid.',
+			extendedDescription :
+				'If this request was sent from a graphical user interface, the request ' +
+				'parameters should have been validated/coerced _before_ they were sent.'
+		}
+	},
 
-        age: {
-            required: true,
-            type: 'number',
-            description: 'The maximum duration in min.'
-        },
+	fn                  : async function (inputs){
+		// Initialize Firebase
+		var firebase = require('../../database/firebase.js')
+		var database = firebase.database()
+		var guidesRef = database.ref('guides')
+		var key = this.req.params.id
 
-        city: {
-            required: true,
-            type: 'string'
-        },
+		var guide = guidesRef.child(key).update({
+			info : {
+				first_name : inputs.first_name,
+				last_name  : inputs.last_name,
+				gender     : inputs.gender,
+				age        : inputs.age,
+				city       : inputs.city,
+				country    : inputs.country
+			}
+		})
 
-        country: {
-            required: true,
-            type: 'string'
-        }
-    },
-
-
-    exits: {
-
-        success: {
-            description: 'Updated guide successfully.'
-        },
-
-        invalid: {
-            responseType: 'badRequest',
-            description: 'The provided fullName, password and/or email address are invalid.',
-            extendedDescription: 'If this request was sent from a graphical user interface, the request ' +
-                'parameters should have been validated/coerced _before_ they were sent.'
-        },
-    },
-
-
-    fn: async function (inputs) 
-    {
-        // Initialize Firebase
-        var firebase = require('../../database/firebase.js');
-        var database = firebase.database();
-        var guidesRef = database.ref('guides');
-        var key = this.req.params.id;
-
-        var guide = guidesRef.child(key).update({
-            info: {
-                first_name: inputs.first_name,
-                last_name: inputs.last_name,
-                gender: inputs.gender,
-                age: inputs.age,
-                city: inputs.city,
-                country: inputs.country
-            }
-        });
-
-        this.res.json(guide);
-    }
-};
+		this.res.json(guide)
+	}
+}
