@@ -1,5 +1,5 @@
 <template>
-    <div class="container" id="container">
+    <div class="container" id="container" ref="container">
         <div class="form-container sign-up-container">
             <form v-on:submit.prevent="signUp">
                 <h1>Create Account</h1>
@@ -101,17 +101,20 @@ export default {
                     if (response.data.error) {
                         alert(response.data.error.message);
                     } else {
+                        r.$store.commit(
+                            "setUsername",
+                            response.data.user.user.email
+                        );
                         r.$store.commit("setCurrentUser", response.data.user);
                         r.$store.commit("setCurrentToken", response.data.token);
                         r.$store.commit("setUserId", response.data.uid);
+                        r.$store.commit(
+                            "setUsername",
+                            response.data.user.email
+                        );
                         if (response.data.administration) {
                             r.$store.commit("setAdminStatus", true);
                         }
-                        console.log("Signed Up", {
-                            id: r.$store.state.userId,
-                            token: r.$store.state.token,
-                            admin: r.$store.state.adminStatus
-                        });
                         router.push("/");
                     }
                 })
@@ -158,18 +161,16 @@ export default {
                     if (response.data.error) {
                         alert(response.data.error.message);
                     } else {
+                        r.$store.commit(
+                            "setUsername",
+                            response.data.user.user.email
+                        );
                         r.$store.commit("setCurrentUser", response.data.user);
                         r.$store.commit("setCurrentToken", response.data.token);
                         r.$store.commit("setUserId", response.data.uid);
                         if (response.data.administration) {
                             r.$store.commit("setAdminStatus", true);
                         }
-
-                        console.log("Signed In", {
-                            id: r.$store.state.userId,
-                            token: r.$store.state.token,
-                            admin: r.$store.state.adminStatus
-                        });
                         router.push("/");
                     }
                 })
@@ -178,11 +179,11 @@ export default {
                 });
         },
         signUpButton() {
-            const container = document.getElementById("container");
+            const container = this.$refs.container;
             container.classList.add("right-panel-active");
         },
         signInButton() {
-            const container = document.getElementById("container");
+            const container = this.$refs.container;
             container.classList.remove("right-panel-active");
         }
     }
@@ -191,6 +192,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@media screen and (max-width: 400px) {
+}
+
 body {
     max-width: 800px;
     margin: auto;
