@@ -41,11 +41,11 @@ module.exports = {
 		firebase
 			.auth()
 			.signOut()
-			.then(function (){
-				// Sign-out successful.
+			.then(function (response){
+				this.res.send(response)
 			})
 			.catch(function (error){
-				console.log(error)
+				this.res.send(error)
 			})
 	}
 }

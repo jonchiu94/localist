@@ -1,8 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import VuexPersist from 'vuex-persist'
 
 Vue.use(Vuex)
+
+const vuexLocalStorage = new VuexPersist({
+	key     : 'localist',
+	storage : window.localStorage
+})
 
 const store = new Vuex.Store({
 	state     : {
@@ -51,7 +56,8 @@ const store = new Vuex.Store({
 		getUsername (state) {
 			return state.username
 		}
-	}
+	},
+	plugins   : [ vuexLocalStorage.plugin ]
 })
 
 export default store
