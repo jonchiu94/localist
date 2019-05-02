@@ -10,15 +10,12 @@ import SingleGuide from '../components/SingleGuide'
 import SingleTour from '../components/SingleTour'
 import CreateGuide from '../components/CreateGuide'
 import CreateTour from '../components/CreateTour'
+import Admin from '../components/Admin'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
 	mode   : 'history',
 	routes : [
-		{
-			path     : '*',
-			redirect : '/'
-		},
 		{
 			path      : '/',
 			name      : 'home',
@@ -34,7 +31,6 @@ const router = new VueRouter({
 			name      : 'Users',
 			component : Users,
 			meta      : {
-				requiresAuth  : true,
 				requiresAdmin : true
 			}
 		},
@@ -73,6 +69,15 @@ const router = new VueRouter({
 			path      : '/tours/single/:id',
 			name      : 'tourID',
 			component : SingleTour
+		},
+		{
+			path      : 'admin',
+			name      : 'Admin',
+			component : Admin
+		},
+		{
+			path     : '*',
+			redirect : '/'
 		}
 	]
 })

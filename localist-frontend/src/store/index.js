@@ -10,6 +10,7 @@ const store = new Vuex.Store({
 		currentUser : null,
 		token       : '',
 		userId      : '',
+		username    : '',
 		adminStatus : false
 	},
 	actions   : {
@@ -32,6 +33,9 @@ const store = new Vuex.Store({
 		},
 		setAdminStatus (state, val) {
 			state.adminStatus = val
+		},
+		setUsername (state, val) {
+			state.username = val
 		}
 	},
 	getters   : {
@@ -43,6 +47,9 @@ const store = new Vuex.Store({
 		},
 		getCurrentUser (state) {
 			return state.currentUser
+		},
+		getUsername (state) {
+			return state.username
 		}
 	}
 })

@@ -1,27 +1,36 @@
 <template>
     <div id="app">
         <Navigation id="navBar"></Navigation>
-        <router-view></router-view>
+        <router-view id="routerId"></router-view>
+        <Footer id="footer"></Footer>
     </div>
 </template>
 
 <script>
 import Navigation from "./components/Navigation.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
     name: "App",
-    components: { Navigation }
+    components: { Navigation, Footer }
 };
 </script>
 
 <style>
 html,
 body {
+    margin: 0;
+    padding: 0;
     height: 100%;
+}
+
+#routerId {
+    /* margin-top: 5%; */
 }
 
 #app {
     min-height: 100%;
+    position: relative;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -37,6 +46,14 @@ body {
 }
 
 #navBar {
-    margin-bottom: 2%;
+    margin-bottom: 5%;
+}
+
+#footer {
+    position: absolute;
+    margin-top: 10%;
+    bottom: 0;
+    width: 100%;
+    height: 40px; /* Height of the footer */
 }
 </style>
