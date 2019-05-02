@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-navbar toggleable="lg" type="light" variant="info" class="nav-bar">
+        <!-- <b-navbar toggleable="lg" type="light" variant="info" class="nav-bar" absolute>
             <b-navbar-brand to="/" class="nav-item nav-link" active-class="active" exact>Localist</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -28,7 +28,6 @@
                     >Admin</b-nav-item>
                 </b-navbar-nav>
 
-                <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                     <b-nav-form>
                         <b-form-input
@@ -66,7 +65,50 @@
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
-        </b-navbar>
+        </b-navbar>-->
+
+        <v-toolbar class="nav-bar" light>
+            <v-toolbar-side-icon></v-toolbar-side-icon>
+
+            <v-btn to="/" icon>
+                <v-icon>home</v-icon>
+            </v-btn>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn to="/tours" flat>Tours</v-btn>
+                <v-btn to="/guides" flat>Guides</v-btn>
+                <v-btn v-if="isAdmin" to="/users" flat>Admin</v-btn>
+            </v-toolbar-items>
+
+            <v-spacer></v-spacer>
+
+            <v-btn icon>
+                <v-icon>search</v-icon>
+            </v-btn>
+
+            <v-btn dark to="/signin" v-if="!isLoggedIn">Sign In/Sign Up</v-btn>
+            <v-menu :nudge-width="100" v-if="getUsername">
+                <template v-slot:activator="{ on }">
+                    <v-toolbar-title v-on="on">
+                        <span>{{ username }}</span>
+                        <v-icon light>arrow_drop_down_circle</v-icon>
+                    </v-toolbar-title>
+                </template>
+
+                <v-list>
+                    <v-list-tile to="/">
+                        <v-list-tile-title>Profile</v-list-tile-title>
+                    </v-list-tile>
+                    <v-list-tile to="/">
+                        <v-list-tile-title>
+                            <v-icon light>settings</v-icon>Settings
+                        </v-list-tile-title>
+                    </v-list-tile>
+                    <v-list-tile to="/">
+                        <v-list-tile-title>Signout</v-list-tile-title>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
+        </v-toolbar>
     </div>
 </template>
 
@@ -74,7 +116,8 @@
 export default {
     name: "Navigation",
     data: () => ({
-        username: ""
+        username: "",
+        items: ["Profile", "Settings", "Signout"]
     }),
     computed: {
         isLoggedIn: function() {

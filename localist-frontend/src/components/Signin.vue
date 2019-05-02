@@ -115,12 +115,6 @@ export default {
                         if (response.data.administration) {
                             r.$store.commit("setAdminStatus", true);
                         }
-                        console.log("Signed Up", {
-                            id: r.$store.state.userId,
-                            token: r.$store.state.token,
-                            admin: r.$store.state.adminStatus,
-                            user: r.$store.state.user
-                        });
                         router.push("/");
                     }
                 })
@@ -177,12 +171,6 @@ export default {
                         if (response.data.administration) {
                             r.$store.commit("setAdminStatus", true);
                         }
-
-                        console.log("Signed In", {
-                            id: r.$store.state.userId,
-                            token: r.$store.state.token,
-                            admin: r.$store.state.adminStatus
-                        });
                         router.push("/");
                     }
                 })
@@ -204,6 +192,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@media screen and (max-width: 400px) {
+}
+
 body {
     max-width: 800px;
     margin: auto;
