@@ -25,8 +25,8 @@
                                 <v-flex d-flex xs12>
                                     <v-card color="red lighten-2" dark>
                                         <v-card-text>
-                                            $ {{info.data.price.high}} -
-                                            {{info.data.price.low}}
+                                            $ {{info.data.price.low}} -
+                                            {{info.data.price.high}}
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -37,8 +37,8 @@
                 <v-flex d-flex xs12 sm6 md3>
                     <v-card color="blue lighten-2" dark>
                         <v-card-text>
-                            {{ info.data.duration.long }} -
-                            {{ info.data.duration.short }}
+                            {{ info.data.duration.short }} -
+                            {{ info.data.duration.long }}
                             hours
                         </v-card-text>
                     </v-card>

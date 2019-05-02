@@ -108,10 +108,6 @@ export default {
                         r.$store.commit("setCurrentUser", response.data.user);
                         r.$store.commit("setCurrentToken", response.data.token);
                         r.$store.commit("setUserId", response.data.uid);
-                        r.$store.commit(
-                            "setUsername",
-                            response.data.user.email
-                        );
                         if (response.data.administration) {
                             r.$store.commit("setAdminStatus", true);
                         }
@@ -121,19 +117,6 @@ export default {
                 .catch(function(error) {
                     console.log(error);
                 });
-            // this.$store.dispatch("signup", formData).then(
-            //     response => {
-            //         console.log({
-            //             id: this.$store.state.userId,
-            //             token: this.$store.state.token,
-            //             admin: this.$store.state.adminStatus
-            //         });
-            //         router.push("/");
-            //     },
-            //     error => {
-            //         console.error();
-            //     }
-            // );
         },
         signIn() {
             var r = this;
@@ -141,20 +124,6 @@ export default {
                 email: this.email,
                 password: this.password
             };
-            // this.$store.dispatch("signin", formData).then(
-            //     response => {
-            //         console.log({
-            //             id: this.$store.state.userId,
-            //             token: this.$store.state.token,
-            //             admin: this.$store.state.adminStatus,
-            //             response: response
-            //         });
-            //         router.push("/");
-            //     },
-            //     error => {
-            //         console.error();
-            //     }
-            // );
             axios
                 .post(this.$store.state.server_url + "/signin", formData)
                 .then(function(response) {

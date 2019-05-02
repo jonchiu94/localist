@@ -110,7 +110,7 @@
                             <v-icon light>settings</v-icon>Settings
                         </v-list-tile-title>
                     </v-list-tile>
-                    <v-list-tile to="/">
+                    <v-list-tile @click="signout">
                         <v-list-tile-title>Signout</v-list-tile-title>
                     </v-list-tile>
                 </v-list>
@@ -120,12 +120,19 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: "Navigation",
     data: () => ({
         username: "",
         items: ["Profile", "Settings", "Signout"]
     }),
+    methods: {
+        signout() {
+            axios.post;
+        }
+    },
     computed: {
         isLoggedIn: function() {
             return this.$store.getters.getCurrentUser;

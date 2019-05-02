@@ -29,6 +29,7 @@ module.exports.routes = {
 	// from the Parasails library, or by using those method names as the `action` in <ajax-form>.
 	'POST       /signup'            : { action: 'entrance/signup' },
 	'POST       /signin'            : { action: 'entrance/signin' },
+	'POST       /signout'           : { action: 'entrance/signout' },
 	'POST       /tours/add'         : { action: 'tours/post-tour' },
 	'POST       /guides/add'        : { action: 'guides/post-guide' },
 	'GET        /users'             : { action: 'users/list-users' },
