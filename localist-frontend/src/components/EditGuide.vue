@@ -2,12 +2,12 @@
     <div>
         <form v-on:submit.prevent="editGuide">
             <div>
-                <input type="text" placeholder={{first_name}} v-model="first_name">
-                <input type="text" placeholder={{last_name}} v-model="last_name">
-                <input type="text" placeholder={{age}} v-model="age">
-                <input type="text" placeholder={{gender}} v-model="gender">
-                <input type="text" placeholder={{city}} v-model="city">
-                <input type="text" placeholder={{country}} v-model="country">
+                <input type="text" :placeholder= "first_name" v-model="first_name">
+                <input type="text" :placeholder= "last_name" v-model="last_name">
+                <input type="text" :placeholder= "age" v-model="age">
+                <input type="text" :placeholder= "gender" v-model="gender">
+                <input type="text" :placeholder= "city" v-model="city">
+                <input type="text" :placeholder= "country" v-model="country">
             </div>
             <button type="submit">Edit Tour</button>
         </form>
