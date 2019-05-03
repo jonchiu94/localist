@@ -37,15 +37,16 @@ module.exports = {
 		// Initialize Firebase
 
 		var firebase = require('../../database/firebase.js')
+		var curr = this
 
 		firebase
 			.auth()
 			.signOut()
 			.then(function (response){
-				this.res.send(response)
+				curr.res.json(response)
 			})
 			.catch(function (error){
-				this.res.send(error)
+				curr.res.json(error)
 			})
 	}
 }

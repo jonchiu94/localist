@@ -13,6 +13,9 @@
             <br>
             {{guides.data.info.country}}
         </div>
+
+        <router-link :to="'/guides/edit/' + this.$route.params.id">Edit</router-link>
+
     </div>
 </template>
 
@@ -22,13 +25,8 @@ export default {
         guides: ""
     }),
     mounted() {
-        var axios = require("axios");
-        axios
-            .get(
-                this.$store.state.server_url +
-                    "/guides/" +
-                    this.$route.params.id
-            )
+        this.$http
+            .get("/guide/find/" + this.$route.params.id)
             .then(response => {
                 this.guides = response;
             })

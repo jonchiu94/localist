@@ -4,8 +4,8 @@
             <v-layout row wrap>
                 <v-flex d-flex xs12 sm6 md4>
                     <v-card color="red" dark>
-                        <v-card-title primary class="title">{{ info.data.title }}</v-card-title>
-                        <v-card-text>{{info.data.description}}</v-card-text>
+                        <v-card-title primary class="title">{{ info.data && info.data.title }}</v-card-title>
+                        <v-card-text>{{info.data && info.data.description}}</v-card-text>
                     </v-card>
                 </v-flex>
                 <v-flex d-flex xs12 sm6 md5>
@@ -25,8 +25,8 @@
                                 <v-flex d-flex xs12>
                                     <v-card color="red lighten-2" dark>
                                         <v-card-text>
-                                            $ {{info.data.price.low}} -
-                                            {{info.data.price.high}}
+                                            $ {{info.data && info.data.price.low}} -
+                                            {{info.data && info.data.price.high}}
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -37,29 +37,30 @@
                 <v-flex d-flex xs12 sm6 md3>
                     <v-card color="blue lighten-2" dark>
                         <v-card-text>
-                            {{ info.data.duration.short }} -
-                            {{ info.data.duration.long }}
+                            {{ info.data && info.data.duration.short }} -
+                            {{ info.data && info.data.duration.long }}
                             hours
                         </v-card-text>
                     </v-card>
                 </v-flex>
             </v-layout>
         </v-container>
+
+        <router-link :to="'/tours/edit/' + this.$route.params.id">Edit</router-link>
+
     </div>
 </template>
 
 
 <script>
 export default {
+    name: "Signin",
     data: () => ({
         info: ""
     }),
     mounted() {
-        var axios = require("axios");
-        axios
-            .get(
-                this.$store.state.server_url + "/tours/" + this.$route.params.id
-            )
+        this.$http
+            .get("/tour/find/" + this.$route.params.id)
             .then(response => (this.info = response))
             .catch(error => alert(error))
             .finally(() => (this.loading = false));
