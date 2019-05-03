@@ -1,33 +1,25 @@
 <template>
-    <v-footer dark height="auto">
-        <v-card class="flex" flat tile>
-            <v-card-title class="teal">
-                <strong class="subheading">Get connected with us on social networks!</strong>
+    <v-footer red height="auto">
+        <v-layout row wrap teal lighten-2 white--text text-xs-center>
+            <v-flex xs12>
+                <v-card-text class="white--text px-5 subheading">
+                    Anyone can become a local guide and sell their experiences. <br>
+                    Anyone can quickly get a custom local tour that cannot find in traditional tourist means.
+                </v-card-text>
 
-                <v-spacer></v-spacer>
+                <v-divider></v-divider>
 
-                <v-btn v-for="icon in icons" :key="icon" class="mx-3" dark icon>
-                    <v-icon size="24px">{{ icon }}</v-icon>
-                </v-btn>
-            </v-card-title>
+                <v-card-text class="white--text">
+                    &copy; {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+                </v-card-text>
+            </v-flex>
 
-            <v-card-actions class="grey darken-3 justify-center">
-                &copy;2019 —
-                <strong>Localist</strong>
-            </v-card-actions>
-        </v-card>
+        </v-layout>
     </v-footer>
 </template>
-    <script>
-export default {
-    data: () => ({
-        icons: [
-            "fab fa-facebook",
-            "fab fa-twitter",
-            "fab fa-google-plus",
-            "fab fa-linkedin",
-            "fab fa-instagram"
-        ]
-    })
-};
+
+<script>
+    export default {
+
+    };
 </script>

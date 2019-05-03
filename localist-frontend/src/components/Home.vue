@@ -1,45 +1,222 @@
 <template>
-    <div id="home">
-        <section class="search-sec">
-            <div class="container">
-                <form action="#" method="post" novalidate="novalidate">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                    <input
-                                        type="text"
-                                        class="form-control search-slt"
-                                        placeholder="Enter City"
-                                    >
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                    <input
-                                        type="text"
-                                        class="form-control search-slt"
-                                        placeholder="Enter # of tourists"
-                                    >
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                    <select
-                                        class="form-control search-slt"
-                                        id="exampleFormControlSelect1"
-                                    >
-                                        <option>Select Tour</option>
-                                        <option>Biking</option>
-                                        <option>Hiking</option>
-                                        <option>Running</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                    <button type="button" class="btn btn-danger wrn-btn">Search</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
+    <div>
+        <v-content>
+          <section>
+            <v-parallax src="https://images.unsplash.com/photo-1500049242364-5f500807cdd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=981&q=80" height="600">
+              <v-layout
+                column
+                align-center
+                justify-center
+                class="white--text"
+              >
+                <h1 class="white--text mb-2 mt-5 display-3 font-weight-black font-italic text-xs-center">Localist</h1>
+                <div class="subheading mb-5 text-xs-center">by TEAM 24</div>
+                
+            <v-layout row wrap justify-space-around >
+                <v-flex md3>
+                    <v-text-field
+                        label="What"
+                        solo
+                        background-color="white"
+                    ></v-text-field>
+                </v-flex>
+                <v-flex md3>
+                    <v-text-field
+                        label="When"
+                        solo
+                        background-color="white"
+                    ></v-text-field>
+                </v-flex>
+                <v-flex md3>
+                    <v-text-field
+                        label="#. of travellers"
+                        solo
+                        background-color="white"
+                    ></v-text-field>
+                </v-flex>
+                <v-flex md12>
+                    <v-btn large class="black--text white small"> Search </v-btn>
+                </v-flex>
+            </v-layout>
+
+              </v-layout>
+            </v-parallax>
+          </section>
+
+          <section>
+            <v-layout
+              column
+              wrap
+              class="my-5"
+              align-center
+            >
+              <v-flex xs12 sm4 class="my-3">
+                <div class="text-xs-center">
+                  <h2 class="headline">Probably, the BEST way to experience the local culture.</h2>
+                </div>
+              </v-flex>
+              <v-flex xs12>
+                <v-container grid-list-xl>
+                  <v-layout row wrap align-center>
+                    <v-flex xs12 md4>
+                      <v-card class="elevation-0 transparent">
+                        <v-card-text class="text-xs-center">
+                          <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
+                        </v-card-text>
+                        <v-card-title primary-title class="layout justify-center">
+                          <div class="headline text-xs-center">Customized</div>
+                        </v-card-title>
+                        <v-card-text>
+                          Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
+                          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+                          Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                        </v-card-text>
+                      </v-card>
+                    </v-flex>
+                    <v-flex xs12 md4>
+                      <v-card class="elevation-0 transparent">
+                        <v-card-text class="text-xs-center">
+                          <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
+                        </v-card-text>
+                        <v-card-title primary-title class="layout justify-center">
+                          <div class="headline">Fast</div>
+                        </v-card-title>
+                        <v-card-text>
+                          Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
+                          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+                          Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                        </v-card-text>
+                      </v-card>
+                    </v-flex>
+                    <v-flex xs12 md4>
+                      <v-card class="elevation-0 transparent">
+                        <v-card-text class="text-xs-center">
+                          <v-icon x-large class="blue--text text--lighten-2">shield</v-icon>
+                        </v-card-text>
+                        <v-card-title primary-title class="layout justify-center">
+                          <div class="headline text-xs-center">Secured</div>
+                        </v-card-title>
+                        <v-card-text>
+                          Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
+                          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+                          Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                        </v-card-text>
+                      </v-card>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-flex>
+            </v-layout>
+          </section>
+
+          <section>
+            <v-parallax src="https://images.unsplash.com/photo-1530735606451-8f5f13955328?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" height="380">
+              <v-layout column align-center justify-center>
+                <div class="headline white--text font-weight-black mb-3 text-xs-center">custom local tour that cannot find in traditional tourist means.</div>
+                <v-btn
+                  class="teal lighten-2 mt-5 font-weight-black"
+                  dark
+                  large
+                  href="#"
+                >
+                  Get Started
+                </v-btn>
+              </v-layout>
+            </v-parallax>
+          </section>
+
+          <section>
+            <v-container grid-list-xl>
+              <v-layout row wrap justify-center class="my-5">
+                <v-flex xs12 sm4>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline">Our Story</div>
+                    </v-card-title>
+                    <v-card-text>
+                      Localist is ... mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
+                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+                      Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+                <v-flex xs12 sm4 offset-sm1>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline">Contact us</div>
+                    </v-card-title>
+                    <v-card-text>
+                      Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
+                    </v-card-text>
+                    <v-list class="transparent">
+                      <v-list-tile>
+                        <v-list-tile-action>
+                          <v-icon class="blue--text text--lighten-2">phone</v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                          <v-list-tile-title>604-123-4567</v-list-tile-title>
+                        </v-list-tile-content>
+                      </v-list-tile>
+                      <v-list-tile>
+                        <v-list-tile-action>
+                          <v-icon class="blue--text text--lighten-2">place</v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                          <v-list-tile-title>Vancouver, Canada</v-list-tile-title>
+                        </v-list-tile-content>
+                      </v-list-tile>
+                      <v-list-tile>
+                        <v-list-tile-action>
+                          <v-icon class="blue--text text--lighten-2">email</v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                          <v-list-tile-title>john@vuetifyjs.com</v-list-tile-title>
+                        </v-list-tile-content>
+                      </v-list-tile>
+                    </v-list>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </section>
+
+          <v-footer class="blue darken-2">
+            <v-layout row wrap align-center>
+              <v-flex xs12>
+                <div class="white--text ml-3">
+                  Made with
+                  <v-icon class="red--text">favorite</v-icon>
+                  by <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>
+                  and <a class="white--text" href="https://github.com/vwxyzjn">Costa Huang</a>
+                </div>
+              </v-flex>
+            </v-layout>
+          </v-footer>
+        </v-content>
+        <!-- <v-container>
+            <v-layout row wrap justify-space-around align-center >
+                <v-flex md3>
+                    <v-text-field
+                        label="What"
+                    ></v-text-field>
+                </v-flex>
+                <v-flex md2>
+                    <v-text-field
+                        label="When"
+                    ></v-text-field>
+                </v-flex>
+                <v-flex md2>
+                    <v-overflow-btn
+                        :items="dropdown_font"
+                        label="Overflow Btn"
+                        target="#dropdown-example"
+                    ></v-overflow-btn>
+                </v-flex>
+                <v-flex md1>
+                    <v-btn large class="white--text teal lighten-2 small"> Search </v-btn>
+                </v-flex>
+            </v-layout>
+        </v-container> -->
     </div>
 </template>
 
@@ -47,19 +224,7 @@
 </script>
 
 <style>
-.search-sec {
-    margin-top: 200px;
-}
 
-/* #home {
-		min-height: 100%;
-		background: url('https://images.unsplash.com/photo-1555985202-12975b0235dc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1049&q=80') no-repeat center center fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-		background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('https://images.unsplash.com/photo-1550596334-7bb40a71b6bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
-	} */
 </style>
 
 
