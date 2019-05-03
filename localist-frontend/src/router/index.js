@@ -11,6 +11,8 @@ import SingleTour from '../components/SingleTour'
 import CreateGuide from '../components/CreateGuide'
 import CreateTour from '../components/CreateTour'
 import Admin from '../components/Admin'
+import EditTour from '../components/EditTour'
+import EditGuide from '../components/EditGuide'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -59,6 +61,16 @@ const router = new VueRouter({
 			meta      : {
 				requiresAuth : true
 			}
+		},
+		{
+			path      : '/tours/edit/:id',
+			name      : 'editTour',
+			component : EditTour
+		},
+		{
+			path      : '/guides/edit/:id',
+			name      : 'editGuide',
+			component : EditGuide
 		},
 		{
 			path      : '/guides/single/:id',

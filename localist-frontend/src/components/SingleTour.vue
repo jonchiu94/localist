@@ -45,6 +45,7 @@
                 </v-flex>
             </v-layout>
         </v-container>
+        <router-link :to="'/tour/single/' + tour.key">Edit</router-link>
     </div>
 </template>
 
