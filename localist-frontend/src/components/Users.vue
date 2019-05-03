@@ -29,9 +29,7 @@ export default {
         }
     }),
     mounted() {
-        const axios = require("axios");
-
-        axios.get(this.$store.state.server_url + "/users").then(response => {
+        this.$http.get("/user/all").then(response => {
             this.users = response.data.users;
         });
     }

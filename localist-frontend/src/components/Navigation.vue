@@ -58,8 +58,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
     name: "Navigation",
     data: () => ({
@@ -68,7 +66,17 @@ export default {
     }),
     methods: {
         signout() {
-            axios.post;
+            this.$store.dispatch("logout");
+            // this.$http
+            //     .post("/entrance/signout")
+            //     .then(function(response) {
+            //         if (response.status == 200) {
+            //             this.$state.actions.clearData();
+            //         }
+            //         console.log({ id: this.$state.userId });
+            //     })
+            //     .catch(error => alert(error));
+            // .finally(() => (this.loading = false));
         }
     },
     computed: {

@@ -73,7 +73,6 @@
 
 <script>
 import router from "../router";
-import axios from "axios";
 
 export default {
     name: "Signin",
@@ -95,8 +94,8 @@ export default {
                 name: this.name,
                 administration: this.administration
             };
-            axios
-                .post(this.$store.state.server_url + "/signup", formData)
+            this.$http
+                .post("/entrance/signup", formData)
                 .then(function(response) {
                     if (response.data.error) {
                         alert(response.data.error.message);
@@ -124,8 +123,8 @@ export default {
                 email: this.email,
                 password: this.password
             };
-            axios
-                .post(this.$store.state.server_url + "/signin", formData)
+            this.$http
+                .post("/entrance/signin", formData)
                 .then(function(response) {
                     if (response.data.error) {
                         alert(response.data.error.message);
