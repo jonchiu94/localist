@@ -39,8 +39,8 @@ module.exports.routes = {
 	'GET        /tour/find/:id'    : { action: 'tours/single-tour' },
 	'DELETE     /tour/delete/:id'  : { action: 'tours/delete-tour' },
 	'DELETE     /guide/delete/:id' : { action: 'guides/delete-guide' },
-	'PUT        /tour/update/:id'  : { action: 'tours/update-tour' },
-	'PUT        /guide/update/:id' : { action: 'guides/update-guide' }
+	'PATCH      /tour/update/:id'  : { action: 'tours/update-tour' },
+	'PATCH      /guide/update/:id' : { action: 'guides/update-guide' }
 
 	//  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
 	//  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
