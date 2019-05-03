@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form v-on:submit.prevent="createTour">
+        <form v-on:submit.prevent="editTour">
             <div>
                 <p>Title</p><input type="text" :placeholder="info.data.title" v-model="title"><br>
                 <p>Description</p><input type="text" :placeholder="info.data.description" v-model="description"><br>
