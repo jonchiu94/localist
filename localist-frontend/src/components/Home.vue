@@ -2,15 +2,15 @@
     <div>
         <v-content>
           <section>
-            <v-parallax src="https://images.unsplash.com/photo-1500049242364-5f500807cdd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=981&q=80" height="600">
+            <v-parallax src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80" height="550">
               <v-layout
                 column
                 align-center
                 justify-center
                 class="white--text"
               >
-                <h1 class="white--text mb-2 mt-5 display-3 font-weight-black font-italic text-xs-center">Localist</h1>
-                <div class="subheading mb-5 text-xs-center">by TEAM 24</div>
+                <h1 class="cyan--text text--darken-2 mb-2 mt-5 display-3 font-weight-black font-italic text-xs-center">Localist</h1>
+                <div class="cyan--text text--darken-2 subheading mb-5 text-xs-center">by TEAM 24</div>
                 
             <v-layout row wrap justify-space-around >
                 <v-flex md3>
@@ -35,7 +35,7 @@
                     ></v-text-field>
                 </v-flex>
                 <v-flex md12>
-                    <v-btn large class="black--text white small"> Search </v-btn>
+                    <v-btn large class="cyan darken-2 white--text"> Search </v-btn>
                 </v-flex>
             </v-layout>
 
@@ -61,7 +61,7 @@
                     <v-flex xs12 md4>
                       <v-card class="elevation-0 transparent">
                         <v-card-text class="text-xs-center">
-                          <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
+                          <v-icon x-large class="cyan--text text--darken-2">color_lens</v-icon>
                         </v-card-text>
                         <v-card-title primary-title class="layout justify-center">
                           <div class="headline text-xs-center">Customized</div>
@@ -76,7 +76,7 @@
                     <v-flex xs12 md4>
                       <v-card class="elevation-0 transparent">
                         <v-card-text class="text-xs-center">
-                          <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
+                          <v-icon x-large class="cyan--text text--darken-2">flash_on</v-icon>
                         </v-card-text>
                         <v-card-title primary-title class="layout justify-center">
                           <div class="headline">Fast</div>
@@ -91,7 +91,7 @@
                     <v-flex xs12 md4>
                       <v-card class="elevation-0 transparent">
                         <v-card-text class="text-xs-center">
-                          <v-icon x-large class="blue--text text--lighten-2">shield</v-icon>
+                          <v-icon x-large class="cyan--text text--darken-2">shield</v-icon>
                         </v-card-text>
                         <v-card-title primary-title class="layout justify-center">
                           <div class="headline text-xs-center">Secured</div>
@@ -112,9 +112,9 @@
           <section>
             <v-parallax src="https://images.unsplash.com/photo-1530735606451-8f5f13955328?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" height="380">
               <v-layout column align-center justify-center>
-                <div class="headline white--text font-weight-black mb-3 text-xs-center">custom local tour that cannot find in traditional tourist means.</div>
+                <div class="headline white--text font-weight-black mb-3 text-xs-center">Custom local tour that cannot find in traditional tourist means.</div>
                 <v-btn
-                  class="teal lighten-2 mt-5 font-weight-black"
+                  class="cyan darken-2 mt-5 font-weight-black"
                   dark
                   large
                   href="#"
@@ -170,7 +170,7 @@
                           <v-icon class="blue--text text--lighten-2">email</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
-                          <v-list-tile-title>john@vuetifyjs.com</v-list-tile-title>
+                          <v-list-tile-title>team24@localist.com</v-list-tile-title>
                         </v-list-tile-content>
                       </v-list-tile>
                     </v-list>
@@ -193,30 +193,6 @@
             </v-layout>
           </v-footer>
         </v-content>
-        <!-- <v-container>
-            <v-layout row wrap justify-space-around align-center >
-                <v-flex md3>
-                    <v-text-field
-                        label="What"
-                    ></v-text-field>
-                </v-flex>
-                <v-flex md2>
-                    <v-text-field
-                        label="When"
-                    ></v-text-field>
-                </v-flex>
-                <v-flex md2>
-                    <v-overflow-btn
-                        :items="dropdown_font"
-                        label="Overflow Btn"
-                        target="#dropdown-example"
-                    ></v-overflow-btn>
-                </v-flex>
-                <v-flex md1>
-                    <v-btn large class="white--text teal lighten-2 small"> Search </v-btn>
-                </v-flex>
-            </v-layout>
-        </v-container> -->
     </div>
 </template>
 
