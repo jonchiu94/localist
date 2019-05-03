@@ -2,12 +2,12 @@
     <div>
         <form v-on:submit.prevent="createTour">
             <div>
-                <input type="text" placeholder="Title" v-model="title">
-                <input type="text" placeholder="Description" v-model="description">
-                <input type="text" placeholder="Max Duration" v-model="duration_long">
-                <input type="text" placeholder="Min Duration" v-model="duration_short">
-                <input type="text" placeholder="Max Price" v-model="price_high">
-                <input type="text" placeholder="Min Price" v-model="price_low">
+                <input type="text" placeholder={{title}} v-model="title">
+                <input type="text" placeholder={{description}} v-model="description">
+                <input type="text" placeholder={{duration_long}} v-model="duration_long">
+                <input type="text" placeholder={{duration_short}} v-model="duration_short">
+                <input type="text" placeholder={{price_high}} v-model="price_high">
+                <input type="text" placeholder={{price_low}} v-model="price_low">
             </div>
             <button type="submit">Create Tour</button>
         </form>
