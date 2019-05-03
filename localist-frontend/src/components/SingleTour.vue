@@ -45,7 +45,9 @@
                 </v-flex>
             </v-layout>
         </v-container>
+
         <router-link :to="'/tours/edit/' + this.$route.params.id">Edit</router-link>
+
     </div>
 </template>
 
