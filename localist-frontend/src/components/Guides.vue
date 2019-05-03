@@ -43,9 +43,8 @@ export default {
         guides: []
     }),
     mounted() {
-        var axios = require("axios");
-        axios
-            .get(this.$store.state.server_url + "/guides/all")
+        this.$http
+            .get("/guide/all")
             .then(response => (this.guides = response.data))
             .catch(error => alert(error))
             .finally(() => (this.loading = false));

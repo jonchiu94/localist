@@ -31,6 +31,7 @@ module.exports = {
 		var returnArr = []
 
 		await guidesRef.once('value').then(function (snapshot){
+			console.log(snapshot)
 			snapshot.forEach(function (childSnapshot){
 				var item = childSnapshot.val()
 				item.key = childSnapshot.key
