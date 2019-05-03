@@ -13,6 +13,7 @@
             <br>
             {{guides.data.info.country}}
         </div>
+        <router-link :to="'/guide/single/' + guide.key">Edit</router-link>
     </div>
 </template>
 

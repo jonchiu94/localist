@@ -26,18 +26,14 @@
             price_low: ""
         }),
         mounted(){
-            var axios = require("axios");
-            axios
-                .get(
-                    this.$store.state.server_url + "/tours/" + this.$route.params.id
-                )
+            this.$http
+                .get("/tour/" + this.$route.params.id)
                 .then(response => (this.info = response))
                 .catch(error => alert(error))
                 .finally(() => (this.loading = false));
         },
         methods: {
             editTour() {
-                var axios = require("axios");
                 const formData = {
                     title: this.title,
                     description: this.description,
@@ -46,8 +42,8 @@
                     price_high: this.price_high,
                     price_low: this.price_low
                 };
-                axios
-                    .post(this.$store.state.server_url + "/tours/update/" + this.$route.params.id, formData)
+                this.$http
+                    .patch("/tour/update/" + this.$route.params.id, formData)
                     .then(function(response) {
                         router.push("/tours");
                     })
