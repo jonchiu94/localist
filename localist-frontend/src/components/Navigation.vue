@@ -12,6 +12,13 @@
 
             <v-spacer></v-spacer>
 
+            <v-spacer />
+            <v-text-field
+              flat
+              hide-details
+              solo-inverted
+              style="max-width: 300px;"
+            />
             <v-btn icon>
                 <v-icon>search</v-icon>
             </v-btn>
