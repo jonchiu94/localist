@@ -2,14 +2,14 @@
     <div>
         <form v-on:submit.prevent="editGuide">
             <div>
-                <input type="text" :placeholder= "first_name" v-model="first_name">
-                <input type="text" :placeholder= "last_name" v-model="last_name">
-                <input type="text" :placeholder= "age" v-model="age">
-                <input type="text" :placeholder= "gender" v-model="gender">
-                <input type="text" :placeholder= "city" v-model="city">
-                <input type="text" :placeholder= "country" v-model="country">
+                <p>First Name</p><input type="text" :placeholder= "guides.data.info.first_name" v-model="first_name"><br>
+                <p>Last Name</p><input type="text" :placeholder= "guides.data.info.last_name" v-model="last_name"><br>
+                <p>Age</p><input type="text" :placeholder= "guides.data.info.age" v-model="age"><br>
+                <p>Gender</p><input type="text" :placeholder= "guides.data.info.gender" v-model="gender"><br>
+                <p>City</p><input type="text" :placeholder= "guides.data.info.city" v-model="city"><br>
+                <p>Country</p><input type="text" :placeholder= "guides.data.info.country" v-model="country">
             </div>
-            <button type="submit">Edit Tour</button>
+            <button type="submit">Edit Guide</button>
         </form>
     </div>
 </template>
@@ -18,6 +18,7 @@
     export default {
         name: "editGuide",
         data: () => ({
+            guides: "",
             first_name: "",
             last_name: "",
             age: "",
@@ -27,8 +28,8 @@
         }),
         mounted(){
             this.$http
-                .get("/guide/" + this.$route.params.id)
-                .then(response => (this.info = response))
+                .get("/guide/find/" + this.$route.params.id)
+                .then(response => (this.guides = response))
                 .catch(error => alert(error))
                 .finally(() => (this.loading = false));
         },

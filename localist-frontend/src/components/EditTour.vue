@@ -2,14 +2,14 @@
     <div>
         <form v-on:submit.prevent="createTour">
             <div>
-                <input type="text" :placeholder="title" v-model="title">
-                <input type="text" :placeholder="description" v-model="description">
-                <input type="text" :placeholder="duration_long" v-model="duration_long">
-                <input type="text" :placeholder="duration_short" v-model="duration_short">
-                <input type="text" :placeholder="price_high" v-model="price_high">
-                <input type="text" :placeholder="price_low" v-model="price_low">
+                <p>Title</p><input type="text" :placeholder="info.data.title" v-model="title"><br>
+                <p>Description</p><input type="text" :placeholder="info.data.description" v-model="description"><br>
+                <p>Max Duration</p><input type="text" :placeholder="info.data.duration.long" v-model="duration_long"><br>
+                <p>Min Duration</p><input type="text" :placeholder="info.data.duration.short" v-model="duration_short"><br>
+                <p>Max Price</p><input type="text" :placeholder="info.data.price.high" v-model="price_high"><br>
+                <p>Min Price</p><input type="text" :placeholder="info.data.price.low" v-model="price_low">
             </div>
-            <button type="submit">Create Tour</button>
+            <button type="submit">Edit Tour</button>
         </form>
     </div>
 </template>
@@ -18,6 +18,7 @@
     export default {
         name: "editTour",
         data: () => ({
+            info: "",
             title: "",
             description: "",
             duration_long: "",
@@ -27,7 +28,7 @@
         }),
         mounted(){
             this.$http
-                .get("/tour/" + this.$route.params.id)
+                .get("/tour/find/" + this.$route.params.id)
                 .then(response => (this.info = response))
                 .catch(error => alert(error))
                 .finally(() => (this.loading = false));
