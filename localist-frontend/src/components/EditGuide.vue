@@ -2,12 +2,12 @@
     <div>
         <form v-on:submit.prevent="editGuide">
             <div>
-                <input type="text" placeholder="First Name" v-model="first_name">
-                <input type="text" placeholder="Last Name" v-model="last_name">
-                <input type="text" placeholder="Age" v-model="age">
-                <input type="text" placeholder="Gender" v-model="gender">
-                <input type="text" placeholder="City" v-model="city">
-                <input type="text" placeholder="Country" v-model="country">
+                <input type="text" placeholder={{first_name}} v-model="first_name">
+                <input type="text" placeholder={{last_name}} v-model="last_name">
+                <input type="text" placeholder={{age}} v-model="age">
+                <input type="text" placeholder={{gender}} v-model="gender">
+                <input type="text" placeholder={{city}} v-model="city">
+                <input type="text" placeholder={{country}} v-model="country">
             </div>
             <button type="submit">Edit Tour</button>
         </form>
@@ -18,12 +18,12 @@
     export default {
         name: "editGuide",
         data: () => ({
-            title: "",
-            description: "",
-            duration_long: "",
-            duration_short: "",
-            price_high: "",
-            price_low: ""
+            first_name: "",
+            last_name: "",
+            age: "",
+            gender: "",
+            city: "",
+            country: ""
         }),
         mounted(){
             this.$http
