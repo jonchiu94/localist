@@ -55,11 +55,8 @@ export default {
         info: ""
     }),
     mounted() {
-        var axios = require("axios");
-        axios
-            .get(
-                this.$store.state.server_url + "/tours/" + this.$route.params.id
-            )
+        this.$http
+            .get("/tour/find/" + this.$route.params.id)
             .then(response => (this.info = response))
             .catch(error => alert(error))
             .finally(() => (this.loading = false));

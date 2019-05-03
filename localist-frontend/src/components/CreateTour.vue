@@ -27,7 +27,6 @@ export default {
     }),
     methods: {
         createTour() {
-            var axios = require("axios");
             const formData = {
                 title: this.title,
                 description: this.description,
@@ -36,8 +35,8 @@ export default {
                 price_high: this.price_high,
                 price_low: this.price_low
             };
-            axios
-                .post(this.$store.state.server_url + "/tours/add", formData)
+            this.$http
+                .post("/tour/add", formData)
                 .then(function(response) {
                     router.push("/tours");
                 })

@@ -28,7 +28,6 @@ export default {
     }),
     methods: {
         createGuide() {
-            var axios = require("axios");
             const formData = {
                 first_name: this.first_name,
                 last_name: this.last_name,
@@ -37,8 +36,8 @@ export default {
                 city: this.city,
                 country: this.country
             };
-            axios
-                .post(this.$store.state.server_url + "/guides/add", formData)
+            this.$http
+                .post("/guide/add", formData)
                 .then(function(response) {
                     router.push("/guides");
                 })

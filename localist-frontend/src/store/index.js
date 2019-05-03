@@ -5,17 +5,16 @@ import VuexPersist from 'vuex-persist'
 Vue.use(Vuex)
 
 const vuexLocalStorage = new VuexPersist({
-	storage : window.sessionStorage
+	storage : window.localStorage
 })
 
 const store = new Vuex.Store({
 	state     : {
-		server_url  : 'http://localhost:1337',
-		currentUser : null,
-		token       : '',
-		userId      : '',
-		username    : '',
-		adminStatus : false
+		currentUser : localStorage.getItem('currentUser') || null,
+		token       : localStorage.getItem('token') || '',
+		userId      : localStorage.getItem('userId') || '',
+		username    : localStorage.getItem('username') || '',
+		adminStatus : localStorage.getItem('adminStatus') || false
 	},
 	actions   : {
 		clearData ({ commit }) {
@@ -23,6 +22,10 @@ const store = new Vuex.Store({
 			commit('token', '')
 			commit('userId', '')
 			commit('adminStatus', false)
+		},
+		logout ({ commit }) {
+			localStorage.removeItem('token')
+			commit('logout')
 		}
 	},
 	mutations : {
@@ -40,6 +43,13 @@ const store = new Vuex.Store({
 		},
 		setUsername (state, val) {
 			state.username = val
+		},
+		logout (state) {
+			;(state.currentUser = null),
+				(state.token = ''),
+				(state.userId = ''),
+				(state.username = ''),
+				(state.adminStatus = false)
 		}
 	},
 	getters   : {
