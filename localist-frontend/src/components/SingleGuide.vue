@@ -13,7 +13,7 @@
             <br>
             {{guides.data.info.country}}
         </div>
-        <router-link :to="'/guide/single/' + guide.key">Edit</router-link>
+        <router-link :to="'/guide/single/' + this.$route.params.id">Edit</router-link>
     </div>
 </template>
 
