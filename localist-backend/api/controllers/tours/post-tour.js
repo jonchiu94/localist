@@ -109,35 +109,37 @@ module.exports = {
 		var images = inputs.images || ''
 		var tag = inputs.tags || ''
 		var comments = inputs.additional_comments || ''
+
 		var short_tour = await toursRefLong.push({
 			coordinates         : {
 				lat  : inputs.location.lattitude,
 				long : inputs.location.longitude
 			},
-			description         : inputs.tour_description,
+			tour_description    : inputs.tour_description,
 			additional_comments : comments,
-			images              : images
+			images              : images,
+			is_public           : false
 		})
 
 		var long_tour = await toursRefShort.push({
-			title    : inputs.title,
-			guide_id : inputs.guide_id,
-			price    : {
+			title      : inputs.title,
+			guide_id   : inputs.guide_id,
+			price      : {
 				low  : inputs.price.low,
 				high : inputs.price.high
 			},
-			duration : {
+			duration   : {
 				short : inputs.duration.short,
 				long  : inputs.duration.long
 			},
-			image    : image,
-			location : {
+			main_image : image,
+			location   : {
 				city    : inputs.location.city,
 				country : inputs.location.country
 			},
-			tags     : tag,
-			category : inputs.category,
-			long_id  : short_tour.key
+			tags       : tag,
+			category   : inputs.category,
+			long_id    : short_tour.key
 		})
 
 		this.res.status(201).json({ id: long_tour.key })
