@@ -140,6 +140,6 @@ module.exports = {
 			long_id  : short_tour.key
 		})
 
-		this.res.status(201).send(long_tour.key)
+		this.res.status(201).json({ id: long_tour.key })
 	}
 }
