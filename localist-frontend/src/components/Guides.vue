@@ -13,11 +13,11 @@
                         class="card h-100 text-center shadow p-3 mb-5 bg-white rounded border-bottom-0"
                         :id="guide.key"
                     >
-                        <!-- <img
+                        <img
                             class="card-img-top rounded-circle"
                             src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1562198400&v=beta&t=BsWTGGTHMroIWmeg-toVM3I5OVGNd45vAsNkSnYDvkY"
                             alt="Card image cap"
-                        > -->
+                        >
                         <div class="card-body">
                             <h5
                                 class="card-title"
