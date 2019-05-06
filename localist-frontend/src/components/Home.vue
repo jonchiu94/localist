@@ -64,7 +64,7 @@
                           <v-icon x-large class="cyan--text text--darken-2">color_lens</v-icon>
                         </v-card-text>
                         <v-card-title primary-title class="layout justify-center">
-                          <div class="headline text-xs-center">Customized</div>
+                          <div class="headline text-xs-center">Customizable</div>
                         </v-card-title>
                         <v-card-text>
                           Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
@@ -79,7 +79,7 @@
                           <v-icon x-large class="cyan--text text--darken-2">flash_on</v-icon>
                         </v-card-text>
                         <v-card-title primary-title class="layout justify-center">
-                          <div class="headline">Fast</div>
+                          <div class="headline">Fun</div>
                         </v-card-title>
                         <v-card-text>
                           Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 

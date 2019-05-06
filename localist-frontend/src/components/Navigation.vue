@@ -1,10 +1,10 @@
 <template>
     <div>
         <v-toolbar class="nav-bar">
-            <v-btn to="/" icon>
-                <v-icon style="text-decoration: none">home</v-icon>
-            </v-btn>
             <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn to="/" class="cyan--text text--darken-2 font-weight-black font-italic" style="text-decoration: none">
+                    Localist
+                </v-btn>
                 <v-btn to="/tours" style="text-decoration: none" flat> Tours </v-btn>
                 <v-btn to="/guides" style="text-decoration: none" flat> Guides </v-btn>
                 <v-btn v-if="isAdmin" to="/users" style="text-decoration: none" flat>Admin</v-btn>
@@ -12,7 +12,6 @@
 
             <v-spacer></v-spacer>
 
-            <v-spacer />
             <v-text-field
               flat
               hide-details
@@ -20,7 +19,7 @@
               style="max-width: 300px;"
             />
             <v-btn icon>
-                <v-icon>search</v-icon>
+                <v-icon class="cyan--text text--darken-2">search</v-icon>
             </v-btn>
 
             <v-btn dark to="/signin" v-if="!isLoggedIn">Sign In/Sign Up</v-btn>
@@ -40,16 +39,23 @@
                     <v-list-tile>
                         <v-list-tile-title>{{username}}</v-list-tile-title>
                     </v-list-tile>
-                    <v-list-tile to="/">
-                        <v-list-tile-title>Profile</v-list-tile-title>
-                    </v-list-tile>
-                    <v-list-tile to="/">
+
+                    <v-list-tile to="/userprofile" tyle="text-decoration: none">
                         <v-list-tile-title>
-                            <v-icon light>settings</v-icon>Settings
+                            <v-icon class="cyan--text text--darken-2">person</v-icon> Profile
                         </v-list-tile-title>
                     </v-list-tile>
-                    <v-list-tile @click="signout">
-                        <v-list-tile-title>Signout</v-list-tile-title>
+
+                    <v-list-tile to="/" style="text-decoration: none">
+                        <v-list-tile-title>
+                            <v-icon class="cyan--text text--darken-2">settings</v-icon> Settings
+                        </v-list-tile-title>
+                    </v-list-tile>
+
+                    <v-list-tile @click="signout" style="text-decoration: none">
+                        <v-list-tile-title>
+                            <v-icon class="cyan--text text--darken-2">logout</v-icon> Signout
+                        </v-list-tile-title>
                     </v-list-tile>
                 </v-list>
             </v-menu>
@@ -95,7 +101,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .nav-bar {
     color: black;
 }
