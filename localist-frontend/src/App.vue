@@ -22,6 +22,7 @@ body {
     height: 100%;
 }
 
+<<<<<<< HEAD
 #app {
     min-height: 100%;
     position: relative;
@@ -35,6 +36,25 @@ body {
 /*#navBar {
         margin-bottom: 5%;
     }*/
+=======
+    #routerId {
+        padding-top: 65px; 
+        padding-bottom: 10%;
+    }
+
+    #app {
+        min-height: 100%;
+        position: relative;
+        font-family: "Avenir", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+    }
+
+    #navBar {
+        /*margin-bottom: 5%;*/
+    }
+>>>>>>> 0fbc983a6c507e66f8503440de7da57fc22036bb
 
 #footer {
     position: absolute;

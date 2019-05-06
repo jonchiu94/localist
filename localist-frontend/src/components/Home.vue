@@ -64,7 +64,7 @@
                           <v-icon x-large class="cyan--text text--darken-2">color_lens</v-icon>
                         </v-card-text>
                         <v-card-title primary-title class="layout justify-center">
-                          <div class="headline text-xs-center">Customized</div>
+                          <div class="headline text-xs-center">Customizable</div>
                         </v-card-title>
                         <v-card-text>
                           Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
@@ -79,7 +79,7 @@
                           <v-icon x-large class="cyan--text text--darken-2">flash_on</v-icon>
                         </v-card-text>
                         <v-card-title primary-title class="layout justify-center">
-                          <div class="headline">Fast</div>
+                          <div class="headline">Fun</div>
                         </v-card-title>
                         <v-card-text>
                           Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
@@ -179,19 +179,6 @@
               </v-layout>
             </v-container>
           </section>
-
-          <v-footer class="blue darken-2">
-            <v-layout row wrap align-center>
-              <v-flex xs12>
-                <div class="white--text ml-3">
-                  Made with
-                  <v-icon class="red--text">favorite</v-icon>
-                  by <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>
-                  and <a class="white--text" href="https://github.com/vwxyzjn">Costa Huang</a>
-                </div>
-              </v-flex>
-            </v-layout>
-          </v-footer>
         </v-content>
     </div>
 </template>

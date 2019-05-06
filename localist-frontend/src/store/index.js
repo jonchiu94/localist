@@ -45,11 +45,11 @@ const store = new Vuex.Store({
 			state.username = val
 		},
 		logout (state) {
-			;(state.currentUser = null),
-				(state.token = ''),
-				(state.userId = ''),
-				(state.username = ''),
-				(state.adminStatus = false)
+			(state.currentUser = null),
+			(state.token = ''),
+			(state.userId = ''),
+			(state.username = ''),
+			(state.adminStatus = false)
 		}
 	},
 	getters   : {

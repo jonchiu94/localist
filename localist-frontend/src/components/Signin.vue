@@ -114,7 +114,7 @@ export default {
                     }
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    this.console.log(error);
                 });
         },
         signIn() {
@@ -143,7 +143,7 @@ export default {
                     }
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    this.console.log(error);
                 });
         },
         signUpButton() {
