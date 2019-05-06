@@ -26,12 +26,27 @@ module.exports = {
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
-		var toursRef = database.ref('tours/' + this.req.params.id)
+		var toursRefLong = database.ref('tours_short/' + this.req.params.id)
 
-		var curr = this
+		var addLongTour = this.req.params.long
+		var long_key = ''
+		var tour = {}
 
-		return toursRef.once('value').then(function (snapshot){
-			curr.res.json(snapshot)
+		await toursRefLong.once('value').then(function (snapshot){
+			long_key = snapshot.val().long_id
+			tour = snapshot.val()
 		})
+
+		if (addLongTour == 'true') {
+			await database
+				.ref('tours_long/' + long_key)
+				.once('value')
+				.then(function (snapshot){
+					tour = { ...tour, ...snapshot.val() }
+				})
+		}
+
+		delete tour.long_id
+		this.res.send(tour)
 	}
 }
