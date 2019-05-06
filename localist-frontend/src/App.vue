@@ -23,7 +23,8 @@
     }
 
     #routerId {
-        /*padding-bottom: 3%;*/
+        padding-top: 65px; 
+        padding-bottom: 10%;
     }
 
     #app {
@@ -33,12 +34,11 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
-        color: #2c3e50;
     }
 
-    /*#navBar {
-        margin-bottom: 5%;
-    }*/
+    #navBar {
+        /*margin-bottom: 5%;*/
+    }
 
     #footer {
         position: absolute;
