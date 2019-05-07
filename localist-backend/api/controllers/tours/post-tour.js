@@ -12,7 +12,7 @@ module.exports = {
 			description : 'Title of the tour'
 		},
 
-		guide_id            : {
+		user_key            : {
 			required    : true,
 			type        : 'string',
 			description :
@@ -118,7 +118,7 @@ module.exports = {
 
 		var short_tour = await toursRefShort.push({
 			title       : inputs.title,
-			guide_id    : inputs.guide_id,
+			user_key    : inputs.user_key,
 			price       : {
 				low  : inputs.price.low,
 				high : inputs.price.high
