@@ -13,21 +13,21 @@
                 <div class="cyan--text text--darken-2 subheading mb-5 text-xs-center">by TEAM 24</div>
                 
             <v-layout row wrap justify-space-around >
-                <v-flex md3>
+                <v-flex xs3>
                     <v-text-field
                         label="What"
                         solo
                         background-color="white"
                     ></v-text-field>
                 </v-flex>
-                <v-flex md3>
+                <v-flex xs3>
                     <v-text-field
                         label="When"
                         solo
                         background-color="white"
                     ></v-text-field>
                 </v-flex>
-                <v-flex md3>
+                <v-flex xs3>
                     <v-text-field
                         label="#. of travellers"
                         solo
