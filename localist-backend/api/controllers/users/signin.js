@@ -57,8 +57,6 @@ the account verification message.)`,
 		var admin = require('../../database/admin.js')
 		var r = this.res
 		var userData = {
-			uid            : '',
-			token          : '',
 			administration : false,
 			user           : ''
 		}
@@ -68,7 +66,6 @@ the account verification message.)`,
 			.signInWithEmailAndPassword(inputs.email, inputs.password)
 			.then(function (firebaseUser){
 				userData.user = firebaseUser
-				userData.uid = firebaseUser.user.uid
 				return firebase.auth().currentUser.getIdToken(false)
 			})
 			.then(function (idToken){
@@ -79,11 +76,10 @@ the account verification message.)`,
 				if (claims.admin === true) {
 					userData.administration = true
 				}
+				r.status(200).json(userData)
 			})
 			.catch(function (error){
-				r.json({ error: error })
+				r.status(400).send('Invalid email or password')
 			})
-
-		this.res.json(userData)
 	}
 }
