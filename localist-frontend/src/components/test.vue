@@ -3,21 +3,20 @@
         <v-content>
             <section>
                 <v-parallax
-                        src="https://images.unsplash.com/photo-1501547188-6a8b7cdcce6e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1348&q=80"
-                        height="550"
+                    src="https://images.unsplash.com/photo-1501547188-6a8b7cdcce6e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1348&q=80"
+                    min-height="350px"
+                    max-height="850px"
                 >
-                    <v-container id = "search" grid-list-md text-xs-center>
-                    <v-layout row wrap align-center justify-center>
-                        <v-flex md4>
-                            <v-text-field
+                    <v-container id="search" grid-list-md text-xs-center>
+                        <v-layout row wrap align-center justify-center>
+                            <v-flex md4>
+                                <v-text-field
                                     background-color="white"
                                     placeholder="What is your dream experience"
-                            >
-
-                            </v-text-field>
-                        </v-flex>
-                        <v-flex md4>
-                            <v-menu
+                                ></v-text-field>
+                            </v-flex>
+                            <v-flex md4>
+                                <v-menu
                                     v-model="menu"
                                     :close-on-content-click="false"
                                     :nudge-right="40"
@@ -26,31 +25,30 @@
                                     offset-y
                                     full-width
                                     min-width="290px"
-                            >
-                                <template v-slot:activator="{ on }">
-                                    <v-text-field
+                                >
+                                    <template v-slot:activator="{ on }">
+                                        <v-text-field
                                             v-model="date"
                                             readonly
                                             v-on="on"
                                             background-color="white"
-                                    ></v-text-field>
-                                </template>
-                                <v-date-picker v-model="date" @input="menu = false" no-title></v-date-picker>
-                            </v-menu>
-                        </v-flex>
-                        <v-flex md4>
-                            <v-text-field
-                                    input type = "number"
+                                        ></v-text-field>
+                                    </template>
+                                    <v-date-picker v-model="date" @input="menu = false" no-title></v-date-picker>
+                                </v-menu>
+                            </v-flex>
+                            <v-flex md4>
+                                <v-text-field
+                                    input
+                                    type="number"
                                     background-color="white"
                                     placeholder="# of guests"
-                            >
-
-                            </v-text-field>
-                        </v-flex>
-                        <v-flex md12 ma-0>
-                            <v-btn color="blue" >Search</v-btn>
-                        </v-flex>
-                    </v-layout>
+                                ></v-text-field>
+                            </v-flex>
+                            <v-flex md12 ma-0>
+                                <v-btn color="blue">Search</v-btn>
+                            </v-flex>
+                        </v-layout>
                     </v-container>
                 </v-parallax>
             </section>
@@ -68,12 +66,11 @@
                         <v-flex md4>
                             <v-card color="white" flat>
                                 <v-img
-                                        :src ="'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'"
-                                        :aspect-ratio="1"
-                                        height="30%"
-                                        fill-height
-                                >
-                                </v-img>
+
+                                    :src="'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'"
+                                    :aspect-ratio="1"
+                                    height="350"
+                                ></v-img>
                             </v-card>
                         </v-flex>
                         <v-flex d-flex md12>
@@ -96,15 +93,16 @@
     </div>
 </template>
 <script>
-    export default {
-        data: () => ({
-            date: new Date().toISOString().substr(0, 10),
-            menu: false,
-            modal: false,
-        })
-    }
+export default {
+    data: () => ({
+        date: new Date().toISOString().substr(0, 10),
+        menu: false,
+        modal: false
+    })
+};
 </script>
 <style scoped>
+
     #background{
         height: 75%;
     }
@@ -118,4 +116,5 @@
         font-weight: bold;
         float: right;
     }
+
 </style>
