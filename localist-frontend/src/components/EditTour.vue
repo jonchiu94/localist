@@ -28,7 +28,7 @@
         }),
         mounted(){
             this.$http
-                .get("/tour/find/" + this.$route.params.id)
+                .get("/tour/find/" + this.$route.params.id+"/true")
                 .then(response => (this.info = response))
                 .catch(error => alert(error))
                 .finally(() => (this.loading = false));
