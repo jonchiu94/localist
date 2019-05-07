@@ -38,7 +38,7 @@ body {
     }
 
     #navBar {
-        /*margin-bottom: 5%;*/
+        padding-bottom: 1%;
     }
 
 #footer {
