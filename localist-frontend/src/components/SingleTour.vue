@@ -1,42 +1,75 @@
 <template>
-    <div id = "tourList">
-        <h1>Tours</h1>
-        <div>{{t}}
-            {{}}
-            <div
-                    v-for = "tour in info"
-                    :key="tour.id"
-                    class = "tour">
-                {{tour}}
-                {{tour.description}}
-                {{tour.price_low}}
-                {{tour.price_high}}
-                {{tour.duration_short}}
-                {{tour.duration_long}}
-            </div>
-        </div>
+    <div id="tourList">
+        <v-container fluid grid-list-md>
+            <v-layout row wrap>
+                <v-flex d-flex xs12 sm6 md4>
+                    <v-card color="red" dark>
+                        <v-card-title primary class="title">{{ info.data && info.data.title }}</v-card-title>
+                        <v-card-text>{{info.data && info.data.description}}</v-card-text>
+                    </v-card>
+                </v-flex>
+                <v-flex d-flex xs12 sm6 md5>
+                    <v-layout row wrap>
+                        <v-flex d-flex>
+                            <v-card dark tile flat color="red lighten-1">
+                                <v-card-text>
+                                    <img
+                                        src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80"
+                                        id="tour-img"
+                                    >
+                                </v-card-text>
+                            </v-card>
+                        </v-flex>
+                        <v-flex d-flex>
+                            <v-layout row wrap>
+                                <v-flex d-flex xs12>
+                                    <v-card color="red lighten-2" dark>
+                                        <v-card-text>
+                                            $ {{info.data && info.data.price.low}} -
+                                            {{info.data && info.data.price.high}}
+                                        </v-card-text>
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                        </v-flex>
+                    </v-layout>
+                </v-flex>
+                <v-flex d-flex xs12 sm6 md3>
+                    <v-card color="blue lighten-2" dark>
+                        <v-card-text>
+                            {{ info.data && info.data.duration.short }} -
+                            {{ info.data && info.data.duration.long }}
+                            hours
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
+
+        <router-link :to="'/tours/edit/' + this.$route.params.id">Edit</router-link>
+
     </div>
 </template>
 
 
 <script>
-    export default{
-        data: () =>({
-            info: [],
-            t: ''
-        }),
-        mounted () {
-            var axios = require('axios');
-            axios
-                //add this
-                .get('http://localhost:1337/tours/' + this.$route.params.id)
-                .then(response => {this.info =(response); this.t = response;})
-                .catch(error => alert(error))
-                .finally(() => this.loading = false)
-        }
+export default {
+    name: "Signin",
+    data: () => ({
+        info: ""
+    }),
+    mounted() {
+        this.$http
+            .get("/tour/find/" + this.$route.params.id)
+            .then(response => (this.info = response))
+            .catch(error => alert(error))
+            .finally(() => (this.loading = false));
     }
+};
 </script>
 
 <style scoped>
-
+#tour-img {
+    width: 500px;
+}
 </style>

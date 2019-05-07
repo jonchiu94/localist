@@ -1,20 +1,33 @@
 <template>
-    <div class="container" id="container">
+    <div class="container" id="container" ref="container">
         <div class="form-container sign-up-container">
             <form v-on:submit.prevent="signUp">
                 <h1>Create Account</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social">
+                        <i class="fab fa-google-plus-g"></i>
+                    </a>
+                    <a href="#" class="social">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
                 <span>or use your email for registration</span>
                 <div>
-                    <input type="text" placeholder="Name" v-model="name" />
-                    <input type="email" placeholder="Email" v-model="email" />
-                    <input type="password" placeholder="Password" v-model="password" />
-                    </br>
-                    <input type="checkbox" value="administration" @click="administration = !administration" class="form-check-input" id="administration" />
+                    <input type="text" placeholder="Name" v-model="name">
+                    <input type="email" placeholder="Email" v-model="email">
+                    <input type="password" placeholder="Password" v-model="password">
+                    <div>
+                        <input
+                            type="checkbox"
+                            value=" "
+                            @click="administration = !administration"
+                            class="form-check-input"
+                            id="administration"
+                        >
+                    </div>
                     <label class="form-check-label" for="administration">make me admin</label>
                 </div>
                 <button type="submit">Sign Up</button>
@@ -24,13 +37,19 @@
             <form v-on:submit.prevent="signIn">
                 <h1>Sign in</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social">
+                        <i class="fab fa-google-plus-g"></i>
+                    </a>
+                    <a href="#" class="social">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
                 <span>or use your account</span>
-                <input type="email" placeholder="Email" v-model="email" />
-                <input type="password" placeholder="Password" v-model="password" />
+                <input type="email" placeholder="Email" v-model="email">
+                <input type="password" placeholder="Password" v-model="password">
                 <a href="#">Forgot your password?</a>
                 <button type="submit">Sign In</button>
             </form>
@@ -39,16 +58,12 @@
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <h1>Welcome Back!</h1>
-                    <p>
-                        To keep connected with us please login with your personal info
-                    </p>
+                    <p>To keep connected with us please login with your personal info</p>
                     <button class="ghost" @click="signInButton" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Hello, Friend!</h1>
-                    <p>
-                        Sign up NOW!
-                    </p>
+                    <p>Sign up NOW!</p>
                     <button class="ghost" @click="signUpButton" id="signUp">Sign Up</button>
                 </div>
             </div>
@@ -57,75 +72,97 @@
 </template>
 
 <script>
-import router from '../router'
+import router from "../router";
 
-    export default {
-        name: 'Signin',
-        data: () => ({
-            email: '',
-            password: '',
-            name: '',
-            administration: false
-        }),
-        props: {
-            msg: String
-        },
-        methods: {
-            signUp() {
-                var axios = require('axios');
-                const formData = {
-                    email: this.email,
-                    password: this.password,
-                    name: this.name,
-                    administration: this.administration
-                };
-                axios.post('http://localhost:1337/signup', formData)
-                    .then(function(response) {
-                        router.push('/users')
-                    })
-                    .catch(function(error) {
-                        alert(error);
-                    });
-            },
-            signIn() 
-            {
-                var axios = require('axios');
-                const formData = {
-                    email: this.email,
-                    password: this.password
-                };
-                axios.post('http://localhost:1337/signin', formData)
-                    .then(function(response) 
-                    {
-                        if (response.data.administration)
-                        {
-                            router.push('/users');
-                        } else 
-                        {
-                            router.push('/home');
+export default {
+    name: "Signin",
+    data: () => ({
+        email: "",
+        password: "",
+        name: "",
+        administration: false
+    }),
+    props: {
+        msg: String
+    },
+    methods: {
+        signUp() {
+            var r = this;
+            const formData = {
+                email: this.email,
+                password: this.password,
+                name: this.name,
+                administration: this.administration
+            };
+            this.$http
+                .post("/entrance/signup", formData)
+                .then(function(response) {
+                    if (response.data.error) {
+                        alert(response.data.error.message);
+                    } else {
+                        r.$store.commit(
+                            "setUsername",
+                            response.data.user.user.email
+                        );
+                        r.$store.commit("setCurrentUser", response.data.user);
+                        r.$store.commit("setCurrentToken", response.data.token);
+                        r.$store.commit("setUserId", response.data.uid);
+                        if (response.data.administration) {
+                            r.$store.commit("setAdminStatus", true);
                         }
-                    })
-                    .catch(function(error) 
-                    {
-                        alert(error);
-                    });
-            },
-            signUpButton()
-            {
-                const container = document.getElementById('container');
-                container.classList.add('right-panel-active');
-            },
-            signInButton()
-            {
-                const container = document.getElementById('container');
-                container.classList.remove('right-panel-active');
-            }
+                        router.push("/");
+                    }
+                })
+                .catch(function(error) {
+                    this.console.log(error);
+                });
+        },
+        signIn() {
+            var r = this;
+            const formData = {
+                email: this.email,
+                password: this.password
+            };
+            this.$http
+                .post("/entrance/signin", formData)
+                .then(function(response) {
+                    if (response.data.error) {
+                        alert(response.data.error.message);
+                    } else {
+                        r.$store.commit(
+                            "setUsername",
+                            response.data.user.user.email
+                        );
+                        r.$store.commit("setCurrentUser", response.data.user);
+                        r.$store.commit("setCurrentToken", response.data.token);
+                        r.$store.commit("setUserId", response.data.uid);
+                        if (response.data.administration) {
+                            r.$store.commit("setAdminStatus", true);
+                        }
+                        router.push("/");
+                    }
+                })
+                .catch(function(error) {
+                    this.console.log(error);
+                });
+        },
+        signUpButton() {
+            const container = this.$refs.container;
+            container.classList.add("right-panel-active");
+        },
+        signInButton() {
+            const container = this.$refs.container;
+            container.classList.remove("right-panel-active");
         }
     }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@media screen and (max-width: 400px) {
+}
+
 body {
     max-width: 800px;
     margin: auto;
@@ -158,8 +195,8 @@ a {
 
 button {
     border-radius: 20px;
-    border: 1px solid #FDED2A;
-    background-color: #FDED2A;
+    border: 1px solid #fded2a;
+    background-color: #fded2a;
     color: #343009;
     font-size: 12px;
     font-weight: bold;
@@ -183,7 +220,7 @@ button.ghost {
 }
 
 form {
-    background-color: #FFFCDC;
+    background-color: #fffcdc;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -217,7 +254,7 @@ input {
 }
 
 .container {
-    background-color: #FFFCDC;
+    background-color: #fffcdc;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
@@ -288,9 +325,12 @@ input {
 }
 
 .overlay {
-    background: #1E9600;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FF0000, #FFF200, #1E9600);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FF0000, #FFF200, #1E9600); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #1e9600;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ff0000, #fff200, #1e9600);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ff0000, #fff200, #1e9600);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -317,7 +357,7 @@ input {
     top: 0;
     height: 100%;
     width: 50%;
-    transform: translateX(0);   
+    transform: translateX(0);
     transition: transform 0.6s ease-in-out;
 }
 

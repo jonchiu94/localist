@@ -14,8 +14,7 @@
  */
 
 module.exports.security = {
-
-    /***************************************************************************
+	/***************************************************************************
      *                                                                          *
      * CORS is like a more modern version of JSONP-- it allows your application *
      * to circumvent browsers' same-origin policy, so that the responses from   *
@@ -28,20 +27,19 @@ module.exports.security = {
      *                                                                          *
      ***************************************************************************/
 
-    // cors: {
-    //   allRoutes: false,
-    //   allowOrigins: '*',
-    //   allowCredentials: false,
-    // },
+	// cors: {
+	//   allRoutes: false,
+	//   allowOrigins: '*',
+	//   allowCredentials: false,
+	// },
 
-    cors: {
-        allRoutes: true,
-        allowOrigins: '*',
-        allowCredentials: false
-    },
+	cors : {
+		allRoutes        : true,
+		allowOrigins     : '*',
+		allowCredentials : false
+	},
 
-
-    /****************************************************************************
+	/****************************************************************************
      *                                                                           *
      * CSRF protection should be enabled for this application.                   *
      *                                                                           *
@@ -50,6 +48,5 @@ module.exports.security = {
      *                                                                           *
      ****************************************************************************/
 
-    csrf: false
-
-};
+	csrf : false
+}

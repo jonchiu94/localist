@@ -1,9 +1,9 @@
 module.exports = {
-	friendlyName        : 'post-guide',
+	friendlyName        : 'update-guide',
 
-	description         : 'Post a guide',
+	description         : 'Update a guide',
 
-	extendedDescription : `This creates a new guide and pushes it to the guides database`,
+	extendedDescription : `This updates a guide based on the id and the input fields`,
 
 	inputs              : {
 		first_name : {
@@ -46,22 +46,17 @@ module.exports = {
 	},
 
 	exits               : {
-		success           : {
-			description : 'Added guide successfully.'
+		success : {
+			description : 'Updated guide successfully.'
 		},
 
-		invalid           : {
+		invalid : {
 			responseType        : 'badRequest',
 			description         :
 				'The provided fullName, password and/or email address are invalid.',
 			extendedDescription :
 				'If this request was sent from a graphical user interface, the request ' +
 				'parameters should have been validated/coerced _before_ they were sent.'
-		},
-
-		emailAlreadyInUse : {
-			statusCode  : 409,
-			description : 'The provided email address is already in use.'
 		}
 	},
 
@@ -70,8 +65,9 @@ module.exports = {
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
 		var guidesRef = database.ref('guides')
+		var key = this.req.params.id
 
-		var guide = guidesRef.push({
+		var guide = guidesRef.child(key).update({
 			info : {
 				first_name : inputs.first_name,
 				last_name  : inputs.last_name,

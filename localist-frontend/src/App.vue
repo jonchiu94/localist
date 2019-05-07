@@ -1,31 +1,66 @@
 <template>
-  <div id="app">
-    <h1>Localist</h1>
-    <hr>
-    <router-link to="/">Home</router-link>
-    <router-link to="/tours">Tours</router-link>
-    <router-link to="/guides">Guides</router-link>
-    <hr>
-    <router-view></router-view>
-  </div>
+    <div id="app">
+        <Navigation id="navBar"></Navigation>
+        <router-view id="routerId"></router-view>
+        <Footer id="footer"></Footer>
+    </div>
 </template>
 
 <script>
-  export default {
-    name: 'App',
-    components: {
-      
-    }
-  }
+import Navigation from "./components/Navigation.vue";
+import Footer from "./components/Footer.vue";
+
+export default {
+    name: "App",
+    components: { Navigation, Footer }
+};
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+html,
+body {
+    height: 100%;
+}
+
+<<<<<<< HEAD
+#app {
+    min-height: 100%;
+    position: relative;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
-  }
+}
+
+/*#navBar {
+        margin-bottom: 5%;
+    }*/
+=======
+    #routerId {
+        padding-top: 65px; 
+        padding-bottom: 10%;
+    }
+
+    #app {
+        min-height: 100%;
+        position: relative;
+        font-family: "Avenir", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+    }
+
+    #navBar {
+        /*margin-bottom: 5%;*/
+    }
+>>>>>>> 0fbc983a6c507e66f8503440de7da57fc22036bb
+
+#footer {
+    position: absolute;
+    margin-top: 10%;
+    bottom: 0;
+    width: 100%;
+    height: 40px; /* Height of the footer */
+}
 </style>
