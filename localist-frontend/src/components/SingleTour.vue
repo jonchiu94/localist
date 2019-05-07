@@ -47,7 +47,6 @@
         </v-container>
 
         <router-link :to="'/tours/edit/' + this.$route.params.id">Edit</router-link>
-
     </div>
 </template>
 
@@ -60,7 +59,7 @@ export default {
     }),
     mounted() {
         this.$http
-            .get("/tour/find/" + this.$route.params.id)
+            .get("/tour/find/" + this.$route.params.id + "/true")
             .then(response => (this.info = response))
             .catch(error => alert(error))
             .finally(() => (this.loading = false));
