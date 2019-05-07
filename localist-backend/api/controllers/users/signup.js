@@ -12,7 +12,7 @@ until they confirm they are using a legitimate email address (by clicking the li
 the account verification message.)`,
 
 	inputs              : {
-		email         : {
+		email    : {
 			required            : true,
 			type                : 'string',
 			isEmail             : true,
@@ -21,61 +21,13 @@ the account verification message.)`,
 			extendedDescription : 'Must be a valid email address.'
 		},
 
-		password      : {
+		password : {
 			required    : true,
 			type        : 'string',
 			maxLength   : 200,
 			example     : 'passwordlol',
 			description :
 				'The unencrypted password to use for the new account.'
-		},
-
-		name          : {
-			required    : true,
-			type        : 'json',
-			example     : '{"first": "Jacob", "last": "Smith"}',
-			description : 'Your name.'
-		},
-
-		username      : {
-			required    : true,
-			type        : 'string',
-			example     : 'Jacob13Smith',
-			description : 'A username.'
-		},
-
-		image         : {
-			required    : false,
-			type        : 'string',
-			description : 'Users profile image'
-		},
-
-		date_of_birth : {
-			required    : true,
-			type        : 'number',
-			description :
-				'stored in yyyy/mm/dd for example March 15, 1998 becomes 19980315'
-		},
-
-		gender        : {
-			required    : true,
-			type        : 'string',
-			description :
-				'The gender of the user, can be one of several thousand'
-		},
-
-		location      : {
-			required    : true,
-			type        : 'json',
-			description :
-				'the city and the country of the users location'
-		},
-
-		coordinates   : {
-			required    : true,
-			type        : 'json',
-			description :
-				'the lattitude and the longitude of the users location'
 		}
 	},
 
@@ -105,7 +57,10 @@ the account verification message.)`,
 		var database = firebase.database()
 		// var admin = require('../../database/admin.js')
 		var r = this.res
-		var image = inputs.image || ''
+		var userData = {
+			key  : '',
+			user : ''
+		}
 
 		await firebase
 			.auth()
@@ -123,25 +78,9 @@ the account verification message.)`,
 				// })
 				// .then(function (uid){
 				// userData.uid = uid
-				var newUser = database.ref('users').push({
-					name          : {
-						first : inputs.name.first,
-						last  : inputs.name.last
-					},
-					username      : inputs.username,
-					image         : image,
-					date_of_birth : inputs.date_of_birth,
-					gender        : inputs.gender,
-					location      : {
-						city    : inputs.location.city,
-						country : inputs.location.country
-					},
-					coordinates   : {
-						lattitude :
-							inputs.coordinates.lattitude,
-						longitude :
-							inputs.coordinates.longitude
-					}
+				userData.user = authData.user
+				return database.ref('users').push({
+					uid : authData.user.uid
 				})
 				// if (inputs.administration) {
 				// 	return admin
@@ -151,11 +90,14 @@ the account verification message.)`,
 				// 		})
 				// }
 			})
+			.then(function (newUser){
+				console.log(newUser.key)
+				userData.key = newUser.key
+			})
 			.catch(function (error){
-				r.json({ error: error })
-				return
+				r.status(409).send('Email already in use')
 			})
 
-		this.res.status(201).send('User created successfully')
+		this.res.status(201).json(userData)
 	}
 }

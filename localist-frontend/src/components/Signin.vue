@@ -124,7 +124,7 @@ export default {
                 password: this.password
             };
             this.$http
-                .post("/entrance/signin", formData)
+                .post("/user/signin", formData)
                 .then(function(response) {
                     if (response.data.error) {
                         alert(response.data.error.message);
