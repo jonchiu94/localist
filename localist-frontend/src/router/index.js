@@ -13,6 +13,7 @@ import CreateTour from '../components/CreateTour'
 import Admin from '../components/Admin'
 import EditTour from '../components/EditTour'
 import EditGuide from '../components/EditGuide'
+import test from '../components/test'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -86,6 +87,11 @@ const router = new VueRouter({
 			path      : 'admin',
 			name      : 'Admin',
 			component : Admin
+		},
+		{
+			path      : '/test',
+			name      : 'test',
+			component : test
 		},
 		{
 			path     : '*',
