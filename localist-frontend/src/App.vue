@@ -36,9 +36,11 @@ body {
     text-align: center;
 }
 
-#navBar {
-    padding-bottom: 5%;
-}
+
+    #navBar {
+        padding-bottom: 1%;
+    }
+
 
 #footer {
     position: absolute;

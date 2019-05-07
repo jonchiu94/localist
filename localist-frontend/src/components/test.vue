@@ -51,9 +51,11 @@
                         </v-layout>
                     </v-container>
                 </v-parallax>
+            </section>
+            <section>
                 <v-container fluid grid-list-sm>
                     <v-layout row wrap>
-                        <v-flex d-flex md7>
+                        <v-flex d-flex md8>
                             <v-card color="white" flat>
                                 <v-card-text>Work on your terms</v-card-text>
                                 <v-card-text>Host as many experiences as you want</v-card-text>
@@ -61,21 +63,27 @@
                                 <v-card-text>Do what works best for you</v-card-text>
                             </v-card>
                         </v-flex>
-                        <v-flex md5>
+                        <v-flex md4>
                             <v-card color="white" flat>
                                 <v-img
+
                                     :src="'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'"
                                     :aspect-ratio="1"
                                     height="350"
                                 ></v-img>
                             </v-card>
                         </v-flex>
-                        <v-flex d-flex xs12>
+                        <v-flex d-flex md12>
                             <v-card color="white" flat>
                                 <v-img
-                                    :src="'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'"
-                                    :aspect-ratio="16/9"
-                                ></v-img>
+                                        :src ="'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'"
+                                        :aspect-ratio="16/9"
+                                        height="30%"
+                                >
+                                    <p class="image_title">Sell your unique experience</p>
+                                    <p class="image_title">Become a local guide</p>
+                                </v-img>
+
                             </v-card>
                         </v-flex>
                     </v-layout>
@@ -94,7 +102,19 @@ export default {
 };
 </script>
 <style scoped>
-#search {
-    margin-top: 10%;
-}
+
+    #background{
+        height: 75%;
+    }
+    #search{
+        margin-top: 10%;
+    }
+    .image_title{
+        margin-right: 10%;
+        margin-top: 10%;
+        color: white;
+        font-weight: bold;
+        float: right;
+    }
+
 </style>

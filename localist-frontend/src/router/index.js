@@ -13,6 +13,7 @@ import CreateTour from '../components/CreateTour'
 import Admin from '../components/Admin'
 import EditTour from '../components/EditTour'
 import EditGuide from '../components/EditGuide'
+import Profile from '../components/Profile'
 import test from '../components/test'
 
 Vue.use(VueRouter)
@@ -92,6 +93,11 @@ const router = new VueRouter({
 			path      : '/test',
 			name      : 'test',
 			component : test
+		},
+		{
+			path      : '/profile',
+			name      : 'profile',
+			component : Profile
 		},
 		{
 			path     : '*',
