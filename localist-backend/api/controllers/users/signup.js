@@ -12,7 +12,7 @@ until they confirm they are using a legitimate email address (by clicking the li
 the account verification message.)`,
 
 	inputs              : {
-		email          : {
+		email         : {
 			required            : true,
 			type                : 'string',
 			isEmail             : true,
@@ -21,7 +21,7 @@ the account verification message.)`,
 			extendedDescription : 'Must be a valid email address.'
 		},
 
-		password       : {
+		password      : {
 			required    : true,
 			type        : 'string',
 			maxLength   : 200,
@@ -30,18 +30,52 @@ the account verification message.)`,
 				'The unencrypted password to use for the new account.'
 		},
 
-		name           : {
+		name          : {
 			required    : true,
-			type        : 'string',
-			maxLength   : 200,
-			example     : 'Jacob Smith',
+			type        : 'json',
+			example     : '{"first": "Jacob", "last": "Smith"}',
 			description : 'Your name.'
 		},
 
-		administration : {
+		username      : {
 			required    : true,
-			type        : 'boolean',
-			description : 'is Admin?.'
+			type        : 'string',
+			example     : 'Jacob13Smith',
+			description : 'A username.'
+		},
+
+		image         : {
+			required    : false,
+			type        : 'string',
+			description : 'Users profile image'
+		},
+
+		date_of_birth : {
+			required    : true,
+			type        : 'number',
+			description :
+				'stored in yyyy/mm/dd for example March 15, 1998 becomes 19980315'
+		},
+
+		gender        : {
+			required    : true,
+			type        : 'string',
+			description :
+				'The gender of the user, can be one of several thousand'
+		},
+
+		location      : {
+			required    : true,
+			type        : 'json',
+			description :
+				'the city and the country of the users location'
+		},
+
+		coordinates   : {
+			required    : true,
+			type        : 'json',
+			description :
+				'the lattitude and the longitude of the users location'
 		}
 	},
 
@@ -69,16 +103,10 @@ the account verification message.)`,
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
-		var admin = require('../../database/admin.js')
+		// var admin = require('../../database/admin.js')
 		var r = this.res
-		var userData = {
-			uid            : '',
-			token          : '',
-			administration : inputs.administration,
-			user           : ''
-		}
+		var image = inputs.image || ''
 
-		console.log('creating user...')
 		await firebase
 			.auth()
 			.createUserWithEmailAndPassword(
@@ -86,34 +114,48 @@ the account verification message.)`,
 				inputs.password
 			)
 			.then((authData) => {
-				userData.user = authData
-				console.log('User created successfully')
-				return firebase.auth().currentUser.getIdToken(false)
-			})
-			.then(function (idToken){
-				userData.token = idToken
-				return firebase.auth().currentUser.uid
-			})
-			.then(function (uid){
-				userData.uid = uid
-				var newUser = database.ref('users').push(uid)
-				newUser.set({
-					uid  : userData.uid,
-					name : inputs.name
+				// 	userData.user = authData
+				// 	return firebase.auth().currentUser.getIdToken(false)
+				// })
+				// .then(function (idToken){
+				// 	userData.token = idToken
+				// 	return firebase.auth().currentUser.uid
+				// })
+				// .then(function (uid){
+				// userData.uid = uid
+				var newUser = database.ref('users').push({
+					name          : {
+						first : inputs.name.first,
+						last  : inputs.name.last
+					},
+					username      : inputs.username,
+					image         : image,
+					date_of_birth : inputs.date_of_birth,
+					gender        : inputs.gender,
+					location      : {
+						city    : inputs.location.city,
+						country : inputs.location.country
+					},
+					coordinates   : {
+						lattitude :
+							inputs.coordinates.lattitude,
+						longitude :
+							inputs.coordinates.longitude
+					}
 				})
-				if (inputs.administration) {
-					return admin
-						.auth()
-						.setCustomUserClaims(uid, {
-							admin : true
-						})
-				}
+				// if (inputs.administration) {
+				// 	return admin
+				// 		.auth()
+				// 		.setCustomUserClaims(uid, {
+				// 			admin : true
+				// 		})
+				// }
 			})
 			.catch(function (error){
 				r.json({ error: error })
 				return
 			})
 
-		this.res.json(userData)
+		this.res.status(201).send('User created successfully')
 	}
 }

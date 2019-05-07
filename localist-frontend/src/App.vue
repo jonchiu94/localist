@@ -22,7 +22,11 @@ body {
     height: 100%;
 }
 
-<<<<<<< HEAD
+#routerId {
+    padding-top: 3%;
+    padding-bottom: 10%;
+}
+
 #app {
     min-height: 100%;
     position: relative;
@@ -30,37 +34,16 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
 }
 
-/*#navBar {
-        margin-bottom: 5%;
-    }*/
-=======
-    #routerId {
-        padding-top: 65px; 
-        padding-bottom: 10%;
-    }
-
-    #app {
-        min-height: 100%;
-        position: relative;
-        font-family: "Avenir", Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-    }
-
-    #navBar {
-        /*margin-bottom: 5%;*/
-    }
->>>>>>> 0fbc983a6c507e66f8503440de7da57fc22036bb
+#navBar {
+    padding-bottom: 5%;
+}
 
 #footer {
     position: absolute;
-    margin-top: 10%;
     bottom: 0;
     width: 100%;
-    height: 40px; /* Height of the footer */
+    height: 10px; /* Height of the footer */
 }
 </style>

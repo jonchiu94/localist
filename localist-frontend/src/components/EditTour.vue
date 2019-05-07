@@ -55,13 +55,30 @@ export default {
                 price_low: this.price_low
             };
             this.$http
-                .patch("/tour/update/" + this.$route.params.id, formData)
-                .then(function(response) {
-                    router.push("/tours");
-                })
-                .catch(function(error) {
-                    alert(error);
-                });
+                .get("/tour/find/" + this.$route.params.id + "/true")
+                .then(response => (this.info = response))
+                .catch(error => alert(error))
+                .finally(() => (this.loading = false));
+        },
+        methods: {
+            editTour() {
+                const formData = {
+                    title: this.title,
+                    description: this.description,
+                    duration_long: this.duration_long,
+                    duration_short: this.duration_short,
+                    price_high: this.price_high,
+                    price_low: this.price_low
+                };
+                this.$http
+                    .patch("/tour/update/" + this.$route.params.id, formData)
+                    .then(function(response) {
+                        router.push("/tours");
+                    })
+                    .catch(function(error) {
+                        alert(error);
+                    });
+            }
         }
     }
 };
