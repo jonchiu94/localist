@@ -25,6 +25,8 @@
     "sails-hook-organics": "^0.15.0",
     "sails-hook-orm": "^2.1.1",
     "sails-hook-sockets": "^1.5.5",
+    "skipper-gclouds": "^1.0.2",
+    "skipper-gcs": "^0.3.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

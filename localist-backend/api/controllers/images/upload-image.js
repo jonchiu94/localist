@@ -35,45 +35,58 @@ module.exports = {
 		const mime = require('mime-types')
 		const storage = new Storage()
 		const CLOUD_BUCKET = 'test-bucket-4827409472'
-
-		if (!this.req.file('image')) {
-			console.log('No file uploaded')
-			return
-		}
-
+		var t = this
 		const bucket = storage.bucket(CLOUD_BUCKET)
-		const gcsFileName = `${uuid()}.jpg`
-		const file = bucket.file(gcsFileName)
 
-		const stream = file.createWriteStream({
-			metadata : {
-				contentType : this.req.file.mimetype
-			}
+		var st = await this.req.file('img').upload({
+			// ...any other options here...
+			adapter     : require('skipper-gclouds'),
+			projectId   : '999412385085',
+			keyFilename : './storage.json',
+			bucket      : 'test-bucket-4827409472',
+			//Are files uplodaded public?
+			public      : true
 		})
 
-		stream.on('error', (err) => {
-			this.req.file.cloudStorageError = err
-			console.log(err)
-		})
-
-		stream.on('finish', () => {
-			this.req.file.cloudStorageObject = gcsFileName
-
-			return file.makePublic().then(() => {})
-		})
-
-		stream.end(this.req.file.buffer)
 		this.res.status(200).json({
 			data : {
-				url : `https://storage.googleapis.com/${bucket.name}/${file.name}`
+				url : `https://storage.googleapis.com/${bucket.name}/${st
+					._files[0].stream.fd}`
 			}
 		})
+
+		// // https://stackoverflow.com/questions/36661795/how-to-upload-an-image-to-google-cloud-storage-from-an-image-url-in-node
+		// const gcsFileName = `${uuid()}.jpg`
+		// const file = bucket.file(gcsFileName)
+
+		// const stream = file.createWriteStream(this.req.file, {
+		// 	metadata : {
+		// 		contentType : this.req.file.mimetype
+		// 	}
+		// })
+
+		// stream.on('error', (err) => {
+		// 	this.req.file.cloudStorageError = err
+		// 	console.log(err)
+		// })
+
+		// stream.on('finish', () => {
+		// 	this.req.file.cloudStorageObject = gcsFileName
+
+		// 	return file.makePublic().then(() => {})
+		// })
+
+		// stream.end(this.req.file.buffer)
+		// this.res.status(200).json({
+		// 	data : {
+		// 		url : `https://storage.googleapis.com/${bucket.name}/${file.name}`
+		// 	}
+		// })
 		// const type = mime.lookup(this.req.file.originalname)
-		// console.log(type)
 
 		// const blob = bucket.file(`${uuid()}.jpg`)
 
-		// const stream = await blob.createWriteStream({
+		// const stream = await blob.createWriteStream(this.req.file, {
 		// 	resumable     : true,
 		// 	contentType   : type,
 		// 	predefinedAcl : 'publicRead'
