@@ -3,8 +3,71 @@
         <h1>Tours</h1>
         <router-link to="tours/createtour">Create Tour</router-link>
 
-
         <v-container>
+            <v-layout wrap>
+                <v-flex 
+                    v-for="tour in tours"
+                    :key="tour.key"
+                    xs3 sm3 offset-sm1
+                    class="tour-card"
+                >
+                    <base-card
+                        height="350px"
+                        color="grey lighten-1"
+                        dark
+                        href="#!"
+                    >
+                        <v-img
+                            src="https://images.unsplash.com/photo-1460339594641-eb86e8402669?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                            height="100%"
+                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
+                        >
+                            <v-layout
+                                fill-height
+                                wrap
+                                text-xs-right
+                                ma-0
+                            >
+                                <v-flex xs12>
+                                    <v-chip
+                                        label
+                                        class="mb-2 text-uppercase"
+                                        color="grey darken-3"
+                                        text-color="white"
+                                        small
+                                        @click.stop=""
+                                    >
+                                        {{ tour.category }}
+                                    </v-chip>
+                                    <h3 
+                                        class="white--text title font-weight-bold mb-2">
+                                        {{ tour.title }}
+                                    </h3>
+                                    <div class="white--text caption">
+                                        ${{tour.price.low}} - ${{tour.price.high}}
+                                        <br>
+                                        {{tour.location.city}}
+                                    </div>
+                                </v-flex>
+                                
+                                <v-flex align-self-end>
+                                    <v-btn
+                                        :to="'/tours/single/' + tour.key"
+                                        class="text-uppercase"
+                                        small
+                                    >
+                                        Explore
+                                    </v-btn>
+                                </v-flex>
+                            </v-layout>
+                        </v-img>
+                    </base-card>
+                </v-flex>
+            </v-layout>
+            
+        </v-container>
+
+        <!-- <v-container>
             <v-layout row wrap>
                 <v-flex 
                     v-for="tour in tours"
@@ -41,32 +104,7 @@
                     </v-card>
                 </v-flex>
             </v-layout>
-        </v-container>
-        <!-- <div class="container">
-            <div class="row">
-                <div
-                    v-for="tour in tours"
-                    :key="tour.key"
-                    class="col-sm-3 col-md-3 col-lg-3 pb-2 tour-card"
-                >
-                    <div
-                        class="card h-100 text-center shadow p-3 mb-5 bg-white rounded border-bottom-0"
-                    >
-                        <img
-                            class="card-img-top"
-                            src="https://images.unsplash.com/photo-1519331379826-f10be5486c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                            alt="Card image cap"
-                        >
-                        <div class="card-body">
-                            <h5 class="card-title">{{tour.title}}</h5>
-                            <h6>$ {{tour.price.low}} - {{tour.price.high}}</h6>
-                            <p class="card-text" v-html="tour.description"></p>
-                            <router-link :to="'/tours/single/' + tour.key">View Info</router-link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+        </v-container> -->
     </div>
 </template>
 
@@ -86,15 +124,5 @@ export default {
 </script>
 
 <style scoped>
-.tour-card {
-    margin-bottom: 90px;
-}
 
-.tours {
-    margin-top: 40px;
-}
-
-.container {
-    margin-top: 40px;
-}
 </style>

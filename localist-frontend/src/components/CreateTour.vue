@@ -3,11 +3,18 @@
         <form v-on:submit.prevent="createTour">
             <div>
                 <input type="text" placeholder="Title" v-model="title">
+                <br>
                 <input type="text" placeholder="Description" v-model="description">
-                <input type="text" placeholder="Max Duration" v-model="duration_long">
-                <input type="text" placeholder="Min Duration" v-model="duration_short">
-                <input type="text" placeholder="Max Price" v-model="price_high">
-                <input type="text" placeholder="Min Price" v-model="price_low">
+                <input type="text" placeholder="Category" v-model="category">
+                <br>
+                <input type="text" placeholder="Country" v-model="location.country">
+                <input type="text" placeholder="City" v-model="location.city">
+                <br>
+                <input type="text" placeholder="Max Duration" v-model="duration.long">
+                <input type="text" placeholder="Min Duration" v-model="duration.short">
+                <br>
+                <input type="text" placeholder="Max Price" v-model="price.high">
+                <input type="text" placeholder="Min Price" v-model="price.low">
             </div>
             <button type="submit">Create Tour</button>
         </form>
@@ -18,22 +25,42 @@ import router from "../router";
 export default {
     name: "createTour",
     data: () => ({
-        title: "",
-        description: "",
-        duration_long: "",
-        duration_short: "",
-        price_high: "",
-        price_low: ""
+        title: "Bike Up Cypress",
+        description: "asdsfd",
+        category:"Bike",
+        location: {
+            country: "Canada",
+            city: "Vancouver"
+        },
+        duration: {
+            long: "8",
+            short: "2"
+        },
+        price: {
+            high: "300",
+            low: "80"
+        },
+        user_key:""
     }),
     methods: {
         createTour() {
             const formData = {
                 title: this.title,
                 description: this.description,
-                duration_long: this.duration_long,
-                duration_short: this.duration_short,
-                price_high: this.price_high,
-                price_low: this.price_low
+                category: this.category,
+                location: {
+                    city: this.location.city,
+                    country: this.location.country
+                },
+                duration: {
+                    short: this.duration.short,
+                    high: this.duration.high
+                },
+                price: {
+                    high: this.price.high,
+                    low: this.price.low
+                },
+                user_key: "-LeIrh-Z8PYSfp9CTZsk"
             };
             this.$http
                 .post("/tour/add", formData)

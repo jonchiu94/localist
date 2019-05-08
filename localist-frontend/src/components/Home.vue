@@ -2,7 +2,9 @@
     <div>
         <v-content>
           <section>
-            <v-parallax src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80" height="550">
+            <v-parallax 
+              src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80" 
+              height="550">
               <v-layout
                 column
                 align-center
@@ -50,9 +52,13 @@
               class="my-5"
               align-center
             >
-              <v-flex xs12 sm4 class="my-3">
+              <v-flex xs12 sm4 
+                class="my-3"
+              >
                 <div class="text-xs-center">
-                  <h2 class="headline">Probably, the BEST way to experience the local culture.</h2>
+                  <h2 class="headline">
+                    Probably, the BEST way to experience the local culture.
+                  </h2>
                 </div>
               </v-flex>
               <v-flex xs12>
@@ -61,7 +67,9 @@
                     <v-flex xs12 md4>
                       <v-card class="elevation-0 transparent">
                         <v-card-text class="text-xs-center">
-                          <v-icon x-large class="cyan--text text--darken-2">color_lens</v-icon>
+                          <v-icon x-large 
+                            class="cyan--text text--darken-2">color_lens
+                          </v-icon>
                         </v-card-text>
                         <v-card-title primary-title class="layout justify-center">
                           <div class="headline text-xs-center">Customizable</div>
@@ -110,9 +118,14 @@
           </section>
 
           <section>
-            <v-parallax src="https://images.unsplash.com/photo-1530735606451-8f5f13955328?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" height="380">
+            <v-parallax 
+              src="https://images.unsplash.com/photo-1530735606451-8f5f13955328?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" 
+              height="380"
+            >
               <v-layout column align-center justify-center>
-                <div class="headline white--text font-weight-black mb-3 text-xs-center">Custom local tour that cannot find in traditional tourist means.</div>
+                <div class="headline white--text font-weight-black mb-3 text-xs-center">
+                  Custom local tour that cannot find in traditional tourist means.
+                </div>
                 <v-btn
                   class="cyan darken-2 mt-5 font-weight-black"
                   dark

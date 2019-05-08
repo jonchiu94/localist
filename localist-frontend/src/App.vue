@@ -24,7 +24,7 @@ body {
 
 
     #routerId {
-        padding-top: 3%;
+        padding-top: 65px;
         padding-bottom: 10%;
     }
 
@@ -41,10 +41,10 @@ body {
         /*margin-bottom: 5%;*/
     }
 
-#footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 10px; /* Height of the footer */
-}
+    #footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 10px; /* Height of the footer */
+    }
 </style>
