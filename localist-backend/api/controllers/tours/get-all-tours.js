@@ -26,7 +26,6 @@ module.exports = {
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
-		var toursRefLong = database.ref('tours_long')
 		var toursRefShort = database.ref('tours_short')
 
 		var returnArr = []

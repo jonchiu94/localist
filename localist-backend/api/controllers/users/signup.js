@@ -12,7 +12,7 @@ until they confirm they are using a legitimate email address (by clicking the li
 the account verification message.)`,
 
 	inputs              : {
-		email          : {
+		email    : {
 			required            : true,
 			type                : 'string',
 			isEmail             : true,
@@ -21,27 +21,13 @@ the account verification message.)`,
 			extendedDescription : 'Must be a valid email address.'
 		},
 
-		password       : {
+		password : {
 			required    : true,
 			type        : 'string',
 			maxLength   : 200,
 			example     : 'passwordlol',
 			description :
 				'The unencrypted password to use for the new account.'
-		},
-
-		name           : {
-			required    : true,
-			type        : 'string',
-			maxLength   : 200,
-			example     : 'Jacob Smith',
-			description : 'Your name.'
-		},
-
-		administration : {
-			required    : true,
-			type        : 'boolean',
-			description : 'is Admin?.'
 		}
 	},
 
@@ -69,16 +55,13 @@ the account verification message.)`,
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
-		var admin = require('../../database/admin.js')
+		// var admin = require('../../database/admin.js')
 		var r = this.res
 		var userData = {
-			uid            : '',
-			token          : '',
-			administration : inputs.administration,
-			user           : ''
+			key  : '',
+			user : ''
 		}
 
-		console.log('creating user...')
 		await firebase
 			.auth()
 			.createUserWithEmailAndPassword(
@@ -86,34 +69,35 @@ the account verification message.)`,
 				inputs.password
 			)
 			.then((authData) => {
-				userData.user = authData
-				console.log('User created successfully')
-				return firebase.auth().currentUser.getIdToken(false)
-			})
-			.then(function (idToken){
-				userData.token = idToken
-				return firebase.auth().currentUser.uid
-			})
-			.then(function (uid){
-				userData.uid = uid
-				var newUser = database.ref('users').push(uid)
-				newUser.set({
-					uid  : userData.uid,
-					name : inputs.name
+				// 	userData.user = authData
+				// 	return firebase.auth().currentUser.getIdToken(false)
+				// })
+				// .then(function (idToken){
+				// 	userData.token = idToken
+				// 	return firebase.auth().currentUser.uid
+				// })
+				// .then(function (uid){
+				// userData.uid = uid
+				userData.user = authData.user
+				return database.ref('users').push({
+					uid : authData.user.uid
 				})
-				if (inputs.administration) {
-					return admin
-						.auth()
-						.setCustomUserClaims(uid, {
-							admin : true
-						})
-				}
+				// if (inputs.administration) {
+				// 	return admin
+				// 		.auth()
+				// 		.setCustomUserClaims(uid, {
+				// 			admin : true
+				// 		})
+				// }
+			})
+			.then(function (newUser){
+				console.log(newUser.key)
+				userData.key = newUser.key
 			})
 			.catch(function (error){
-				r.json({ error: error })
-				return
+				r.status(409).send('Email already in use')
 			})
 
-		this.res.json(userData)
+		this.res.status(201).json(userData)
 	}
 }
