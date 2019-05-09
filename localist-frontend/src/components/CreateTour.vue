@@ -1,13 +1,21 @@
 <template>
-    <div>
+    <div >
         <form v-on:submit.prevent="createTour">
+            <v-divider></v-divider>
             <div>
                 <input type="text" placeholder="Title" v-model="title">
-                <input type="text" placeholder="Description" v-model="description">
-                <input type="text" placeholder="Max Duration" v-model="duration_long">
-                <input type="text" placeholder="Min Duration" v-model="duration_short">
-                <input type="text" placeholder="Max Price" v-model="price_high">
-                <input type="text" placeholder="Min Price" v-model="price_low">
+                <br>
+                <input type="text" placeholder="Description" v-model="tour_description">
+                <input type="text" placeholder="Category" v-model="category">
+                <br>
+                <input type="text" placeholder="Country" v-model="location.country">
+                <input type="text" placeholder="City" v-model="location.city">
+                <br>
+                <input type="text" placeholder="Max Duration" v-model="duration.long">
+                <input type="text" placeholder="Min Duration" v-model="duration.short">
+                <br>
+                <input type="text" placeholder="Max Price" v-model="price.high">
+                <input type="text" placeholder="Min Price" v-model="price.low">
             </div>
             <button type="submit">Create Tour</button>
         </form>
@@ -18,23 +26,44 @@ import router from "../router";
 export default {
     name: "createTour",
     data: () => ({
-        title: "",
-        description: "",
-        duration_long: "",
-        duration_short: "",
-        price_high: "",
-        price_low: ""
+        title: "Master the art of vegan cheese making",
+        tour_description: "tour_description: SD@#345$%s^df&*(&f^%$#@",
+        category:"COOKING CLASS",
+        location: {
+            country: "Canada",
+            city: "Vancouver"
+        },
+        duration: {
+            long: 5,
+            short: 2
+        },
+        price: {
+            high: 140,
+            low: 98
+        },
+        user_key: "-LeIrh-Z8PYSfp9CTZsk"
     }),
     methods: {
         createTour() {
             const formData = {
                 title: this.title,
-                description: this.description,
-                duration_long: this.duration_long,
-                duration_short: this.duration_short,
-                price_high: this.price_high,
-                price_low: this.price_low
+                tour_description: this.tour_description,
+                category: this.category,
+                location: {
+                    country: this.location.country,
+                    city: this.location.city                    
+                },
+                duration: {
+                    long: this.duration.long,
+                    short: this.duration.short
+                },
+                price: {
+                    high: this.price.high,
+                    low: this.price.low
+                },
+                user_key: this.user_key
             };
+            console.log(formData);
             this.$http
                 .post("/tour/add", formData)
                 .then(function(response) {
@@ -43,7 +72,7 @@ export default {
                 .catch(function(error) {
                     alert(error);
                 });
-        }
+        } 
     }
 };
 </script>
