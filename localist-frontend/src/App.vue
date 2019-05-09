@@ -23,7 +23,6 @@ export default {
     }
 
     #routerId {
-        padding-top:3%;
         padding-bottom: 10%;
     }
 

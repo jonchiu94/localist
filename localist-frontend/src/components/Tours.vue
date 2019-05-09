@@ -1,15 +1,22 @@
 <template>
     <div id="tourList">
-        <h1 pt-4 >Tours</h1>
-        <router-link to="tours/createtour">Create Tour</router-link>
+        <h1 class="cyan--text text--darken-2 mb-2 display-3 font-weight-black font-italic text-xs-center">Tours</h1>
+
+        <v-btn 
+            large 
+            class="white" 
+            to="tours/createtour"
+        >
+            Create Tour
+        </v-btn>
 
         <v-container>
-            <v-layout wrap>
+            <v-layout wrap justify-space-around>
                 <v-flex 
                     v-for="tour in tours"
                     :key="tour.key"
                     xs3 sm3 
-                    mx-4 my-2
+                    mx-4 my-3
                     class="tour-card"
                 >
                     <base-card
@@ -19,7 +26,7 @@
                         href="#!"
                     >
                         <v-img
-                            src="https://images.unsplash.com/photo-1460339594641-eb86e8402669?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                            src="https://images.unsplash.com/photo-1549208368-768234073504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
                             height="100%"
                             gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
                         >
@@ -33,7 +40,7 @@
                                     <v-chip
                                         label
                                         class="mb-2 text-uppercase"
-                                        color="grey darken-3"
+                                        color="cyan darken-2"
                                         text-color="white"
                                         small
                                         @click.stop=""
@@ -54,7 +61,7 @@
                                 <v-flex align-self-end>
                                     <v-btn
                                         :to="'/tours/single/' + tour.key"
-                                        class="text-uppercase"
+                                        class="white  text-uppercase"
                                         small
                                     >
                                         Explore

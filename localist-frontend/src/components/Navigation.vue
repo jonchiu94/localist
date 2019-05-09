@@ -6,7 +6,7 @@
                     Localist
                 </v-btn>
                 <v-btn to="/tours" style="text-decoration: none" flat> Tours </v-btn>
-                <v-btn to="/guides" style="text-decoration: none" flat> Guides </v-btn>
+                <!-- <v-btn to="/guides" style="text-decoration: none" flat> Guides </v-btn> -->
                 <v-btn v-if="isAdmin" to="/users" style="text-decoration: none" flat>Admin</v-btn>
             </v-toolbar-items>
 

@@ -26,20 +26,20 @@ import router from "../router";
 export default {
     name: "createTour",
     data: () => ({
-        title: "Bike Up Cypress",
-        tour_description: "asdsfd",
-        category:"Bike",
+        title: "Master the art of vegan cheese making",
+        tour_description: "tour_description: SD@#345$%s^df&*(&f^%$#@",
+        category:"COOKING CLASS",
         location: {
             country: "Canada",
             city: "Vancouver"
         },
         duration: {
-            long: 8,
+            long: 5,
             short: 2
         },
         price: {
-            high: 300,
-            low: 80
+            high: 140,
+            low: 98
         },
         user_key: "-LeIrh-Z8PYSfp9CTZsk"
     }),
