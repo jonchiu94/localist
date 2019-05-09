@@ -6,7 +6,7 @@
                     Localist
                 </v-btn>
                 <v-btn to="/tours" style="text-decoration: none" flat> Tours </v-btn>
-                <v-btn to="/guides" style="text-decoration: none" flat> Guides </v-btn>
+                <!-- <v-btn to="/guides" style="text-decoration: none" flat> Guides </v-btn> -->
                 <v-btn v-if="isAdmin" to="/users" style="text-decoration: none" flat>Admin</v-btn>
             </v-toolbar-items>
 
@@ -21,6 +21,9 @@
             <v-btn icon>
                 <v-icon class="cyan--text text--darken-2">search</v-icon>
             </v-btn>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn to="tours/createtour" style="text-decoration: none" flat> Host a tour </v-btn>
+            </v-toolbar-items>
 
             <v-btn dark to="/signin" v-if="!isLoggedIn">Sign In/Sign Up</v-btn>
             <v-menu :nudge-width="100" v-if="getUsername">
@@ -133,7 +136,7 @@ export default {
         z-index: 5;
         position: fixed;
         box-shadow: 0 2px 15px rgba(71, 120, 120, 0.5);
-        transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0); 
     }
 
     .nav-bar.nav-bar--hidden {
