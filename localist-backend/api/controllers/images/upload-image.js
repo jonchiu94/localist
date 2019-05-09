@@ -37,8 +37,9 @@ module.exports = {
 		const CLOUD_BUCKET = 'test-bucket-4827409472'
 		var t = this
 		const bucket = storage.bucket(CLOUD_BUCKET)
+		var imgUrls = []
 
-		var st = await this.req.file('img').upload({
+		await this.req.file('img').upload({
 			// ...any other options here...
 			adapter     : require('skipper-gclouds'),
 			projectId   : '999412385085',
@@ -46,13 +47,16 @@ module.exports = {
 			bucket      : 'test-bucket-4827409472',
 			//Are files uplodaded public?
 			public      : true
+		}, function (error, uplodadedFiles){
+			uplodadedFiles.forEach(function (file){
+				imgUrls.push(
+					`https://storage.googleapis.com/${bucket.name}/${file.fd}`
+				)
+			})
 		})
 
 		this.res.status(200).json({
-			data : {
-				url : `https://storage.googleapis.com/${bucket.name}/${st
-					._files[0].stream.fd}`
-			}
+			imgUrls
 		})
 
 		// // https://stackoverflow.com/questions/36661795/how-to-upload-an-image-to-google-cloud-storage-from-an-image-url-in-node

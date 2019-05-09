@@ -95,7 +95,7 @@ export default {
                 administration: this.administration
             };
             this.$http
-                .post("/entrance/signup", formData)
+                .post("/user/signup", formData)
                 .then(function(response) {
                     if (response.data.error) {
                         alert(response.data.error.message);
