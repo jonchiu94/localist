@@ -21,6 +21,9 @@
             <v-btn icon>
                 <v-icon class="cyan--text text--darken-2">search</v-icon>
             </v-btn>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn to="tours/createtour" style="text-decoration: none" flat> Host a tour </v-btn>
+            </v-toolbar-items>
 
             <v-btn dark to="/signin" v-if="!isLoggedIn">Sign In/Sign Up</v-btn>
             <v-menu :nudge-width="100" v-if="getUsername">

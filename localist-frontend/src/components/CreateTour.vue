@@ -1,10 +1,11 @@
 <template>
-    <div>
+    <div >
         <form v-on:submit.prevent="createTour">
+            <v-divider></v-divider>
             <div>
                 <input type="text" placeholder="Title" v-model="title">
                 <br>
-                <input type="text" placeholder="Description" v-model="description">
+                <input type="text" placeholder="Description" v-model="tour_description">
                 <input type="text" placeholder="Category" v-model="category">
                 <br>
                 <input type="text" placeholder="Country" v-model="location.country">
@@ -26,7 +27,7 @@ export default {
     name: "createTour",
     data: () => ({
         title: "Bike Up Cypress",
-        description: "asdsfd",
+        tour_description: "asdsfd",
         category:"Bike",
         location: {
             country: "Canada",
@@ -40,13 +41,15 @@ export default {
             high: "300",
             low: "80"
         },
-        user_key:""
+        user_key: 
+        // this.$store.getters.getUserId
+        "-LeIrh-Z8PYSfp9CTZsk"
     }),
     methods: {
         createTour() {
             const formData = {
                 title: this.title,
-                description: this.description,
+                tour_description: this.tour_description,
                 category: this.category,
                 location: {
                     city: this.location.city,
@@ -54,13 +57,13 @@ export default {
                 },
                 duration: {
                     short: this.duration.short,
-                    high: this.duration.high
+                    long: this.duration.long
                 },
                 price: {
                     high: this.price.high,
                     low: this.price.low
                 },
-                user_key: "-LeIrh-Z8PYSfp9CTZsk"
+                user_key: this.user_key
             };
             this.$http
                 .post("/tour/add", formData)

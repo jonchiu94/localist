@@ -15,28 +15,42 @@
                 <div class="cyan--text text--darken-2 subheading mb-5 text-xs-center">by TEAM 24</div>
                 
             <v-layout row wrap justify-space-around >
-                <v-flex xs3>
+                <v-flex md4>
+                  <v-text-field
+                      background-color="white"
+                      label="Search"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex md3>
+                  <v-menu
+                      v-model="menu"
+                      :close-on-content-click="false"
+                      :nudge-right="40"
+                      lazy
+                      transition="scale-transition"
+                      offset-y
+                      full-width
+                      min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                        <v-text-field
+                            label="Date"
+                            v-model="date"
+                            readonly
+                            v-on="on"
+                            background-color="white"
+                        ></v-text-field>
+                    </template>
+                    <v-date-picker v-model="date" @input="menu = false" no-title></v-date-picker>
+                  </v-menu>
+                </v-flex>
+                <v-flex md3>
                     <v-text-field
-                        label="What"
-                        solo
+                        label="#. of guest"
                         background-color="white"
                     ></v-text-field>
                 </v-flex>
-                <v-flex xs3>
-                    <v-text-field
-                        label="When"
-                        solo
-                        background-color="white"
-                    ></v-text-field>
-                </v-flex>
-                <v-flex xs3>
-                    <v-text-field
-                        label="#. of travellers"
-                        solo
-                        background-color="white"
-                    ></v-text-field>
-                </v-flex>
-                <v-flex md12>
+                <v-flex md12 ma-0>
                     <v-btn large class="cyan darken-2 white--text"> Search </v-btn>
                 </v-flex>
             </v-layout>
@@ -197,6 +211,13 @@
 </template>
 
 <script>
+  export default {
+    data: () => ({
+        date: new Date().toISOString().substr(0, 10),
+        menu: false,
+        modal: false
+    })
+  };
 </script>
 
 <style>

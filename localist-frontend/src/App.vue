@@ -17,14 +17,13 @@ export default {
 </script>
 
 <style>
-html,
-body {
-    height: 100%;
-}
-
+    html,
+    body {
+        height: 100%;
+    }
 
     #routerId {
-        padding-top: 65px;
+        padding-top:3%;
         padding-bottom: 10%;
     }
 
@@ -38,7 +37,7 @@ body {
     }
 
     #navBar {
-        /*margin-bottom: 5%;*/
+        padding-bottom: 1%;
     }
 
     #footer {

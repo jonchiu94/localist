@@ -1,6 +1,6 @@
 <template>
     <div id="tourList">
-        <h1>Tours</h1>
+        <h1 pt-4 >Tours</h1>
         <router-link to="tours/createtour">Create Tour</router-link>
 
         <v-container>
@@ -8,7 +8,8 @@
                 <v-flex 
                     v-for="tour in tours"
                     :key="tour.key"
-                    xs3 sm3 offset-sm1
+                    xs3 sm3 
+                    mx-4 my-2
                     class="tour-card"
                 >
                     <base-card
