@@ -4,8 +4,8 @@
             <section>
                 <v-parallax
                     src="https://images.unsplash.com/photo-1501547188-6a8b7cdcce6e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1348&q=80"
-                    min-height="350px"
-                    max-height="850px"
+                    min-height="450px"
+                    max-height="950px"
                 >
                     <v-container id="search" grid-list-md text-xs-center>
                         <v-layout row wrap align-center justify-center>

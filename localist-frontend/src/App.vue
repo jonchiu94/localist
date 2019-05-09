@@ -43,6 +43,7 @@ body {
 
 
 #footer {
+    margin-top: 5%;
     position: absolute;
     bottom: 0;
     width: 100%;

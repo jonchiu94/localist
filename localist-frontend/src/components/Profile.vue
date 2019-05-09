@@ -3,7 +3,7 @@
         <div id="prev">
             <input type="file" accept="image/x-png, image/gif, image/jpeg" ref="files" v-on:change="onFileChange" />
             <div id="preview">
-                <img v-if="url" :src="url" />
+                <img v-if="url" :src="url" height="100" />
             </div>
         </div>
         <!--<div class="large-12 medium-12 small-12 cell">-->
@@ -15,11 +15,19 @@
             <!--<div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>-->
         <!--</div>-->
         <!--<br>-->
+        <form v-on:submit.prevent="updateProfile">
+        <div>
+            <h3>Your Profile</h3>
+            <input type="text" placeholder="First Name" v-model="first_name"><br>
+            <input type="text" placeholder="Last Name" v-model="last_name"><br>
+            <input type="text" placeholder="Age" v-model="age"><br>
+            <input type="text" placeholder="Gender" v-model="gender"><br>
+            <input type="text" placeholder="City" v-model="city"><br>
+            <input type="text" placeholder="Country" v-model="country">
+        </div>
+        </form>
         <div class="large-12 medium-12 small-12 cell">
             <button v-on:click="submitFiles()">Submit</button>
-        </div>
-        <div>
-            <p>{{this.$store.getters.getUserId}}</p>
         </div>
     </div>
 </template>
@@ -31,7 +39,13 @@
         */
         data: () =>({
             files: "",
-            url: null
+            url: null,
+            first_name: "",
+            last_name: "",
+            age: "",
+            gender: "",
+            city: "",
+            country: ""
 
         }),
 
@@ -39,6 +53,16 @@
           Defines the method used by the component
         */
         methods: {
+            createGuide() {
+                 formData = {
+                    first_name: this.first_name,
+                    last_name: this.last_name,
+                    age: this.age,
+                    gender: this.gender,
+                    city: this.city,
+                    country: this.country
+                };
+            },
             onFileChange(e) {
                 this.files = e.target.files[0];
                 this.url = URL.createObjectURL(this.files);
@@ -58,7 +82,14 @@
                 /*
                   Initialize the form data
                 */
-                let formData = new FormData();
+                const formData = {
+                    first_name: this.first_name,
+                    last_name: this.last_name,
+                    age: this.age,
+                    gender: this.gender,
+                    city: this.city,
+                    country: this.country
+                };
 
                 /*
                   Iteate over any file sent over appending the files
@@ -82,7 +113,7 @@
                         }
                     }
                 ).then(function(){
-                        console.log('SUCCESS!!');
+                    console.log('SUCCESS!!');
                     router.push("/tours");
                 })
                     .catch(function(){
