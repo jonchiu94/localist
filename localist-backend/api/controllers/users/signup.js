@@ -79,7 +79,7 @@ the account verification message.)`,
 					userData.key = newUser.key
 				})
 		} catch (error) {
-			return this.status(409).send('Email already in use')
+			return this.res.status(409).send('Email already in use')
 		}
 
 		this.res.status(201).json(userData)

@@ -85,8 +85,8 @@ the account verification message.)`,
 					}
 				})
 		} catch (error) {
-			return this.status(400).send('Invalid email or password')
+			return this.res.status(400).send('Invalid email or password')
 		}
-		this.status(200).json(userData)
+		this.res.status(200).json(userData)
 	}
 }
