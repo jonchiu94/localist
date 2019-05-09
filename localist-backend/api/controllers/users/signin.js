@@ -55,31 +55,38 @@ the account verification message.)`,
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var admin = require('../../database/admin.js')
-		var r = this.res
 		var userData = {
 			administration : false,
 			user           : ''
 		}
 
-		await firebase
-			.auth()
-			.signInWithEmailAndPassword(inputs.email, inputs.password)
-			.then(function (firebaseUser){
-				userData.user = firebaseUser
-				return firebase.auth().currentUser.getIdToken(false)
-			})
-			.then(function (idToken){
-				userData.token = idToken
-				return admin.auth().verifyIdToken(userData.token)
-			})
-			.then(function (claims){
-				if (claims.admin === true) {
-					userData.administration = true
-				}
-				r.status(200).json(userData)
-			})
-			.catch(function (error){
-				r.status(400).send('Invalid email or password')
-			})
+		try {
+			await firebase
+				.auth()
+				.signInWithEmailAndPassword(
+					inputs.email,
+					inputs.password
+				)
+				.then(function (firebaseUser){
+					userData.user = firebaseUser
+					return firebase
+						.auth()
+						.currentUser.getIdToken(false)
+				})
+				.then(function (idToken){
+					userData.token = idToken
+					return admin
+						.auth()
+						.verifyIdToken(userData.token)
+				})
+				.then(function (claims){
+					if (claims.admin === true) {
+						userData.administration = true
+					}
+				})
+		} catch (error) {
+			return this.status(400).send('Invalid email or password')
+		}
+		this.status(200).json(userData)
 	}
 }
