@@ -109,6 +109,7 @@ module.exports = {
 		var database = firebase.database()
 		var toursRefLong = database.ref('tours_long')
 		var toursRefShort = database.ref('tours_short')
+		var coord = inputs.coordinates || ''
 
 		try {
 			var long_tour = await toursRefLong.push({
@@ -135,10 +136,8 @@ module.exports = {
 					country : inputs.location.country
 				},
 				coordinates : {
-					lattitude :
-						inputs.coordinates.lattitude || '',
-					longitude :
-						inputs.coordinates.longitude || ''
+					lattitude : coord.lattitude || '',
+					longitude : coord.longitude || ''
 				},
 				tags        : inputs.tags || '',
 				category    : inputs.category,
@@ -146,6 +145,7 @@ module.exports = {
 				is_public   : false
 			})
 		} catch (error) {
+			console.log(error)
 			return this.res.status(400).send('Error')
 		}
 
