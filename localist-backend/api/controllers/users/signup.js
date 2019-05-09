@@ -56,7 +56,6 @@ the account verification message.)`,
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
 		// var admin = require('../../database/admin.js')
-		var r = this.res
 		var userData = {
 			key  : '',
 			user : ''

@@ -52,6 +52,11 @@ module.exports = {
 				'{"city" : "the city of tour","country": "the country of tour", "lattitude", "lat of tour", "longitude", "long of tour"}'
 		},
 
+		coordinates         : {
+			required : false,
+			type     : 'json'
+		},
+
 		category            : {
 			required    : true,
 			type        : 'string',
@@ -130,8 +135,10 @@ module.exports = {
 					country : inputs.location.country
 				},
 				coordinates : {
-					lat  : inputs.location.lattitude,
-					long : inputs.location.longitude
+					lattitude :
+						inputs.coordinates.lattitude || '',
+					longitude :
+						inputs.coordinates.longitude || ''
 				},
 				tags        : inputs.tags || '',
 				category    : inputs.category,
