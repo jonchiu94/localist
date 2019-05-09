@@ -38,7 +38,7 @@ body {
 
 
     #navBar {
-        padding-bottom: 1%;
+        padding-bottom: 5%;
     }
 
 

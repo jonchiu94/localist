@@ -1,30 +1,37 @@
 <template>
     <div class="container">
-        <div class="large-12 medium-12 small-12 cell">
-            <label>Files
-                <input type="file" id="files" ref="files" v-on:change="handleFilesUpload()"/>
-            </label>
+        <div id="prev">
+            <input type="file" accept="image/x-png, image/gif, image/jpeg" ref="files" v-on:change="onFileChange" />
+            <div id="preview">
+                <img v-if="url" :src="url" />
+            </div>
         </div>
-        <div class="large-12 medium-12 small-12 cell">
-            <div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>
-        </div>
-        <br>
-        <div class="large-12 medium-12 small-12 cell">
-            <button v-on:click="addFiles()">Add Files</button>
-        </div>
-        <br>
+        <!--<div class="large-12 medium-12 small-12 cell">-->
+            <!--<label>-->
+                <!--<input type="file" id="files" accept="image/x-png, image/gif, image/jpeg" ref="files" v-on:change="handleFilesUpload()"/>-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="large-12 medium-12 small-12 cell">-->
+            <!--<div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>-->
+        <!--</div>-->
+        <!--<br>-->
         <div class="large-12 medium-12 small-12 cell">
             <button v-on:click="submitFiles()">Submit</button>
+        </div>
+        <div>
+            <p>{{this.$store.getters.getUserId}}</p>
         </div>
     </div>
 </template>
 <script>
+    import router from "../router";
     export default {
         /*
           Defines the data used by the component
         */
         data: () =>({
-                files: ""
+            files: "",
+            url: null
 
         }),
 
@@ -32,11 +39,16 @@
           Defines the method used by the component
         */
         methods: {
+            onFileChange(e) {
+                this.files = e.target.files[0];
+                this.url = URL.createObjectURL(this.files);
+            },
             /*
               Adds a file
             */
-            addFiles(){
+            addFiles() {
                 this.$refs.files.click();
+
             },
 
             /*
@@ -62,7 +74,7 @@
                   Make the request to the POST /select-files URL
                 */
                 this.$http
-                    .post( '/select-files',
+                    .post( "/image",
                     formData,
                     {
                         headers: {
@@ -71,6 +83,7 @@
                     }
                 ).then(function(){
                         console.log('SUCCESS!!');
+                    router.push("/tours");
                 })
                     .catch(function(){
                         console.log('FAILURE!!');
