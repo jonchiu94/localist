@@ -83,12 +83,12 @@
                   Initialize the form data
                 */
                 const formData = {
-                    first_name: this.first_name,
-                    last_name: this.last_name,
-                    age: this.age,
-                    gender: this.gender,
-                    city: this.city,
-                    country: this.country
+                    // first_name: this.first_name,
+                    // last_name: this.last_name,
+                    // age: this.age,
+                    // gender: this.gender,
+                    // city: this.city,
+                    // country: this.country
                 };
 
                 /*
@@ -98,7 +98,7 @@
                 for( let i = 0; i < this.files.length; i++ ){
                     let file = this.files[i];
 
-                    formData.append('files[' + i + ']', file);
+                    formData.append('img[' + i + ']', file);
                 }
 
                 /*
