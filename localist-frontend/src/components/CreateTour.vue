@@ -34,16 +34,14 @@ export default {
             city: "Vancouver"
         },
         duration: {
-            long: "8",
-            short: "2"
+            long: 8,
+            short: 2
         },
         price: {
-            high: "300",
-            low: "80"
+            high: 300,
+            low: 80
         },
-        user_key: 
-        // this.$store.getters.getUserId
-        "-LeIrh-Z8PYSfp9CTZsk"
+        user_key: "-LeIrh-Z8PYSfp9CTZsk"
     }),
     methods: {
         createTour() {
@@ -52,12 +50,12 @@ export default {
                 tour_description: this.tour_description,
                 category: this.category,
                 location: {
-                    city: this.location.city,
-                    country: this.location.country
+                    country: this.location.country,
+                    city: this.location.city                    
                 },
                 duration: {
-                    short: this.duration.short,
-                    long: this.duration.long
+                    long: this.duration.long,
+                    short: this.duration.short
                 },
                 price: {
                     high: this.price.high,
@@ -65,6 +63,7 @@ export default {
                 },
                 user_key: this.user_key
             };
+            console.log(formData);
             this.$http
                 .post("/tour/add", formData)
                 .then(function(response) {
@@ -73,7 +72,7 @@ export default {
                 .catch(function(error) {
                     alert(error);
                 });
-        }
+        } 
     }
 };
 </script>
