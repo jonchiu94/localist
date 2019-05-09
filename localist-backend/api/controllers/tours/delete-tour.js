@@ -27,9 +27,12 @@ module.exports = {
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
 		var toursRef = database.ref('tours')
-		var t = this
 
-		await toursRef.child(this.req.params.id).remove()
+		try {
+			await toursRef.child(this.req.params.id).remove()
+		} catch (error) {
+			return this.res.status(404).send('Tour was not found')
+		}
 
 		this.res.status(200).send('Tour deleted successfully')
 	}

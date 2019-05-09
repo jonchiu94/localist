@@ -33,17 +33,20 @@ module.exports = {
 		var database = firebase.database()
 		var admin = require('../../database/admin.js')
 		var usersRef = database.ref('users/' + this.req.params.key)
-		var uid = ''
 
 		try {
-			await usersRef.once('value').then(function (snapshot){
-				uid = snapshot.val().uid
-			})
-			await admin.auth().setCustomUserClaims(uid, {
-				admin : true
-			})
+			await usersRef
+				.once('value')
+				.then(function (snapshot){
+					return snapshot.val().uid
+				})
+				.then(function (uid){
+					admin.auth().setCustomUserClaims(uid, {
+						admin : true
+					})
+				})
 		} catch (error) {
-			this.res.status(404).send('User could not be found')
+			return this.res.status(404).send('User could not be found')
 		}
 
 		this.res

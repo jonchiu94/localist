@@ -62,41 +62,25 @@ the account verification message.)`,
 			user : ''
 		}
 
-		await firebase
-			.auth()
-			.createUserWithEmailAndPassword(
-				inputs.email,
-				inputs.password
-			)
-			.then((authData) => {
-				// 	userData.user = authData
-				// 	return firebase.auth().currentUser.getIdToken(false)
-				// })
-				// .then(function (idToken){
-				// 	userData.token = idToken
-				// 	return firebase.auth().currentUser.uid
-				// })
-				// .then(function (uid){
-				// userData.uid = uid
-				userData.user = authData.user
-				return database.ref('users').push({
-					uid : authData.user.uid
+		try {
+			await firebase
+				.auth()
+				.createUserWithEmailAndPassword(
+					inputs.email,
+					inputs.password
+				)
+				.then((authData) => {
+					userData.user = authData.user
+					return database.ref('users').push({
+						uid : authData.user.uid
+					})
 				})
-				// if (inputs.administration) {
-				// 	return admin
-				// 		.auth()
-				// 		.setCustomUserClaims(uid, {
-				// 			admin : true
-				// 		})
-				// }
-			})
-			.then(function (newUser){
-				console.log(newUser.key)
-				userData.key = newUser.key
-			})
-			.catch(function (error){
-				r.status(409).send('Email already in use')
-			})
+				.then(function (newUser){
+					userData.key = newUser.key
+				})
+		} catch (error) {
+			return this.status(409).send('Email already in use')
+		}
 
 		this.res.status(201).json(userData)
 	}
