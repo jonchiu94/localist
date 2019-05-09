@@ -17,35 +17,32 @@ export default {
 </script>
 
 <style>
-html,
-body {
-    height: 100%;
-}
+    html,
+    body {
+        height: 100%;
+    }
 
-#routerId {
-    padding-top: 3%;
-    padding-bottom: 10%;
-}
+    #routerId {
+        padding-bottom: 10%;
+    }
 
-#app {
-    min-height: 100%;
-    position: relative;
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-}
-
+    #app {
+        min-height: 100%;
+        position: relative;
+        font-family: "Avenir", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+    }
 
     #navBar {
         padding-bottom: 5%;
     }
 
-
-#footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 10px; /* Height of the footer */
-}
+    #footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 10px; /* Height of the footer */
+    }
 </style>

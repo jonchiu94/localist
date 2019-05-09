@@ -1,7 +1,7 @@
 <template>
     <div id="guideList">
         <h1>Guides</h1>
-        <router-link class="button" to="guides/createguide">Create Guide</router-link>
+        
         <div class="container">
             <div class="row">
                 <div

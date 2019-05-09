@@ -8,7 +8,6 @@ import Tours from '@/components/Tours.vue'
 import Guides from '@/components/Guides.vue'
 import SingleGuide from '../components/SingleGuide'
 import SingleTour from '../components/SingleTour'
-import CreateGuide from '../components/CreateGuide'
 import CreateTour from '../components/CreateTour'
 import Admin from '../components/Admin'
 import EditTour from '../components/EditTour'
@@ -47,14 +46,6 @@ const router = new VueRouter({
 			path      : '/guides',
 			name      : 'Guides',
 			component : Guides
-		},
-		{
-			path      : '/guides/createguide',
-			name      : 'createGuide',
-			component : CreateGuide,
-			meta      : {
-				requiresAuth : true
-			}
 		},
 		{
 			path      : '/tours/createtour',
