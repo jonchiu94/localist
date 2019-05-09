@@ -15,6 +15,7 @@ module.exports.policies = {
 	'entrance/*'                   : true,
 	'exit/*'                       : true,
 	'admin/*'                      : true,
+	'images/*'                     : true,
 	'tours/*'                      : true,
 	'users/*'                      : true,
 	'guides/*'                     : true,

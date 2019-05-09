@@ -76,27 +76,32 @@ module.exports = {
 		var database = firebase.database()
 		var usersRef = database.ref('users')
 		var key = this.req.params.key
-		var image = inputs.image || ''
 
-		var newUser = usersRef.child(key).update({
-			name          : {
-				first : inputs.name.first,
-				last  : inputs.name.last
-			},
-			username      : inputs.username,
-			image         : image,
-			date_of_birth : inputs.date_of_birth,
-			gender        : inputs.gender,
-			location      : {
-				city    : inputs.location.city,
-				country : inputs.location.country
-			},
-			coordinates   : {
-				lattitude : inputs.coordinates.lattitude,
-				longitude : inputs.coordinates.longitude
-			}
-		})
+		try {
+			await usersRef.child(key).update({
+				name          : {
+					first : inputs.name.first,
+					last  : inputs.name.last
+				},
+				username      : inputs.username,
+				image         : inputs.image || '',
+				date_of_birth : inputs.date_of_birth,
+				gender        : inputs.gender,
+				location      : {
+					city    : inputs.location.city,
+					country : inputs.location.country
+				},
+				coordinates   : {
+					lattitude : inputs.coordinates.lattitude,
+					longitude : inputs.coordinates.longitude
+				}
+			})
+		} catch (error) {
+			return this.res
+				.status(404)
+				.send('User not found. Updated aborted')
+		}
 
-		this.res.status(204)
+		this.res.status(200).send('User updated successfully')
 	}
 }

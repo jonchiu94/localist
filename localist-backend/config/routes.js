@@ -30,6 +30,7 @@ module.exports.routes = {
 	'POST       /user/signup'          : { action: 'users/signup' },
 	'POST       /user/signin'          : { action: 'users/signin' },
 	'POST       /tour/add'             : { action: 'tours/post-tour' },
+	'POST       /image/user/:key'      : { action: 'images/upload-image' },
 	'POST       /guide/add'            : { action: 'guides/post-guide' },
 	'GET        /user/all'             : { action: 'users/list-users' },
 	'GET        /tour/all'             : { action: 'tours/get-all-tours' },

@@ -52,6 +52,11 @@ module.exports = {
 				'{"city" : "the city of tour","country": "the country of tour", "lattitude", "lat of tour", "longitude", "long of tour"}'
 		},
 
+		coordinates         : {
+			required : false,
+			type     : 'json'
+		},
+
 		category            : {
 			required    : true,
 			type        : 'string',
@@ -105,43 +110,45 @@ module.exports = {
 		var toursRefLong = database.ref('tours_long')
 		var toursRefShort = database.ref('tours_short')
 
-		var image = inputs.main_image || ''
-		var images = inputs.images || ''
-		var tag = inputs.tags || ''
-		var comments = inputs.additional_comments || ''
+		try {
+			var long_tour = await toursRefLong.push({
+				tour_description    : inputs.tour_description,
+				additional_comments :
+					inputs.additional_comments || '',
+				images              : inputs.images || ''
+			})
 
-		var long_tour = await toursRefLong.push({
-			tour_description    : inputs.tour_description,
-			additional_comments : comments,
-			images              : images
-		})
+			var short_tour = await toursRefShort.push({
+				title       : inputs.title,
+				user_key    : inputs.user_key,
+				price       : {
+					low  : inputs.price.low,
+					high : inputs.price.high
+				},
+				duration    : {
+					short : inputs.duration.short,
+					long  : inputs.duration.long
+				},
+				main_image  : inputs.main_image || '',
+				location    : {
+					city    : inputs.location.city,
+					country : inputs.location.country
+				},
+				coordinates : {
+					lattitude :
+						inputs.coordinates.lattitude || '',
+					longitude :
+						inputs.coordinates.longitude || ''
+				},
+				tags        : inputs.tags || '',
+				category    : inputs.category,
+				long_id     : long_tour.key,
+				is_public   : false
+			})
+		} catch (error) {
+			return this.res.status(400).send('Error')
+		}
 
-		var short_tour = await toursRefShort.push({
-			title       : inputs.title,
-			user_key    : inputs.user_key,
-			price       : {
-				low  : inputs.price.low,
-				high : inputs.price.high
-			},
-			duration    : {
-				short : inputs.duration.short,
-				long  : inputs.duration.long
-			},
-			main_image  : image,
-			location    : {
-				city    : inputs.location.city,
-				country : inputs.location.country
-			},
-			coordinates : {
-				lat  : inputs.location.lattitude,
-				long : inputs.location.longitude
-			},
-			tags        : tag,
-			category    : inputs.category,
-			long_id     : long_tour.key,
-			is_public   : false
-		})
-
-		this.res.status(201).json({ id: short_tour.key })
+		this.res.status(200).json({ id: short_tour.key })
 	}
 }

@@ -37,7 +37,7 @@ export default {
     }
 
     #navBar {
-        padding-bottom: 1%;
+        padding-bottom: 5%;
     }
 
     #footer {
