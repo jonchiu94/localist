@@ -28,18 +28,10 @@ module.exports = {
 	},
 
 	fn                  : async function (inputs){
-		process.env.GOOGLE_APPLICATION_CREDENTIALS = './storage.json'
-		const fs = require('fs')
-		const { Storage } = require('@google-cloud/storage')
-		const uuid = require('uuid/v4')
-		const mime = require('mime-types')
-		const storage = new Storage()
-		const CLOUD_BUCKET = 'test-bucket-4827409472'
-		var t = this
-		const bucket = storage.bucket(CLOUD_BUCKET)
+        console.log(this.req.file("img[0]"));
 		var imgUrls = []
 
-		var st = await this.req.file('img').upload({
+		var st = await this.req.file('img[0]').upload({
 			// ...any other options here...
 			adapter     : require('skipper-gclouds'),
 			projectId   : '999412385085',
@@ -50,13 +42,10 @@ module.exports = {
 		}, function (error, uplodadedFiles){
 			uplodadedFiles.forEach(function (file){
 				imgUrls.push(
-					`https://storage.googleapis.com/${bucket.name}/${file.fd}`
+					`https://storage.googleapis.com/test-bucket-4827409472/${file.fd}`
 				)
 			})
-			console.log(imgUrls)
 		})
-		console.log(st)
-
 		this.res.status(200).json({
 			imgUrls
 		})

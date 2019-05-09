@@ -38,7 +38,7 @@
           Defines the data used by the component
         */
         data: () =>({
-            files: "",
+            files: [],
             url: null,
             first_name: "",
             last_name: "",
@@ -64,8 +64,9 @@
                 };
             },
             onFileChange(e) {
-                this.files = e.target.files[0];
-                this.url = URL.createObjectURL(this.files);
+                this.files = [];
+                this.files.push(e.target.files[0]);
+                this.url = URL.createObjectURL(this.files[0]);
             },
             /*
               Adds a file
@@ -82,14 +83,15 @@
                 /*
                   Initialize the form data
                 */
-                const formData = {
+                var formData = new FormData();
+                      //{
                     // first_name: this.first_name,
                     // last_name: this.last_name,
                     // age: this.age,
                     // gender: this.gender,
                     // city: this.city,
                     // country: this.country
-                };
+                //};
 
                 /*
                   Iteate over any file sent over appending the files
@@ -100,7 +102,9 @@
 
                     formData.append('img[' + i + ']', file);
                 }
-
+                for (var value of formData.values()) {
+                    console.log(value); 
+                }
                 /*
                   Make the request to the POST /select-files URL
                 */
@@ -114,11 +118,11 @@
                     }
                 ).then(function(){
                     console.log('SUCCESS!!');
-                    router.push("/tours");
+                    // router.push("/tours");
                 })
-                    .catch(function(){
-                        console.log('FAILURE!!');
-                    });
+                .catch(function(){
+                    console.log('FAILURE!!');
+                });
             },
 
             /*
