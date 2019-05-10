@@ -24,7 +24,7 @@
                 <v-btn to="tours/createtour" style="text-decoration: none" flat> Host a tour </v-btn>
             </v-toolbar-items>
 
-            <v-btn dark to="/signintest" v-if="!isLoggedIn">Sign In/Sign Up</v-btn>
+            <v-btn dark to="/signin" v-if="!isLoggedIn">Sign In/Sign Up</v-btn>
             <v-menu :nudge-width="100" v-if="getUsername">
                 <template v-slot:activator="{ on }">
                     <v-toolbar-title v-on="on">
