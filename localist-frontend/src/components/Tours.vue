@@ -9,11 +9,13 @@
         >
             Create Tour
         </v-btn>
-
+        <div>
+            <input type="text" v-model="search" placeholder="Search tours"/>
+        </div>
         <v-container>
             <v-layout wrap justify-space-around>
                 <v-flex 
-                    v-for="tour in tours"
+                    v-for="tour in filteredTours"
                     :key="tour.key"
                     xs3 sm3 
                     mx-4 my-3
@@ -119,8 +121,27 @@
 <script>
 export default {
     data: () => ({
-        tours: []
+        tours: [],
+        search: ''
     }),
+    computed:{
+        filteredTours: function(){
+            return this.tours.filter((tour)=> {
+                if(tour.title.toLowerCase().match(this.search.toLowerCase())){
+                    return true;
+                }
+                else if(tour.location.city.toLowerCase().match(this.search.toLowerCase())){
+                    return true;
+                }
+                else if(tour.category.toLowerCase().match(this.search.toLowerCase())){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            })
+        }
+    },
     mounted() {
         this.$http
             .get("/tour/all")
