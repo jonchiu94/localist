@@ -32,10 +32,11 @@ module.exports = {
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
 		var admin = require('../../database/admin.js')
-		var usersRef = database.ref('users/' + this.req.params.key)
+		var usersRef = database.ref('users')
 
 		try {
 			await usersRef
+				.child(this.req.params.key)
 				.once('value')
 				.then(function (snapshot){
 					return snapshot.val().uid

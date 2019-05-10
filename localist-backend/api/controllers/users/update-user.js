@@ -75,10 +75,9 @@ module.exports = {
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
 		var usersRef = database.ref('users')
-		var key = this.req.params.key
 
 		try {
-			await usersRef.child(key).update({
+			await usersRef.child(this.req.params.key).update({
 				name          : {
 					first : inputs.name.first,
 					last  : inputs.name.last
