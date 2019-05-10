@@ -1,23 +1,100 @@
 <template>
     <div >
+
         <form v-on:submit.prevent="createTour">
             <v-divider></v-divider>
-            <div>
-                <input type="text" placeholder="Title" v-model="title">
-                <br>
-                <input type="text" placeholder="Description" v-model="tour_description">
-                <input type="text" placeholder="Category" v-model="category">
-                <br>
-                <input type="text" placeholder="Country" v-model="location.country">
-                <input type="text" placeholder="City" v-model="location.city">
-                <br>
-                <input type="text" placeholder="Max Duration" v-model="duration.long">
-                <input type="text" placeholder="Min Duration" v-model="duration.short">
-                <br>
-                <input type="text" placeholder="Max Price" v-model="price.high">
-                <input type="text" placeholder="Min Price" v-model="price.low">
-            </div>
-            <button type="submit">Create Tour</button>
+            <v-layout mx-5 row justify-center>
+                <v-flex md3>
+                    <v-text-field
+                            xs4
+                            background-color="white"
+                            label="Title"
+                            v-model="title"
+                      ></v-text-field>
+                </v-flex>
+            </v-layout>
+
+            <v-layout mx-5 row justify-center>
+                <v-flex mx-5 md3>
+                    <v-text-field 
+                            xs4
+                            background-color="white"
+                            label="Description"
+                            v-model="tour_description"
+                      ></v-text-field>
+                </v-flex>
+
+                <v-flex mx-5 md3>
+                    <v-text-field
+                            xs4
+                            background-color="white"
+                            label="Category"
+                            v-model="category"
+                      ></v-text-field>
+                </v-flex>
+            </v-layout>
+
+            <v-layout mx-5 row justify-center>
+                <v-flex mx-5 md3>
+                    <v-text-field
+                            xs4
+                            background-color="white"
+                            label="Country"
+                            v-model="location.country"
+                      ></v-text-field>
+                </v-flex>
+
+                <v-flex mx-5 md3>
+                    <v-text-field
+                            xs4
+                            background-color="white"
+                            label="City"
+                            v-model="location.city"
+                      ></v-text-field>
+                </v-flex>
+            </v-layout>
+
+            <v-layout mx-5 row justify-center>
+                <v-flex mx-5 md3>
+                    <v-text-field
+                            xs4
+                            background-color="white"
+                            label="Max Duration"
+                            v-model="duration.long"
+                      ></v-text-field>
+                </v-flex>
+
+                <v-flex mx-5 md3>
+                    <v-text-field
+                            xs4
+                            background-color="white"
+                            label="Min Duration"
+                            v-model="duration.short"
+                      ></v-text-field>
+                </v-flex>
+            </v-layout>
+
+            <v-layout mx-5 row justify-center>
+                <v-flex mx-5 md3>
+                    <v-text-field
+                            xs4
+                            background-color="white"
+                            label="Max Price"
+                            v-model="price.high"
+                      ></v-text-field>
+                </v-flex>
+
+                <v-flex mx-5 md3>
+                    <v-text-field
+                            xs4
+                            background-color="white"
+                            label="Min Price"
+                            v-model="price.low"
+                      ></v-text-field>
+                </v-flex>
+            </v-layout>
+
+            <v-btn large class="cyan darken-2 white--text" type="submit">Create Tour</v-btn>
         </form>
     </div>
 </template>
@@ -26,20 +103,20 @@ import router from "../router";
 export default {
     name: "createTour",
     data: () => ({
-        title: "Master the art of vegan cheese making",
-        tour_description: "tour_description: SD@#345$%s^df&*(&f^%$#@",
-        category:"COOKING CLASS",
+        title: "",
+        tour_description: "",
+        category:"",
         location: {
-            country: "Canada",
-            city: "Vancouver"
+            country: "",
+            city: ""
         },
         duration: {
-            long: 5,
-            short: 2
+            long: "",
+            short: ""
         },
         price: {
-            high: 140,
-            low: 98
+            high: "",
+            low: ""
         },
         user_key: "-LeIrh-Z8PYSfp9CTZsk"
     }),

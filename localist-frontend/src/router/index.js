@@ -14,6 +14,7 @@ import EditTour from '../components/EditTour'
 import EditGuide from '../components/EditGuide'
 import Profile from '../components/Profile'
 import test from '../components/test'
+import Signintest from '../components/Signintest'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -84,6 +85,11 @@ const router = new VueRouter({
 			path      : '/test',
 			name      : 'test',
 			component : test
+		},
+		{
+			path      : '/signintest',
+			name      : 'Signintest',
+			component : Signintest
 		},
 		{
 			path      : '/profile',
