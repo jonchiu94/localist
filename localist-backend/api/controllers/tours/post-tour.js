@@ -80,6 +80,12 @@ module.exports = {
 			type        : 'string',
 			description :
 				'Any additional comments the guide wants to add to be more informative to the tourist'
+		},
+
+		guests              : {
+			required    : true,
+			type        : 'json',
+			description : 'the range of number of guests allowed on tour'
 		}
 	},
 
@@ -142,7 +148,11 @@ module.exports = {
 				tags        : inputs.tags || '',
 				category    : inputs.category,
 				long_id     : long_tour.key,
-				is_public   : false
+				is_public   : false,
+				guests      : {
+					high : inputs.guests.high,
+					low  : inputs.guests.low
+				}
 			})
 		} catch (error) {
 			console.log(error)

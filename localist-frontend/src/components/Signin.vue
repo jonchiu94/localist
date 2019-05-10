@@ -1,70 +1,72 @@
 <template>
-    <div class="container" id="container" ref="container">
-        <div class="form-container sign-up-container">
-            <form v-on:submit.prevent="signUp">
-                <h1>Create Account</h1>
-                <div class="social-container">
-                    <a href="#" class="social">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social">
-                        <i class="fab fa-google-plus-g"></i>
-                    </a>
-                    <a href="#" class="social">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
-                <span>or use your email for registration</span>
-                <div>
-                    <input type="text" placeholder="Name" v-model="name">
+    <div class="cont">
+        <div class="container" id="container" ref="container">
+            <div class="form-container sign-up-container">
+                <form v-on:submit.prevent="signUp">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social">
+                            <i class="fab fa-google-plus-g"></i>
+                        </a>
+                        <a href="#" class="social">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <span>or use your email for registration</span>
+                    <div>
+                        <input type="text" placeholder="Name" v-model="name">
+                        <input type="email" placeholder="Email" v-model="email">
+                        <input type="password" placeholder="Password" v-model="password">
+                        <div>
+                            <input
+                                type="checkbox"
+                                value=" "
+                                @click="administration = !administration"
+                                class="form-check-input"
+                                id="administration"
+                            >
+                        </div>
+                        <label class="form-check-label" for="administration">make me admin</label>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form v-on:submit.prevent="signIn">
+                    <h1>Sign in</h1>
+                    <div class="social-container">
+                        <a href="#" class="social">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social">
+                            <i class="fab fa-google-plus-g"></i>
+                        </a>
+                        <a href="#" class="social">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <span>or use your account</span>
                     <input type="email" placeholder="Email" v-model="email">
                     <input type="password" placeholder="Password" v-model="password">
-                    <div>
-                        <input
-                            type="checkbox"
-                            value=" "
-                            @click="administration = !administration"
-                            class="form-check-input"
-                            id="administration"
-                        >
+                    <a href="#">Forgot your password?</a>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" @click="signInButton" id="signIn">Sign In</button>
                     </div>
-                    <label class="form-check-label" for="administration">make me admin</label>
-                </div>
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
-        <div class="form-container sign-in-container">
-            <form v-on:submit.prevent="signIn">
-                <h1>Sign in</h1>
-                <div class="social-container">
-                    <a href="#" class="social">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social">
-                        <i class="fab fa-google-plus-g"></i>
-                    </a>
-                    <a href="#" class="social">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
-                <span>or use your account</span>
-                <input type="email" placeholder="Email" v-model="email">
-                <input type="password" placeholder="Password" v-model="password">
-                <a href="#">Forgot your password?</a>
-                <button type="submit">Sign In</button>
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" @click="signInButton" id="signIn">Sign In</button>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Sign up NOW!</p>
-                    <button class="ghost" @click="signUpButton" id="signUp">Sign Up</button>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Sign up NOW!</p>
+                        <button class="ghost" @click="signUpButton" id="signUp">Sign Up</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,6 +162,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.cont {
+    padding-top: 65px;
+    padding-bottom: 10%;
+}
+
 @media screen and (max-width: 400px) {
 }
 
@@ -254,6 +261,8 @@ input {
 }
 
 .container {
+    padding-top: 10%;
+
     background-color: #fffcdc;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
