@@ -23,6 +23,7 @@ export default {
     }
 
     #routerId {
+        padding-top: 65px;
         padding-bottom: 10%;
     }
 
@@ -36,7 +37,7 @@ export default {
     }
 
     #navBar {
-        padding-bottom: 5%;
+        /*padding-bottom: 5%;*/
     }
 
 #footer {
