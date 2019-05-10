@@ -29,6 +29,7 @@ module.exports = {
 
 	fn                  : async function (inputs){
 		console.log(this.req.file('img[0]'))
+		var bucket = 'localist-assets'
 		var imgUrls = []
 
 		var st = await this.req.file('img[0]').upload({
@@ -36,13 +37,13 @@ module.exports = {
 			adapter     : require('skipper-gclouds'),
 			projectId   : '999412385085',
 			keyFilename : './storage.json',
-			bucket      : 'test-bucket-4827409472',
+			bucket      : bucket,
 			//Are files uploaded public?
 			public      : true
 		}, function (error, uplodadedFiles){
 			uplodadedFiles.forEach(function (file){
 				imgUrls.push(
-					`https://storage.googleapis.com/test-bucket-4827409472/${file.fd}`
+					`https://storage.googleapis.com/${bucket}/${file.fd}`
 				)
 			})
 		})

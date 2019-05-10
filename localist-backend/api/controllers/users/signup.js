@@ -81,6 +81,27 @@ the account verification message.)`,
 			return this.res.status(409).send('Email already in use')
 		}
 
+		var actionCodeSettings = {
+			// URL you want to redirect back to. The domain (www.example.com) for this
+			// URL must be whitelisted in the Firebase Console.
+			url             : 'http://localhost:8080',
+			// This must be true.
+			handleCodeInApp : true
+		}
+
+		await firebase
+			.auth()
+			.sendSignInLinkToEmail(inputs.email, actionCodeSettings)
+			.then(function (){
+				// The link was successfully sent. Inform the user.
+				// Save the email locally so you don't need to ask the user for it again
+				// if they open the link on the same device.
+				console.log('sent')
+			})
+			.catch(function (error){
+				// Some error occurred, you can inspect the code: error.code
+			})
+
 		this.res.status(201).json(userData)
 	}
 }
