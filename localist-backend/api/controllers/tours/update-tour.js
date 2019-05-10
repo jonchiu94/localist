@@ -95,7 +95,7 @@ module.exports = {
 		var database = firebase.database()
 		var toursRefShort = database.ref('tours_short')
 		var toursRefLong = database.ref('tours_long')
-		var short_key = this.req.params.id
+		var short_key = this.req.params.key
 
 		try {
 			await toursRefShort

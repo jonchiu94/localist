@@ -28,7 +28,7 @@ module.exports = {
 	},
 
 	fn                  : async function (inputs){
-        console.log(this.req.file("img[0]"));
+		console.log(this.req.file('img[0]'))
 		var imgUrls = []
 
 		var st = await this.req.file('img[0]').upload({
