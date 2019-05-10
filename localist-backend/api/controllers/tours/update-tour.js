@@ -74,6 +74,12 @@ module.exports = {
 			required    : false,
 			type        : 'string',
 			description : 'Additional comments of the tour'
+		},
+
+		guests              : {
+			required    : true,
+			type        : 'json',
+			description : 'the range of number of guests allowed on tour'
 		}
 	},
 
@@ -147,7 +153,11 @@ module.exports = {
 						},
 						main_image : inputs.main_image || '',
 						tags       : inputs.tags || '',
-						category   : inputs.category
+						category   : inputs.category,
+						guests     : {
+							high : inputs.guests.high,
+							low  : inputs.guests.low
+						}
 					})
 				})
 		} catch (error) {
