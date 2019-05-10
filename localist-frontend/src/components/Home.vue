@@ -18,6 +18,7 @@
                 <v-flex xs12 md4>
                   <v-text-field
                       background-color="white"
+                      v-model="search"
                       label="Search"
                   ></v-text-field>
                 </v-flex>
@@ -50,7 +51,7 @@
                     ></v-text-field>
                 </v-flex>
                 <v-flex md12 ma-0>
-                    <v-btn large class="cyan darken-2 white--text"> Search </v-btn>
+                    <v-btn @click="addSearch" large class="cyan darken-2 white--text"> Search </v-btn>
                 </v-flex>
             </v-layout>
 
@@ -210,12 +211,34 @@
 </template>
 
 <script>
+  import router from "../router";
   export default {
+
     data: () => ({
+
         date: new Date().toISOString().substr(0, 10),
+        search: '',
+        guest: '',
         menu: false,
-        modal: false
-    })
+        modal: false,
+        searchInput:[
+          { searchTitle:'',
+            searchDate:'',
+            searchGuest:''}
+        ]
+    }),
+    methods:{
+      addSearch(){
+
+        this.$store.commit("setSearchTitle", this.search);
+        this.$store.commit("setSearchDate", this.date);
+        this.$store.commit("setSearchGuest", this.guest);
+        console.log(this.search);
+        console.log(this.date);
+        console.log(this.guest);
+        router.push("/tours");
+      }
+    }
   };
 </script>
 
