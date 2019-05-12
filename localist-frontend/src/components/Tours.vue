@@ -9,9 +9,7 @@
         >
             Create Tour
         </v-btn>
-        <div>
-            <input type="text" v-model="search" placeholder="Search tours"/>
-        </div>
+            <input type="text" v-model="search"  placeholder="Search tours"/>
         <v-container>
             <v-layout wrap justify-space-around>
                 <v-flex 
@@ -122,21 +120,26 @@
 export default {
     data: () => ({
         tours: [],
-        search: ''
+        search: '',
+        asearchTitle: '',
+        asearchDate: '',
+        asearchGuest:''
     }),
-    computed:{
-        filteredTours: function(){
-            return this.tours.filter((tour)=> {
-                if(tour.title.toLowerCase().match(this.search.toLowerCase())){
+    computed: {
+        // searchTitle: function () {
+        //     return this.search= this.$store.getters.getSearchTitle();
+        //
+        //
+        // },
+        filteredTours: function () {
+            return this.tours.filter((tour) => {
+                if (tour.title.toLowerCase().match(this.search.toLowerCase())) {
                     return true;
-                }
-                else if(tour.location.city.toLowerCase().match(this.search.toLowerCase())){
+                } else if (tour.location.city.toLowerCase().match(this.search.toLowerCase())) {
                     return true;
-                }
-                else if(tour.category.toLowerCase().match(this.search.toLowerCase())){
+                } else if (tour.category.toLowerCase().match(this.search.toLowerCase())) {
                     return true;
-                }
-                else{
+                } else {
                     return false;
                 }
             })

@@ -3,10 +3,9 @@
         <div id="prev">
             <input
                 type="file"
-                id="files"
-                multiple
+                id="file"
                 accept="image/x-png, image/gif, image/jpeg"
-                ref="files"
+                ref="file"
                 v-on:change="onFileChange"
             >
             <div id="preview">
@@ -65,11 +64,11 @@ export default {
                 country: this.country
             };
         },
-        onFileChange() {
-            // this.files = [];
-            // this.files.push(e.target.files[0]);
-            // this.url = URL.createObjectURL(this.files[0]);
-            this.files = this.$refs.files.files;
+        onFileChange(e) {
+            this.files = [];
+            this.files.push(e.target.files[0]);
+            this.url = URL.createObjectURL(this.files[0]);
+            // this.files = this.$refs.files.files;
         },
         /*
               Adds a file
@@ -109,11 +108,15 @@ export default {
                   Make the request to the POST /select-files URL
                 */
             this.$http
-                .post("/image", fileData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
+                .post(
+                    "/image/user/" + this.$store.getters.getUserKey,
+                    fileData,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
                     }
-                })
+                )
                 .then(function(data) {
                     // router.push("/tours");
                 })

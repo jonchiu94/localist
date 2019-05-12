@@ -30,23 +30,23 @@ module.exports = {
 	fn                  : async function (inputs){
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
-		var toursRefShort = database.ref('tours_short')
-		var bucket = 'localist_assets'
-		var imgUrls = []
+		var ToursShortRef = database.ref(
+			'tours_short/' + this.req.params.key
+		)
 
 		this.req.file('img').upload({
 			// ...any other options here...
 			adapter     : require('skipper-gclouds'),
 			projectId   : '999412385085',
 			keyFilename : './storage.json',
-			bucket      : 'localist_assets',
+			bucket      : 'localist-assets',
 			//Are files uploaded public?
 			public      : true
 		}, function (error, uploadedFiles){
-			console.log(uploadedFiles)
-			// imgUrls.push(
-			// 	// `https://storage.googleapis.com/${bucket}/${file.fd}`
-			// )
+			ToursShortRef.update({
+				main_image : `https://storage.googleapis.com/localist-assets/${uploadedFiles[0]
+					.fd}`
+			})
 		})
 	}
 }
