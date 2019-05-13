@@ -16,15 +16,13 @@
                     <v-card flat color="white">
                         <v-card-title primary class="title">{{ info.data && info.data.title }}</v-card-title>
                         <v-card-text><img height="40px" src="../assets/img/location.png"/> {{info.data && info.data.location.city}}, {{info.data && info.data.location.country}}</v-card-text>
-                        <v-card-text>{{info.data && info.data.duration.short}} - {{info.data && info.data.duration.long}} hours</v-card-text>
+                        <v-card-text><img height="40px" src="../assets/img/clock.png"/>{{info.data && info.data.duration.short}} - {{info.data && info.data.duration.long}} hours</v-card-text>
                         <v-card-text>{{info.data && info.data.tour_description}}</v-card-text>
                         <v-card-text>Additional Comments: <br>{{info.data && info.data.additional_comments}}</v-card-text>
                     </v-card>
                 </v-flex>
                 <v-flex d-flex xs12 sm6 md5>
                     <v-layout row wrap>
-                        <v-flex d-flex>
-                        </v-flex>
                         <v-flex d-flex>
                             <v-layout row wrap>
                                 <v-flex d-flex xs12>
@@ -39,18 +37,44 @@
                         </v-flex>
                     </v-layout>
                 </v-flex>
-                <v-flex d-flex xs12 sm6 md3>
-                    <v-card color="blue lighten-2" dark>
-                        <v-card-text>
-                            {{ info.data && info.data.duration.short }} -
-                            {{ info.data && info.data.duration.long }}
-                            hours
-                        </v-card-text>
+            </v-layout>
+            <v-layout row wrap>
+                <v-flex d-flex xs12 sm6 md5>
+                    <v-card dark>
+                        <v-card-title>Your Guide</v-card-title>
+                        <v-img
+                                src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=FhZQSXGSTx-8BPZljELiwNcUnBb7BCD7NdiZ06OzUoQ"
+                                height="300px"
+                        ></v-img>
+                        <v-card-text>Guide description</v-card-text>
                     </v-card>
                 </v-flex>
             </v-layout>
-            <router-link :to="'/tours/edit/' + this.$route.params.id">Edit</router-link>
+            <v-btn
+                    :to="'/tours/edit/' + this.$route.params.id"
+            >Edit
+            </v-btn> <br>
+            <v-btn
+                :to="'/tours/single/' + this.$route.params.id + '/booking'"
+                >Booking
+            </v-btn>
+            <v-expansion-panel>
+                <v-expansion-panel-content
+                        v-for="(item,i) in 5"
+                        :key="i"
+                >
+                    <template v-slot:header>
+                        <div>Reviews
+                            <v-rating v-model="rating"></v-rating>
+                        </div>
+                    </template>
+                    <v-card>
+                        <v-card-text></v-card-text>
+                    </v-card>
+                </v-expansion-panel-content>
+            </v-expansion-panel>
         </v-container>
+
 
         <br>
         <br>
@@ -67,10 +91,10 @@ export default {
         info: ""
     }),
     computed:{
-        iconUrl () {
+        // iconUrl () {
             // return require('./assets/img/background.jpg')
             // The path could be '../assets/img.png', etc., which depends on where your vue file is
-        }
+        // }
     },
     mounted() {
         this.$http

@@ -3,8 +3,8 @@
         <v-layout row wrap cyan darken-2 white--text text-xs-center>
             <v-flex xs12>
                 <v-card-text class="white--text px-5 subheading">
-                    Anyone can become a local guide and sell their experiences. <br>
-                    Anyone can quickly get a custom local tour that cannot find in traditional tourist means.
+                    Any local experts can host an experience and monetize their knowledge of their home. <br>
+                    Creat custom, individualized experiences that can't be offered anywhere else.
                 </v-card-text>
             </v-flex>
 
