@@ -34,6 +34,7 @@ module.exports.routes = {
 	'GET        /user/all'                 : { action: 'users/list-users' },
 	'GET        /tour/all'                 : { action: 'tours/get-all-tours' },
 	'GET        /user/find/:key'           : { action: 'users/get-user' },
+	'GET        /user/find/image/:key'     : { action: 'images/get-user-image' },
 	'GET        /tour/find/:key/:long'     : { action: 'tours/single-tour' },
 	'DELETE     /tour/delete/:key'         : { action: 'tours/delete-tour' },
 	'DELETE     /user/delete/:key'         : { action: 'users/delete-user' },

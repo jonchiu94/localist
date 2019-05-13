@@ -38,7 +38,6 @@ module.exports = {
 
 		await ToursShortRef.once('value').then(function (snapshot){
 			long_key = snapshot.val().long_id
-			console.log(long_key)
 		})
 
 		this.req.file('img').upload({
@@ -50,11 +49,9 @@ module.exports = {
 			//Are files uploaded public?
 			public      : true
 		}, function (error, uploadedFiles){
-			console.log({ uplo: uploadedFiles })
 			var images = []
 
 			uploadedFiles.forEach(function (element){
-				console.log(element)
 				images.push(
 					`https://storage.googleapis.com/localist-assets/${element.fd}`
 				)
