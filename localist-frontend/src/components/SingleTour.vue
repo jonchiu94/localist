@@ -38,6 +38,18 @@
                     </v-layout>
                 </v-flex>
             </v-layout>
+            <v-layout row wrap>
+                <v-flex d-flex xs12 sm6 md5>
+                    <v-card dark>
+                        <v-card-title>Your Guide</v-card-title>
+                        <v-img
+                                src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=FhZQSXGSTx-8BPZljELiwNcUnBb7BCD7NdiZ06OzUoQ"
+                                height="300px"
+                        ></v-img>
+                        <v-card-text>Guide description</v-card-text>
+                    </v-card>
+                </v-flex>
+            </v-layout>
             <v-btn
                     :to="'/tours/edit/' + this.$route.params.id"
             >Edit
@@ -46,6 +58,21 @@
                 :to="'/tours/single/' + this.$route.params.id + '/booking'"
                 >Booking
             </v-btn>
+            <v-expansion-panel>
+                <v-expansion-panel-content
+                        v-for="(item,i) in 5"
+                        :key="i"
+                >
+                    <template v-slot:header>
+                        <div>Reviews
+                            <v-rating v-model="rating"></v-rating>
+                        </div>
+                    </template>
+                    <v-card>
+                        <v-card-text></v-card-text>
+                    </v-card>
+                </v-expansion-panel-content>
+            </v-expansion-panel>
         </v-container>
 
 
