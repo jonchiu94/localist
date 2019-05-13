@@ -218,11 +218,6 @@
         guest: '',
         menu: false,
         modal: false,
-        searchInput:[
-          { searchTitle:'',
-            searchDate:'',
-            searchGuest:''}
-        ]
     }),
     methods:{
       addSearch(){

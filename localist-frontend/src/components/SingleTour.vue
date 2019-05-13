@@ -39,14 +39,19 @@
                 </v-flex>
             </v-layout>
             <v-layout row wrap>
-                <v-flex d-flex xs12 sm6 md5>
-                    <v-card dark>
+                <v-flex d-flex xs12 sm12 md6>
+                    <v-card>
                         <v-card-title>Your Guide</v-card-title>
                         <v-img
                                 src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=FhZQSXGSTx-8BPZljELiwNcUnBb7BCD7NdiZ06OzUoQ"
                                 height="300px"
                         ></v-img>
-                        <v-card-text>Guide description</v-card-text>
+                    </v-card>
+                </v-flex>
+                <v-flex d-flex xs12 sm12 md6>
+                    <v-card>
+                        <v-card-title>Your Guide</v-card-title>
+                        <v-card-text>asdadadwasdadawd</v-card-text>
                     </v-card>
                 </v-flex>
             </v-layout>
@@ -66,6 +71,7 @@
                     <template v-slot:header>
                         <div>Reviews
                             <v-rating v-model="rating"></v-rating>
+                            <p id="comment"></p>
                         </div>
                     </template>
                     <v-card>
