@@ -86,6 +86,12 @@ module.exports = {
 			required    : true,
 			type        : 'json',
 			description : 'the range of number of guests allowed on tour'
+		},
+
+		availability        : {
+			required    : true,
+			type        : 'json',
+			description : ''
 		}
 	},
 

@@ -74,7 +74,8 @@ export default {
         lastScrollPosition: 0,
         scrollValue: 0,
         userImageURL: "",
-        username: ""
+        username: "",
+        searchInput: ""
     }),
     methods: {
         searchEnter() {
