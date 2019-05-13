@@ -55,38 +55,43 @@ the account verification message.)`,
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var admin = require('../../database/admin.js')
+		var database = firebase.database()
+		var usersRef = database.ref('users')
 		var userData = {
 			administration : false,
-			user           : ''
+			user           : '',
+			key            : ''
 		}
 
-		try {
-			await firebase
-				.auth()
-				.signInWithEmailAndPassword(
-					inputs.email,
-					inputs.password
-				)
-				.then(function (firebaseUser){
-					userData.user = firebaseUser
-					return firebase
-						.auth()
-						.currentUser.getIdToken(false)
-				})
-				.then(function (idToken){
-					userData.token = idToken
-					return admin
-						.auth()
-						.verifyIdToken(userData.token)
-				})
-				.then(function (claims){
-					if (claims.admin === true) {
-						userData.administration = true
-					}
-				})
-		} catch (error) {
-			return this.res.status(400).send('Invalid email or password')
-		}
+		// try {
+		await firebase
+			.auth()
+			.signInWithEmailAndPassword(inputs.email, inputs.password)
+			.then(function (firebaseUser){
+				userData.user = firebaseUser.user
+				return firebase.auth().currentUser.getIdToken(false)
+			})
+			.then(function (idToken){
+				return admin.auth().verifyIdToken(idToken)
+			})
+			.then(function (claims){
+				if (claims.admin === true) {
+					userData.administration = true
+				}
+			})
+			.then(function (){
+				console.log(userData.user.uid)
+				return usersRef
+					.orderByChild('uid')
+					.equalTo(userData.user.uid)
+					.once('value')
+			})
+			.then(function (user){
+				userData.key = Object.keys(user.toJSON())[0]
+			})
+		// } catch (error) {
+		// 	return this.res.status(400).send('Invalid email or password')
+		// }
 		this.res.status(200).json(userData)
 	}
 }

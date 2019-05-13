@@ -25,14 +25,14 @@
                 <template v-slot:activator="{ on }">
                     <v-toolbar-title v-on="on">
                         <v-avatar>
-                            <img>
+                            <img :src="userImageURL" v-bind:placeholder="getUserImage()">
                         </v-avatar>
                     </v-toolbar-title>
                 </template>
 
                 <v-list>
                     <v-list-tile>
-                        <v-list-tile-title>{{getUsername}}</v-list-tile-title>
+                        <v-list-tile-title>{{username}}</v-list-tile-title>
                     </v-list-tile>
 
                     <v-list-tile to="/profile" tyle="text-decoration: none">
@@ -61,29 +61,26 @@
 <script>
 export default {
     name: "Navigation",
-    data() {
-        return {
-            showNavbar: true,
-            lastScrollPosition: 0,
-            scrollValue: 0
-        };
-    },
-    mounted() {
-        this.lastScrollPosition = window.pageYOffset;
-        window.addEventListener("scroll", this.onScroll);
-        const viewportMeta = document.createElement("meta");
-        viewportMeta.name = "viewport";
-        viewportMeta.content = "width=device-width, initial-scale=1";
-        document.head.appendChild(viewportMeta);
-    },
-    beforeDestroy() {
-        window.removeEventListener("scroll", this.onScroll);
-    },
+    data: () => ({
+        showNavbar: true,
+        lastScrollPosition: 0,
+        scrollValue: 0,
+        userImageURL: "",
+        username: ""
+    }),
     methods: {
         signout() {
             this.$store.dispatch("logout");
         },
-        onScroll() {}
+        getUserImage: function() {
+            var r = this;
+            this.$http
+                .get("/user/find/" + this.$store.getters.getUserKey)
+                .then(function(response) {
+                    r.userImageURL = response.data.image;
+                    r.username = response.data.name.first;
+                });
+        }
     },
     computed: {
         isLoggedIn: function() {
