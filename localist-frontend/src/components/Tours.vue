@@ -19,10 +19,10 @@
                     my-3
                     class="tour-card"
                 >
-                    <base-card height="350px" color="grey lighten-1" dark href>
+                    <base-card height="10%" color="grey lighten-1" dark href="#!">
                         <v-img
                             :src="tour.main_image"
-                            height="200px"
+                            height="300px"
                             gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
                         >
                             <v-layout fill-height wrap text-xs-right ma-0>

@@ -27,8 +27,8 @@ const store = new Vuex.Store({
 			commit('userKey', '')
 		},
 		logout ({ commit }) {
-			localStorage.removeItem('token')
-			commit('logout')
+			localStorage.removeItem('token');
+			commit('logout');
 		}
 	},
 	mutations : {
@@ -61,7 +61,7 @@ const store = new Vuex.Store({
 				(state.token = ''),
 				(state.userId = ''),
 				(state.username = ''),
-				(state.adminStatus = false)
+				(state.adminStatus = false);
 		}
 	},
 	getters   : {
