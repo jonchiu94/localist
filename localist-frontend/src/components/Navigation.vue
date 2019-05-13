@@ -7,10 +7,9 @@
                 </v-btn>
                 <v-btn to="/tours" style="text-decoration: none" flat> Tours </v-btn>
                 <!-- <v-btn to="/guides" style="text-decoration: none" flat> Guides </v-btn> -->
-                <v-btn v-if="isAdmin" to="/users" style="text-decoration: none" flat>Admin</v-btn>
             </v-toolbar-items>
 
-            <v-spacer></v-spacer>
+            <v-spacer></v-spacer> 
 
             <v-text-field
               flat
@@ -90,16 +89,6 @@ export default {
     methods: {
         signout() {
             this.$store.dispatch("logout");
-            // this.$http
-            //     .post("/entrance/signout")
-            //     .then(function(response) {
-            //         if (response.status == 200) {
-            //             this.$state.actions.clearData();
-            //         }
-            //         console.log({ id: this.$state.userId });
-            //     })
-            //     .catch(error => alert(error));
-            // .finally(() => (this.loading = false));
         },
         onScroll () {
           const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop

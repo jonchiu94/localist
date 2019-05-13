@@ -74,6 +74,12 @@ module.exports = {
 			required    : false,
 			type        : 'string',
 			description : 'Additional comments of the tour'
+		},
+
+		guests              : {
+			required    : true,
+			type        : 'json',
+			description : 'the range of number of guests allowed on tour'
 		}
 	},
 
@@ -95,7 +101,7 @@ module.exports = {
 		var database = firebase.database()
 		var toursRefShort = database.ref('tours_short')
 		var toursRefLong = database.ref('tours_long')
-		var short_key = this.req.params.id
+		var short_key = this.req.params.key
 
 		try {
 			await toursRefShort
@@ -147,7 +153,11 @@ module.exports = {
 						},
 						main_image : inputs.main_image || '',
 						tags       : inputs.tags || '',
-						category   : inputs.category
+						category   : inputs.category,
+						guests     : {
+							high : inputs.guests.high,
+							low  : inputs.guests.low
+						}
 					})
 				})
 		} catch (error) {
