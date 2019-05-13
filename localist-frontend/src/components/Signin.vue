@@ -3,22 +3,11 @@
         <div class="container" id="container" ref="container">
             <div class="form-container sign-up-container">
                 <form v-on:submit.prevent="signUp">
-                    <h1>Sign Up</h1>
-                    <div class="social-container">
-                        <a href="#" class="social">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social">
-                            <i class="fab fa-google-plus-g"></i>
-                        </a>
-                        <a href="#" class="social">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                    <span>or use your email for registration</span>
+                    <h1>Sign Up</h1><br>
                     <div>
                         <input type="email" placeholder="Email" v-model="email">
                         <input type="password" placeholder="Password" v-model="password">
+                        <input type="password" placeholder="Confirm Password" v-model="confirm">
                       <!--   <div>
                             <input
                                 type="checkbox"
@@ -29,25 +18,13 @@
                             >
                         </div>
                         <label class="form-check-label" for="administration">make me admin</label> -->
-                    </div>
+                    </div><br>
                     <button pt-2 class="cyan darken-2 white--text" type="submit">Sign Up</button>
                 </form>
             </div>
             <div class="form-container sign-in-container">
                 <form v-on:submit.prevent="signIn">
-                    <h1>Sign In</h1>
-                    <div class="social-container">
-                        <a href="#" class="social">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social">
-                            <i class="fab fa-google-plus-g"></i>
-                        </a>
-                        <a href="#" class="social">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                    <span>or use your account</span>
+                    <h1>Sign In</h1><br>
                     <input type="email" placeholder="Email" v-model="email">
                     <input type="password" placeholder="Password" v-model="password">
                     <a href="#">Forgot your password?</a>
@@ -57,13 +34,13 @@
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
-                        <h1>Welcome Back!</h1>
-                        <p>To keep connected with us please login with your personal info</p>
+                        <h1 class="white-shadow">Welcome Back!</h1>
+                        <p class="white-shadow">To keep connected with us please login with your personal info</p>
                         <button class="ghost cyan darken-2 white--text" @click="signInButton" id="signIn">Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
-                        <h1>Hello, Friend!</h1>
-                        <p>Sign up NOW!</p>
+                        <h1 class="white-shadow">Hello, Friend!</h1>
+                        <p class="white-shadow">Sign up NOW!</p>
                         <button class="ghost cyan darken-2 white--text" @click="signUpButton" id="signUp">Sign Up</button>
                     </div>
                 </div>
@@ -259,7 +236,7 @@ input {
     background-color: ;
 
     border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 1), 0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
     overflow: hidden;
     width: 768px;
@@ -380,4 +357,8 @@ input {
 .container.right-panel-active .overlay-right {
     transform: translateX(20%);
 }
+    
+    .white-shadow{
+        text-shadow: 1px 1px 2px white; 
+    }
 </style>

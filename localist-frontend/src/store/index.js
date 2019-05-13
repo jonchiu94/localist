@@ -14,7 +14,10 @@ const store = new Vuex.Store({
 		token       : localStorage.getItem('token') || '',
 		userId      : localStorage.getItem('userId') || '',
 		username    : localStorage.getItem('username') || '',
-		adminStatus : localStorage.getItem('adminStatus') || false
+		adminStatus : localStorage.getItem('adminStatus') || false,
+		searchTitle : localStorage.getItem('title') || '',
+		searchDate : localStorage.getItem('date') || '',
+		searchGuest : localStorage.getItem('guest') || '',
 	},
 	actions   : {
 		clearData ({ commit }) {
@@ -22,6 +25,9 @@ const store = new Vuex.Store({
 			commit('token', '')
 			commit('userId', '')
 			commit('adminStatus', false)
+			commit('searchTitle', '')
+			commit('searchDate', '')
+			commit('searchGuest', '')
 		},
 		logout ({ commit }) {
 			localStorage.removeItem('token')
@@ -44,6 +50,15 @@ const store = new Vuex.Store({
 		setUsername (state, val) {
 			state.username = val
 		},
+		setSearchTitle (state, val) {
+			state.searchTitle = val
+		},
+		setSearchDate (state, val) {
+			state.searchDate = val
+		},
+		setSearchGuest (state, val) {
+			state.searchguest = val
+		},
 		logout (state) {
 			(state.currentUser = null),
 			(state.token = ''),
@@ -64,6 +79,15 @@ const store = new Vuex.Store({
 		},
 		getUsername (state) {
 			return state.username
+		},
+		getSearchTitle (state) {
+			return state.searchTitle
+		},
+		getSearchDate(state) {
+			return state.searchDate
+		},
+		getSearchGuest (state) {
+			return state.searchGuest
 		}
 	},
 	plugins   : [ vuexLocalStorage.plugin ]
