@@ -12,12 +12,12 @@ const store = new Vuex.Store({
 	state     : {
 		currentUser : localStorage.getItem('currentUser') || null,
 		token       : localStorage.getItem('token') || '',
-		userId      : localStorage.getItem('userId') || '',
+		userKey     : localStorage.getItem('userKey') || '',
 		username    : localStorage.getItem('username') || '',
 		adminStatus : localStorage.getItem('adminStatus') || false,
 		searchTitle : localStorage.getItem('title') || '',
-		searchDate : localStorage.getItem('date') || '',
-		searchGuest : localStorage.getItem('guest') || '',
+		searchDate  : localStorage.getItem('date') || '',
+		searchGuest : localStorage.getItem('guest') || ''
 	},
 	actions   : {
 		clearData ({ commit }) {
@@ -41,8 +41,8 @@ const store = new Vuex.Store({
 		setCurrentToken (state, val) {
 			state.token = val
 		},
-		setUserId (state, val) {
-			state.userId = val
+		setUserKey (state, val) {
+			state.userKey = val
 		},
 		setAdminStatus (state, val) {
 			state.adminStatus = val
@@ -60,16 +60,16 @@ const store = new Vuex.Store({
 			state.searchguest = val
 		},
 		logout (state) {
-			(state.currentUser = null),
-			(state.token = ''),
-			(state.userId = ''),
-			(state.username = ''),
-			(state.adminStatus = false)
+			;(state.currentUser = null),
+				(state.token = ''),
+				(state.userId = ''),
+				(state.username = ''),
+				(state.adminStatus = false)
 		}
 	},
 	getters   : {
-		getUserId (state) {
-			return state.userId
+		getUserKey (state) {
+			return state.userKey
 		},
 		getAdminStatus (state) {
 			return state.adminStatus
@@ -83,7 +83,7 @@ const store = new Vuex.Store({
 		getSearchTitle (state) {
 			return state.searchTitle
 		},
-		getSearchDate(state) {
+		getSearchDate (state) {
 			return state.searchDate
 		},
 		getSearchGuest (state) {
