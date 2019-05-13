@@ -20,7 +20,8 @@
         <v-text-field
                 type="text"
                 v-model="asearchDate"
-                label="Date" clearable
+                label="Date"
+                clearable
         ></v-text-field>
         <v-text-field
                 type="number"
