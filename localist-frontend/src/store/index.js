@@ -57,7 +57,7 @@ const store = new Vuex.Store({
 			state.searchDate = val
 		},
 		setSearchGuest (state, val) {
-			state.searchguest = val
+			state.searchGuest = val
 		},
 		logout (state) {
 			;(state.currentUser = null),

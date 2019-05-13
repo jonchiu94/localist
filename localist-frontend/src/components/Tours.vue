@@ -4,8 +4,16 @@
             class="cyan--text text--darken-2 mb-2 display-3 font-weight-black font-italic text-xs-center"
         >Tours</h1>
 
-        <v-btn large class="white" to="tours/createtour">Create Tour</v-btn>
-        <input type="text" v-model="search" placeholder="Search tours">
+        <v-btn 
+            large 
+            class="white" 
+            to="tours/createtour"
+        >
+            Create Tour
+        </v-btn>
+        <v-text-field type="text" v-model="asearchTitle"  label="Search tours"></v-text-field>
+        <v-text-field type="text" v-model="asearchDate"  label="Date"></v-text-field>
+        <v-text-field type="number" v-model="asearchGuest"  label="# of guests"></v-text-field>
         <v-container>
             <v-layout wrap justify-space-around>
                 <v-flex
@@ -108,24 +116,15 @@ export default {
         asearchGuest: ""
     }),
     computed: {
-        // searchTitle: function () {
-        //     return this.search= this.$store.getters.getSearchTitle();
-        //
-        //
-        // },
-        filteredTours: function() {
-            return this.tours.filter(tour => {
-                if (tour.title.toLowerCase().match(this.search.toLowerCase())) {
+
+        filteredTours: function () {
+            return this.tours.filter((tour) => {
+                if (tour.title.toLowerCase().match(this.asearchTitle.toLowerCase())) {
                     return true;
-                } else if (
-                    tour.location.city
-                        .toLowerCase()
-                        .match(this.search.toLowerCase())
-                ) {
+                } else if (tour.location.city.toLowerCase().match(this.asearchTitle.toLowerCase())) {
                     return true;
-                } else if (
-                    tour.category.toLowerCase().match(this.search.toLowerCase())
-                ) {
+                } else if (tour.category.toLowerCase().match(this.asearchTitle.toLowerCase())) {
+
                     return true;
                 } else {
                     return false;
@@ -139,6 +138,10 @@ export default {
             .then(response => (this.tours = response.data))
             .catch(error => alert(error))
             .finally(() => (this.loading = false));
+        this.asearchTitle = this.$store.getters.getSearchTitle;
+        this.asearchDate = this.$store.getters.getSearchDate;
+        this.asearchGuest = this.$store.getters.getSearchGuest;
+
     }
 };
 </script>
