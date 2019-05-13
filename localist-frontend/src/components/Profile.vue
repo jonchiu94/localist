@@ -12,6 +12,7 @@
                 <img v-if="url" :src="url" height="100">
             </div>
         </div>
+
         <!-- <div class="large-12 medium-12 small-12 cell">-->
         <!--<label>-->
         <!--<input type="file" id="files" accept="image/x-png, image/gif, image/jpeg" ref="files" v-on:change="handleFilesUpload()"/>-->
@@ -21,6 +22,7 @@
         <!--<div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>-->
         <!--</div>-->
         <!--<br> -->
+        
         <form v-on:submit.prevent="updateProfile">
             <div>
                 <h3>Your Profile</h3>
@@ -92,28 +94,21 @@ export default {
             /*
                   Initialize the form data
                 */
-            var formData = new FormData();
-            //{
-            // first_name: this.first_name,
-            // last_name: this.last_name,
-            // age: this.age,
-            // gender: this.gender,
-            // city: this.city,
-            // country: this.country
-            //};
+            var formData = new FormData(
+            {
+             first_name: this.first_name,
+             last_name: this.last_name,
+             age: this.age,
+             gender: this.gender,
+             city: this.city,
+             country: this.country
+            });
 
             /*
                   Iteate over any file sent over appending the files
                   to the form data.
                 */
-            for (let i = 0; i < this.files.length; i++) {
-                let file = this.files[i];
-
-                formData.append("img[" + i + "]", file);
-            }
-            for (var value of formData.values()) {
-                console.log(value);
-            }
+            formData.append("img[0]", file);
             /*
                   Make the request to the POST /select-files URL
                 */

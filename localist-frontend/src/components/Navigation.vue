@@ -1,11 +1,10 @@
 <template>
     <div>
-        <v-toolbar class="nav-bar" :class="{ 'nav-bar--hidden': !showNavbar }">
+        <v-toolbar class="nav-bar">
             <v-toolbar-items class="hidden-sm-and-down">
                 <v-btn to="/" class="cyan--text text--darken-2 font-weight-black font-italic" style="text-decoration: none">
                     Localist
                 </v-btn>
-                <v-btn to="/tours" style="text-decoration: none" flat> Tours </v-btn>
                 <!-- <v-btn to="/guides" style="text-decoration: none" flat> Guides </v-btn> -->
             </v-toolbar-items>
 
@@ -30,8 +29,6 @@
                     <v-toolbar-title v-on="on">
                         <v-avatar>
                             <img
-                                src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1562198400&v=beta&t=BsWTGGTHMroIWmeg-toVM3I5OVGNd45vAsNkSnYDvkY"
-                                alt="Jacob Smith"
                             >
                         </v-avatar>
                     </v-toolbar-title>
@@ -91,17 +88,6 @@ export default {
             this.$store.dispatch("logout");
         },
         onScroll () {
-          const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
-            if (currentScrollPosition < 0) {
-                return
-          }
-          // Stop executing this function if the difference between
-          // current scroll position and last scroll position is less than some offset
-            if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
-                return
-            }
-            this.showNavbar = currentScrollPosition < this.lastScrollPosition
-            this.lastScrollPosition = currentScrollPosition
         }
     },
     computed: {
