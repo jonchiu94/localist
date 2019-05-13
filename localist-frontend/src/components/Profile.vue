@@ -12,7 +12,7 @@
                 <img v-if="url" :src="url" height="100">
             </div>
         </div>
-        <!--<div class="large-12 medium-12 small-12 cell">-->
+        <!-- <div class="large-12 medium-12 small-12 cell">-->
         <!--<label>-->
         <!--<input type="file" id="files" accept="image/x-png, image/gif, image/jpeg" ref="files" v-on:change="handleFilesUpload()"/>-->
         <!--</label>-->
@@ -20,7 +20,7 @@
         <!--<div class="large-12 medium-12 small-12 cell">-->
         <!--<div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>-->
         <!--</div>-->
-        <!--<br>-->
+        <!--<br> -->
         <form v-on:submit.prevent="updateProfile">
             <div>
                 <h3>Your Profile</h3>

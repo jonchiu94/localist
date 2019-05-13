@@ -16,7 +16,7 @@
               hide-details
               solo-inverted
               style="max-width: 300px;"
-            />
+            /> 
             <v-btn icon>
                 <v-icon class="cyan--text text--darken-2">search</v-icon>
             </v-btn>
