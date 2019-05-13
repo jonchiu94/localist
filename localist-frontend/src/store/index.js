@@ -60,7 +60,7 @@ const store = new Vuex.Store({
 			state.searchGuest = val
 		},
 		logout (state) {
-			;(state.currentUser = null),
+			(state.currentUser = null),
 				(state.token = ''),
 				(state.userId = ''),
 				(state.username = ''),

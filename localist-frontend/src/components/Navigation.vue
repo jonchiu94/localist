@@ -11,7 +11,7 @@
             </v-toolbar-items>
 
             <v-spacer></v-spacer>
-            
+
             <v-text-field
               flat
               hide-details
@@ -19,7 +19,7 @@
               style="max-width: 300px;"
               v-model="searchInput"
               @keyup.enter="searchEnter()"
-
+            ></v-text-field>
             <v-btn icon>
                 <v-icon class="cyan--text text--darken-2">search</v-icon>
             </v-btn>
