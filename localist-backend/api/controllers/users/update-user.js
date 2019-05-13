@@ -13,19 +13,6 @@ module.exports = {
 			description : 'Your name.'
 		},
 
-		username      : {
-			required    : true,
-			type        : 'string',
-			example     : 'Jacob13Smith',
-			description : 'A username.'
-		},
-
-		image         : {
-			required    : false,
-			type        : 'string',
-			description : 'Users profile image'
-		},
-
 		date_of_birth : {
 			required    : true,
 			type        : 'number',
@@ -48,7 +35,7 @@ module.exports = {
 		},
 
 		coordinates   : {
-			required    : true,
+			required    : false,
 			type        : 'json',
 			description :
 				'the lattitude and the longitude of the users location'
@@ -82,8 +69,6 @@ module.exports = {
 					first : inputs.name.first,
 					last  : inputs.name.last
 				},
-				username      : inputs.username,
-				image         : inputs.image || '',
 				date_of_birth : inputs.date_of_birth,
 				gender        : inputs.gender,
 				location      : {
@@ -91,8 +76,10 @@ module.exports = {
 					country : inputs.location.country
 				},
 				coordinates   : {
-					lattitude : inputs.coordinates.lattitude,
-					longitude : inputs.coordinates.longitude
+					lattitude :
+						inputs.coordinates.lattitude || '',
+					longitude :
+						inputs.coordinates.longitude || ''
 				}
 			})
 		} catch (error) {

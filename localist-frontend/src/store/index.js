@@ -11,9 +11,7 @@ const vuexLocalStorage = new VuexPersist({
 const store = new Vuex.Store({
 	state     : {
 		currentUser : localStorage.getItem('currentUser') || null,
-		token       : localStorage.getItem('token') || '',
 		userKey     : localStorage.getItem('userKey') || '',
-		username    : localStorage.getItem('username') || '',
 		adminStatus : localStorage.getItem('adminStatus') || false,
 		searchTitle : localStorage.getItem('title') || '',
 		searchDate  : localStorage.getItem('date') || '',
@@ -21,13 +19,12 @@ const store = new Vuex.Store({
 	},
 	actions   : {
 		clearData ({ commit }) {
-			commit('currentUser', null);
-			commit('token', '');
-			commit('userId', '');
-			commit('adminStatus', false);
-			commit('searchTitle', '');
-			commit('searchDate', '');
-			commit('searchGuest', '');
+			commit('currentUser', null)
+			commit('adminStatus', false)
+			commit('searchTitle', '')
+			commit('searchDate', '')
+			commit('searchGuest', '')
+			commit('userKey', '')
 		},
 		logout ({ commit }) {
 			localStorage.removeItem('token');
