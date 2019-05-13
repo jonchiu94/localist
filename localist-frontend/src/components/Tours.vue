@@ -9,9 +9,23 @@
         >
             Create Tour
         </v-btn>
-        <v-text-field type="text" v-model="asearchTitle"  label="Search tours"></v-text-field>
-        <v-text-field type="text" v-model="asearchDate"  label="Date"></v-text-field>
-        <v-text-field type="number" v-model="asearchGuest"  label="# of guests"></v-text-field>
+        <v-text-field
+                type="text"
+                v-model="asearchTitle"
+                label="Search tours"
+                clearable
+        ></v-text-field>
+        <v-text-field
+                type="text"
+                v-model="asearchDate"
+                label="Date" clearable
+        ></v-text-field>
+        <v-text-field
+                type="number"
+                v-model="asearchGuest"
+                label="# of guests"
+                clearable
+        ></v-text-field>
         <v-container>
             <v-layout wrap justify-space-around>
                 <v-flex 

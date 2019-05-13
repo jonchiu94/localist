@@ -16,6 +16,8 @@
               hide-details
               solo-inverted
               style="max-width: 300px;"
+              v-model="searchInput"
+              @keyup.enter="searchEnter()"
             />
             <v-btn icon>
                 <v-icon class="cyan--text text--darken-2">search</v-icon>
@@ -66,13 +68,16 @@
 </template>
 
 <script>
+    import router from "../router";
 export default {
+
     name: "Navigation",
     data () {
         return {
             showNavbar: true,
             lastScrollPosition: 0,
-            scrollValue: 0
+            scrollValue: 0,
+            searchInput: ''
         }
     },
     mounted () {
@@ -87,6 +92,10 @@ export default {
         window.removeEventListener('scroll', this.onScroll)
     },
     methods: {
+        searchEnter(){
+            this.$store.commit("setSearchTitle", this.searchInput);
+            router.push("/tours");
+        },
         signout() {
             this.$store.dispatch("logout");
         },
