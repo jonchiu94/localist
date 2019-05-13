@@ -47,6 +47,8 @@
                 </v-flex>
                 <v-flex md3>
                     <v-text-field
+                            v-model="guest"
+                            type="number"
                         label="#. of guest"
                         background-color="white"
                     ></v-text-field>
