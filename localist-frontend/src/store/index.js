@@ -21,17 +21,17 @@ const store = new Vuex.Store({
 	},
 	actions   : {
 		clearData ({ commit }) {
-			commit('currentUser', null)
-			commit('token', '')
-			commit('userId', '')
-			commit('adminStatus', false)
-			commit('searchTitle', '')
-			commit('searchDate', '')
-			commit('searchGuest', '')
+			commit('currentUser', null);
+			commit('token', '');
+			commit('userId', '');
+			commit('adminStatus', false);
+			commit('searchTitle', '');
+			commit('searchDate', '');
+			commit('searchGuest', '');
 		},
 		logout ({ commit }) {
-			localStorage.removeItem('token')
-			commit('logout')
+			localStorage.removeItem('token');
+			commit('logout');
 		}
 	},
 	mutations : {
@@ -64,7 +64,7 @@ const store = new Vuex.Store({
 				(state.token = ''),
 				(state.userId = ''),
 				(state.username = ''),
-				(state.adminStatus = false)
+				(state.adminStatus = false);
 		}
 	},
 	getters   : {
