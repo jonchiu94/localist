@@ -9,12 +9,9 @@
  */
 
 module.exports.policies = {
-
 	// Bypass the `is-logged-in` policy for:
-	'entrance/*'                   : true,
-	'exit/*'                       : true,
 	'admin/*'                      : true,
 	'images/*'                     : true,
 	'tours/*'                      : true,
-	'users/*'                      : true
+	'users/*'                      : true,
 }

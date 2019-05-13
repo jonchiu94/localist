@@ -23,12 +23,12 @@
                                         v-on:change="onFileChange">
                                 </div>
                             </v-flex>
-                            <v-flex xs8>
+                            <v-flex xs4>
                                 <v-layout row wrap>
-                                    <v-flex xs3 class="field">
+                                    <v-flex xs6 class="field">
                                         First Name 
                                     </v-flex>
-                                    <v-flex xs4>
+                                    <v-flex xs6>
                                         <v-text-field
                                             single-line
                                             outline
@@ -37,10 +37,10 @@
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
-                                    <v-flex xs3 class="field">
+                                    <v-flex xs6 class="field">
                                         Last Name
                                     </v-flex>
-                                    <v-flex xs4>
+                                    <v-flex xs6>
                                         <v-text-field
                                             single-line
                                             outline
@@ -49,18 +49,38 @@
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
-                                    <v-flex xs3 class="field">
+                                    <v-flex xs6 class="field">
                                         Date of Birth
                                     </v-flex>
-                                    <v-flex xs4>
-                                        <input type="date" v-model="dob">
+                                    <v-flex xs6>
+                                        <v-menu
+                                            v-model="date_menu"
+                                            :close-on-content-click="false"
+                                            full-width
+                                            max-width="290"
+                                            >
+                                            <template v-slot:activator="{ on }">
+                                                <v-text-field
+                                                :value="computedDateFormatted"
+                                                clearable
+                                                readonly
+                                                v-on="on"
+                                                ></v-text-field>
+                                            </template>
+                                            <v-date-picker
+                                                v-model="dob"
+                                                @change="date_menu = false"
+                                            ></v-date-picker>
+                                        </v-menu>
                                     </v-flex>
                                 </v-layout>
+                            </v-flex>
+                            <v-flex xs4>
                                 <v-layout row wrap>
-                                    <v-flex xs3 class="field">
+                                    <v-flex xs6 class="field">
                                         Gender
                                     </v-flex>
-                                    <v-flex xs4>
+                                    <v-flex xs6>
                                         <v-select
                                             :items="genders"
                                             v-model="gender"
@@ -68,10 +88,10 @@
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
-                                    <v-flex xs3 class="field">
+                                    <v-flex xs6 class="field">
                                         City
                                     </v-flex>
-                                    <v-flex xs4>
+                                    <v-flex xs6>
                                         <v-text-field
                                             single-line
                                             outline
@@ -80,10 +100,10 @@
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
-                                    <v-flex xs3 class="field">
+                                    <v-flex xs6 class="field">
                                         Country
                                     </v-flex>
-                                    <v-flex xs4>
+                                    <v-flex xs6>
                                         <v-text-field
                                             single-line
                                             outline
@@ -96,13 +116,14 @@
                     </div>
                 </form>
                 <div class="large-12 medium-12 small-12 cell">
-                    <button v-on:click="submitFiles()">Submit</button>
+                    <v-btn v-on:click="submitFiles()">Submit</v-btn>
                 </div>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 <script>
+import moment from 'moment'
 import router from "../router";
 export default {
 
@@ -115,12 +136,18 @@ export default {
         gender: "",
         city: "",
         country: "",
-        genders: ['Male', 'Female', 'Other']
+        genders: ['Male', 'Female', 'Other'],
+        date_menu: false
     }),
 
     /*
           Defines the method used by the component
         */
+    computed: {
+        computedDateFormatted () {
+        return this.dob ? moment(this.dob).format('dddd, MMMM Do YYYY') : ''
+      },
+    },
     methods: {
         createGuide() {
             formData = {
@@ -165,7 +192,7 @@ export default {
             }
             formData.append("first_name", this.first_name);
             formData.append("last_name", this.last_name);
-            formData.append("date_of_birth", this.dob);
+            formData.append("date_of_birth", mystring = this.dob.split('-').join(''));
             formData.append("gender", this.gender);
             formData.append("city", this.city);
             formData.append("country", this.country);
