@@ -16,7 +16,7 @@ module.exports = {
 			required    : true,
 			type        : 'string',
 			description :
-				'The guide_id for the guide that created the tour.'
+				'The user_key for the user that created the tour.'
 		},
 
 		price               : {
@@ -121,6 +121,7 @@ module.exports = {
 		var database = firebase.database()
 		var toursRefLong = database.ref('tours_long')
 		var toursRefShort = database.ref('tours_short')
+		var usersRef = database.ref('users/' + inputs.user_key)
 		var coord = inputs.coordinates || ''
 
 		try {
@@ -163,6 +164,10 @@ module.exports = {
 					date : inputs.availability.date,
 					time : inputs.availability.time
 				}
+			})
+
+			var user = usersRef.child('tours').push({
+				tour_id : short_tour.key
 			})
 		} catch (error) {
 			console.log(error)
