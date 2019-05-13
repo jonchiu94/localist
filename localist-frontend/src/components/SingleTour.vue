@@ -67,10 +67,10 @@ export default {
         info: ""
     }),
     computed:{
-        iconUrl () {
+        // iconUrl () {
             // return require('./assets/img/background.jpg')
             // The path could be '../assets/img.png', etc., which depends on where your vue file is
-        }
+        // }
     },
     mounted() {
         this.$http

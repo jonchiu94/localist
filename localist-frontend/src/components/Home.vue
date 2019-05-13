@@ -230,9 +230,9 @@
         this.$store.commit("setSearchTitle", this.search);
         this.$store.commit("setSearchDate", this.date);
         this.$store.commit("setSearchGuest", this.guest);
-        console.log(this.search);
-        console.log(this.date);
-        console.log(this.guest);
+        this.console.log(this.search);
+        this.console.log(this.date);
+        this.console.log(this.guest);
         router.push("/tours");
       }
     }
