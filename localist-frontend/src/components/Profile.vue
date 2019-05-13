@@ -5,22 +5,13 @@
                 type="file"
                 id="file"
                 accept="image/x-png, image/gif, image/jpeg"
-                ref="files"
-                v-on:change="onFileChange()"
+                ref="file"
+                v-on:change="onFileChange"
             >
             <div id="preview">
                 <img v-if="url" :src="url" height="100">
             </div>
         </div>
-        <!--<div class="large-12 medium-12 small-12 cell">-->
-        <!--<label>-->
-        <!--<input type="file" id="files" accept="image/x-png, image/gif, image/jpeg" ref="files" v-on:change="handleFilesUpload()"/>-->
-        <!--</label>-->
-        <!--</div>-->
-        <!--<div class="large-12 medium-12 small-12 cell">-->
-        <!--<div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>-->
-        <!--</div>-->
-        <!--<br>-->
         <form v-on:submit.prevent="updateProfile">
             <div>
                 <h3>Your Profile</h3>
@@ -73,10 +64,11 @@ export default {
                 country: this.country
             };
         },
-        onFileChange() {
+        onFileChange(e) {
             this.files = [];
             this.files.push(e.target.files[0]);
             this.url = URL.createObjectURL(this.files[0]);
+            // this.files = this.$refs.files.files;
         },
         /*
               Adds a file
@@ -92,25 +84,23 @@ export default {
             /*
                   Initialize the form data
                 */
+            var fileData = new FormData();
             var formData = new FormData();
-            //{
-            // first_name: this.first_name,
-            // last_name: this.last_name,
-            // age: this.age,
-            // gender: this.gender,
-            // city: this.city,
-            // country: this.country
-            //};
 
             /*
                   Iteate over any file sent over appending the files
                   to the form data.
                 */
+            var file = [];
             for (let i = 0; i < this.files.length; i++) {
-                let file = this.files[i];
-
-                formData.append("img[" + i + "]", file);
+                fileData.append("img", this.files[i]);
             }
+            formData.append("first_name", this.first_name);
+            formData.append("last_name", this.last_name);
+            formData.append("age", this.age);
+            formData.append("gender", this.gender);
+            formData.append("city", this.city);
+            formData.append("country", this.country);
             for (var value of formData.values()) {
                 console.log(value);
             }
@@ -118,13 +108,16 @@ export default {
                   Make the request to the POST /select-files URL
                 */
             this.$http
-                .post("/image", formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
+                .post(
+                    "/image/user/" + this.$store.getters.getUserKey,
+                    fileData,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
                     }
-                })
-                .then(function() {
-                    console.log("SUCCESS!!");
+                )
+                .then(function(data) {
                     // router.push("/tours");
                 })
                 .catch(function() {

@@ -3,8 +3,8 @@
         <v-content>
           <section>
             <v-parallax 
-              src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80" 
-              height="550">
+              :src="require('@/assets/background-1.jpeg')" 
+              height="650">
               <v-layout
                 column
                 align-center
@@ -73,7 +73,7 @@
               >
                 <div class="text-xs-center">
                   <h2 class="headline">
-                    Probably, the BEST way to experience the local culture.
+                    The BEST way to experience local culture.
                   </h2>
                 </div>
               </v-flex>
@@ -91,9 +91,7 @@
                           <div class="headline text-xs-center">Customizable</div>
                         </v-card-title>
                         <v-card-text>
-                          Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                          Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                          We are huge believers in customized experiences, and bringing unique memories home with you, wherever you go.  You needs and interests aren't the same as anyone elses, so why look for the same experiences? We support guide-to-tourist communication, so that everyone involved can be certain of what is going to work best for them.
                         </v-card-text>
                       </v-card>
                     </v-flex>
@@ -106,9 +104,7 @@
                           <div class="headline">Fun</div>
                         </v-card-title>
                         <v-card-text>
-                          Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                          Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                            There's no point in travelling if you aren't going to have some fun, right?  Find independent, local experts in your travel destination.  There's no doubt that the people who are passionate about their home will want to share all the fun that is to be had there with you!  Find your the people that share your niche with you!
                         </v-card-text>
                       </v-card>
                     </v-flex>
@@ -121,9 +117,7 @@
                           <div class="headline text-xs-center">Secured</div>
                         </v-card-title>
                         <v-card-text>
-                          Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                          Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                          We stand behind our guides 100%.  We believe in care-free travelling, that should concern you is showing up on time and having fun, or seeing what you came to see!  Our secure payment process is risk-free, quick, and allows you to worry about what's important; having a great experience.
                         </v-card-text>
                       </v-card>
                     </v-flex>
@@ -135,12 +129,14 @@
 
           <section>
             <v-parallax 
-              src="https://images.unsplash.com/photo-1530735606451-8f5f13955328?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" 
+              :src="require('@/assets/background-2.jpeg')" 
               height="380"
             >
               <v-layout column align-center justify-center>
                 <div class="headline white--text font-weight-black mb-3 text-xs-center">
-                  Custom local tour that cannot find in traditional tourist means.
+                    <span class="black-shadow">
+                        Custom local experiences that can't be found anywhere else.
+                    </span>
                 </div>
                 <v-btn
                   class="cyan darken-2 mt-5 font-weight-black"
@@ -163,9 +159,7 @@
                       <div class="headline">Our Story</div>
                     </v-card-title>
                     <v-card-text>
-                      Localist is ... mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                      Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                      Team24 is a company made of 4 developers and travelers, all with a common goal: to make experiences cheaper, more enjoyable, and more available for everyone.  Localist is the product child of a vision where the tourism industry is given back to the person that has all the local knowledge: you, the localist.
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -175,8 +169,8 @@
                       <div class="headline">Contact us</div>
                     </v-card-title>
                     <v-card-text>
-                      Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
                     </v-card-text>
+<!--
                     <v-list class="transparent">
                       <v-list-tile>
                         <v-list-tile-action>
@@ -185,6 +179,7 @@
                         <v-list-tile-content>
                           <v-list-tile-title>604-123-4567</v-list-tile-title>
                         </v-list-tile-content>
+-->
                       </v-list-tile>
                       <v-list-tile>
                         <v-list-tile-action>
@@ -199,7 +194,7 @@
                           <v-icon class="blue--text text--lighten-2">email</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
-                          <v-list-tile-title>team24@localist.com</v-list-tile-title>
+                          <v-list-tile-title href='&#109;ailt&#111;&#58;%6&#67;%6&#70;&#99;a&#108;&#105;s&#116;&#64;&#37;6C&#37;6Fc&#97;&#108;i&#37;73%74%2E&#99;o&#109;'>loc&#97;list&#64;loc&#97;lis&#116;&#46;com</v-list-tile-title>
                         </v-list-tile-content>
                       </v-list-tile>
                     </v-list>
@@ -245,7 +240,9 @@
 </script>
 
 <style>
-
+    .black-shadow{
+        text-shadow: 1px 1px 2px black; 
+    }
 </style>
 
 
