@@ -13,8 +13,10 @@ import Admin from '../components/Admin'
 import EditTour from '../components/EditTour'
 import EditGuide from '../components/EditGuide'
 import Profile from '../components/Profile'
+import Booking from '../components/Booking'
 import test from '../components/test'
 import Signintest from '../components/Signintest'
+
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -55,6 +57,11 @@ const router = new VueRouter({
 			meta      : {
 				requiresAuth : true
 			}
+		},
+		{
+			path      : '/tours/single/:id/booking',
+			name      : 'booking',
+			component : Booking
 		},
 		{
 			path      : '/tours/edit/:id',

@@ -118,7 +118,7 @@ export default {
             high: "",
             low: ""
         },
-        user_key: "-LeIrh-Z8PYSfp9CTZsk"
+        user_key: ""
     }),
     methods: {
         createTour() {
