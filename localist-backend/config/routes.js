@@ -31,6 +31,7 @@ module.exports.routes = {
 	'POST       /user/signin'              : { action: 'users/signin' },
 	'POST       /tour/add'                 : { action: 'tours/post-tour' },
 	'POST       /guide/add'                : { action: 'guides/post-guide' },
+	'POST       /tour/add/review/:key'     : { action: 'tours/review-tour' },
 	'GET        /user/all'                 : { action: 'users/list-users' },
 	'GET        /tour/all'                 : { action: 'tours/get-all-tours' },
 	'GET        /user/find/:key'           : { action: 'users/get-user' },
