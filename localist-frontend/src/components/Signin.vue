@@ -3,12 +3,13 @@
         <div class="container" id="container" ref="container">
             <div class="form-container sign-up-container">
                 <form v-on:submit.prevent="signUp">
-                    <h1>Sign Up</h1><br>
+                    <h1>Sign Up</h1>
+                    <br>
                     <div>
                         <input type="email" placeholder="Email" v-model="email">
                         <input type="password" placeholder="Password" v-model="password">
                         <input type="password" placeholder="Confirm Password" v-model="confirm">
-                      <!--   <div>
+                        <!--   <div>
                             <input
                                 type="checkbox"
                                 value=" "
@@ -17,14 +18,16 @@
                                 id="administration"
                             >
                         </div>
-                        <label class="form-check-label" for="administration">make me admin</label> -->
-                    </div><br>
+                        <label class="form-check-label" for="administration">make me admin</label>-->
+                    </div>
+                    <br>
                     <button pt-2 class="cyan darken-2 white--text" type="submit">Sign Up</button>
                 </form>
             </div>
             <div class="form-container sign-in-container">
                 <form v-on:submit.prevent="signIn">
-                    <h1>Sign In</h1><br>
+                    <h1>Sign In</h1>
+                    <br>
                     <input type="email" placeholder="Email" v-model="email">
                     <input type="password" placeholder="Password" v-model="password">
                     <a href="#">Forgot your password?</a>
@@ -35,13 +38,23 @@
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
                         <h1 class="white-shadow">Welcome Back!</h1>
-                        <p class="white-shadow">To keep connected with us please login with your personal info</p>
-                        <button class="ghost cyan darken-2 white--text" @click="signInButton" id="signIn">Sign In</button>
+                        <p
+                            class="white-shadow"
+                        >To keep connected with us please login with your personal info</p>
+                        <button
+                            class="ghost cyan darken-2 white--text"
+                            @click="signInButton"
+                            id="signIn"
+                        >Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
                         <h1 class="white-shadow">Hello, Friend!</h1>
                         <p class="white-shadow">Sign up NOW!</p>
-                        <button class="ghost cyan darken-2 white--text" @click="signUpButton" id="signUp">Sign Up</button>
+                        <button
+                            class="ghost cyan darken-2 white--text"
+                            @click="signUpButton"
+                            id="signUp"
+                        >Sign Up</button>
                     </div>
                 </div>
             </div>
@@ -56,7 +69,7 @@ export default {
     name: "Signin",
     data: () => ({
         email: "",
-        password: "",
+        password: ""
     }),
     props: {
         msg: String
@@ -66,7 +79,7 @@ export default {
             var r = this;
             const formData = {
                 email: this.email,
-                password: this.password,
+                password: this.password
             };
             this.$http
                 .post("/user/signup", formData)
@@ -74,19 +87,14 @@ export default {
                     if (response.data.error) {
                         alert(response.data.error.message);
                     } else {
-                        r.$store.commit(
-                            "setUsername",
-                            response.data.user.user.email
-                        );
                         r.$store.commit("setCurrentUser", response.data.user);
-                        r.$store.commit("setCurrentToken", response.data.token);
-                        r.$store.commit("setUserId", response.data.uid);
+                        r.$store.commit("setUserKey", response.data.key);
 
                         router.push("/profile");
                     }
                 })
                 .catch(function(error) {
-                    this.console.log(error);
+                    console.log(error);
                 });
         },
         signIn() {
@@ -107,13 +115,13 @@ export default {
                         );
                         r.$store.commit("setCurrentUser", response.data.user);
                         r.$store.commit("setCurrentToken", response.data.token);
-                        r.$store.commit("setUserId", response.data.uid);
+                        r.$store.commit("setUserKey", response.data.key);
 
                         router.push("/");
                     }
                 })
                 .catch(function(error) {
-                    this.console.log(error);
+                    console.log(error);
                 });
         },
         signUpButton() {
@@ -136,7 +144,7 @@ export default {
 
     background-image: url("https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80");
     background-size: 100%;
-    background-position: 100% 25%; 
+    background-position: 100% 25%;
 }
 
 @media screen and (max-width: 400px) {
@@ -359,8 +367,8 @@ input {
 .container.right-panel-active .overlay-right {
     transform: translateX(20%);
 }
-    
-    .white-shadow{
-        text-shadow: 1px 1px 2px white; 
-    }
+
+.white-shadow {
+    text-shadow: 1px 1px 2px white;
+}
 </style>

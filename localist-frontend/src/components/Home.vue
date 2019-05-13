@@ -46,6 +46,8 @@
                 </v-flex>
                 <v-flex xs12 md3>
                     <v-text-field
+                            v-model="guest"
+                            type="number"
                         label="#. of guest"
                         background-color="white"
                     ></v-text-field>
@@ -178,7 +180,7 @@
                           <v-list-tile-title>604-123-4567</v-list-tile-title>
                         </v-list-tile-content>
 -->
-                      </v-list-tile>
+                      <!-- </v-list-tile> -->
                       <v-list-tile>
                         <v-list-tile-action>
                           <v-icon class="blue--text text--lighten-2">place</v-icon>
@@ -195,7 +197,7 @@
                           <v-list-tile-title href='&#109;ailt&#111;&#58;%6&#67;%6&#70;&#99;a&#108;&#105;s&#116;&#64;&#37;6C&#37;6Fc&#97;&#108;i&#37;73%74%2E&#99;o&#109;'>loc&#97;list&#64;loc&#97;lis&#116;&#46;com</v-list-tile-title>
                         </v-list-tile-content>
                       </v-list-tile>
-                    </v-list>
+                    <!-- </v-list> -->
                   </v-card>
                 </v-flex>
               </v-layout>

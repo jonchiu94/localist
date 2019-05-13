@@ -1,6 +1,8 @@
 <template>
     <div id="tourList">
-        <h1 class="cyan--text text--darken-2 mb-2 display-3 font-weight-black font-italic text-xs-center">Tours</h1>
+        <h1
+            class="cyan--text text--darken-2 mb-2 display-3 font-weight-black font-italic text-xs-center"
+        >Tours</h1>
 
         <v-btn 
             large 
@@ -9,33 +11,41 @@
         >
             Create Tour
         </v-btn>
-            <input type="text" v-model="search"  placeholder="Search tours"/>
+        <v-text-field
+                type="text"
+                v-model="asearchTitle"
+                label="Search tours"
+                clearable
+        ></v-text-field>
+        <v-text-field
+                type="text"
+                v-model="asearchDate"
+                label="Date" clearable
+        ></v-text-field>
+        <v-text-field
+                type="number"
+                v-model="asearchGuest"
+                label="# of guests"
+                clearable
+        ></v-text-field>
         <v-container>
             <v-layout wrap justify-space-around>
-                <v-flex 
+                <v-flex
                     v-for="tour in filteredTours"
                     :key="tour.key"
-                    xs3 sm3 
-                    mx-4 my-3
+                    xs3
+                    sm3
+                    mx-4
+                    my-3
                     class="tour-card"
                 >
-                    <base-card
-                        height="350px"
-                        color="grey lighten-1"
-                        dark
-                        href="#!"
-                    >
+                    <base-card height="350px" color="grey lighten-1" dark href="#!">
                         <v-img
-                            src="https://images.unsplash.com/photo-1549208368-768234073504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                            :src="tour.main_image"
                             height="100%"
                             gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
                         >
-                            <v-layout
-                                fill-height
-                                wrap
-                                text-xs-right
-                                ma-0
-                            >
+                            <v-layout fill-height wrap text-xs-right ma-0>
                                 <v-flex xs12>
                                     <v-chip
                                         label
@@ -43,36 +53,30 @@
                                         color="cyan darken-2"
                                         text-color="white"
                                         small
-                                        @click.stop=""
-                                    >
-                                        {{ tour.category }}
-                                    </v-chip>
-                                    <h3 
-                                        class="white--text title font-weight-bold mb-2">
-                                        {{ tour.title }}
-                                    </h3>
+                                        @click.stop
+                                    >{{ tour.category }}</v-chip>
+                                    <h3
+                                        class="white--text title font-weight-bold mb-2"
+                                    >{{ tour.title }}</h3>
                                     <div class="white--text caption">
                                         ${{tour.price.low}} - ${{tour.price.high}}
                                         <br>
                                         {{tour.location.city}}
                                     </div>
                                 </v-flex>
-                                
+
                                 <v-flex align-self-end>
                                     <v-btn
                                         :to="'/tours/single/' + tour.key"
-                                        class="white  text-uppercase"
+                                        class="white text-uppercase"
                                         small
-                                    >
-                                        Explore
-                                    </v-btn>
+                                    >Explore</v-btn>
                                 </v-flex>
                             </v-layout>
                         </v-img>
                     </base-card>
                 </v-flex>
             </v-layout>
-            
         </v-container>
 
         <!-- <v-container>
@@ -112,7 +116,7 @@
                     </v-card>
                 </v-flex>
             </v-layout>
-        </v-container> -->
+        </v-container>-->
     </div>
 </template>
 
@@ -120,29 +124,26 @@
 export default {
     data: () => ({
         tours: [],
-        search: '',
-        asearchTitle: '',
-        asearchDate: '',
-        asearchGuest:''
+        search: "",
+        asearchTitle: "",
+        asearchDate: "",
+        asearchGuest: ""
     }),
     computed: {
-        // searchTitle: function () {
-        //     return this.search= this.$store.getters.getSearchTitle();
-        //
-        //
-        // },
+
         filteredTours: function () {
             return this.tours.filter((tour) => {
-                if (tour.title.toLowerCase().match(this.search.toLowerCase())) {
+                if (tour.title.toLowerCase().match(this.asearchTitle.toLowerCase())) {
                     return true;
-                } else if (tour.location.city.toLowerCase().match(this.search.toLowerCase())) {
+                } else if (tour.location.city.toLowerCase().match(this.asearchTitle.toLowerCase())) {
                     return true;
-                } else if (tour.category.toLowerCase().match(this.search.toLowerCase())) {
+                } else if (tour.category.toLowerCase().match(this.asearchTitle.toLowerCase())) {
+
                     return true;
                 } else {
                     return false;
                 }
-            })
+            });
         }
     },
     mounted() {
@@ -151,10 +152,13 @@ export default {
             .then(response => (this.tours = response.data))
             .catch(error => alert(error))
             .finally(() => (this.loading = false));
+        this.asearchTitle = this.$store.getters.getSearchTitle;
+        this.asearchDate = this.$store.getters.getSearchDate;
+        this.asearchGuest = this.$store.getters.getSearchGuest;
+
     }
 };
 </script>
 
 <style scoped>
-
 </style>
