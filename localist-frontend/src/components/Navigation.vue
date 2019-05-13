@@ -23,7 +23,7 @@
             <v-btn icon>
                 <v-icon class="cyan--text text--darken-2">search</v-icon>
             </v-btn>
-            <v-toolbar-items class="hidden-sm-and-down">
+            <v-toolbar-items class="hidden-sm-and-down" v-if="isLoggedIn">
                 <v-btn to="tours/createtour" style="text-decoration: none" flat>Host a tour</v-btn>
             </v-toolbar-items>
 
@@ -74,7 +74,8 @@ export default {
         lastScrollPosition: 0,
         scrollValue: 0,
         userImageURL: "",
-        username: ""
+        username: "",
+        searchInput: ""
     }),
     methods: {
         searchEnter() {
