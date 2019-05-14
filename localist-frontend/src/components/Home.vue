@@ -4,60 +4,73 @@
           <section>
             <v-parallax 
               :src="require('@/assets/background-1.jpeg')" 
-              height="650">
+              height="600">
               <v-layout
                 column
                 align-center
-                justify-center
                 class="white--text"
               >
                 <h1 class="cyan--text text--darken-2 mb-2 mt-5 display-3 font-weight-black font-italic text-xs-center">Localist</h1>
                 <div class="cyan--text text--darken-2 subheading mb-5 text-xs-center">by TEAM 24</div>
-                
-            <v-layout row wrap justify-space-around >
-                <v-flex xs12 md4>
-                  <v-text-field
-                      background-color="white"
-                      v-model="search"
-                      label="Search"
-                  ></v-text-field>
-                </v-flex>
-                <v-flex xs12 md3>
-                  <v-menu
-                      v-model="menu"
-                      :close-on-content-click="false"
-                      :nudge-right="40"
-                      lazy
-                      transition="scale-transition"
-                      offset-y
-                      full-width
-                      min-width="290px"
-                  >
-                    <template v-slot:activator="{ on }">
-                        <v-text-field
-                            v-model="date"
-                            readonly
-                            v-on="on"
-                            background-color="white"
-                        ></v-text-field>
-                    </template>
-                    <v-date-picker v-model="date" @input="menu = false" no-title></v-date-picker>
-                  </v-menu>
-                </v-flex>
-                <v-flex xs12 md3>
-                    <v-text-field
+
+                <v-flex xs12 mt-5>
+                    <v-toolbar
+                      dense
+                      floating
+                    >
+                      <v-layout>
+                        <v-felx>
+                          <v-text-field
+                            hide-details
+                            label="Search"
+                            v-model="search"
+                          ></v-text-field>
+                        </v-felx>
+
+                        <v-flex mx-3>
+                          <v-menu
+                            v-model="menu"
+                            :close-on-content-click="false"
+                            :nudge-right="40"
+                            lazy
+                            transition="scale-transition"
+                            offset-y
+                            full-width
+                            min-width="290px"
+                          >
+                            <template v-slot:activator="{ on }">
+                                <v-text-field
+                                  hide-details
+                                  v-model="date"
+                                  readonly
+                                  v-on="on"
+                                ></v-text-field>
+                            </template>
+                            <v-date-picker v-model="date" @input="menu = false" no-title></v-date-picker>
+                          </v-menu>
+                        </v-flex>
+
+                        <v-flex>
+                          <v-text-field
+                            hide-details
                             v-model="guest"
                             type="number"
-                        label="#. of guest"
-                        background-color="white"
-                    ></v-text-field>
+                            label="#. of guest"
+                          ></v-text-field>
+                        </v-flex>
+                      
+                        <v-flex ml-3>
+                          <v-toolbar-items>
+                            <!-- <v-btn @click="addSearch" large class="cyan darken-2 white--text"> Search </v-btn> -->
+                            <v-btn @click="addSearch" icon large><v-icon hide-details>search</v-icon></v-btn>
+                          </v-toolbar-items>
+                        </v-flex>
+                      
+                      </v-layout>
+                    </v-toolbar>
                 </v-flex>
-                <v-flex md12 ma-0>
-                    <v-btn @click="addSearch" large class="cyan darken-2 white--text"> Search </v-btn>
-                </v-flex>
-            </v-layout>
-
               </v-layout>
+
             </v-parallax>
           </section>
 
@@ -91,7 +104,9 @@
                           <div class="headline text-xs-center">Customizable</div>
                         </v-card-title>
                         <v-card-text>
-                          We are huge believers in customized experiences, and bringing unique memories home with you, wherever you go.  You needs and interests aren't the same as anyone elses, so why look for the same experiences? We support guide-to-tourist communication, so that everyone involved can be certain of what is going to work best for them.
+                          We are huge believers in customized tours, and bringing unique memories home with you, wherever you go.  
+                          You needs and interests aren't the same as anyone elses, so why look for the same tours? 
+                          We support guide-to-tourist communication, so that everyone involved can be certain of what is going to work best for them.
                         </v-card-text>
                       </v-card>
                     </v-flex>
@@ -117,7 +132,7 @@
                           <div class="headline text-xs-center">Secured</div>
                         </v-card-title>
                         <v-card-text>
-                          We stand behind our guides 100%.  We believe in care-free travelling, that should concern you is showing up on time and having fun, or seeing what you came to see!  Our secure payment process is risk-free, quick, and allows you to worry about what's important; having a great experience.
+                          We stand behind our guides 100%.  We believe in care-free travelling, that should concern you is showing up on time and having fun, or seeing what you came to see!  Our secure payment process is risk-free, quick, and allows you to worry about what's important; having a great tour.
                         </v-card-text>
                       </v-card>
                     </v-flex>
@@ -135,7 +150,7 @@
               <v-layout column align-center justify-center>
                 <div class="headline white--text font-weight-black mb-3 text-xs-center">
                     <span class="black-shadow">
-                        Custom local experiences that can't be found anywhere else.
+                        customized local tours that can't be found anywhere else.
                     </span>
                 </div>
                 <v-btn
@@ -159,7 +174,7 @@
                       <div class="headline">Our Story</div>
                     </v-card-title>
                     <v-card-text>
-                      Team24 is a company made of 4 developers and travelers, all with a common goal: to make experiences cheaper, more enjoyable, and more available for everyone.  Localist is the product child of a vision where the tourism industry is given back to the person that has all the local knowledge: you, the localist.
+                      Team24 is a company made of 4 developers and travelers, all with a common goal: to make tours cheaper, more enjoyable, and more available for everyone.  Localist is the product child of a vision where the tourism industry is given back to the person that has all the local knowledge: you, the localist.
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -221,13 +236,12 @@
     }),
     methods:{
       addSearch(){
-
         this.$store.commit("setSearchTitle", this.search);
         this.$store.commit("setSearchDate", this.date);
         this.$store.commit("setSearchGuest", this.guest);
-        this.console.log(this.search);
-        this.console.log(this.date);
-        this.console.log(this.guest);
+        console.log(this.search);
+        console.log(this.date);
+        console.log(this.guest);
         router.push("/tours");
       }
     }

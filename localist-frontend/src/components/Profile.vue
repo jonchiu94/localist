@@ -231,7 +231,7 @@ export default {
             formData.append("city", this.city);
             formData.append("country", this.country);
             for (var value of formData.values()) {
-                this.console.log(value);
+                console.log(value);
             }
             /*
                   Make the request to the POST /select-files URL
@@ -250,7 +250,7 @@ export default {
                     // router.push("/tours");
                 })
                 .catch(function() {
-                    this.console.log("FAILURE!!");
+                    console.log("FAILURE!!");
                 });
         },
 
