@@ -94,7 +94,7 @@ export default {
                     }
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    this.console.log(error);
                 });
         },
         signIn() {
@@ -117,7 +117,7 @@ export default {
                     }
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    this.console.log(error);
                 });
         },
         signUpButton() {
@@ -136,7 +136,7 @@ export default {
 <style scoped>
 .cont {
     padding-top: 65px;
-    padding-bottom: 10%;
+
 
     background-image: url("https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80");
     background-size: 100%;
@@ -237,7 +237,6 @@ input {
 
 .container {
     padding-top: 10%;
-    background-color: ;
 
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 1), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -245,7 +244,10 @@ input {
     overflow: hidden;
     width: 768px;
     max-width: 100%;
+
     min-height: 480px;
+    z-index: 5;
+    /*min-height: 480px;*/
 }
 
 .form-container {
