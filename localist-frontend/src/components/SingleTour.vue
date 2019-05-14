@@ -3,14 +3,13 @@
         <v-container fluid grid-list-md>
             <v-layout column wrap>
                 <v-flex d-flex xs12 sm6 md6>
-                    <v-card tile flat color="white">
-                        <v-card-text>
-                            <img
-                                src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80"
-                                id="tour-img"
-                            >
-                        </v-card-text>
-                    </v-card>
+                    <v-carousel>
+                        <v-carousel-item
+                                v-for="(image, i) in info.data && info.data.images"
+                                :key="i"
+                                :src="info.data.images[i]"
+                        ></v-carousel-item>
+                    </v-carousel>
                 </v-flex>
                 <v-flex>
                     <v-card flat color="white">
@@ -72,9 +71,9 @@
                 <v-expansion-panel-content v-for="review in info.data.reviews" :key="review.key">
                     <template v-slot:header>
                         <div>
-                            <h6>{{review.date}}</h6>
+                            <h6>{{review.date=new Date().toISOString().substr(0, 10)}}</h6>
                             <v-rating half-increments :value="review.rating" readonly></v-rating>
-                            <p id="comment">{{review.title}}</p>
+                            <p id="title">{{review.title}}</p>
                         </div>
                     </template>
                     <v-card>
