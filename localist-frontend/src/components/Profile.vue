@@ -13,6 +13,7 @@
                                 <div id="prev">
                                     <div id="preview">
                                         <img v-if="url" :src="url" class="preview">
+                                        <!-- <img v-else  :src="" class="preview"> -->
                                     </div>
                                     <br>
                                     <input
@@ -148,6 +149,34 @@ export default {
         return this.dob ? moment(this.dob).format('dddd, MMMM Do YYYY') : ''
       },
     },
+    created() {
+        console.log(this.$store.getters.getUserKey);
+        this.$http
+            .get(
+                "/user/find/" + this.$store.getters.getUserKey
+            )
+            .then(function(data) {
+                console.log(data);
+                data = JSON.parse(data);
+                if (data.name){
+                    this.first_name = name.first_name;
+                    this.last_name = name.last_name;
+                }
+                if (data.date_of_birth){
+                    this.dob = data.date_of_birth
+                }
+                if (data.gender){
+                    this.gender = data.gender;
+                }
+                if (data.location){
+                    this.country = data.location.country;
+                    this.city = data.location.city;
+                }
+            })
+            .catch(function() {
+                console.log("Could not load user info.");
+            });
+    },
     methods: {
         createGuide() {
             formData = {
@@ -192,7 +221,7 @@ export default {
             }
             formData.append("first_name", this.first_name);
             formData.append("last_name", this.last_name);
-            formData.append("date_of_birth", mystring = this.dob.split('-').join(''));
+            formData.append("date_of_birth", mystring = this.dob);
             formData.append("gender", this.gender);
             formData.append("city", this.city);
             formData.append("country", this.country);

@@ -106,6 +106,7 @@ export default {
             this.$http
                 .post("/user/signin", formData)
                 .then(function(response) {
+                    console.log(response.data);
                     if (response.data.error) {
                         alert(response.data.error.message);
                     } else {
