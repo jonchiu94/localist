@@ -223,6 +223,7 @@ export default {
               Submits files to the server
             */
         submitFiles() {
+            var instance = this;
             /*
                   Initialize the form data
                 */
@@ -276,7 +277,7 @@ export default {
                 ).catch(function(err){
                     console.log(err);
                 }).then(function(res){
-                    router.push("/");
+                    router.go()
                 });
         },
 

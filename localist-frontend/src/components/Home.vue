@@ -19,13 +19,13 @@
                       floating
                     >
                       <v-layout>
-                        <v-felx>
+                        <v-flex>
                           <v-text-field
                             hide-details
                             label="Search"
                             v-model="search"
                           ></v-text-field>
-                        </v-felx>
+                        </v-flex>
 
                         <v-flex mx-3>
                           <v-menu
@@ -150,7 +150,7 @@
               <v-layout column align-center justify-center>
                 <div class="headline white--text font-weight-black mb-3 text-xs-center">
                     <span class="black-shadow">
-                        customized local tours that can't be found anywhere else.
+                        Customized local tours that can't be found anywhere else.
                     </span>
                 </div>
                 <v-btn

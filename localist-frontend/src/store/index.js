@@ -15,7 +15,8 @@ const store = new Vuex.Store({
 		adminStatus : localStorage.getItem('adminStatus') || false,
 		searchTitle : localStorage.getItem('title') || '',
 		searchDate  : localStorage.getItem('date') || '',
-		searchGuest : localStorage.getItem('guest') || ''
+		searchGuest : localStorage.getItem('guest') || '',
+		thumbnail : localStorage.getItem('thumbnail') || "assets/img/default_profile.png"
 	},
 	actions   : {
 		clearData ({ commit }) {
@@ -56,6 +57,9 @@ const store = new Vuex.Store({
 		setSearchGuest (state, val) {
 			state.searchGuest = val
 		},
+		setThumbnail(state, val){
+			state.thumbnail = val
+		},
 		logout (state) {
 			(state.currentUser = null),
 				(state.token = ''),
@@ -85,6 +89,9 @@ const store = new Vuex.Store({
 		},
 		getSearchGuest (state) {
 			return state.searchGuest
+		},
+		getThumbnail(state){
+			return state.thumbnail
 		}
 	},
 	plugins   : [ vuexLocalStorage.plugin ]
