@@ -91,7 +91,9 @@ export default {
                 .get("/user/find/" + this.$store.getters.getUserKey)
                 .then(function(response) {
                     r.userImageURL = response.data.image;
-                    r.username = response.data.name.first;
+                    response.data.name
+                        ? (r.username = response.data.name.first)
+                        : (r.username = "Jacob");
                 });
         }
     },

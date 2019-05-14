@@ -114,10 +114,18 @@ export default {
         this.$http
             .get("/user/find/" + this.$store.getters.getUserKey)
             .then(function(response) {
-                r.city = response.data.location.city;
-                r.country = response.data.location.country;
-                r.first_name = response.data.name.first;
-                r.last_name = response.data.name.last;
+                response.data.location
+                    ? (r.city = response.data.location.city)
+                    : "";
+                response.data.location
+                    ? (r.country = response.data.location.country)
+                    : "";
+                response.data.name
+                    ? (r.first_name = response.data.name.first)
+                    : "";
+                response.data.name
+                    ? (r.last_name = response.data.name.last)
+                    : "";
                 r.gender = response.data.gender;
                 r.url = response.data.image;
                 // r.dob = response.data.date_of_birth;
