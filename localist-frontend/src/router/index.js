@@ -17,7 +17,6 @@ import Booking from '../components/Booking'
 import test from '../components/test'
 import Signintest from '../components/Signintest'
 
-
 Vue.use(VueRouter)
 const router = new VueRouter({
 	mode   : 'history',
@@ -61,22 +60,26 @@ const router = new VueRouter({
 		{
 			path      : '/tours/single/:id/booking',
 			name      : 'booking',
-			component : Booking
+			component : Booking,
+			meta      : {
+				requiresAuth : true
+			}
 		},
 		{
 			path      : '/tours/edit/:id',
 			name      : 'editTour',
-			component : EditTour
-		},
-		{
-			path      : '/guides/edit/:id',
-			name      : 'editGuide',
-			component : EditGuide
+			component : EditTour,
+			meta      : {
+				requiresAuth : true
+			}
 		},
 		{
 			path      : '/guides/single/:id',
 			name      : 'guideID',
-			component : SingleGuide
+			component : SingleGuide,
+			meta      : {
+				requiresAuth : true
+			}
 		},
 		{
 			path      : '/tours/single/:id',
@@ -86,7 +89,10 @@ const router = new VueRouter({
 		{
 			path      : 'admin',
 			name      : 'Admin',
-			component : Admin
+			component : Admin,
+			meta      : {
+				requiresAdmin : true
+			}
 		},
 		{
 			path      : '/test',
@@ -101,7 +107,10 @@ const router = new VueRouter({
 		{
 			path      : '/profile',
 			name      : 'profile',
-			component : Profile
+			component : Profile,
+			meta      : {
+				requiresAuth : true
+			}
 		},
 		{
 			path     : '*',

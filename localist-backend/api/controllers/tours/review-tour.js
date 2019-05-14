@@ -38,7 +38,6 @@ module.exports = {
 					return snapshot.val().long_id
 				})
 				.then(function (long_key){
-					console.log(long_key)
 					database
 						.ref('tours_long/' + long_key)
 						.child('reviews')
@@ -56,6 +55,35 @@ module.exports = {
 							title    :
 								inputs.review.title
 						})
+					return database
+						.ref('tours_long/' + long_key)
+						.child('reviews')
+						.once('value')
+				})
+				.then(function (snapshot){
+					var obj = {
+						count  : 0,
+						rating : 0
+					}
+					snapshot.forEach(function (childSnapshot){
+						obj.count += 1
+						obj.rating += parseFloat(
+							childSnapshot.val().rating
+						)
+					})
+					return obj
+				})
+				.then(function (obj){
+					console.log(obj)
+					var rating = Number(
+						Math.round(
+							obj.rating / obj.count + 'e2'
+						) + 'e-2'
+					)
+					toursRefShort.child(short_key).update({
+						number_of_ratings : obj.count,
+						rating            : rating
+					})
 				})
 		} catch (error) {
 			return this.res
