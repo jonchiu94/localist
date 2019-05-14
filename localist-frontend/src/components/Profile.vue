@@ -59,6 +59,7 @@
                                 <div id="prev">
                                     <div id="preview">
                                         <img v-if="url" :src="url" class="preview">
+                                        <img v-else  :src="imgURL" class="preview">
                                     </div>
                                     <br>
                                     <input
@@ -154,38 +155,45 @@ export default {
         city: "",
         country: "",
         genders: ["Male", "Female", "Other"],
-        date_menu: false
+        date_menu: false,
+        imgURL: ""
     }),
-    mounted() {
-        var r = this;
-        this.$http
-            .get("/user/find/" + this.$store.getters.getUserKey)
-            .then(function(response) {
-                response.data.location
-                    ? (r.city = response.data.location.city)
-                    : "";
-                response.data.location
-                    ? (r.country = response.data.location.country)
-                    : "";
-                response.data.name
-                    ? (r.first_name = response.data.name.first)
-                    : "";
-                response.data.name
-                    ? (r.last_name = response.data.name.last)
-                    : "";
-                r.gender = response.data.gender;
-                r.url = response.data.image;
-                // r.dob = response.data.date_of_birth;
-            })
-            .catch(error => alert(error))
-            .finally(() => (this.loading = false));
-    },
     computed: {
         computedDateFormatted() {
             return this.dob
                 ? moment(this.dob).format("dddd, MMMM Do YYYY")
                 : "";
         }
+    },
+    created() {
+        var instance = this;
+        this.$http
+            .get(
+                "/user/find/" + this.$store.getters.getUserKey
+            )
+            .then(function(response) {
+                response = response.data;
+                if (response.name){
+                    instance.first_name = response.name.first;
+                    instance.last_name = response.name.last;
+                }
+                if (response.date_of_birth){
+                    instance.dob = response.date_of_birth
+                }
+                if (response.gender){
+                    instance.gender = response.gender;
+                }
+                if (response.location){
+                    instance.country = response.location.country;
+                    instance.city = response.location.city;
+                }
+                if (response.image){
+                    instance.imgURL = response.image;
+                }
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
     },
     methods: {
         createGuide() {
@@ -218,47 +226,57 @@ export default {
             /*
                   Initialize the form data
                 */
+            var updateData = {};
             var fileData = new FormData();
-            var formData = new FormData();
-
             /*
                   Iteate over any file sent over appending the files
                   to the form data.
                 */
-            var file = [];
             for (let i = 0; i < this.files.length; i++) {
                 fileData.append("img", this.files[i]);
             }
-            formData.append("first_name", this.first_name);
-            formData.append("last_name", this.last_name);
-            formData.append(
-                "date_of_birth",
-                (mystring = this.dob.split("-").join(""))
-            );
-            formData.append("gender", this.gender);
-            formData.append("city", this.city);
-            formData.append("country", this.country);
-            for (var value of formData.values()) {
-                console.log(value);
-            }
+            updateData = {
+                "name": {
+                    "first": this.first_name,
+                    "last": this.last_name
+                },
+                "date_of_birth": this.dob,
+                "gender": this.gender,
+                "location": {
+                    "country": this.country,
+                    "city": this.city
+                }
+            };
             /*
                   Make the request to the POST /select-files URL
                 */
-            this.$http
-                .post(
-                    "/user/image/" + this.$store.getters.getUserKey,
-                    fileData,
-                    {
-                        headers: {
-                            "Content-Type": "multipart/form-data"
+            if (this.files.length > 0){
+                this.$http
+                    .post(
+                        "/user/image/" + this.$store.getters.getUserKey,
+                        fileData,
+                        {
+                            headers: {
+                                "Content-Type": "multipart/form-data"
+                            }
                         }
-                    }
-                )
-                .then(function(data) {
-                    // router.push("/tours");
-                })
-                .catch(function() {
-                    console.log("FAILURE!!");
+                    )
+                    .then(function(data) {
+                        // router.push("/tours");
+                    })
+                    .catch(function(err) {
+                        console.log(err);
+                    });
+                }
+            console.log(updateData);
+            this.$http
+                .patch(
+                    "/user/update/" + this.$store.getters.getUserKey,
+                    updateData
+                ).catch(function(err){
+                    console.log(err);
+                }).then(function(res){
+                    router.push("/");
                 });
         },
 
@@ -291,5 +309,6 @@ export default {
 }
 .preview {
     max-height: 200px;
+    max-width: 350px;
 }
 </style>
