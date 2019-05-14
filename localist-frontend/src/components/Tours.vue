@@ -59,44 +59,6 @@
             </v-layout>
         </v-container>
 
-        <!-- <v-container>
-            <v-layout row wrap>
-                <v-flex 
-                    v-for="tour in tours"
-                    :key="tour.key"
-                    xs3 sm3 offset-sm1
-                    class="tour-card"
-                >
-                    <v-card>
-                        <v-img
-                        class="white--text"
-                        height="200px"
-                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                        >
-                            <v-container fill-height fluid>
-                                <v-layout fill-height>
-                                    <v-flex xs12 align-end flexbox>
-                                        <span class="headline">{{tour.title}}</span>
-                                    </v-flex>
-                                </v-layout>
-                            </v-container>
-                        </v-img>
-
-                        <v-card-title>
-                            <div>
-                                <span>$ {{tour.price.low}} - {{tour.price.high}}</span><br>
-                                    <p class="card-text" v-html="tour.description"></p><br>
-                            </div>
-                        </v-card-title>
-
-                        <v-card-actions>
-                            <v-btn flat color="cyan darken-2">Share</v-btn>
-                            <v-btn :to="'/tours/single/' + tour.key" flat color="cyan darken-2">Explore</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </v-flex>
-            </v-layout>
-        </v-container>-->
     </div>
 </template>
 
