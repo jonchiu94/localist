@@ -1,4 +1,50 @@
 <template>
+
+<!--     <div class="container">
+        <div id="prev">
+            <input
+                type="file"
+                id="file"
+                accept="image/x-png, image/gif, image/jpeg"
+                ref="file"
+                v-on:change="onFileChange"
+            >
+            <div id="preview">
+                <img v-if="url" :src="url" height="100">
+            </div>
+        </div> -->
+
+        <!-- <div class="large-12 medium-12 small-12 cell">-->
+        <!--<label>-->
+        <!--<input type="file" id="files" accept="image/x-png, image/gif, image/jpeg" ref="files" v-on:change="handleFilesUpload()"/>-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="large-12 medium-12 small-12 cell">-->
+        <!--<div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>-->
+        <!--</div>-->
+        <!--<br> -->
+        
+        <!-- <form v-on:submit.prevent="updateProfile">
+            <div>
+                <h3>Your Profile</h3>
+                <input type="text" placeholder="First Name" v-model="first_name">
+                <br>
+                <input type="text" placeholder="Last Name" v-model="last_name">
+                <br>
+                <input type="text" placeholder="Age" v-model="age">
+                <br>
+                <input type="text" placeholder="Gender" v-model="gender">
+                <br>
+                <input type="text" placeholder="City" v-model="city">
+                <br>
+                <input type="text" placeholder="Country" v-model="country">
+            </div>
+        </form>
+        <div class="large-12 medium-12 small-12 cell">
+            <button v-on:click="submitFiles()">Submit</button>
+        </div>
+    </div> -->
+
     <v-container grid-list-xl text-xs-center>
         <v-layout row wrap>
             <v-flex xs12>
@@ -92,6 +138,7 @@
             </v-flex>
         </v-layout>
     </v-container>
+
 </template>
 <script>
 import moment from "moment";
