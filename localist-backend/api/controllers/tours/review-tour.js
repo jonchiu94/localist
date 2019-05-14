@@ -51,7 +51,10 @@ module.exports = {
 									.comment,
 							rating   :
 								inputs.review.rating,
-							date     : inputs.review.date
+							date     :
+								inputs.review.date,
+							title    :
+								inputs.review.title
 						})
 				})
 		} catch (error) {
