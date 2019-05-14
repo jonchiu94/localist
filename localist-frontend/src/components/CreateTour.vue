@@ -169,7 +169,7 @@ export default {
                 },
                 user_key: this.$store.getters.getUserKey
             };
-            console.log(formData);
+            
             this.$http
                 .post("/tour/add", formData)
                 .then(function(response) {

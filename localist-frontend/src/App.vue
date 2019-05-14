@@ -9,43 +9,43 @@
 </template>
 
 <script>
-import Navigation from "./components/Navigation.vue";
-import Footer from "./components/Footer.vue";
+    import Navigation from "./components/Navigation.vue";
+    import Footer from "./components/Footer.vue";
 
-export default {
-    name: "App",
-    components: { Navigation, Footer }
-};
+    export default {
+        name: "App",
+        components: { Navigation, Footer }
+    };
 </script>
 
 <style>
-html,
-body {
-    height: 100%;
-}
+    html,
+    body {
+        height: 100%;
+    }
 
-#routerId {
-    padding-bottom: 10%;
-}
+    #routerId {
+        padding-bottom: 10%;
+    }
 
-#app {
-    min-height: 100%;
-    position: relative;
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-}
+    #app {
+        min-height: 100%;
+        position: relative;
+        font-family: "Avenir", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+    }
 
-#navBar {
-    padding-bottom: 65px;
-}
+    #navBar {
+        padding-bottom: 65px;
+    }
 
-#footer {
-    margin-top: 5%;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 10px; /* Height of the footer */
-}
+    #footer {
+        margin-top: 5%;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 10px; /* Height of the footer */
+    }
 </style>

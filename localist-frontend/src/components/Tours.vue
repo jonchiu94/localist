@@ -23,11 +23,11 @@
                 <v-flex
                     v-for="tour in filteredTours"
                     :key="tour.key"
-                    xs3
-                    sm3
+                    xs12
+                    sm4
+                    md3
                     mx-4
                     my-3
-                    class="tour-card"
                 >
                     <base-card height="10%" color="grey lighten-1" dark href="#!">
                         <v-img
@@ -73,52 +73,52 @@
 </template>
 
 <script>
-export default {
-    data: () => ({
-        tours: [],
-        search: "",
-        asearchTitle: "",
-        asearchDate: "",
-        asearchGuest: ""
-    }),
-    computed: {
-        filteredTours: function() {
-            return this.tours.filter(tour => {
-                if (
-                    tour.title
-                        .toLowerCase()
-                        .match(this.asearchTitle.toLowerCase())
-                ) {
-                    return true;
-                } else if (
-                    tour.location.city
-                        .toLowerCase()
-                        .match(this.asearchTitle.toLowerCase())
-                ) {
-                    return true;
-                } else if (
-                    tour.category
-                        .toLowerCase()
-                        .match(this.asearchTitle.toLowerCase())
-                ) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+    export default {
+        data: () => ({
+            tours: [],
+            search: "",
+            asearchTitle: "",
+            asearchDate: "",
+            asearchGuest: ""
+        }),
+        computed: {
+            filteredTours: function() {
+                return this.tours.filter(tour => {
+                    if (
+                        tour.title
+                            .toLowerCase()
+                            .match(this.asearchTitle.toLowerCase())
+                    ) {
+                        return true;
+                    } else if (
+                        tour.location.city
+                            .toLowerCase()
+                            .match(this.asearchTitle.toLowerCase())
+                    ) {
+                        return true;
+                    } else if (
+                        tour.category
+                            .toLowerCase()
+                            .match(this.asearchTitle.toLowerCase())
+                    ) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            }
+        },
+        mounted() {
+            this.$http
+                .get("/tour/all")
+                .then(response => (this.tours = response.data))
+                .catch(error => alert(error))
+                .finally(() => (this.loading = false));
+            this.asearchTitle = this.$store.getters.getSearchTitle;
+            this.asearchDate = this.$store.getters.getSearchDate;
+            this.asearchGuest = this.$store.getters.getSearchGuest;
         }
-    },
-    mounted() {
-        this.$http
-            .get("/tour/all")
-            .then(response => (this.tours = response.data))
-            .catch(error => alert(error))
-            .finally(() => (this.loading = false));
-        this.asearchTitle = this.$store.getters.getSearchTitle;
-        this.asearchDate = this.$store.getters.getSearchDate;
-        this.asearchGuest = this.$store.getters.getSearchGuest;
-    }
-};
+    };
 </script>
 
 <style scoped>
