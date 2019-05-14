@@ -90,7 +90,7 @@ module.exports = {
 
 		availability        : {
 			required    : true,
-			type        : 'json',
+			type        : 'ref',
 			description : ''
 		}
 	},
@@ -160,10 +160,7 @@ module.exports = {
 					high : inputs.guests.high,
 					low  : inputs.guests.low
 				},
-				availability : {
-					date : inputs.availability.date,
-					time : inputs.availability.time
-				}
+				availability : inputs.availability
 			})
 
 			var user = usersRef.child('tours').push({
