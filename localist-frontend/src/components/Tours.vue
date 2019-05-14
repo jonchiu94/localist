@@ -5,9 +5,19 @@
         >Tours</h1>
 
         <v-btn large class="white" to="tours/createtour">Create Tour</v-btn>
-        <v-text-field type="text" v-model="asearchTitle" label="Search tours" clearable></v-text-field>
-        <v-text-field type="text" v-model="asearchDate" label="Date" clearable></v-text-field>
-        <v-text-field type="number" v-model="asearchGuest" label="# of guests" clearable></v-text-field>
+        <v-layout justify-center>
+            <v-flex xs3>
+                <v-text-field type="text" v-model="asearchTitle" label="Search tours" clearable></v-text-field>
+            </v-flex>
+
+            <v-flex xs3 mx-3>
+                <v-text-field type="text" v-model="asearchDate" label="Date" clearable></v-text-field>
+            </v-flex>
+
+            <v-flex xs3>
+                <v-text-field type="number" v-model="asearchGuest" label="# of guests" clearable></v-text-field>
+            </v-flex>
+        </v-layout>
         <v-container>
             <v-layout wrap justify-space-around>
                 <v-flex
