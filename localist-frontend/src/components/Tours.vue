@@ -4,31 +4,10 @@
             class="cyan--text text--darken-2 mb-2 display-3 font-weight-black font-italic text-xs-center"
         >Tours</h1>
 
-        <v-btn 
-            large 
-            class="white" 
-            to="tours/createtour"
-        >
-            Create Tour
-        </v-btn>
-        <v-text-field
-                type="text"
-                v-model="asearchTitle"
-                label="Search tours"
-                clearable
-        ></v-text-field>
-        <v-text-field
-                type="text"
-                v-model="asearchDate"
-                label="Date"
-                clearable
-        ></v-text-field>
-        <v-text-field
-                type="number"
-                v-model="asearchGuest"
-                label="# of guests"
-                clearable
-        ></v-text-field>
+        <v-btn large class="white" to="tours/createtour">Create Tour</v-btn>
+        <v-text-field type="text" v-model="asearchTitle" label="Search tours" clearable></v-text-field>
+        <v-text-field type="text" v-model="asearchDate" label="Date" clearable></v-text-field>
+        <v-text-field type="number" v-model="asearchGuest" label="# of guests" clearable></v-text-field>
         <v-container>
             <v-layout wrap justify-space-around>
                 <v-flex
@@ -40,10 +19,10 @@
                     my-3
                     class="tour-card"
                 >
-                    <base-card height="350px" color="grey lighten-1" dark href="#!">
+                    <base-card height="10%" color="grey lighten-1" dark href="#!">
                         <v-img
                             :src="tour.main_image"
-                            height="100%"
+                            height="300px"
                             gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
                         >
                             <v-layout fill-height wrap text-xs-right ma-0>
@@ -131,15 +110,25 @@ export default {
         asearchGuest: ""
     }),
     computed: {
-
-        filteredTours: function () {
-            return this.tours.filter((tour) => {
-                if (tour.title.toLowerCase().match(this.asearchTitle.toLowerCase())) {
+        filteredTours: function() {
+            return this.tours.filter(tour => {
+                if (
+                    tour.title
+                        .toLowerCase()
+                        .match(this.asearchTitle.toLowerCase())
+                ) {
                     return true;
-                } else if (tour.location.city.toLowerCase().match(this.asearchTitle.toLowerCase())) {
+                } else if (
+                    tour.location.city
+                        .toLowerCase()
+                        .match(this.asearchTitle.toLowerCase())
+                ) {
                     return true;
-                } else if (tour.category.toLowerCase().match(this.asearchTitle.toLowerCase())) {
-
+                } else if (
+                    tour.category
+                        .toLowerCase()
+                        .match(this.asearchTitle.toLowerCase())
+                ) {
                     return true;
                 } else {
                     return false;
@@ -156,7 +145,6 @@ export default {
         this.asearchTitle = this.$store.getters.getSearchTitle;
         this.asearchDate = this.$store.getters.getSearchDate;
         this.asearchGuest = this.$store.getters.getSearchGuest;
-
     }
 };
 </script>

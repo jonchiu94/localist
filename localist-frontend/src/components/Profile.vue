@@ -9,11 +9,11 @@
                         </v-flex>
                         <v-layout row wrap>
                             <v-flex xs4>
-                            <h2>Profile Image</h2>
+                                <h2>Profile Image</h2>
                                 <div id="prev">
                                     <div id="preview">
                                         <img v-if="url" :src="url" class="preview">
-                                        <!-- <img v-else  :src="" class="preview"> -->
+                                        <img v-else  :src="imgURL" class="preview">
                                     </div>
                                     <br>
                                     <input
@@ -21,51 +21,38 @@
                                         id="file"
                                         accept="image/x-png, image/gif, image/jpeg"
                                         ref="file"
-                                        v-on:change="onFileChange">
+                                        v-on:change="onFileChange"
+                                    >
                                 </div>
                             </v-flex>
                             <v-flex xs4>
                                 <v-layout row wrap>
-                                    <v-flex xs6 class="field">
-                                        First Name 
-                                    </v-flex>
+                                    <v-flex xs6 class="field">First Name</v-flex>
                                     <v-flex xs6>
-                                        <v-text-field
-                                            single-line
-                                            outline
-                                            v-model="first_name"
-                                        ></v-text-field>
+                                        <v-text-field single-line outline v-model="first_name"></v-text-field>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
-                                    <v-flex xs6 class="field">
-                                        Last Name
-                                    </v-flex>
+                                    <v-flex xs6 class="field">Last Name</v-flex>
                                     <v-flex xs6>
-                                        <v-text-field
-                                            single-line
-                                            outline
-                                            v-model="last_name"
-                                        ></v-text-field>
+                                        <v-text-field single-line outline v-model="last_name"></v-text-field>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
-                                    <v-flex xs6 class="field">
-                                        Date of Birth
-                                    </v-flex>
+                                    <v-flex xs6 class="field">Date of Birth</v-flex>
                                     <v-flex xs6>
                                         <v-menu
                                             v-model="date_menu"
                                             :close-on-content-click="false"
                                             full-width
                                             max-width="290"
-                                            >
+                                        >
                                             <template v-slot:activator="{ on }">
                                                 <v-text-field
-                                                :value="computedDateFormatted"
-                                                clearable
-                                                readonly
-                                                v-on="on"
+                                                    :value="computedDateFormatted"
+                                                    clearable
+                                                    readonly
+                                                    v-on="on"
                                                 ></v-text-field>
                                             </template>
                                             <v-date-picker
@@ -78,38 +65,21 @@
                             </v-flex>
                             <v-flex xs4>
                                 <v-layout row wrap>
-                                    <v-flex xs6 class="field">
-                                        Gender
-                                    </v-flex>
+                                    <v-flex xs6 class="field">Gender</v-flex>
                                     <v-flex xs6>
-                                        <v-select
-                                            :items="genders"
-                                            v-model="gender"
-                                            ></v-select>
+                                        <v-select :items="genders" v-model="gender"></v-select>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
-                                    <v-flex xs6 class="field">
-                                        City
-                                    </v-flex>
+                                    <v-flex xs6 class="field">City</v-flex>
                                     <v-flex xs6>
-                                        <v-text-field
-                                            single-line
-                                            outline
-                                            v-model="city"
-                                        ></v-text-field>
+                                        <v-text-field single-line outline v-model="city"></v-text-field>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row wrap>
-                                    <v-flex xs6 class="field">
-                                        Country
-                                    </v-flex>
+                                    <v-flex xs6 class="field">Country</v-flex>
                                     <v-flex xs6>
-                                        <v-text-field
-                                            single-line
-                                            outline
-                                            v-model="country"
-                                        ></v-text-field>
+                                        <v-text-field single-line outline v-model="country"></v-text-field>
                                     </v-flex>
                                 </v-layout>
                             </v-flex>
@@ -124,10 +94,10 @@
     </v-container>
 </template>
 <script>
-import moment from 'moment'
+import moment from "moment";
 import router from "../router";
 export default {
-
+    name: "profile",
     data: () => ({
         files: [],
         url: null,
@@ -137,44 +107,45 @@ export default {
         gender: "",
         city: "",
         country: "",
-        genders: ['Male', 'Female', 'Other'],
-        date_menu: false
+        genders: ["Male", "Female", "Other"],
+        date_menu: false,
+        imgURL: ""
     }),
-
-    /*
-          Defines the method used by the component
-        */
     computed: {
-        computedDateFormatted () {
-        return this.dob ? moment(this.dob).format('dddd, MMMM Do YYYY') : ''
-      },
+        computedDateFormatted() {
+            return this.dob
+                ? moment(this.dob).format("dddd, MMMM Do YYYY")
+                : "";
+        }
     },
     created() {
-        console.log(this.$store.getters.getUserKey);
+        var instance = this;
         this.$http
             .get(
                 "/user/find/" + this.$store.getters.getUserKey
             )
-            .then(function(data) {
-                console.log(data);
-                data = JSON.parse(data);
-                if (data.name){
-                    this.first_name = name.first_name;
-                    this.last_name = name.last_name;
+            .then(function(response) {
+                response = response.data;
+                if (response.name){
+                    instance.first_name = response.name.first;
+                    instance.last_name = response.name.last;
                 }
-                if (data.date_of_birth){
-                    this.dob = data.date_of_birth
+                if (response.date_of_birth){
+                    instance.dob = response.date_of_birth
                 }
-                if (data.gender){
-                    this.gender = data.gender;
+                if (response.gender){
+                    instance.gender = response.gender;
                 }
-                if (data.location){
-                    this.country = data.location.country;
-                    this.city = data.location.city;
+                if (response.location){
+                    instance.country = response.location.country;
+                    instance.city = response.location.city;
+                }
+                if (response.image){
+                    instance.imgURL = response.image;
                 }
             })
-            .catch(function() {
-                console.log("Could not load user info.");
+            .catch(function(err) {
+                console.log(err);
             });
     },
     methods: {
@@ -208,44 +179,57 @@ export default {
             /*
                   Initialize the form data
                 */
+            var updateData = {};
             var fileData = new FormData();
-            var formData = new FormData();
-
             /*
                   Iteate over any file sent over appending the files
                   to the form data.
                 */
-            var file = [];
             for (let i = 0; i < this.files.length; i++) {
                 fileData.append("img", this.files[i]);
             }
-            formData.append("first_name", this.first_name);
-            formData.append("last_name", this.last_name);
-            formData.append("date_of_birth", mystring = this.dob);
-            formData.append("gender", this.gender);
-            formData.append("city", this.city);
-            formData.append("country", this.country);
-            for (var value of formData.values()) {
-                console.log(value);
-            }
+            updateData = {
+                "name": {
+                    "first": this.first_name,
+                    "last": this.last_name
+                },
+                "date_of_birth": this.dob,
+                "gender": this.gender,
+                "location": {
+                    "country": this.country,
+                    "city": this.city
+                }
+            };
             /*
                   Make the request to the POST /select-files URL
                 */
-            this.$http
-                .post(
-                    "/image/user/" + this.$store.getters.getUserKey,
-                    fileData,
-                    {
-                        headers: {
-                            "Content-Type": "multipart/form-data"
+            if (this.files.length > 0){
+                this.$http
+                    .post(
+                        "/user/image/" + this.$store.getters.getUserKey,
+                        fileData,
+                        {
+                            headers: {
+                                "Content-Type": "multipart/form-data"
+                            }
                         }
-                    }
-                )
-                .then(function(data) {
-                    // router.push("/tours");
-                })
-                .catch(function() {
-                    console.log("FAILURE!!");
+                    )
+                    .then(function(data) {
+                        // router.push("/tours");
+                    })
+                    .catch(function(err) {
+                        console.log(err);
+                    });
+                }
+            console.log(updateData);
+            this.$http
+                .patch(
+                    "/user/update/" + this.$store.getters.getUserKey,
+                    updateData
+                ).catch(function(err){
+                    console.log(err);
+                }).then(function(res){
+                    router.push("/");
                 });
         },
 
@@ -273,10 +257,11 @@ export default {
 };
 </script>
 <style scoped>
-    .field{
-        font-size: 24px;
-    }
-    .preview{
-        max-height: 200px;
-    }
+.field {
+    font-size: 24px;
+}
+.preview {
+    max-height: 200px;
+    max-width: 350px;
+}
 </style>

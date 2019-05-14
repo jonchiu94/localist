@@ -69,7 +69,8 @@ export default {
     name: "Signin",
     data: () => ({
         email: "",
-        password: ""
+        password: "",
+        confirm: ""
     }),
     props: {
         msg: String
@@ -89,7 +90,6 @@ export default {
                     } else {
                         r.$store.commit("setCurrentUser", response.data.user);
                         r.$store.commit("setUserKey", response.data.key);
-
                         router.push("/profile");
                     }
                 })
@@ -110,10 +110,6 @@ export default {
                     if (response.data.error) {
                         alert(response.data.error.message);
                     } else {
-                        r.$store.commit(
-                            "setUsername",
-                            response.data.user.user.email
-                        );
                         r.$store.commit("setCurrentUser", response.data.user);
                         r.$store.commit("setCurrentToken", response.data.token);
                         r.$store.commit("setUserKey", response.data.key);

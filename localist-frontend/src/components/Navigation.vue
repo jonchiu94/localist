@@ -13,17 +13,17 @@
             <v-spacer></v-spacer>
 
             <v-text-field
-              flat
-              hide-details
-              solo-inverted
-              style="max-width: 300px;"
-              v-model="searchInput"
-              @keyup.enter="searchEnter()"
+                flat
+                hide-details
+                solo-inverted
+                style="max-width: 300px;"
+                v-model="searchInput"
+                @keyup.enter="searchEnter()"
             ></v-text-field>
             <v-btn icon>
                 <v-icon class="cyan--text text--darken-2">search</v-icon>
             </v-btn>
-            <v-toolbar-items class="hidden-sm-and-down">
+            <v-toolbar-items class="hidden-sm-and-down" v-if="isLoggedIn">
                 <v-btn to="tours/createtour" style="text-decoration: none" flat>Host a tour</v-btn>
             </v-toolbar-items>
 
@@ -32,14 +32,14 @@
                 <template v-slot:activator="{ on }">
                     <v-toolbar-title v-on="on">
                         <v-avatar>
-                            <img>
+                            <img :src="userImageURL" v-bind:placeholder="getUserImage()">
                         </v-avatar>
                     </v-toolbar-title>
                 </template>
 
                 <v-list>
                     <v-list-tile>
-                        <v-list-tile-title>{{getUsername}}</v-list-tile-title>
+                        <v-list-tile-title>{{username}}</v-list-tile-title>
                     </v-list-tile>
 
                     <v-list-tile to="/profile" tyle="text-decoration: none">
@@ -66,38 +66,34 @@
 </template>
 
 <script>
-    import router from "../router";
+import router from "../router";
 export default {
-
     name: "Navigation",
-    data() {
-        return {
-            showNavbar: true,
-            lastScrollPosition: 0,
-            scrollValue: 0,
-            searchInput: ''
-        }
-    },
-    mounted() {
-        this.lastScrollPosition = window.pageYOffset;
-        window.addEventListener("scroll", this.onScroll);
-        const viewportMeta = document.createElement("meta");
-        viewportMeta.name = "viewport";
-        viewportMeta.content = "width=device-width, initial-scale=1";
-        document.head.appendChild(viewportMeta);
-    },
-    beforeDestroy() {
-        window.removeEventListener("scroll", this.onScroll);
-    },
+    data: () => ({
+        showNavbar: true,
+        lastScrollPosition: 0,
+        scrollValue: 0,
+        userImageURL: "",
+        username: "",
+        searchInput: ""
+    }),
     methods: {
-        searchEnter(){
+        searchEnter() {
             this.$store.commit("setSearchTitle", this.searchInput);
             router.push("/tours");
         },
         signout() {
             this.$store.dispatch("logout");
         },
-        onScroll() {}
+        getUserImage: function() {
+            var r = this;
+            this.$http
+                .get("/user/find/" + this.$store.getters.getUserKey)
+                .then(function(response) {
+                    r.userImageURL = response.data.image;
+                    r.username = response.data.name.first;
+                });
+        }
     },
     computed: {
         isLoggedIn: function() {
