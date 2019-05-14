@@ -90,7 +90,9 @@ export default {
             this.$http
                 .get("/user/find/" + this.$store.getters.getUserKey)
                 .then(function(response) {
-                    r.userImageURL = response.data.image;
+                    response.data.image
+                        ? (r.userImageURL = response.data.image)
+                        : (r.userImageURL = require("@/assets/img/default_profile.png"));
                     response.data.name
                         ? (r.username = response.data.name.first)
                         : (r.username = "Jacob");
