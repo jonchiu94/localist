@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar class="nav-bar">
-            <v-toolbar-items class="hidden-sm-and-down">
+            <v-toolbar-items>
                 <v-btn
                     to="/"
                     class="cyan--text text--darken-2 font-weight-black font-italic"
@@ -16,12 +16,14 @@
                 flat
                 hide-details
                 solo-inverted
+                label="Search activities interests you"
                 style="max-width: 300px;"
+                class="hidden-sm-and-down"
                 v-model="searchInput"
                 @keyup.enter="searchEnter()"
             ></v-text-field>
             <v-btn icon>
-                <v-icon class="cyan--text text--darken-2">search</v-icon>
+                <v-icon class="cyan--text text--darken-2 hidden-sm-and-down">search</v-icon>
             </v-btn>
             <v-toolbar-items class="hidden-sm-and-down" v-if="isLoggedIn">
                 <v-btn to="tours/createtour" style="text-decoration: none" flat>Host a tour</v-btn>
