@@ -76,16 +76,18 @@ module.exports = {
 					country : inputs.location.country
 				}
 			})
-			if (coordinates){
+			if (coordinates) {
 				await usersRef.child(this.req.params.key).update({
-					coordinates: {
-						lattitude: inputs.coordinates.lattitude,
-						longitude: inputs.coordinates.longitude
+					coordinates : {
+						lattitude :
+							inputs.coordinates.lattitude,
+						longitude :
+							inputs.coordinates.longitude
 					}
 				})
 			}
 		} catch (error) {
-			return error;
+			return error
 		}
 
 		this.res.status(200).send('User updated successfully')
