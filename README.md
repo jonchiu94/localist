@@ -1,6 +1,6 @@
 # Localist 
 
-Localist is a platform for users to create custom experiences or tours of their home town/city.  Everyone can be a guide, and everyone can have their hand in the tourism industry.
+Localist is a platform for users to create custom tours of their home town/city. Everyone can be a guide, and everyone can have their hand in the tourism industry.
 
 ## Installation
 

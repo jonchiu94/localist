@@ -2,98 +2,394 @@
     <div>
         <v-content>
           <section>
-            <v-parallax 
-              :src="require('@/assets/background-1.jpeg')" 
-              height="600">
+            <v-img 
+              :src="require('@/assets/background-1.jpeg')"
+              gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)" 
+              height="450">
               <v-layout
                 column
                 align-center
                 class="white--text"
               >
-                <h1 class="cyan--text text--darken-2 mb-2 mt-5 display-3 font-weight-black font-italic text-xs-center">Localist</h1>
-                <div class="cyan--text text--darken-2 subheading mb-5 text-xs-center">by TEAM 24</div>
-
                 <v-flex xs12 mt-5>
-                    <v-toolbar
-                      dense
-                      floating
-                    >
-                      <v-layout>
-                        <v-flex>
-                          <v-text-field
-                            hide-details
-                            label="Search"
-                            v-model="search"
-                          ></v-text-field>
-                        </v-flex>
-
-                        <v-flex mx-3>
-                          <v-menu
-                            v-model="menu"
-                            :close-on-content-click="false"
-                            :nudge-right="40"
-                            lazy
-                            transition="scale-transition"
-                            offset-y
-                            full-width
-                            min-width="290px"
-                          >
-                            <template v-slot:activator="{ on }">
-                                <v-text-field
-                                  hide-details
-                                  v-model="date"
-                                  readonly
-                                  v-on="on"
-                                ></v-text-field>
-                            </template>
-                            <v-date-picker v-model="date" @input="menu = false" no-title></v-date-picker>
-                          </v-menu>
-                        </v-flex>
-
-                        <v-flex>
-                          <v-text-field
-                            hide-details
-                            v-model="guest"
-                            type="number"
-                            label="#. of guest"
-                          ></v-text-field>
-                        </v-flex>
-                      
-                        <v-flex ml-3>
-                          <v-toolbar-items>
-                            <!-- <v-btn @click="addSearch" large class="cyan darken-2 white--text"> Search </v-btn> -->
-                            <v-btn @click="addSearch" icon large><v-icon hide-details>search</v-icon></v-btn>
-                          </v-toolbar-items>
-                        </v-flex>
-                      
-                      </v-layout>
-                    </v-toolbar>
+                  <h1 class="white--text text--darken-2 display-3 font-weight-black font-italic text-xs-center">Localist</h1>
+                  <div class="white--text text--darken-2 subheading text-xs-center">by TEAM 24</div>
                 </v-flex>
+                                
+                <v-flex xs12 mt-5>
+                  <v-toolbar
+                    color="grey lighten-3"
+                    floating
+                    height="60"
+                    class="rounded-border"
+                  >
+                    <v-layout>
+                      <v-felx>
+                        <v-autocomplete
+                        v-model="select"
+                        :loading="loading"
+                        :items="items"
+                        :search-input.sync="search"
+                        cache-items
+                        class="mx-3"
+                        flat
+                        hide-no-data
+                        hide-details
+                        label="Search"
+                      ></v-autocomplete>
+                        <!-- <v-text-field
+                          hide-details
+                          label="Search"
+                          v-model="search"
+                        ></v-text-field> -->
+                      </v-felx>
+
+                      <v-flex mx-3>
+                        <v-menu
+                          v-model="menu"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          lazy
+                          transition="scale-transition"
+                          offset-y
+                          full-width
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on }">
+                              <v-text-field
+                                hide-details
+                                v-model="date"
+                                readonly
+                                v-on="on"
+                              ></v-text-field>
+                          </template>
+                          <v-date-picker v-model="date" @input="menu = false" no-title></v-date-picker>
+                        </v-menu>
+                      </v-flex>
+
+                      <v-flex>
+                        <v-text-field
+                          hide-details
+                          v-model="guest"
+                          type="number"
+                          label="#. of guest"
+                        ></v-text-field>
+                      </v-flex>
+                    
+                      <v-flex ml-3>
+                        <v-toolbar-items>
+                          <!-- <v-btn @click="addSearch" large class="cyan darken-2 white--text"> Search </v-btn> -->
+                          <v-btn @click="addSearch" icon large><v-icon hide-details>search</v-icon></v-btn>
+                        </v-toolbar-items>
+                      </v-flex>
+                  
+                    </v-layout>
+                  </v-toolbar>
+                </v-flex>
+
+                <v-flex xs12 align-self-center>
+                  <p class="subheading"> The BEST way to experience local culture.</p>
+                </v-flex>
+  
               </v-layout>
 
-            </v-parallax>
+            </v-img>
+          </section>
+
+          <section>
+            <v-layout
+              row
+              wrap
+              class="my-5 mx-5"
+              align-center
+              justify-space-around
+            >
+
+              <v-flex mb-4 xs12>
+                <h1 class="display-1"> Featured Tours</h1>
+              </v-flex>
+
+              <v-hover>
+                <v-flex
+                    xs12 sm2
+                    mx-1
+                    my-2
+                    slot-scope="{ hover }"
+                    :class="`elevation-${hover ? 12 : 2}`"
+                  >
+                    <base-card 
+                      height="10%" 
+                      color="grey lighten-1" 
+                      dark href="#!">
+                        <v-img
+                            src="https://images.unsplash.com/photo-1491383294311-b702fff30fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                            height="300"
+                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
+                        >
+                          <v-expand-transition>
+                            <div v-if="hover" class="d-flex v-card--reveal display-1 white--text" style="height: 100%;">
+                              ..      Description... dasda sdasdsa dadasd sd
+                            </div>
+                          </v-expand-transition>
+
+                          <v-layout fill-height wrap text-xs-right ma-0>
+                              <v-flex xs12>
+                                  <v-chip
+                                      label
+                                      class="mb-2 text-uppercase"
+                                      color="cyan darken-2"
+                                      text-color="white"
+                                      small
+                                      @click.stop
+                                  >History Tour</v-chip>
+                                  <h3
+                                      class="white--text title font-weight-bold mb-2"
+                                  >Bike Tour</h3>
+                                  <div class="white--text caption">
+                                      $40 - 88
+                                      <br>
+                                      Stanley Park, Vancouver
+                                  </div>
+                              </v-flex>
+
+                          </v-layout>
+                        </v-img>
+                        <v-card-actions align-self-end>
+                          <v-btn
+                              :to="as"
+                              class="white text-uppercase"
+                              flat
+                          >Explore</v-btn>
+                          <v-btn
+                              :to="as"
+                              class="white text-uppercase"
+                              flat
+                          >Book Now</v-btn>
+                        </v-card-actions >
+                    </base-card>
+                </v-flex>
+              </v-hover>
+
+              <v-hover>
+                <v-flex
+                    xs12 sm2
+                    mx-1
+                    my-2
+                    slot-scope="{ hover }"
+                    :class="`elevation-${hover ? 12 : 2}`"
+                  >
+                    <base-card 
+                      height="10%" 
+                      color="grey lighten-1" 
+                      dark href="#!">
+                        <v-img
+                            src="https://images.unsplash.com/photo-1485700713933-d050abfad16d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80"
+                            height="300"
+                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
+                        >
+                        
+                            <v-layout fill-height wrap text-xs-right ma-0>
+                                <v-flex xs12>
+                                    <v-chip
+                                        label
+                                        class="mb-2 text-uppercase"
+                                        color="cyan darken-2"
+                                        text-color="white"
+                                        small
+                                        @click.stop
+                                    >Whisky Tour</v-chip>
+                                    <h3
+                                        class="white--text title font-weight-bold mb-2"
+                                    >Whisky Taste Tour</h3>
+                                    <div class="white--text caption">
+                                        $40 - 88
+                                        <br>
+                                        Stanley Park, Vancouver
+                                    </div>
+                                </v-flex>
+
+                                <v-flex align-self-end>
+                                    <v-btn
+                                        :to="as"
+                                        class="white text-uppercase"
+                                        small
+                                    >Explore</v-btn>
+                                </v-flex>
+                            </v-layout>
+                        </v-img>
+                    </base-card>
+                </v-flex>
+              </v-hover>
+
+              <v-hover>
+                <v-flex
+                    xs12 sm2
+                    mx-1
+                    my-2
+                    slot-scope="{ hover }"
+                    :class="`elevation-${hover ? 12 : 2}`"
+                  >
+                    <base-card 
+                      height="10%" 
+                      color="grey lighten-1" 
+                      dark href="#!">
+                        <v-img
+                            src="https://images.unsplash.com/photo-1545690520-0a933a3c67bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                            height="300"
+                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
+                        >
+                            <v-layout fill-height wrap text-xs-right ma-0>
+                                <v-flex xs12>
+                                    <v-chip
+                                        label
+                                        class="mb-2 text-uppercase"
+                                        color="cyan darken-2"
+                                        text-color="white"
+                                        small
+                                        @click.stop
+                                    >Bike Tour</v-chip>
+                                    <h3
+                                        class="white--text title font-weight-bold mb-2"
+                                    >Bike Tour</h3>
+                                    <div class="white--text caption">
+                                        $40 - 88
+                                        <br>
+                                        Stanley Park, Vancouver
+                                    </div>
+                                </v-flex>
+
+                                <v-flex align-self-end>
+                                    <v-btn
+                                        :to="as"
+                                        class="white text-uppercase"
+                                        small
+                                    >Explore</v-btn>
+                                </v-flex>
+                            </v-layout>
+                        </v-img>
+                    </base-card>
+                </v-flex>
+              </v-hover>
+
+              <v-hover>
+                <v-flex
+                    xs12 sm2
+                    mx-1
+                    my-2
+                    slot-scope="{ hover }"
+                    :class="`elevation-${hover ? 12 : 2}`"
+                  >
+                    <base-card 
+                      height="10%" 
+                      color="grey lighten-1" 
+                      dark href="#!">
+                        <v-img
+                            src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1939&q=80"
+                            height="300"
+                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
+                        >
+                            <v-layout fill-height wrap text-xs-right ma-0>
+                                <v-flex xs12>
+                                    <v-chip
+                                        label
+                                        class="mb-2 text-uppercase"
+                                        color="cyan darken-2"
+                                        text-color="white"
+                                        small
+                                        @click.stop
+                                    >Photo Shoot Tour</v-chip>
+                                    <h3
+                                        class="white--text title font-weight-bold mb-2"
+                                    >Photo Tour</h3>
+                                    <div class="white--text caption">
+                                        $40 - 88
+                                        <br>
+                                        Downtown, Vancouver
+                                    </div>
+                                </v-flex>
+
+                                <v-flex align-self-end>
+                                    <v-btn
+                                        :to="as"
+                                        class="white text-uppercase"
+                                        small
+                                    >Explore</v-btn>
+                                </v-flex>
+                            </v-layout>
+                        </v-img>
+                    </base-card>
+                </v-flex>
+              </v-hover>
+              
+              <v-hover>
+                <v-flex
+                    xs12 sm2
+                    mx-1
+                    my-2
+                    slot-scope="{ hover }"
+                      :class="`elevation-${hover ? 12 : 2}`"
+                  >
+                    <base-card 
+                      height="10%" 
+                      color="grey lighten-1" 
+                      dark href="#!">
+                        <v-img
+                            src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1939&q=80"
+                            height="300"
+                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
+                        >
+                            <v-layout fill-height wrap text-xs-right ma-0>
+                                <v-flex xs12>
+                                    <v-chip
+                                        label
+                                        class="mb-2 text-uppercase"
+                                        color="cyan darken-2"
+                                        text-color="white"
+                                        small
+                                        @click.stop
+                                    >Photo Shoot Tour</v-chip>
+                                    <h3
+                                        class="white--text title font-weight-bold mb-2"
+                                    >Photo Tour</h3>
+                                    <div class="white--text caption">
+                                        $40 - 88
+                                        <br>
+                                        Downtown, Vancouver
+                                    </div>
+                                </v-flex>
+
+                                <v-flex align-self-end>
+                                    <v-btn
+                                        :to="as"
+                                        class="white text-uppercase"
+                                        small
+                                    >Explore</v-btn>
+                                </v-flex>
+                            </v-layout>
+                        </v-img>
+                    </base-card>
+                </v-flex>
+              </v-hover>
+            </v-layout>
           </section>
 
           <section>
             <v-layout
               column
               wrap
-              class="my-5"
+              class="my-4"
               align-center
             >
-              <v-flex xs12 sm4 
-                class="my-3"
-              >
-                <div class="text-xs-center">
-                  <h2 class="headline">
-                    The BEST way to experience local culture.
-                  </h2>
-                </div>
+
+              <v-flex mb-3 xs12>
+                <h1 class="display-1"> We Value ...</h1>
               </v-flex>
+
               <v-flex xs12>
                 <v-container grid-list-xl>
                   <v-layout row wrap align-center>
-                    <v-flex xs12 md4>
+
+                    <v-flex align-self-start xs12 md4>
                       <v-card class="elevation-0 transparent">
                         <v-card-text class="text-xs-center">
                           <v-icon x-large 
@@ -110,7 +406,8 @@
                         </v-card-text>
                       </v-card>
                     </v-flex>
-                    <v-flex xs12 md4>
+
+                    <v-flex align-self-start xs12 md4>
                       <v-card class="elevation-0 transparent">
                         <v-card-text class="text-xs-center">
                           <v-icon x-large class="cyan--text text--darken-2">flash_on</v-icon>
@@ -123,7 +420,8 @@
                         </v-card-text>
                       </v-card>
                     </v-flex>
-                    <v-flex xs12 md4>
+
+                    <v-flex align-self-start xs12 md4>
                       <v-card class="elevation-0 transparent">
                         <v-card-text class="text-xs-center">
                           <v-icon x-large class="cyan--text text--darken-2">shield</v-icon>
@@ -138,7 +436,8 @@
                     </v-flex>
                   </v-layout>
                 </v-container>
-              </v-flex>
+              </v-flex> 
+
             </v-layout>
           </section>
 
@@ -228,11 +527,19 @@
 
     data: () => ({
 
-        date: new Date().toISOString().substr(0, 10),
-        search: '',
-        guest: '',
-        menu: false,
-        modal: false,
+      date: new Date().toISOString().substr(0, 10),
+      search: '',
+      guest: '',
+      menu: false,
+      modal: false,
+
+      loading: false,
+      items: [
+        'Biking',
+        'Hiking',
+        'Wine',
+        ],
+      select: null,
     }),
     methods:{
       addSearch(){
@@ -252,6 +559,11 @@
     .black-shadow{
         text-shadow: 1px 1px 2px black; 
     }
+
+    .rounded-border{
+      border-radius: 5px;
+    }
+    
 </style>
 
 
