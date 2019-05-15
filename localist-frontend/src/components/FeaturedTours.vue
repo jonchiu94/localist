@@ -15,7 +15,7 @@
                         slot-scope="{ hover }"
                         :class="`elevation-${hover ? 12 : 2}`"
                     >
-                        <base-card height="10%" color="grey lighten-1" dark href="#!">
+                        <v-card height="10%" color="white" dark href="#!">
                             <v-img
                                 :src="tour.main_image"
                                 height="300"
@@ -26,6 +26,7 @@
                                         v-if="hover"
                                         class="d-flex v-card--reveal display-1 white--text"
                                         style="height: 100%;"
+                                        :to="'/tours/single/' + tour.key"
                                     >{{tour.tour_description}}</div>
                                 </v-expand-transition>
 
@@ -62,13 +63,17 @@
                             </v-img>
                             <v-card-actions align-self-end>
                                 <v-btn
+                                    color="cyan darken-2"
                                     :to="'/tours/single/' + tour.key"
-                                    class="white text-uppercase"
                                     flat
                                 >Explore</v-btn>
-                                <v-btn :to="as" class="white text-uppercase" flat>Book Now</v-btn>
+                                <v-btn
+                                    :to="'/tours/single/' + tour.key + '/booking'"
+                                    color="cyan darken-2"
+                                    flat
+                                >Book Now</v-btn>
                             </v-card-actions>
-                        </base-card>
+                        </v-card>
                     </v-flex>
                 </v-hover>
             </v-layout>
@@ -78,6 +83,7 @@
 
 <script>
 export default {
+    name: "FeaturedTours",
     data: () => ({
         tours: []
     }),

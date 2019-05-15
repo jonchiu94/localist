@@ -4,7 +4,6 @@
             class="cyan--text text--darken-2 mb-2 display-3 font-weight-black font-italic text-xs-center"
         >Tours</h1>
 
-        <v-btn large class="white" to="tours/createtour">Create Tour</v-btn>
         <v-layout justify-center>
             <v-flex xs3>
                 <v-text-field type="text" v-model="asearchTitle" label="Search tours" clearable></v-text-field>
