@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-toolbar class="nav-bar">
+        <v-toolbar class="nav-bar" >
             <v-toolbar-items>
                 <v-btn
                     to="/"
@@ -18,7 +18,7 @@
                 flat
                 hide-details
                 solo-inverted
-                label="Search activities interests you"
+                label="Search activities that interest you"
                 style="max-width: 300px;"
                 class="hidden-sm-and-down"
                 v-model="searchInput"
@@ -36,7 +36,7 @@
                 <template v-slot:activator="{ on }">
                     <v-toolbar-title v-on="on">
                         <v-avatar>
-                            <img :src="userImageURL" v-bind:placeholder="getUserImage()">
+                            <img :src="getThumbnail" v-bind:placeholder="getUserImage()">
                         </v-avatar>
                     </v-toolbar-title>
                 </template>
@@ -77,7 +77,6 @@ export default {
         showNavbar: true,
         lastScrollPosition: 0,
         scrollValue: 0,
-        userImageURL: "",
         username: "",
         searchInput: ""
     }),
@@ -88,18 +87,19 @@ export default {
         },
         signout() {
             this.$store.dispatch("logout");
+            router.push("/signin");
         },
         getUserImage: function() {
             var r = this;
             this.$http
                 .get("/user/find/" + this.$store.getters.getUserKey)
                 .then(function(response) {
-                    response.data.image
-                        ? (r.userImageURL = response.data.image)
-                        : (r.userImageURL = require("@/assets/img/default_profile.png"));
-                    response.data.name
-                        ? (r.username = response.data.name.first)
-                        : (r.username = "Jacob");
+                    if(response.data.image){
+                        (r.$store.commit("setThumbnail", response.data.image))
+                    }
+                    if(response.data.name){
+                        r.username = response.data.name.first;
+                    }
                 });
         }
     },
@@ -112,6 +112,9 @@ export default {
         },
         getUsername: function() {
             return this.$store.getters.getUsername;
+        },
+        getThumbnail : function(){
+            return this.$store.getters.getThumbnail;
         }
     }
 };

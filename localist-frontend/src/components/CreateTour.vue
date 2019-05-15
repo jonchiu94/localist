@@ -92,7 +92,7 @@
                             xs4
                             label="Max Guests"
                             v-model="guests.high"
-                      ></v-text-field>
+                    ></v-text-field>
                 </v-flex>
 
                 <v-flex mx-2 md3>
@@ -100,7 +100,7 @@
                             xs4
                             label="Min Guests"
                             v-model="guests.low"
-                      ></v-text-field>
+                    ></v-text-field>
                 </v-flex>
             </v-layout>
 
@@ -110,7 +110,7 @@
                             xs4
                             label="Additional Comments"
                             v-model="additional_comments"
-                      ></v-text-field>
+                    ></v-text-field>
                 </v-flex>
             </v-layout>
 
@@ -118,18 +118,18 @@
 
             <v-layout mx-5 row justify-center>
                 <v-flex mx-5 md3>
-                    <v-date-picker v-model="pickAvaiability.pickDate"></v-date-picker>
+                    <v-date-picker v-model="dateInput"></v-date-picker>
                 </v-flex>
                 <v-flex mx-5 md3>
-                    <v-time-picker v-model="pickAvaiability.pickTime" format="24hr"></v-time-picker>
+                    <v-time-picker v-model="timeInput" format="24hr"></v-time-picker>
                 </v-flex>
                 <v-flex mx-5 md3>
                     <v-btn @click="addAvailability" large class="cyan darken-2 white--text">Add Availability</v-btn>
                     <v-list subheader>
-                        <v-subheader>Recent chat</v-subheader>
+                        <v-subheader>Availability</v-subheader>
                         <v-list-tile
-                                v-for="(timeslots, i) in availability"
-                                :key="i"
+                                v-for= "timeSlot in availability"
+                                :key="timeSlot.pickDate"
                                 avatar
                         >
                             <v-list-tile-avatar>
@@ -137,8 +137,8 @@
                             </v-list-tile-avatar>
 
                             <v-list-tile-content>
-                                <v-list-tile-title>{{timeslots.pickDate}}</v-list-tile-title>
-                                <v-list-tile-content>{{timeslots.pickTime}}</v-list-tile-content>
+                                <v-list-tile-title>{{timeSlot.pickDate}}</v-list-tile-title>
+                                <v-list-tile-content>{{timeSlot.pickTime}}</v-list-tile-content>
                             </v-list-tile-content>
 
                             <v-btn @click="deleteTimeSlot(i)"
@@ -152,58 +152,67 @@
 
             </v-layout>
 
-
         </form>
     </div>
 </template>
+
 <script>
+
 import router from "../router";
 export default {
     name: "createTour",
+
     data: () => ({
-        title: "aasd",
-        tour_description: "asd",
-        category:"asd",
+        title: "",
+        tour_description: "",
+        category:"",
         location: {
-            country: "asd",
-            city: "asd"
+            country: "",
+            city: ""
         },
         duration: {
-            long: 12,
-            short: 12
+            long: "",
+            short: ""
         },
         price: {
-            high: 12,
-            low: 12
+            high: "",
+            low: ""
         },
         guests: {
             high: "",
             low: ""
         },
         additional_comments: "",
+        availability: [],
         user_key: "",
-        availability: [
-        ],
-        pickAvaiability:{
+        dateInput: "",
+        timeInput:"",
+        pickAvailability:{
             pickDate: new Date().toISOString().substr(0, 10),
             pickTime: "",
         }
     }),
+
     methods: {
         deleteTimeSlot(i){
            this.availability.splice(i, 1)
         },
+
         addAvailability(){
-            if((this.pickAvaiability.pickDate != null || "") && (this.pickAvaiability.pickTime != null || "")){
-                this.availability.push(this.pickAvaiability);
-                console.log(this.availability[0]);
+            this.pickAvailability.pickDate= this.dateInput;
+            this.pickAvailability.pickTime= this.timeInput;
+            if((this.pickAvailability.pickDate != null || "") && (this.pickAvailability.pickTime != null || "")){
+                this.availability.push({
+                    pickDate: this.pickAvailability.pickDate,
+                    pickTime: this.pickAvailability.pickTime
+                });
             }
         },
+        
         createTour() {
             const formData = {
                 title: this.title,
                 tour_description: this.tour_description,
-                // additional_comments: this.additional_comments,
                 category: this.category,
                 location: {
                     country: this.location.country,
@@ -217,15 +226,15 @@ export default {
                     high: this.price.high,
                     low: this.price.low
                 },
-                // guests: {
-                //     high: this.guests.high,
-                //     low: this.guests.low
-                // },
+                guests: {
+                    high: this.guests.high,
+                    low: this.guests.low
+                },
+                additional_comments: this.additional_comments,
+                availability: this.availability,
                 user_key: this.$store.getters.getUserKey
             };
             
-            console.log(formData);
-
             this.$http
                 .post("/tour/add", formData)
                 .then(function(response) {
@@ -234,7 +243,7 @@ export default {
                 .catch(function(error) {
                     alert(error);
                 });
-        } 
+        }
     }
 };
 </script>

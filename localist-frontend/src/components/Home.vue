@@ -15,10 +15,9 @@
                   <h1 class="white--text text--darken-2 display-3 font-weight-black font-italic text-xs-center">Localist</h1>
                   <div class="white--text text--darken-2 subheading text-xs-center">by TEAM 24</div>
                 </v-flex>
-                
+                                
                 <v-flex xs12 mt-5>
                   <v-toolbar
-                    
                     color="grey lighten-3"
                     floating
                     height="60"
@@ -260,7 +259,7 @@
               <v-layout column align-center justify-center>
                 <div class="headline white--text font-weight-black mb-3 text-xs-center">
                     <span class="black-shadow">
-                        customized local tours that can't be found anywhere else.
+                        Customized local tours that can't be found anywhere else.
                     </span>
                 </div>
                 <v-btn
