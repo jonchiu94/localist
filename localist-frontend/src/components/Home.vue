@@ -346,6 +346,23 @@
                     </v-hover>
                 </v-layout>
             </section>
+            <section>
+                <v-parallax :src="require('@/assets/background-2.jpeg')" height="380">
+                    <v-layout column align-center justify-center>
+                        <div class="headline white--text font-weight-black mb-3 text-xs-center">
+                            <span
+                                class="black-shadow"
+                            >Customized local tours that can't be found anywhere else.</span>
+                        </div>
+                        <v-btn
+                            class="cyan darken-2 mt-5 font-weight-black"
+                            dark
+                            large
+                            href="#"
+                        >Get Started</v-btn>
+                    </v-layout>
+                </v-parallax>
+            </section>
 
             <section>
                 <v-layout column wrap class="my-4" align-center>
@@ -408,7 +425,7 @@
             </section>
 
             <section>
-                <v-parallax :src="require('@/assets/background-2.jpeg')" height="380">
+                <v-parallax :src="require('@/assets/background-3.jpeg')" height="380">
                     <v-layout column align-center justify-center>
                         <div class="headline white--text font-weight-black mb-3 text-xs-center">
                             <span
