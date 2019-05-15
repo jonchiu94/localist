@@ -30,6 +30,7 @@ module.exports.routes = {
 	'POST       /user/signup'                : { action: 'users/signup' },
 	'POST       /user/signin'                : { action: 'users/signin' },
 	'POST       /tour/add'                   : { action: 'tours/post-tour' },
+	'POST       /tour/add/featured/:key'     : { action: 'tours/make-featured' },
 	'POST       /tour/add/review/:key'       : { action: 'tours/review-tour' },
 	'GET        /user/all'                   : { action: 'users/list-users' },
 	'GET        /tour/all'                   : { action: 'tours/get-all-tours' },
@@ -48,6 +49,9 @@ module.exports.routes = {
 	},
 	'POST       /tour/image/additional/:key' : {
 		action : 'images/upload-image-tour-multiple'
+	},
+	'GET        /tour/all/featured'          : {
+		action : 'tours/get-featured-tours'
 	}
 
 	//  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗

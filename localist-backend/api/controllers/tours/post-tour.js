@@ -168,7 +168,6 @@ module.exports = {
 				tour_id : short_tour.key
 			})
 		} catch (error) {
-			console.log(error)
 			return this.res.status(400).send('Error')
 		}
 
