@@ -112,6 +112,8 @@
 
               <v-hover>
                 <v-flex
+                    :v-for="i in 5"
+
                     xs12 sm2
                     mx-1
                     my-2
@@ -123,7 +125,7 @@
                       color="grey lighten-1" 
                       dark href="#!">
                         <v-img
-                            src="https://images.unsplash.com/photo-1491383294311-b702fff30fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                            src="https://images.unsplash.com/photo-1485700713933-d050abfad16d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80"
                             height="300"
                             gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
                         >
@@ -133,28 +135,36 @@
                             </div>
                           </v-expand-transition>
 
-                          <v-layout fill-height wrap text-xs-right ma-0>
+                            <v-layout fill-height wrap text-xs-right ma-0>
                               <v-flex xs12>
-                                  <v-chip
-                                      label
-                                      class="mb-2 text-uppercase"
-                                      color="cyan darken-2"
-                                      text-color="white"
-                                      small
-                                      @click.stop
-                                  >History Tour</v-chip>
-                                  <h3
-                                      class="white--text title font-weight-bold mb-2"
-                                  >Bike Tour</h3>
-                                  <div class="white--text caption">
-                                      $40 - 88
-                                      <br>
-                                      Stanley Park, Vancouver
-                                  </div>
+                                <v-chip
+                                    label
+                                    class="mb-2 text-uppercase"
+                                    color="cyan darken-2"
+                                    text-color="white"
+                                    small
+                                    @click.stop
+                                >Whisky Tour</v-chip>
+                                <h3
+                                    class="white--text title font-weight-bold mb-2"
+                                >Whisky Taste Tour</h3>
+                                <div class="white--text caption">
+                                    $40 - 88
+                                    <br>
+                                    Stanley Park, Vancouver
+                                </div>
                               </v-flex>
 
-                          </v-layout>
+                              <!-- <v-flex align-self-end>
+                                <v-btn
+                                    :to="as"
+                                    class="white text-uppercase"
+                                    small
+                                >Explore</v-btn>
+                              </v-flex> -->
+                            </v-layout>
                         </v-img>
+
                         <v-card-actions align-self-end>
                           <v-btn
                               :to="as"
@@ -171,206 +181,6 @@
                 </v-flex>
               </v-hover>
 
-              <v-hover>
-                <v-flex
-                    xs12 sm2
-                    mx-1
-                    my-2
-                    slot-scope="{ hover }"
-                    :class="`elevation-${hover ? 12 : 2}`"
-                  >
-                    <base-card 
-                      height="10%" 
-                      color="grey lighten-1" 
-                      dark href="#!">
-                        <v-img
-                            src="https://images.unsplash.com/photo-1485700713933-d050abfad16d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80"
-                            height="300"
-                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
-                        >
-                        
-                            <v-layout fill-height wrap text-xs-right ma-0>
-                                <v-flex xs12>
-                                    <v-chip
-                                        label
-                                        class="mb-2 text-uppercase"
-                                        color="cyan darken-2"
-                                        text-color="white"
-                                        small
-                                        @click.stop
-                                    >Whisky Tour</v-chip>
-                                    <h3
-                                        class="white--text title font-weight-bold mb-2"
-                                    >Whisky Taste Tour</h3>
-                                    <div class="white--text caption">
-                                        $40 - 88
-                                        <br>
-                                        Stanley Park, Vancouver
-                                    </div>
-                                </v-flex>
-
-                                <v-flex align-self-end>
-                                    <v-btn
-                                        :to="as"
-                                        class="white text-uppercase"
-                                        small
-                                    >Explore</v-btn>
-                                </v-flex>
-                            </v-layout>
-                        </v-img>
-                    </base-card>
-                </v-flex>
-              </v-hover>
-
-              <v-hover>
-                <v-flex
-                    xs12 sm2
-                    mx-1
-                    my-2
-                    slot-scope="{ hover }"
-                    :class="`elevation-${hover ? 12 : 2}`"
-                  >
-                    <base-card 
-                      height="10%" 
-                      color="grey lighten-1" 
-                      dark href="#!">
-                        <v-img
-                            src="https://images.unsplash.com/photo-1545690520-0a933a3c67bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                            height="300"
-                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
-                        >
-                            <v-layout fill-height wrap text-xs-right ma-0>
-                                <v-flex xs12>
-                                    <v-chip
-                                        label
-                                        class="mb-2 text-uppercase"
-                                        color="cyan darken-2"
-                                        text-color="white"
-                                        small
-                                        @click.stop
-                                    >Bike Tour</v-chip>
-                                    <h3
-                                        class="white--text title font-weight-bold mb-2"
-                                    >Bike Tour</h3>
-                                    <div class="white--text caption">
-                                        $40 - 88
-                                        <br>
-                                        Stanley Park, Vancouver
-                                    </div>
-                                </v-flex>
-
-                                <v-flex align-self-end>
-                                    <v-btn
-                                        :to="as"
-                                        class="white text-uppercase"
-                                        small
-                                    >Explore</v-btn>
-                                </v-flex>
-                            </v-layout>
-                        </v-img>
-                    </base-card>
-                </v-flex>
-              </v-hover>
-
-              <v-hover>
-                <v-flex
-                    xs12 sm2
-                    mx-1
-                    my-2
-                    slot-scope="{ hover }"
-                    :class="`elevation-${hover ? 12 : 2}`"
-                  >
-                    <base-card 
-                      height="10%" 
-                      color="grey lighten-1" 
-                      dark href="#!">
-                        <v-img
-                            src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1939&q=80"
-                            height="300"
-                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
-                        >
-                            <v-layout fill-height wrap text-xs-right ma-0>
-                                <v-flex xs12>
-                                    <v-chip
-                                        label
-                                        class="mb-2 text-uppercase"
-                                        color="cyan darken-2"
-                                        text-color="white"
-                                        small
-                                        @click.stop
-                                    >Photo Shoot Tour</v-chip>
-                                    <h3
-                                        class="white--text title font-weight-bold mb-2"
-                                    >Photo Tour</h3>
-                                    <div class="white--text caption">
-                                        $40 - 88
-                                        <br>
-                                        Downtown, Vancouver
-                                    </div>
-                                </v-flex>
-
-                                <v-flex align-self-end>
-                                    <v-btn
-                                        :to="as"
-                                        class="white text-uppercase"
-                                        small
-                                    >Explore</v-btn>
-                                </v-flex>
-                            </v-layout>
-                        </v-img>
-                    </base-card>
-                </v-flex>
-              </v-hover>
-              
-              <v-hover>
-                <v-flex
-                    xs12 sm2
-                    mx-1
-                    my-2
-                    slot-scope="{ hover }"
-                      :class="`elevation-${hover ? 12 : 2}`"
-                  >
-                    <base-card 
-                      height="10%" 
-                      color="grey lighten-1" 
-                      dark href="#!">
-                        <v-img
-                            src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1939&q=80"
-                            height="300"
-                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
-                        >
-                            <v-layout fill-height wrap text-xs-right ma-0>
-                                <v-flex xs12>
-                                    <v-chip
-                                        label
-                                        class="mb-2 text-uppercase"
-                                        color="cyan darken-2"
-                                        text-color="white"
-                                        small
-                                        @click.stop
-                                    >Photo Shoot Tour</v-chip>
-                                    <h3
-                                        class="white--text title font-weight-bold mb-2"
-                                    >Photo Tour</h3>
-                                    <div class="white--text caption">
-                                        $40 - 88
-                                        <br>
-                                        Downtown, Vancouver
-                                    </div>
-                                </v-flex>
-
-                                <v-flex align-self-end>
-                                    <v-btn
-                                        :to="as"
-                                        class="white text-uppercase"
-                                        small
-                                    >Explore</v-btn>
-                                </v-flex>
-                            </v-layout>
-                        </v-img>
-                    </base-card>
-                </v-flex>
-              </v-hover>
             </v-layout>
           </section>
 
@@ -431,7 +241,7 @@
                           <div class="headline text-xs-center">Secured</div>
                         </v-card-title>
                         <v-card-text>
-                          We stand behind our guides 100%.  We believe in care-free travelling, that should concern you is showing up on time and having fun, or seeing what you came to see!  Our secure payment process is risk-free, quick, and allows you to worry about what's important; having a great tour.
+                          git We stand behind our guides 100%.  We believe in care-free travelling, that should concern you is showing up on time and having fun, or seeing what you came to see!  Our secure payment process is risk-free, quick, and allows you to worry about what's important; having a great tour.
                         </v-card-text>
                       </v-card>
                     </v-flex>
@@ -524,6 +334,7 @@
 
 <script>
   import router from "../router";
+
   export default {
 
     data: () => ({
@@ -533,15 +344,16 @@
       guest: '',
       menu: false,
       modal: false,
-
       loading: false,
+      select: null,
+
       items: [
         'Biking',
         'Hiking',
         'Wine',
         ],
-      select: null,
     }),
+
     methods:{
       addSearch(){
         this.$store.commit("setSearchTitle", this.search);
@@ -552,6 +364,33 @@
         console.log(this.guest);
         router.push("/tours");
       }
+    },
+
+    computed: {
+        featuredTours: function() {
+					return this.tours.filter(tour => {
+							if (
+									tour.tags
+											.toLowerCase()
+											.match(this.asearchTitle.toLowerCase())
+							) {
+									return true;
+							} else {
+									return false;
+							}
+					});
+        }
+      },
+
+    mounted() {
+      this.$http
+          .get("/tour/all")
+          .then(response => (this.tours = response.data))
+          .catch(error => alert(error))
+          .finally(() => (this.loading = false));
+      this.asearchTitle = this.$store.getters.getSearchTitle;
+      this.asearchDate = this.$store.getters.getSearchDate;
+      this.asearchGuest = this.$store.getters.getSearchGuest;
     }
   };
 </script>

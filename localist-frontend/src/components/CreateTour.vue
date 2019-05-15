@@ -85,25 +85,37 @@
                       ></v-text-field>
                 </v-flex>
             </v-layout>
-            <v-layout mx-5 row justify-center>
-                <v-flex mx-5 md3>
+
+            <v-layout row justify-center>
+                <v-flex mx-2 md3>
                     <v-text-field
                             xs4
-                            background-color="white"
-                            label="Additional Comments"
-                            v-model="additional_comments"
-                    ></v-text-field>
+                            label="Max Guests"
+                            v-model="guests.high"
+                      ></v-text-field>
                 </v-flex>
 
-                <v-flex mx-5 md3>
+                <v-flex mx-2 md3>
                     <v-text-field
                             xs4
-                            background-color="white"
-                            label="# of Guests"
-                            v-model="guests"
-                    ></v-text-field>
+                            label="Min Guests"
+                            v-model="guests.low"
+                      ></v-text-field>
                 </v-flex>
             </v-layout>
+
+            <v-layout row justify-center>
+                <v-flex md5>
+                    <v-text-field
+                            xs4
+                            label="Additional Comments"
+                            v-model="additional_comments"
+                      ></v-text-field>
+                </v-flex>
+            </v-layout>
+
+            <v-btn large class="cyan darken-2 white--text" type="submit">Create Tour</v-btn>
+
             <v-layout mx-5 row justify-center>
                 <v-flex mx-5 md3>
                     <v-date-picker v-model="pickAvaiability.pickDate"></v-date-picker>
@@ -138,38 +150,9 @@
                     </v-list>
                 </v-flex>
 
-
             </v-layout>
 
-            <v-layout row justify-center>
-                <v-flex mx-2 md3>
-                    <v-text-field
-                            xs4
-                            label="Max Guests"
-                            v-model="guests.high"
-                      ></v-text-field>
-                </v-flex>
 
-                <v-flex mx-2 md3>
-                    <v-text-field
-                            xs4
-                            label="Min Guests"
-                            v-model="guests.low"
-                      ></v-text-field>
-                </v-flex>
-            </v-layout>
-
-            <v-layout row justify-center>
-                <v-flex md5>
-                    <v-text-field
-                            xs4
-                            label="Additional Comments"
-                            v-model="additional_comments"
-                      ></v-text-field>
-                </v-flex>
-            </v-layout>
-
-            <v-btn large class="cyan darken-2 white--text" type="submit">Create Tour</v-btn>
         </form>
     </div>
 </template>
@@ -178,30 +161,29 @@ import router from "../router";
 export default {
     name: "createTour",
     data: () => ({
-        title: "",
-        tour_description: "",
-        category:"",
+        title: "aasd",
+        tour_description: "asd",
+        category:"asd",
         location: {
-            country: "",
-            city: ""
+            country: "asd",
+            city: "asd"
         },
         duration: {
-            long: "",
-            short: ""
+            long: 12,
+            short: 12
         },
         price: {
-            high: "",
-            low: ""
+            high: 12,
+            low: 12
         },
         guests: {
             high: "",
             low: ""
         },
         additional_comments: "",
-        guests: "",
+        user_key: "",
         availability: [
         ],
-        user_key: "",
         pickAvaiability:{
             pickDate: new Date().toISOString().substr(0, 10),
             pickTime: "",
@@ -221,7 +203,7 @@ export default {
             const formData = {
                 title: this.title,
                 tour_description: this.tour_description,
-                additional_comments: this.additional_comments,
+                // additional_comments: this.additional_comments,
                 category: this.category,
                 location: {
                     country: this.location.country,
@@ -235,13 +217,15 @@ export default {
                     high: this.price.high,
                     low: this.price.low
                 },
-                guests: {
-                    high: this.guests.high,
-                    low: this.guests.low
-                },
+                // guests: {
+                //     high: this.guests.high,
+                //     low: this.guests.low
+                // },
                 user_key: this.$store.getters.getUserKey
             };
             
+            console.log(formData);
+
             this.$http
                 .post("/tour/add", formData)
                 .then(function(response) {
