@@ -5,7 +5,7 @@
             <v-img 
               :src="require('@/assets/background-1.jpeg')"
               gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)" 
-              height="450">
+              height="60vh">
               <v-layout
                 column
                 align-center
@@ -111,72 +111,66 @@
 
               <v-hover>
                 <v-flex
-                    :v-for="i in 5"
+									xs12 sm2
+									mx-1
+									my-2
+									slot-scope="{ hover }"
+									:class="`elevation-${hover ? 12 : 2}`"
+                >
+									<v-img
+											src="https://images.unsplash.com/photo-1485700713933-d050abfad16d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80"
+											height="20vh"
+											gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
+									>
+										<v-expand-transition>
+											<div v-if="hover" class="d-flex v-card--reveal display-1 white--text" style="height: 100%;">
+												..      Description... dasda sdasdsa dadasd sd
+											</div>
+										</v-expand-transition>
 
-                    xs12 sm2
-                    mx-1
-                    my-2
-                    slot-scope="{ hover }"
-                    :class="`elevation-${hover ? 12 : 2}`"
-                  >
-                    <base-card 
-                      height="10%" 
-                      color="grey lighten-1" 
-                      dark href="#!">
-                        <v-img
-                            src="https://images.unsplash.com/photo-1485700713933-d050abfad16d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80"
-                            height="300"
-                            gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
-                        >
-                          <v-expand-transition>
-                            <div v-if="hover" class="d-flex v-card--reveal display-1 white--text" style="height: 100%;">
-                              ..      Description... dasda sdasdsa dadasd sd
-                            </div>
-                          </v-expand-transition>
+											<v-layout fill-height wrap text-xs-right ma-0>
+												<v-flex xs12>
+													<v-chip
+															label
+															class="mb-2 text-uppercase"
+															color="cyan darken-2"
+															text-color="white"
+															small
+															@click.stop
+													>Whisky Tour</v-chip>
+													<h3
+															class="white--text title font-weight-bold mb-2"
+													>Whisky Taste Tour</h3>
+													<div class="white--text caption">
+															$40 - 88
+															<br>
+															Stanley Park, Vancouver
+													</div>
+												</v-flex>
 
-                            <v-layout fill-height wrap text-xs-right ma-0>
-                              <v-flex xs12>
-                                <v-chip
-                                    label
-                                    class="mb-2 text-uppercase"
-                                    color="cyan darken-2"
-                                    text-color="white"
-                                    small
-                                    @click.stop
-                                >Whisky Tour</v-chip>
-                                <h3
-                                    class="white--text title font-weight-bold mb-2"
-                                >Whisky Taste Tour</h3>
-                                <div class="white--text caption">
-                                    $40 - 88
-                                    <br>
-                                    Stanley Park, Vancouver
-                                </div>
-                              </v-flex>
+												<!-- <v-flex align-self-end>
+													<v-btn
+															:to="as"
+															class="white text-uppercase"
+															small
+													>Explore</v-btn>
+												</v-flex> -->
+											</v-layout>
+									</v-img>
 
-                              <!-- <v-flex align-self-end>
-                                <v-btn
-                                    :to="as"
-                                    class="white text-uppercase"
-                                    small
-                                >Explore</v-btn>
-                              </v-flex> -->
-                            </v-layout>
-                        </v-img>
+									<v-card-actions align-self-end>
+										<v-btn
+											:to="as"
+											class="white text-uppercase"
+											flat
+										>Explore</v-btn>
 
-                        <v-card-actions align-self-end>
-                          <v-btn
-                              :to="as"
-                              class="white text-uppercase"
-                              flat
-                          >Explore</v-btn>
-                          <v-btn
-                              :to="as"
-                              class="white text-uppercase"
-                              flat
-                          >Book Now</v-btn>
-                        </v-card-actions >
-                    </base-card>
+										<v-btn
+											:to="as"
+											class="white text-uppercase"
+											flat
+										>Book Now</v-btn>
+									</v-card-actions >
                 </v-flex>
               </v-hover>
 
@@ -277,34 +271,28 @@
           <section>
             <v-container grid-list-xl>
               <v-layout row wrap justify-center class="my-5">
+
                 <v-flex xs12 sm4>
                   <v-card class="elevation-0 transparent">
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline">Our Story</div>
                     </v-card-title>
                     <v-card-text>
-                      Team24 is a company made of 4 developers and travelers, all with a common goal: to make tours cheaper, more enjoyable, and more available for everyone.  Localist is the product child of a vision where the tourism industry is given back to the person that has all the local knowledge: you, the localist.
+                      Team24 is a company made of 4 developers and travelers, 
+											all with a common goal: to make tours cheaper, more enjoyable, 
+											and more available for everyone.  Localist is the product child 
+											of a vision where the tourism industry is given back to the person 
+											that has all the local knowledge: you, the localist.
                     </v-card-text>
                   </v-card>
                 </v-flex>
+
                 <v-flex xs12 sm4 offset-sm1>
                   <v-card class="elevation-0 transparent">
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline">Contact us</div>
                     </v-card-title>
-                    <v-card-text>
-                    </v-card-text>
-<!--
                     <v-list class="transparent">
-                      <v-list-tile>
-                        <v-list-tile-action>
-                          <v-icon class="blue--text text--lighten-2">phone</v-icon>
-                        </v-list-tile-action>
-                        <v-list-tile-content>
-                          <v-list-tile-title>604-123-4567</v-list-tile-title>
-                        </v-list-tile-content>
--->
-                      <!-- </v-list-tile> -->
                       <v-list-tile>
                         <v-list-tile-action>
                           <v-icon class="blue--text text--lighten-2">place</v-icon>
@@ -321,7 +309,7 @@
                           <v-list-tile-title href='&#109;ailt&#111;&#58;%6&#67;%6&#70;&#99;a&#108;&#105;s&#116;&#64;&#37;6C&#37;6Fc&#97;&#108;i&#37;73%74%2E&#99;o&#109;'>loc&#97;list&#64;loc&#97;lis&#116;&#46;com</v-list-tile-title>
                         </v-list-tile-content>
                       </v-list-tile>
-                    <!-- </v-list> -->
+                    </v-list>
                   </v-card>
                 </v-flex>
               </v-layout>
@@ -349,7 +337,10 @@
       items: [
         'Biking',
         'Hiking',
-        'Wine',
+				'Wine',
+				'Vancouver',
+				'Surrey',
+				'Burnaby'
         ],
     }),
 
