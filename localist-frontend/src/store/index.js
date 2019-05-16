@@ -13,10 +13,13 @@ const store = new Vuex.Store({
 		currentUser : localStorage.getItem('currentUser') || null,
 		userKey     : localStorage.getItem('userKey') || '',
 		adminStatus : localStorage.getItem('adminStatus') || false,
-		searchTitle : localStorage.getItem('title') || '',
-		searchDate  : localStorage.getItem('date') || '',
-		searchGuest : localStorage.getItem('guest') || '',
-		thumbnail : localStorage.getItem('thumbnail') || "assets/img/default_profile.png"
+		searchTitle : '',
+		searchDate  : '',
+		searchGuest : '',
+		name        : localStorage.getItem('name') || '',
+		thumbnail   :
+			localStorage.getItem('thumbnail') ||
+			require(`../assets/default_profile.png`)
 	},
 	actions   : {
 		clearData ({ commit }) {
@@ -28,8 +31,16 @@ const store = new Vuex.Store({
 			commit('userKey', '')
 		},
 		logout ({ commit }) {
-			localStorage.removeItem('token');
-			commit('logout');
+			localStorage.removeItem('token')
+			localStorage.removeItem('currentUser')
+			localStorage.removeItem('userKey')
+			localStorage.removeItem('adminStatus')
+			localStorage.removeItem('name')
+			localStorage.removeItem('thumbnail')
+			localStorage.removeItem('searchGuest')
+			localStorage.removeItem('searchTitle')
+			localStorage.removeItem('searchDate')
+			commit('logout')
 		}
 	},
 	mutations : {
@@ -57,15 +68,22 @@ const store = new Vuex.Store({
 		setSearchGuest (state, val) {
 			state.searchGuest = val
 		},
-		setThumbnail(state, val){
+		setThumbnail (state, val) {
 			state.thumbnail = val
 		},
+		setName (state, val) {
+			state.name = val
+		},
 		logout (state) {
-			(state.currentUser = null),
-				(state.token = ''),
-				(state.userId = ''),
-				(state.username = ''),
-				(state.adminStatus = false);
+			state.currentUser = null
+			state.token = ''
+			state.userKey = ''
+			state.name = ''
+			state.thumbnail = require(`../assets/default_profile.png`)
+			state.adminStatus = false
+			state.searchGuest = ''
+			state.searchDate = ''
+			state.searchTitle = ''
 		}
 	},
 	getters   : {
@@ -90,8 +108,11 @@ const store = new Vuex.Store({
 		getSearchGuest (state) {
 			return state.searchGuest
 		},
-		getThumbnail(state){
+		getThumbnail (state) {
 			return state.thumbnail
+		},
+		getName (state) {
+			return state.name
 		}
 	},
 	plugins   : [ vuexLocalStorage.plugin ]

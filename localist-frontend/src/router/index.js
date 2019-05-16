@@ -15,6 +15,7 @@ import Profile from '../components/Profile'
 import Booking from '../components/Booking'
 import test from '../components/test'
 import Signintest from '../components/Signintest'
+import EditTours from '../components/EditTours'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -110,6 +111,11 @@ const router = new VueRouter({
 			meta      : {
 				requiresAuth : true
 			}
+		},
+		{
+			path      : '/edit',
+			name      : 'edit',
+			component : EditTours
 		},
 		{
 			path     : '*',

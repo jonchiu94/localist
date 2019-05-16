@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-toolbar class="nav-bar" >
+        <v-toolbar class="nav-bar">
             <v-toolbar-items>
                 <v-btn
                     to="/"
@@ -28,7 +28,7 @@
                 <v-icon class="cyan--text text--darken-2 hidden-sm-and-down">search</v-icon>
             </v-btn>
             <v-toolbar-items class="hidden-sm-and-down" v-if="isLoggedIn">
-                <v-btn to="tours/createtour" style="text-decoration: none" flat>Host a tour</v-btn>
+                <v-btn to="/tours/createtour" style="text-decoration: none" flat>Host a tour</v-btn>
             </v-toolbar-items>
 
             <v-btn dark to="/signin" v-if="!isLoggedIn">Sign In/Sign Up</v-btn>
@@ -43,7 +43,7 @@
 
                 <v-list>
                     <v-list-tile>
-                        <v-list-tile-title>{{username}}</v-list-tile-title>
+                        <v-list-tile-title>{{getName}}</v-list-tile-title>
                     </v-list-tile>
 
                     <v-list-tile to="/profile" tyle="text-decoration: none">
@@ -75,9 +75,6 @@ export default {
     name: "Navigation",
     data: () => ({
         showNavbar: true,
-        lastScrollPosition: 0,
-        scrollValue: 0,
-        username: "",
         searchInput: ""
     }),
     methods: {
@@ -90,15 +87,21 @@ export default {
             router.push("/signin");
         },
         getUserImage: function() {
-            var r = this;
+            var instance = this;
             this.$http
                 .get("/user/find/" + this.$store.getters.getUserKey)
                 .then(function(response) {
-                    if(response.data.image){
-                        (r.$store.commit("setThumbnail", response.data.image))
+                    if (response.data.image) {
+                        instance.$store.commit(
+                            "setThumbnail",
+                            response.data.image
+                        );
                     }
-                    if(response.data.name){
-                        r.username = response.data.name.first;
+                    if (response.data.name) {
+                        instance.$store.commit(
+                            "setName",
+                            response.data.name.first
+                        );
                     }
                 });
         }
@@ -110,11 +113,11 @@ export default {
         isAdmin: function() {
             return this.$store.getters.getAdminStatus;
         },
-        getUsername: function() {
-            return this.$store.getters.getUsername;
-        },
-        getThumbnail : function(){
+        getThumbnail: function() {
             return this.$store.getters.getThumbnail;
+        },
+        getName: function() {
+            return this.$store.getters.getName;
         }
     }
 };
