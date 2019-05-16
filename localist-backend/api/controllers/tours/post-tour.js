@@ -133,35 +133,38 @@ module.exports = {
 			})
 
 			var short_tour = await toursRefShort.push({
-				title             : inputs.title,
-				user_key          : inputs.user_key,
-				price             : {
+				title        : inputs.title,
+				user_key     : inputs.user_key,
+				price        : {
 					low  : inputs.price.low,
 					high : inputs.price.high
 				},
-				duration          : {
+				duration     : {
 					short : inputs.duration.short,
 					long  : inputs.duration.long
 				},
-				main_image        : inputs.main_image || '',
-				location          : {
+				main_image   : inputs.main_image || '',
+				location     : {
 					city    : inputs.location.city,
 					country : inputs.location.country
 				},
-				coordinates       : {
+				coordinates  : {
 					lattitude : coord.lattitude || '',
 					longitude : coord.longitude || ''
 				},
-				tags              : inputs.tags || '',
-				category          : inputs.category,
-				long_id           : long_tour.key,
-				is_public         : false,
-				guests            : {
+				tags         : inputs.tags || '',
+				category     : inputs.category,
+				long_id      : long_tour.key,
+				is_public    : true,
+				guests       : {
 					high : inputs.guests.high,
 					low  : inputs.guests.low
 				},
-				availability      : inputs.availability,
-				number_of_ratings : 0
+				availability : inputs.availability,
+				rating       : {
+					count   : 0,
+					average : 0
+				}
 			})
 
 			var user = usersRef.child('tours').push({
