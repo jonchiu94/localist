@@ -1,25 +1,26 @@
 <template>
     <div id="tourList">
         <v-container fluid grid-list-md>
-            <v-layout column wrap>
-                <v-flex d-flex xs12 sm6 md6>
-                    <v-carousel>
+            <v-layout row wrap>
+                <v-flex d-flex xs12 sm12 md12 lg7>
+                    <v-carousel dark>
                         <v-carousel-item
-                                v-for="(image, i) in info.data && info.data.images"
-                                :key="i"
-                                :src="info.data.images[i]"
+                            v-for="(image, i) in info.data && info.data.images"
+                            :key="i"
+                            :src="info.data.images[i]"
                         ></v-carousel-item>
                     </v-carousel>
                 </v-flex>
-                <v-flex>
-                    <v-card flat color="white">
-                        <v-card-title primary class="title">{{ info.data && info.data.title }}</v-card-title>
-                        <v-card-text>
-                            <img height="40px" src="../assets/img/location.png">
+                <v-flex d-flex lg5>
+                    <v-card id="info" flat color="white">
+                        <v-card-title primary class="title">{{ info.data && info.data.category }}</v-card-title>
+                        <v-card-text id="title">{{info.data && info.data.title}}</v-card-text>
+                        <v-card-text class="extras">
+                            <img height="30px" src="../assets/img/location.png">
                             {{info.data && info.data.location.city}}, {{info.data && info.data.location.country}}
                         </v-card-text>
-                        <v-card-text>
-                            <img height="40px" src="../assets/img/clock.png">
+                        <v-card-text class="extras">
+                            <img height="30px" src="../assets/img/clock.png">
                             {{info.data && info.data.duration.short}} - {{info.data && info.data.duration.long}} hours
                         </v-card-text>
                         <v-card-text>{{info.data && info.data.tour_description}}</v-card-text>
@@ -28,25 +29,16 @@
                             <br>
                             {{info.data && info.data.additional_comments}}
                         </v-card-text>
+                        <v-card-text>
+                            $ {{info.data && info.data.price.low}} -
+                            {{info.data && info.data.price.high}}
+                        </v-card-text>
                     </v-card>
                 </v-flex>
-                <v-flex d-flex xs12 sm6 md5>
-                    <v-layout row wrap>
-                        <v-flex d-flex>
-                            <v-layout row wrap>
-                                <v-flex d-flex xs12>
-                                    <v-card color="red lighten-2" dark>
-                                        <v-card-text>
-                                            $ {{info.data && info.data.price.low}} -
-                                            {{info.data && info.data.price.high}}
-                                        </v-card-text>
-                                    </v-card>
-                                </v-flex>
-                            </v-layout>
-                        </v-flex>
-                    </v-layout>
-                </v-flex>
             </v-layout>
+            <div class="divider-div">
+                <v-divider class="divider"></v-divider>
+            </div>
             <v-layout row wrap>
                 <v-flex d-flex xs12 sm12 md6>
                     <v-card>
@@ -67,13 +59,16 @@
             <v-btn :to="'/tours/edit/' + this.$route.params.id">Edit</v-btn>
             <br>
             <v-btn :to="'/tours/single/' + this.$route.params.id + '/booking'">Booking</v-btn>
-            <v-expansion-panel>
+            <div class="divider-div">
+                <v-divider class="divider"></v-divider>
+            </div>
+            <v-expansion-panel v-if="reviews">
                 <v-expansion-panel-content v-for="review in info.data.reviews" :key="review.key">
                     <template v-slot:header>
                         <div>
                             <h6>{{review.date=new Date().toISOString().substr(0, 10)}}</h6>
                             <v-rating half-increments :value="review.rating" readonly></v-rating>
-                            <p id="title">{{review.title}}</p>
+                            <p id="reviewTitle">{{review.title}}</p>
                         </div>
                     </template>
                     <v-card>
@@ -93,9 +88,10 @@
 
 <script>
 export default {
-    name: "Signin",
+    name: "SingleTour",
     data: () => ({
-        info: ""
+        info: "",
+        reviews: false
     }),
     computed: {
         // iconUrl () {
@@ -104,18 +100,46 @@ export default {
         // }
     },
     mounted() {
+        var instance = this;
         this.$http
             .get("/tour/find/" + this.$route.params.id + "/true")
-            .then(response => (this.info = response))
+            .then(function(response) {
+                instance.info = response;
+                if (response.data.reviews) {
+                    instance.reviews = true;
+                }
+            })
             .catch(error => alert(error))
             .finally(() => (this.loading = false));
     }
 };
-
 </script>
 
 <style scoped>
 #tour-img {
     width: 500px;
+}
+
+#title {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#info {
+    text-align: left;
+}
+
+.extras {
+    font-size: 20px;
+    font-weight: 450;
+}
+
+.divider-div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.divider {
+    background-color: black;
 }
 </style>
