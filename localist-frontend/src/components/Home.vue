@@ -5,7 +5,7 @@
             <v-img 
               :src="require('@/assets/background-1.jpeg')"
               gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)" 
-              height="60vh">
+              height="420">
               <v-layout
                 column
                 align-center
@@ -24,11 +24,11 @@
                     class="rounded-border"
                   >
                     <v-layout>
-                      <v-felx>
+                      <v-flex>
                         <v-autocomplete
                         v-model="select"
                         :loading="loading"
-                        :items="items"
+                        :items="availableLocations"
                         :search-input.sync="search"
                         cache-items
                         class="mx-3"
@@ -42,7 +42,7 @@
                           label="Search"
                           v-model="search"
                         ></v-text-field> -->
-                      </v-felx>
+                      </v-flex>
 
                       <v-flex mx-3>
                         <v-menu
@@ -109,7 +109,80 @@
                 <h1 class="display-1"> Featured Tours</h1>
               </v-flex>
 
-              <v-hover>
+							<v-flex
+								v-for="tour in featuredTours"
+								:key="tour.key"
+								xs12 sm4 md2 
+								mx-1
+								my-2
+								
+							>
+								<v-card>
+									<v-hover>
+
+										<v-img
+											:src="require('@/assets/background-2.jpeg')"
+											height="220"
+											gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
+											slot-scope="{ hover }"
+											:class="`elevation-${hover ? 12 : 2}`"
+										>
+											<v-expand-transition>
+												<div v-if="hover" class="d-flex v-card--reveal title white--text" style="height: 100%;">
+													${{tour.price.low}} - ${{tour.price.high}}
+														<br>
+													{{tour.location.city}}
+												</div>
+											</v-expand-transition>
+
+											<v-layout fill-height wrap text-xs-right ma-0>
+												<v-flex xs12>
+													<v-chip
+														label
+														class="mb-2 text-uppercase"
+														color="cyan darken-2"
+														text-color="white"
+														small
+														@click.stop
+													>{{ tour.category }}</v-chip>
+													<h3
+														class="white--text title font-weight-bold mb-2"
+													>{{ tour.title }}</h3>
+													<div class="white--text caption">
+														${{tour.price.low}} - ${{tour.price.high}}
+														<br>
+														{{tour.location.city}}
+													</div>
+												</v-flex>
+											</v-layout>
+										</v-img>
+									</v-hover>
+								</v-card>
+
+								<v-card-actions align-self-end>
+									<v-spacer></v-spacer>
+									<v-btn
+										:to="'/tours/single/' + tour.key"
+										class="white text-uppercase cyan darken-2 white--text"
+										style="text-decoration: none"
+										flat
+										small
+										
+									>Explore</v-btn>
+
+									<v-btn
+										:to="nowhere"
+										class="white text-uppercase cyan darken-2 white--text"
+										style="text-decoration: none"
+										flat
+										small
+										
+									>Book Now</v-btn>
+								</v-card-actions >
+							</v-flex>
+              
+							
+              <!-- <v-hover>
                 <v-flex
 									xs12 sm2
 									mx-1
@@ -119,7 +192,7 @@
                 >
 									<v-img
 											src="https://images.unsplash.com/photo-1485700713933-d050abfad16d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80"
-											height="20vh"
+											height="185px"
 											gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
 									>
 										<v-expand-transition>
@@ -148,13 +221,6 @@
 													</div>
 												</v-flex>
 
-												<!-- <v-flex align-self-end>
-													<v-btn
-															:to="as"
-															class="white text-uppercase"
-															small
-													>Explore</v-btn>
-												</v-flex> -->
 											</v-layout>
 									</v-img>
 
@@ -172,8 +238,12 @@
 										>Book Now</v-btn>
 									</v-card-actions >
                 </v-flex>
-              </v-hover>
+              </v-hover> -->
 
+							<v-flex xs12>
+								
+
+							</v-flex>
             </v-layout>
           </section>
 
@@ -184,7 +254,6 @@
               class="my-4"
               align-center
             >
-
               <v-flex mb-3 xs12>
                 <h1 class="display-1"> We Value ...</h1>
               </v-flex>
@@ -333,15 +402,8 @@
       modal: false,
       loading: false,
       select: null,
-
-      items: [
-        'Biking',
-        'Hiking',
-				'Wine',
-				'Vancouver',
-				'Surrey',
-				'Burnaby'
-        ],
+			tours: [],
+      availableLocations: []
     }),
 
     methods:{
@@ -357,30 +419,32 @@
     },
 
     computed: {
-        featuredTours: function() {
-					return this.tours.filter(tour => {
-							if (
-									tour.tags
-											.toLowerCase()
-											.match(this.asearchTitle.toLowerCase())
-							) {
-									return true;
-							} else {
-									return false;
-							}
-					});
-        }
-      },
+			featuredTours: function() {
+				return this.tours.filter(tour => {
+						if (
+							tour.title
+								.toLowerCase()
+								.match('featured')
+						) {
+								return true;
+						} else {
+								return false;
+						}
+				});
+			},
+			
+			findAvailableLocations: function() {
+				return this.tours.filter
+			}
+		},
 
     mounted() {
       this.$http
-          .get("/tour/all")
-          .then(response => (this.tours = response.data))
-          .catch(error => alert(error))
-          .finally(() => (this.loading = false));
-      this.asearchTitle = this.$store.getters.getSearchTitle;
-      this.asearchDate = this.$store.getters.getSearchDate;
-      this.asearchGuest = this.$store.getters.getSearchGuest;
+				.get("/tour/all")
+				.then(response => (this.tours = response.data))
+				.catch(error => alert(error))
+				.finally(() => (this.loading = false));
+			
     }
   };
 </script>
@@ -393,7 +457,10 @@
     .rounded-border{
       border-radius: 5px;
     }
-    
+
+		.none-dec{
+			text-decoration: none
+		}
 </style>
 
 
