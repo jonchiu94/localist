@@ -94,7 +94,7 @@ export default {
                     }
                 })
                 .catch(function(error) {
-                    this.console.log(error);
+                    alert(error);
                 });
         },
         signIn() {
@@ -106,7 +106,6 @@ export default {
             this.$http
                 .post("/user/signin", formData)
                 .then(function(response) {
-                    console.log(response.data);
                     if (response.data.error) {
                         alert(response.data.error.message);
                     } else {
@@ -118,7 +117,7 @@ export default {
                     }
                 })
                 .catch(function(error) {
-                    this.console.log(error);
+                    alert(error);
                 });
         },
         signUpButton() {
@@ -137,7 +136,6 @@ export default {
 <style scoped>
 .cont {
     padding-top: 65px;
-
 
     background-image: url("https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80");
     background-size: 100%;

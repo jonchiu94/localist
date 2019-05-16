@@ -2,7 +2,7 @@
     <div id="tourList">
         <v-container fluid grid-list-md>
             <v-layout row wrap>
-                <v-flex d-flex xs12 sm6 md4 lg7>
+                <v-flex d-flex xs12 sm12 md12 lg7>
                     <v-carousel dark>
                         <v-carousel-item
                             v-for="(image, i) in info.data && info.data.images"
@@ -11,7 +11,7 @@
                         ></v-carousel-item>
                     </v-carousel>
                 </v-flex>
-                <v-flex>
+                <v-flex d-flex lg5>
                     <v-card id="info" flat color="white">
                         <v-card-title primary class="title">{{ info.data && info.data.category }}</v-card-title>
                         <v-card-text id="title">{{info.data && info.data.title}}</v-card-text>
