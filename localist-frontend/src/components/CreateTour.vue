@@ -85,6 +85,7 @@
                       ></v-text-field>
                 </v-flex>
             </v-layout>
+
             <v-layout row justify-center>
                 <v-flex mx-2 md3>
                     <v-text-field
@@ -112,6 +113,9 @@
                     ></v-text-field>
                 </v-flex>
             </v-layout>
+
+            <v-btn large class="cyan darken-2 white--text" type="submit">Create Tour</v-btn>
+
             <v-layout mx-5 row justify-center>
                 <v-flex mx-5 md3>
                     <v-date-picker v-model="dateInput"></v-date-picker>
@@ -146,17 +150,18 @@
                     </v-list>
                 </v-flex>
 
-
             </v-layout>
 
-            <v-btn large class="cyan darken-2 white--text" type="submit">Create Tour</v-btn>
         </form>
     </div>
 </template>
+
 <script>
+
 import router from "../router";
 export default {
     name: "createTour",
+
     data: () => ({
         title: "",
         tour_description: "",
@@ -178,8 +183,7 @@ export default {
             low: ""
         },
         additional_comments: "",
-        availability: [
-        ],
+        availability: [],
         user_key: "",
         dateInput: "",
         timeInput:"",
@@ -188,10 +192,12 @@ export default {
             pickTime: "",
         }
     }),
+
     methods: {
         deleteTimeSlot(i){
            this.availability.splice(i, 1)
         },
+
         addAvailability(){
             this.pickAvailability.pickDate= this.dateInput;
             this.pickAvailability.pickTime= this.timeInput;
@@ -202,6 +208,7 @@ export default {
                 });
             }
         },
+        
         createTour() {
             const formData = {
                 title: this.title,
@@ -236,7 +243,7 @@ export default {
                 .catch(function(error) {
                     alert(error);
                 });
-        } 
+        }
     }
 };
 </script>

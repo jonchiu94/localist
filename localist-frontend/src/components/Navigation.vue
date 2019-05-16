@@ -7,8 +7,10 @@
                     class="cyan--text text--darken-2 font-weight-black font-italic"
                     style="text-decoration: none"
                 >Localist</v-btn>
-                <!-- <v-btn to="/guides" style="text-decoration: none" flat> Guides </v-btn> -->
+
+                <v-btn flat to="/tours" style="text-decoration: none" > Tours </v-btn>
             </v-toolbar-items>
+            
 
             <v-spacer></v-spacer>
 
