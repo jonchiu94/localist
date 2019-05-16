@@ -13,6 +13,13 @@
                 ></v-text-field>
             </v-card-title>
             <v-data-table :headers="headers" :items="tours" :search="search">
+                <template v-slot:no-data>
+                    <v-alert
+                        :value="true"
+                        color="error"
+                        icon="warning"
+                    >Sorry, nothing to display here :(. You should create a tour :)</v-alert>
+                </template>
                 <template v-slot:items="props">
                     <td class="text-xs-left">{{ props.item.title }}</td>
                     <td class="text-xs-center">{{ props.item.category }}</td>
@@ -59,7 +66,7 @@ export default {
     }),
     mounted() {
         this.$http
-            .get("/user/tours/" + this.$store.getters.getUserKey)
+            .get("/tour/user/" + this.$store.getters.getUserKey)
             .then(response => (this.tours = response.data))
             .catch(error => alert(error));
         // .finally(() => (this.loading = false));

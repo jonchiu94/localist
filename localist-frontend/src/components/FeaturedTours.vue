@@ -50,25 +50,25 @@
                                         </div>
                                     </v-flex>
                                     <v-flex row align-end justify-end>
-                                        <div class="ratings">({{tour.number_of_ratings}})</div>
                                         <v-rating
                                             size="20px"
                                             color="yellow"
                                             half-increments
-                                            :value="tour.rating"
+                                            :value="tour.rating.average"
                                             readonly
                                         ></v-rating>
+                                        <div class="ratings">({{tour.rating.count}})</div>
                                     </v-flex>
                                 </v-layout>
                             </v-img>
                             <v-card-actions align-self-end>
                                 <v-btn
                                     color="cyan darken-2"
-                                    :to="'/tours/single/' + tour.key"
+                                    :to="'/tours/single/' + tour.tour_key"
                                     flat
                                 >Explore</v-btn>
                                 <v-btn
-                                    :to="'/tours/single/' + tour.key + '/booking'"
+                                    :to="'/tours/single/' + tour.tour_key + '/booking'"
                                     color="cyan darken-2"
                                     flat
                                 >Book Now</v-btn>
@@ -90,7 +90,7 @@ export default {
     methods: {},
     mounted() {
         this.$http
-            .get("/tour/all/featured")
+            .get("/tour/featured")
             .then(response => (this.tours = response.data))
             .catch(error => alert(error));
         // .finally(() => (this.loading = false));
