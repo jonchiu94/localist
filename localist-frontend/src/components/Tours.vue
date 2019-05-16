@@ -46,10 +46,10 @@
                                     <div class="caption-text">
                                         ${{tour.price.low}} - ${{tour.price.high}}
                                         <br>
-                                        <img height="50px" src="../assets/img/location.png">
+                                        <img height="50px" src="../assets/img/location_white.png">
                                         {{tour.location.city}}, {{tour.location.country}}
                                         <br>
-                                        <img height="50px" src="../assets/img/clock.png">
+                                        <img height="50px" src="../assets/img/clock_white.png">
                                         {{tour.duration.short}} - {{tour.duration.long}} hours
                                     </div>
                                 </v-flex>

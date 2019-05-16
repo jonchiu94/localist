@@ -23,8 +23,9 @@
                 <template v-slot:items="props">
                     <td class="text-xs-left">{{ props.item.title }}</td>
                     <td class="text-xs-center">{{ props.item.category }}</td>
-                    <td class="text-xs-center">{{ props.item.location }}</td>
-                    <td class="text-xs-center">{{ props.item.rating }}</td>
+                    <td class="text-xs-center">{{ props.item.location.city }}</td>
+                    <td class="text-xs-center">{{ props.item.location.country }}</td>
+                    <td class="text-xs-center">{{ props.item.rating.average }}</td>
                     <td class="text-xs-center">{{ props.item.number_of_ratings }}</td>
                     <td>
                         <v-btn :to="'/tours/single/' + props.item.key">View</v-btn>
@@ -57,8 +58,9 @@ export default {
                 value: "title"
             },
             { text: "Category", value: "category" },
-            { text: "Location", value: "location" },
-            { text: "Rating", value: "rating" },
+            { text: "City", value: "city" },
+            { text: "Country", value: "country" },
+            { text: "Rating", value: "average" },
             { text: "# of ratings", value: "number_of_ratings" }
             // { text: "Iron (%)", value: "iron" }
         ],
