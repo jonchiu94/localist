@@ -7,8 +7,9 @@
                         <v-carousel-item
                             v-for="(image, i) in info.data && info.data.images"
                             :key="i"
-                            :src="info.data.images[i]"
-                        ></v-carousel-item>
+                        >
+                            <img class="tour-img" :src="info.data.images[i]">
+                        </v-carousel-item>
                     </v-carousel>
                 </v-flex>
                 <v-flex d-flex lg5>
@@ -116,8 +117,8 @@ export default {
 </script>
 
 <style scoped>
-#tour-img {
-    width: 500px;
+.tour-img {
+    width: 100%;
 }
 
 #title {
