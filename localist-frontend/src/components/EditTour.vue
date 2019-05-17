@@ -1,6 +1,59 @@
 <template>
     <div>
         <form v-on:submit.prevent="editTour">
+            <v-layout row justify-center>
+                <v-flex md5>
+                    <v-text-field
+                        xs4
+                        label="Title *"
+                        :placeholder="info.data.title"
+                        v-model="title"
+                    ></v-text-field>
+                </v-flex>
+            </v-layout>
+
+            <v-layout row justify-center>
+                <v-flex mx-2 md3>
+                <v-text-field 
+                    xs4
+                    label="Description *"
+                    v-model="tour_description"
+                    :placeholder="info.data.tour_description"
+                    ></v-text-field>
+                </v-flex>
+
+                <v-flex mx-2 md3>
+                    <v-text-field
+                        xs4
+                        label="Category *"
+                        v-model="category"
+                        :placeholder="info.data.category"
+                    ></v-text-field>
+                </v-flex>
+                </v-layout>
+
+                <v-layout row justify-center>
+                <v-flex mx-2 md3>
+                <v-text-field
+                    xs4
+                    label="Country *"
+                    v-model="location.country"
+                    :placeholder="info.data.location.country"
+                    ></v-text-field>
+                </v-flex>
+
+                <v-flex mx-2 md3>
+                <v-text-field
+                    xs4
+                    label="City *"
+                    v-model="location.city"
+                    :placeholder="info.data.location.city"
+                    ></v-text-field>
+                </v-flex>
+            </v-layout>
+
+
+
             <div>
                 <p>Title</p>
                 <input type="text" :placeholder="info.data.title" v-model="title">
@@ -23,43 +76,43 @@
             <button type="submit">Edit Tour</button>
         </form>
     </div>
-</template>
+</template> 
+
+
 <script>
-import router from "../router";
-export default {
-    name: "editTour",
-    data: () => ({
-        info: "",
-        title: "",
-        description: "",
-        duration_long: "",
-        duration_short: "",
-        price_high: "",
-        price_low: ""
-    }),
-    mounted() {
-        this.$http
-            .get("/tour/find/" + this.$route.params.id + "/true")
-            .then(response => (this.info = response))
-            .catch(error => alert(error))
-            .finally(() => (this.loading = false));
-    },
-    methods: {
-        editTour() {
-            const formData = {
-                title: this.title,
-                description: this.description,
-                duration_long: this.duration_long,
-                duration_short: this.duration_short,
-                price_high: this.price_high,
-                price_low: this.price_low
-            };
-            this.$http
-                .get("/tour/find/" + this.$route.params.id + "/true")
-                .then(response => (this.info = response))
-                .catch(error => alert(error))
-                .finally(() => (this.loading = false));
-        },
+    import router from "../router";
+
+    export default {
+        name: "editTour",
+
+        data: () => ({
+            info: "",
+
+            title: "",
+            tour_description: "",
+            category:"",
+            location: {
+                country: "",
+                city: ""
+            },
+            duration: {
+                long: "",
+                short: ""
+            },
+            price: {
+                high: "",
+                low: ""
+            },
+            guests: {
+                high: "",
+                low: ""
+            },
+            additional_comments: "",
+            availability: [],
+            user_key: "",
+
+        }),
+
         methods: {
             editTour() {
                 const formData = {
@@ -70,6 +123,7 @@ export default {
                     price_high: this.price_high,
                     price_low: this.price_low
                 };
+
                 this.$http
                     .patch("/tour/update/" + this.$route.params.id, formData)
                     .then(function(response) {
@@ -79,9 +133,17 @@ export default {
                         alert(error);
                     });
             }
-        }
+        },
+
+        mounted() {
+            this.$http
+                .get("/tour/find/" + this.$route.params.id + "/true")
+                .then(response => (this.info = response))
+                .catch(error => alert(error))
+                .finally(() => (this.loading = false));
+        },
     }
-};
+    
 </script>
 <style scoped>
 </style>

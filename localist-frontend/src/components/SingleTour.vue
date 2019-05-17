@@ -90,16 +90,19 @@
 <script>
 export default {
     name: "SingleTour",
+
     data: () => ({
         info: "",
         reviews: false
     }),
+
     computed: {
         // iconUrl () {
         // return require('./assets/img/background.jpg')
         // The path could be '../assets/img.png', etc., which depends on where your vue file is
         // }
     },
+
     mounted() {
         var instance = this;
         this.$http

@@ -12,6 +12,7 @@
     "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
     "mdbvue": "^5.3.0",
+    "simple-vue-validator": "^0.16.0",
     "vue": "^2.6.10",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.6",

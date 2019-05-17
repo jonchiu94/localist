@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
         <form v-on:submit.prevent="createTour">
             <v-container fluid grid-list-md>
                 <v-layout row wrap>

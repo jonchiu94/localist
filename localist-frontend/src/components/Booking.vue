@@ -1,71 +1,322 @@
 <template>
-    <div id="booking">
-        <v-layout row wrap>
-            <v-flex xs12 sm6 class="hidden-xs-only">
-                <v-date-picker v-model="picker" color="blue lighten-1" header-color="blue"></v-date-picker>
+  <div>
+    <v-layout wrap pt-5 justify-center>
+      <v-flex xs8 class="cyan--text text--darken-2 display-2 font-weight-black font-italic bgc-b">
+        Booking
+      </v-flex>
+    </v-layout>
+
+    <v-layout wrap justify-center>
+      <!-- 
+        *************************
+        ** Guests Information **
+        *************************
+      -->
+      <v-flex 
+        xs12 md4
+				py-3
+        pt-5
+        light 
+        class="bgc-b"
+      >
+				<v-layout row wrap justify-space-around fill-height>
+
+					<v-flex xs6>
+						<form>
+							<div class="title" style="text-align: left;"> Traveller Infomation </div>
+							<v-divider></v-divider>
+
+              <!-- 
+                ** Guests 1 default to be the account owner **
+              -->
+              <div class="subheading" style="text-align: left;"> Guest 1 </div>
+							<v-text-field
+								v-model="first_name"
+								label="First Name"
+                :placeholder="first_name"
+								disabled
+							></v-text-field>
+              <v-text-field
+								v-model="last_name"
+								label="Last Name"
+                :placeholder="last_name"
+                disabled
+							></v-text-field>
+
+              <v-btn small> Add More Guest</v-btn>
+
+						</form>
+					</v-flex>
+
+					
+          <!-- *******************
+          ** Confirm Number of Guest
+            **********************
+          -->
+					<!-- <v-flex xs3>
+						<v-flex 
+							xs6 
+						>
+							Adult 
+							<br>
+							(19+ years old)</v-flex>
+						<v-flex xs6>
+							<v-select :items="numbers" v-model="numOfAdult"></v-select>
+						</v-flex>
+					</v-flex>
+
+					<v-flex xs3>
+						<v-flex 
+							xs6 
+						>
+							# Of Youth 
+							<br>
+							(13-18 years old)</v-flex>
+						<v-flex xs6>
+							<v-select :items="numbers" v-model="numOfYouth"></v-select>
+						</v-flex>
+					</v-flex>
+
+					<v-flex xs3>
+						<v-flex 
+							xs6 
+						>
+							# Of Chrild 
+							<br>
+							(8-12 years old)</v-flex>
+						<v-flex xs6>
+							<v-select :items="numbers" v-model="numOfChild"></v-select>
+						</v-flex>
+					</v-flex> -->
+
+				</v-layout>
+      </v-flex>
+
+      <!-- 
+        *****************
+        ** Tour Review **
+        *****************
+      -->
+      <v-flex
+        xs12 md4
+        py-3
+        pt-5
+        light
+        class="bgc-b"
+      >
+        <v-layout row wrap justify-space-around fill-height>
+
+					<v-flex xs6>
+            <!-- 
+              ** Basic Information about the tour **
+            -->
+            <v-flex class="title align-left"> Tour Review </v-flex>
+            <v-divider></v-divider>
+            <v-flex 
+              xs12
+              class="subheading font-weight-bold mb-2 align-left"
+            >
+              {{info.data && info.data.title}}
             </v-flex>
-            <v-flex xs12 sm6 class="hidden-xs-only">
-                <v-card>
-                    <v-list two-line>
-                        <template>
-                            <v-subheader>
-                                Availability
-                            </v-subheader>
-                                    <v-list-tile>
-                                        <v-list-tile-content>
-                                            <v-list-tile-title>asdadaa</v-list-tile-title>
-                                            <v-list-tile-sub-title>hi</v-list-tile-sub-title>
-                                        </v-list-tile-content>
-                                    </v-list-tile>
-                        </template>
-                        <!--<template v-for="(time, availability) in items">-->
-                            <!--<v-subheader-->
-                                    <!--v-if="item.header"-->
-                                    <!--:key="item.header"-->
-                            <!--&gt;-->
-                                <!--{{ item.header }}-->
-                            <!--</v-subheader>-->
-
-                            <!--<v-divider-->
-                                    <!--v-else-if="item.divider"-->
-                                    <!--:key="index"-->
-                                    <!--:inset="item.inset"-->
-                            <!--&gt;</v-divider>-->
-
-                            <!--<v-list-tile-->
-                                    <!--v-else-->
-                                    <!--:key="item.title"-->
-                                    <!--avatar-->
-                                    <!--@click=""-->
-                            <!--&gt;-->
-                                <!--<v-list-tile-avatar>-->
-                                    <!--<img :src="item.avatar">-->
-                                <!--</v-list-tile-avatar>-->
-
-                                <!--<v-list-tile-content>-->
-                                    <!--<v-list-tile-title v-html="item.title"></v-list-tile-title>-->
-                                    <!--<v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>-->
-                                <!--</v-list-tile-content>-->
-                            <!--</v-list-tile>-->
-                        <!--</template>-->
-                    </v-list>
-                </v-card>
+            <v-flex py-3 xs12>
+              <v-carousel dark height="250">
+                <v-carousel-item
+                  v-for="(image, i) in info.data && info.data.images"
+                  :key="i"
+                  :src="info.data.images[i]"
+                ></v-carousel-item>
+              </v-carousel>
             </v-flex>
+            <v-flex 
+              xs12
+              class="subheading mb-2 align-left"
+            >
+              {{info.data && info.data.tour_description}}
+            </v-flex>
+
+            <!-- 
+              ** Payment Information **
+            -->
+            <v-flex pt-3 class="title align-left"> Payment Information </v-flex>
+            <v-divider></v-divider>
+            <v-flex pt-3 class="subheading font-weight-bold align-left"> 
+              <v-layout>
+                <v-flex>Total Amount: </v-flex>
+                <v-spacer></v-spacer>
+                <v-flex>${{info.data && info.data.price.low}}.00 </v-flex>
+              </v-layout>
+            </v-flex>
+					</v-flex>
         </v-layout>
-    </div>
+      </v-flex>
+
+      <!-- 
+        ** Payment Information **
+      -->
+      <v-flex xs12>
+        <v-checkbox
+          v-model="checkbox"
+          label="I agree the Refund Policy, the Guest Waiver, and the Cancellation Policy."
+          required
+        ></v-checkbox>
+      </v-flex>
+      <v-flex xs12>
+        <v-btn 
+          @click="submit"
+          dark
+          class="cyan darken-2 mt-5">
+          Continue
+        </v-btn>
+      </v-flex>
+    </v-layout>
+  </div>
+
+
+  <!-- 
+  ************************************
+  **  Older Version of Booking Page **
+  ************************************
+  -->
+  <!-- <div id="booking">
+    <v-layout row wrap>
+      <v-flex xs12 sm6 class="hidden-xs-only">
+        <v-date-picker v-model="picker" color="blue lighten-1" header-color="blue"></v-date-picker>
+      </v-flex>
+      <v-flex xs12 sm6 class="hidden-xs-only">
+        <v-card>
+          <v-list two-line>
+            <template>
+              <v-subheader>
+                Availability
+              </v-subheader>
+                  <v-list-tile>
+                    <v-list-tile-content>
+                      <v-list-tile-title>asdadaa</v-list-tile-title>
+                      <v-list-tile-sub-title>hi</v-list-tile-sub-title>
+                    </v-list-tile-content>
+                  </v-list-tile>
+            </template>
+            
+            <template v-for="(time, availability) in items">
+              <v-subheader
+                  v-if="item.header"
+                  :key="item.header"
+              >
+                {{ item.header }}
+              </v-subheader>
+
+              <v-divider
+                  v-else-if="item.divider"
+                  :key="index"
+                  :inset="item.inset"
+              </v-divider>
+
+              <v-list-tile
+                  v-else
+                  :key="item.title"
+                  avatar
+                  @click=""
+              >
+                <v-list-tile-avatar>
+                  <img :src="item.avatar">
+                </v-list-tile-avatar>
+
+                <v-list-tile-content>
+                  <v-list-tile-title v-html="item.title"></v-list-tile-title>
+                  <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </template>
+          </v-list>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </div> -->
 </template>
 <script>
-    export default {
-        data () {
-            return {
-                picker: new Date().toISOString().substr(0, 10),
-                availability: [],
-            }
-        }
+// const { required, maxLength, email } = validators
+// const validationMixin = vuelidate.validationMixin
+
+// Vue.use(vuelidate.default)
+
+  export default {
+    name: "Booking",
+    //  mixins: [validationMixin],
+
+    // validations: {
+    //   checkbox: {
+    //     checked (val) {
+    //       return val
+    //     }
+    //   }
+    // },
+
+    data: () => ({
+      info: "",
+      first_name: "",
+      last_name: "",
+      checkbox: false,
+			numOfAdult: "",
+			numOfChild: "",
+			numbers: ["0", "1", "2", "3", "4"],
+    }),
+
+    computed: {
+      // checkboxErrors () {
+      //   const errors = []
+      //   if (!this.$v.checkbox.$dirty) return errors
+      //   !this.$v.checkbox.checked && errors.push('You must agree to continue!')
+      //   return errors
+      // }
+    },
+
+    mounted() {
+      var instance = this;
+      this.$http
+        .get("/tour/find/" + this.$route.params.id + "/true")
+        .then(function(response) {
+          instance.info = response;
+          if (response.data.reviews) {
+            instance.reviews = true;
+          }
+        })
+        .catch(error => alert(error))
+        .finally(() => (this.loading = false));
+
+      var guestOne = this;
+      this.$http
+        .get("/user/find/" + this.$store.getters.getUserKey)
+        .then(function(response) {
+          response = response.data;
+          if (response.name){
+            guestOne.first_name = response.name.first;
+            guestOne.last_name = response.name.last;
+          }
+        })
+    },
+
+    methods: {
+      submit () {
+        
+      },
     }
+  }
 </script>
-<style scoped>
-    #booking{
-        padding-top: 5%;
-    }
+
+<style>
+  .bgc-w{
+    background-color: #FFFFFF;
+  }
+
+  .bgc-b{
+    background-color: rgba(50, 115, 220, 0.3);
+  }
+
+  .align-left{
+    text-align: left;
+  }
+
+  .align-center{
+    text-align: center;
+  }
 </style>
