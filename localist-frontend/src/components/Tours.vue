@@ -2,7 +2,7 @@
   <div>
 		<v-layout wrap pt-5 justify-center>
       <v-flex xs8 class="cyan--text text--darken-2 display-2 font-weight-black font-italic">
-        Tours
+        All Tours
       </v-flex>
     </v-layout>
 
@@ -11,7 +11,7 @@
 			** Searching Criterias **
 			*************************
 		-->
-		<v-layout row wrap justify-center>
+		<v-layout pt-5 row wrap justify-center>
 			<v-flex xs12 md3>
 			<v-text-field type="text" v-model="asearchTitle" label="Search tours" clearable></v-text-field>
 			</v-flex>
