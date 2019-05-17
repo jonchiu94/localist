@@ -159,7 +159,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 
 .ratings {
   color: white;

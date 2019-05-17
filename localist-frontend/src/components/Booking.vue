@@ -284,6 +284,10 @@
     text-align: left;
   }
 
+  .align-right{
+    text-align: right;
+  }
+
   .align-center{
     text-align: center;
   }
