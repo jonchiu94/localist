@@ -100,7 +100,9 @@
         </v-img>
       </section>
 
-      <FeaturedTours></FeaturedTours>
+      <section>
+        <FeaturedTours></FeaturedTours>
+      </section>
 
       <section>
         <v-parallax :src="require('@/assets/background-camp.jpeg')" height="380">

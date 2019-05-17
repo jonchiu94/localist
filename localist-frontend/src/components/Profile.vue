@@ -11,12 +11,12 @@
         <form v-on:submit.prevent="updateProfile">
           <v-layout row wrap justify-space-around>
             <v-flex xs4>
-              
+
               <v-layout row wrap>
-                <v-flex xs6 class="title">Profile Image</v-flex>
+                <v-flex xs6 pr-5 class="title align-right">Profile Image</v-flex>
 
                 <v-layout column wrap>
-                  <v-flex xs6 >
+                  <v-flex xs12 >
                     <div id="preview">
                       <img v-if="url" :src="url" class="preview">
                       <img v-else :src="imgURL" class="preview">
@@ -38,8 +38,8 @@
               <v-divider></v-divider>
 
               <v-layout row wrap>
-                <v-flex align-self-center xs6 class="title">First Name</v-flex>
-                <v-flex xs6>
+                <v-flex pr-5 align-self-center xs6 class="title align-right">First Name</v-flex>
+                <v-flex pl-5 xs6>
                   <v-text-field 
                     single-line 
                     v-model="first_name">
@@ -48,8 +48,8 @@
               </v-layout>
 
               <v-layout row wrap>
-                <v-flex align-self-center xs6 class="title">Last Name</v-flex>
-                <v-flex xs6>
+                <v-flex pr-5 align-self-center xs6 class="title align-right">Last Name</v-flex>
+                <v-flex pl-5 xs6>
                   <v-text-field 
                     single-line 
                     v-model="last_name">
@@ -58,8 +58,8 @@
               </v-layout>
 
               <v-layout row wrap>
-                <v-flex align-self-center xs6 class="title">Date of Birth</v-flex>
-                <v-flex xs6>
+                <v-flex pr-5 align-self-center xs6 class="title align-right">Date of Birth</v-flex>
+                <v-flex pl-5 xs6>
                   <v-menu
                     v-model="date_menu"
                     :close-on-content-click="false"
@@ -75,22 +75,22 @@
               </v-layout>
 
               <v-layout row wrap>
-                <v-flex align-self-center xs6 class="title">Gender</v-flex>
-                <v-flex xs6>
+                <v-flex pr-5 align-self-center xs6 class="title align-right">Gender</v-flex>
+                <v-flex pl-5 xs6>
                   <v-select :items="genders" v-model="gender"></v-select>
                 </v-flex>
               </v-layout>
 
               <v-layout row wrap>
-                <v-flex align-self-center xs6 class="title">City</v-flex>
-                <v-flex xs6>
+                <v-flex pr-5 align-self-center xs6 class="title align-right">City</v-flex>
+                <v-flex pl-5 xs6>
                   <v-text-field single-line v-model="city"></v-text-field>
                 </v-flex>
               </v-layout>
 
               <v-layout row wrap>
-                <v-flex align-self-center xs6 class="title">Country</v-flex>
-                <v-flex xs6>
+                <v-flex pr-5 align-self-center xs6 class="title align-right">Country</v-flex>
+                <v-flex pl-5 xs6>
                   <v-text-field single-line v-model="country"></v-text-field>
                 </v-flex>
               </v-layout>
@@ -269,7 +269,11 @@
 <style scoped>
 
   .preview {
-    max-height: 200px;
-    max-width: 350px;
+    max-height: 100%;
+    max-width: 90%;
+  }
+
+  .align-right{
+   text-align: right;
   }
 </style>
