@@ -19,7 +19,7 @@
         </v-layout>
         <v-container>
             <v-layout row wrap justify-space-between>
-                <v-flex v-for="tour in filteredTours" :key="tour.key" xs12 sm5 md3 mx-4 my-4>
+                <v-flex v-for="tour in filteredTours" :key="tour.key" xs12 sm12 md3 mx-4 my-4>
                     <base-card
                         color="grey lighten-1"
                         height="350px"
@@ -33,7 +33,7 @@
                             gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
                         >
                             <v-layout fill-height wrap text-xs-right ma-0>
-                                <v-flex xs12>
+                                <v-flex class="black-shadow" xs12>
                                     <v-chip
                                         label
                                         class="mb-2 text-uppercase"
@@ -46,28 +46,28 @@
                                     <div class="caption-text">
                                         ${{tour.price.low}} - ${{tour.price.high}}
                                         <br>
-                                        <img height="50px" src="../assets/img/location.png">
+                                        <img height="50px" src="../assets/img/location_white.png">
                                         {{tour.location.city}}, {{tour.location.country}}
                                         <br>
-                                        <img height="50px" src="../assets/img/clock.png">
+                                        <img height="50px" src="../assets/img/clock_white.png">
                                         {{tour.duration.short}} - {{tour.duration.long}} hours
                                     </div>
                                 </v-flex>
 
                                 <v-flex row align-end justify-end>
-                                    <div class="ratings">({{tour.number_of_ratings}})</div>
+                                    <div class="ratings">({{tour.rating.count}})</div>
                                     <v-rating
                                         size="20px"
                                         color="yellow"
                                         half-increments
-                                        :value="tour.rating"
+                                        :value="tour.rating.average"
                                         readonly
                                     ></v-rating>
                                     <v-btn
                                         :to="'/tours/single/' + tour.key"
-                                        class="white text-uppercase"
+                                        class="explore-btn"
                                         small
-                                    >Explore</v-btn>
+                                    >EXPLORE</v-btn>
                                 </v-flex>
                             </v-layout>
                         </v-img>
@@ -144,5 +144,14 @@ h3 {
 .ratings {
     color: white;
     font-size: 20px;
+    text-shadow: 1px 1px 2px black;
+}
+
+.black-shadow {
+    text-shadow: 1px 1px 2px black;
+}
+
+.explore-btn {
+    color: white;
 }
 </style>

@@ -16,11 +16,11 @@
                         <v-card-title primary class="title">{{ info.data && info.data.category }}</v-card-title>
                         <v-card-text id="title">{{info.data && info.data.title}}</v-card-text>
                         <v-card-text class="extras">
-                            <img height="30px" src="../assets/img/location.png">
+                            <img height="30px" src="../assets/img/location_black.png">
                             {{info.data && info.data.location.city}}, {{info.data && info.data.location.country}}
                         </v-card-text>
                         <v-card-text class="extras">
-                            <img height="30px" src="../assets/img/clock.png">
+                            <img height="30px" src="../assets/img/clock_black.png">
                             {{info.data && info.data.duration.short}} - {{info.data && info.data.duration.long}} hours
                         </v-card-text>
                         <v-card-text>{{info.data && info.data.tour_description}}</v-card-text>
