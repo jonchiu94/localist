@@ -1,6 +1,5 @@
 <template>
     <div >
-
         <form v-on:submit.prevent="createTour">
             <v-divider></v-divider>
             <v-layout row justify-center>

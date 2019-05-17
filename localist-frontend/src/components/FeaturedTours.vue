@@ -24,8 +24,8 @@
                                 <v-expand-transition>
                                     <div
                                         v-if="hover"
-                                        class="d-flex v-card--reveal display-1 white--text"
-                                        style="height: 100%;"
+                                        class="title white--text"
+                                        style="height: 100%; text-decoration: none;"
                                         :to="'/tours/single/' + tour.key"
                                     >{{tour.tour_description}}</div>
                                 </v-expand-transition>

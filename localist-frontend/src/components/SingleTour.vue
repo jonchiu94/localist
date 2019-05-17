@@ -89,16 +89,19 @@
 <script>
 export default {
     name: "SingleTour",
+
     data: () => ({
         info: "",
         reviews: false
     }),
+    
     computed: {
         // iconUrl () {
         // return require('./assets/img/background.jpg')
         // The path could be '../assets/img.png', etc., which depends on where your vue file is
         // }
     },
+
     mounted() {
         var instance = this;
         this.$http
@@ -116,30 +119,30 @@ export default {
 </script>
 
 <style scoped>
-#tour-img {
-    width: 500px;
-}
+    #tour-img {
+        width: 500px;
+    }
 
-#title {
-    font-size: 50px;
-    font-weight: bold;
-}
+    #title {
+        font-size: 50px;
+        font-weight: bold;
+    }
 
-#info {
-    text-align: left;
-}
+    #info {
+        text-align: left;
+    }
 
-.extras {
-    font-size: 20px;
-    font-weight: 450;
-}
+    .extras {
+        font-size: 20px;
+        font-weight: 450;
+    }
 
-.divider-div {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
+    .divider-div {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 
-.divider {
-    background-color: black;
-}
+    .divider {
+        background-color: black;
+    }
 </style>
