@@ -1,6 +1,5 @@
 <template>
-
-<!--     <div class="container">
+    <!--     <div class="container">
         <div id="prev">
             <input
                 type="file"
@@ -12,19 +11,19 @@
             <div id="preview">
                 <img v-if="url" :src="url" height="100">
             </div>
-        </div> -->
+    </div>-->
 
-        <!-- <div class="large-12 medium-12 small-12 cell">-->
-        <!--<label>-->
-        <!--<input type="file" id="files" accept="image/x-png, image/gif, image/jpeg" ref="files" v-on:change="handleFilesUpload()"/>-->
-        <!--</label>-->
-        <!--</div>-->
-        <!--<div class="large-12 medium-12 small-12 cell">-->
-        <!--<div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>-->
-        <!--</div>-->
-        <!--<br> -->
-        
-        <!-- <form v-on:submit.prevent="updateProfile">
+    <!-- <div class="large-12 medium-12 small-12 cell">-->
+    <!--<label>-->
+    <!--<input type="file" id="files" accept="image/x-png, image/gif, image/jpeg" ref="files" v-on:change="handleFilesUpload()"/>-->
+    <!--</label>-->
+    <!--</div>-->
+    <!--<div class="large-12 medium-12 small-12 cell">-->
+    <!--<div v-for="(file, key) in files" class="file-listing">{{ file.name }} <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>-->
+    <!--</div>-->
+    <!--<br> -->
+
+    <!-- <form v-on:submit.prevent="updateProfile">
             <div>
                 <h3>Your Profile</h3>
                 <input type="text" placeholder="First Name" v-model="first_name">
@@ -43,7 +42,7 @@
         <div class="large-12 medium-12 small-12 cell">
             <button v-on:click="submitFiles()">Submit</button>
         </div>
-    </div> -->
+    </div>-->
 
     <v-container grid-list-xl text-xs-center>
         <v-layout row wrap>
@@ -59,10 +58,11 @@
                                 <div id="prev">
                                     <div id="preview">
                                         <img v-if="url" :src="url" class="preview">
-                                        <img v-else  :src="imgURL" class="preview">
+                                        <img v-else :src="imgURL" class="preview">
                                     </div>
                                     <br>
                                     <input
+                                        multiple
                                         type="file"
                                         id="file"
                                         accept="image/x-png, image/gif, image/jpeg"
@@ -138,7 +138,6 @@
             </v-flex>
         </v-layout>
     </v-container>
-
 </template>
 <script>
 import moment from "moment";
@@ -168,26 +167,24 @@ export default {
     created() {
         var instance = this;
         this.$http
-            .get(
-                "/user/find/" + this.$store.getters.getUserKey
-            )
+            .get("/user/find/" + this.$store.getters.getUserKey)
             .then(function(response) {
                 response = response.data;
-                if (response.name){
+                if (response.name) {
                     instance.first_name = response.name.first;
                     instance.last_name = response.name.last;
                 }
-                if (response.date_of_birth){
-                    instance.dob = response.date_of_birth
+                if (response.date_of_birth) {
+                    instance.dob = response.date_of_birth;
                 }
-                if (response.gender){
+                if (response.gender) {
                     instance.gender = response.gender;
                 }
-                if (response.location){
+                if (response.location) {
                     instance.country = response.location.country;
                     instance.city = response.location.city;
                 }
-                if (response.image){
+                if (response.image) {
                     instance.imgURL = response.image;
                 }
             })
@@ -237,21 +234,21 @@ export default {
                 fileData.append("img", this.files[i]);
             }
             updateData = {
-                "name": {
-                    "first": this.first_name,
-                    "last": this.last_name
+                name: {
+                    first: this.first_name,
+                    last: this.last_name
                 },
-                "date_of_birth": this.dob,
-                "gender": this.gender,
-                "location": {
-                    "country": this.country,
-                    "city": this.city
+                date_of_birth: this.dob,
+                gender: this.gender,
+                location: {
+                    country: this.country,
+                    city: this.city
                 }
             };
             /*
                   Make the request to the POST /select-files URL
                 */
-            if (this.files.length > 0){
+            if (this.files.length > 0) {
                 this.$http
                     .post(
                         "/user/image/" + this.$store.getters.getUserKey,
@@ -268,16 +265,17 @@ export default {
                     .catch(function(err) {
                         console.log(err);
                     });
-                }
-            console.log(updateData);
+            }
             this.$http
                 .patch(
                     "/user/update/" + this.$store.getters.getUserKey,
                     updateData
-                ).catch(function(err){
+                )
+                .catch(function(err) {
                     console.log(err);
-                }).then(function(res){
-                    router.go()
+                })
+                .then(function(res) {
+                    router.push("/");
                 });
         },
 
