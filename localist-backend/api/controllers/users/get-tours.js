@@ -52,15 +52,15 @@ module.exports = {
 						long_key = snapshot.val().long_id
 					})
 
-				await database
-					.ref('tours_long/' + long_key)
-					.once('value')
-					.then(function (snapshot){
-						tour = {
-							...tour,
-							...snapshot.val()
-						}
-					})
+				// await database
+				// 	.ref('tours_long/' + long_key)
+				// 	.once('value')
+				// 	.then(function (snapshot){
+				// 		tour = {
+				// 			...tour,
+				// 			...snapshot.val()
+				// 		}
+				// 	})
 				tours.push(tour)
 			}
 		} catch (error) {
