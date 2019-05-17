@@ -26,7 +26,7 @@
                     <td class="text-xs-center">{{ props.item.location.city }}</td>
                     <td class="text-xs-center">{{ props.item.location.country }}</td>
                     <td class="text-xs-center">{{ props.item.rating.average }}</td>
-                    <td class="text-xs-center">{{ props.item.number_of_ratings }}</td>
+                    <td class="text-xs-center">{{ props.item.rating.count }}</td>
                     <td>
                         <v-btn :to="'/tours/single/' + props.item.key">View</v-btn>
                     </td>

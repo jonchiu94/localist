@@ -30,42 +30,44 @@ module.exports = {
 		var userTours = []
 		var tours = []
 
-		try {
-			await guidesRef
-				.child('tours')
+		// try {
+		await guidesRef
+			.child('tours')
+			.once('value')
+			.then(function (snapshot){
+				snapshot.forEach(function (childSnapshot){
+					userTours.push(childSnapshot.val())
+				})
+			})
+
+		for (userTour of userTours) {
+			var tour = {}
+			var long_key = ''
+			await database
+				.ref('tours_short/' + userTour.tour_id)
 				.once('value')
 				.then(function (snapshot){
-					snapshot.forEach(function (childSnapshot){
-						userTours.push(childSnapshot.val())
-					})
-				})
-
-			for (userTour of userTours) {
-				var tour = {}
-				var long_key = ''
-				await database
-					.ref('tours_short/' + userTour.tour_id)
-					.once('value')
-					.then(function (snapshot){
-						tour = snapshot.val()
+					tour = snapshot.val()
+					if (snapshot.val()) {
 						tour.key = snapshot.key
 						long_key = snapshot.val().long_id
-					})
+						tours.push(tour)
+					}
+				})
 
-				// await database
-				// 	.ref('tours_long/' + long_key)
-				// 	.once('value')
-				// 	.then(function (snapshot){
-				// 		tour = {
-				// 			...tour,
-				// 			...snapshot.val()
-				// 		}
-				// 	})
-				tours.push(tour)
-			}
-		} catch (error) {
-			return this.res.status(404).send('User not found')
+			// await database
+			// 	.ref('tours_long/' + long_key)
+			// 	.once('value')
+			// 	.then(function (snapshot){
+			// 		tour = {
+			// 			...tour,
+			// 			...snapshot.val()
+			// 		}
+			// 	})
 		}
+		// } catch (error) {
+		// 	return this.res.status(404).send('User not found')
+		// }
 
 		this.res.status(200).send(tours)
 	}
