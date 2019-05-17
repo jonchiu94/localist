@@ -8,7 +8,7 @@
                 </v-card-text>
 
                 <v-divider></v-divider>
-                <font-awesome-icon icon="coffee" />
+                
                 <v-card-text class="white--text">
                     &copy;2019 — <strong>Team 24</strong>
                 </v-card-text>

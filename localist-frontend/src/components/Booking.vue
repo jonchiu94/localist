@@ -194,103 +194,30 @@
       <!-- 
         ** Payment Information **
       -->
-      <v-flex xs8 offset-xs3>
+      <v-flex xs8 class="bgc-b">
         <v-checkbox
           v-model="checkbox"
           label="I agree the Refund Policy, the Guest Waiver, and the Cancellation Policy."
           required
         ></v-checkbox>
       </v-flex>
-      <v-flex xs8>
+      <v-flex xs8 class="bgc-b">
         <v-btn 
           @click="submit"
           dark
-          class="cyan darken-2 mt-5">
+          class="cyan darken-2 mt-5"
+          :to="'/tours/single/' + this.$route.params.id + '/booking/payment'"
+          >
           Continue
         </v-btn>
       </v-flex>
     </v-layout>
   </div>
-
-
-  <!-- 
-  ************************************
-  **  Older Version of Booking Page **
-  ************************************
-  -->
-  <!-- <div id="booking">
-    <v-layout row wrap>
-      <v-flex xs12 sm6 class="hidden-xs-only">
-        <v-date-picker v-model="picker" color="blue lighten-1" header-color="blue"></v-date-picker>
-      </v-flex>
-      <v-flex xs12 sm6 class="hidden-xs-only">
-        <v-card>
-          <v-list two-line>
-            <template>
-              <v-subheader>
-                Availability
-              </v-subheader>
-                  <v-list-tile>
-                    <v-list-tile-content>
-                      <v-list-tile-title>asdadaa</v-list-tile-title>
-                      <v-list-tile-sub-title>hi</v-list-tile-sub-title>
-                    </v-list-tile-content>
-                  </v-list-tile>
-            </template>
-            
-            <template v-for="(time, availability) in items">
-              <v-subheader
-                  v-if="item.header"
-                  :key="item.header"
-              >
-                {{ item.header }}
-              </v-subheader>
-
-              <v-divider
-                  v-else-if="item.divider"
-                  :key="index"
-                  :inset="item.inset"
-              </v-divider>
-
-              <v-list-tile
-                  v-else
-                  :key="item.title"
-                  avatar
-                  @click=""
-              >
-                <v-list-tile-avatar>
-                  <img :src="item.avatar">
-                </v-list-tile-avatar>
-
-                <v-list-tile-content>
-                  <v-list-tile-title v-html="item.title"></v-list-tile-title>
-                  <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </template>
-          </v-list>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </div> -->
 </template>
 <script>
-// const { required, maxLength, email } = validators
-// const validationMixin = vuelidate.validationMixin
-
-// Vue.use(vuelidate.default)
 
   export default {
     name: "Booking",
-    //  mixins: [validationMixin],
-
-    // validations: {
-    //   checkbox: {
-    //     checked (val) {
-    //       return val
-    //     }
-    //   }
-    // },
 
     data: () => ({
       info: "",
