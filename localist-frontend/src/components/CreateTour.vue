@@ -116,18 +116,14 @@
                     >Add Availability</v-btn>
                     <v-list subheader>
                         <v-subheader>Availability</v-subheader>
-                        <v-list-tile
-                            v-for="timeSlot in availability"
-                            :key="timeSlot.pickDate"
-                            avatar
-                        >
+                        <v-list-tile v-for="timeSlot in availability" :key="timeSlot.date" avatar>
                             <v-list-tile-avatar>
                                 <img src="../assets/img/clock_black.png">
                             </v-list-tile-avatar>
 
                             <v-list-tile-content>
-                                <v-list-tile-title>{{timeSlot.pickDate}}</v-list-tile-title>
-                                <v-list-tile-content>{{timeSlot.pickTime}}</v-list-tile-content>
+                                <v-list-tile-title>{{timeSlot.date}}</v-list-tile-title>
+                                <v-list-tile-content>{{timeSlot.time}}</v-list-tile-content>
                             </v-list-tile-content>
 
                             <v-btn @click="deleteTimeSlot(i)" flat>
@@ -137,13 +133,11 @@
                     </v-list>
                 </v-flex>
             </v-layout>
-
         </form>
     </div>
 </template>
 
 <script>
-
 import router from "../router";
 export default {
     name: "createTour",
@@ -174,8 +168,8 @@ export default {
         dateInput: "",
         timeInput: "",
         pickAvailability: {
-            pickDate: new Date().toISOString().substr(0, 10),
-            pickTime: ""
+            date: new Date().toISOString().substr(0, 10),
+            time: ""
         },
         files: [],
         additionalFiles: [],
@@ -188,19 +182,19 @@ export default {
             this.availability.splice(i, 1);
         },
         addAvailability() {
-            this.pickAvailability.pickDate = this.dateInput;
-            this.pickAvailability.pickTime = this.timeInput;
+            this.pickAvailability.date = this.dateInput;
+            this.pickAvailability.time = this.timeInput;
             if (
-                (this.pickAvailability.pickDate != null || "") && 
-                (this.pickAvailability.pickTime != null || "")
+                (this.pickAvailability.date != null || "") &&
+                (this.pickAvailability.time != null || "")
             ) {
                 this.availability.push({
-                    pickDate: this.pickAvailability.pickDate,
-                    pickTime: this.pickAvailability.pickTime
+                    date: this.pickAvailability.date,
+                    time: this.pickAvailability.time
                 });
             }
         },
-        
+
         createTour() {
             var instance = this;
             const formData = {
