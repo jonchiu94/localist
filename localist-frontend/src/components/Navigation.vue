@@ -51,12 +51,12 @@
                             <v-icon class="cyan--text text--darken-2">person</v-icon>Profile
                         </v-list-tile-title>
                     </v-list-tile>
-
+<!-- 
                     <v-list-tile to="/" style="text-decoration: none">
                         <v-list-tile-title>
                             <v-icon class="cyan--text text--darken-2">settings</v-icon>Settings
                         </v-list-tile-title>
-                    </v-list-tile>
+                    </v-list-tile> -->
 
                     <v-list-tile @click="signout" style="text-decoration: none">
                         <v-list-tile-title>
