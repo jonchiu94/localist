@@ -7,11 +7,7 @@
     </v-layout>
 
     <v-layout wrap justify-center>
-      <!-- 
-        *************************
-        ** Guests Information **
-        *************************
-      -->
+      
       <v-flex 
         xs12 md4
 				py-3
@@ -19,13 +15,48 @@
         light 
         class="bgc-b"
       >
-				<v-layout row wrap justify-space-around fill-height>
+        <!-- 
+          *************************
+          ** Check Availability **
+          *************************
+        -->
+        <v-layout row wrap justify-space-around>
+					<v-flex xs6 >
+            <div class="title" style="text-align: left;"> Guide's Availability </div>
+            <v-divider></v-divider>
 
+            <div>
+              <div v-for="(availability, i) in info.data && info.data.availability" :key="i" :value="i">
+                <input type="radio" id="i"> <input>
+                <label for="i"> {{availability.date}} </label>
+              </div>
+            </div>
+            <!-- <v-radio-group v-model="radioGroup">
+              <v-radio 
+                v-for="(availability, i) in info.data && info.data.availability"
+                :key="i"
+                :value="i"
+                :src="availability"
+                label="availability.date"
+                class="subheading" 
+                style="text-align: left;"
+              > 
+
+              </v-radio>
+            </v-radio-group> -->
+					</v-flex>
+        </v-layout>
+
+        <!-- 
+          *************************
+          ** Guests Information **
+          *************************
+        -->
+				<v-layout pt-3 row wrap justify-space-around fill-height>
 					<v-flex xs6>
 						<form>
 							<div class="title" style="text-align: left;"> Traveller Infomation </div>
 							<v-divider></v-divider>
-
               <!-- 
                 ** Guests 1 default to be the account owner **
               -->
@@ -47,13 +78,16 @@
 
 						</form>
 					</v-flex>
+				</v-layout>
+      </v-flex>
 
-					
-          <!-- *******************
-          ** Confirm Number of Guest
-            **********************
-          -->
-					<!-- <v-flex xs3>
+        <!-- 
+          *****************************
+          ** Confirm Number of Guest **
+          *****************************
+        -->
+        <!-- <v-layout row wrap justify-space-around fill-height>
+					<v-flex xs6>
 						<v-flex 
 							xs6 
 						>
@@ -87,10 +121,9 @@
 						<v-flex xs6>
 							<v-select :items="numbers" v-model="numOfChild"></v-select>
 						</v-flex>
-					</v-flex> -->
-
-				</v-layout>
-      </v-flex>
+					</v-flex>
+				</v-layout> -->
+      
 
       <!-- 
         *****************
@@ -139,7 +172,7 @@
             -->
             <v-flex pt-3 class="title align-left"> Payment Information </v-flex>
             <v-divider></v-divider>
-            <v-flex pt-3 class="subheading font-weight-bold align-left"> 
+            <v-flex class="subheading font-weight-bold align-left"> 
               <v-layout>
                 <v-flex>Total Amount: </v-flex>
                 <v-spacer></v-spacer>
@@ -153,14 +186,14 @@
       <!-- 
         ** Payment Information **
       -->
-      <v-flex xs12>
+      <v-flex xs8 offset-xs3>
         <v-checkbox
           v-model="checkbox"
           label="I agree the Refund Policy, the Guest Waiver, and the Cancellation Policy."
           required
         ></v-checkbox>
       </v-flex>
-      <v-flex xs12>
+      <v-flex xs8>
         <v-btn 
           @click="submit"
           dark
@@ -309,7 +342,7 @@
   }
 
   .bgc-b{
-    background-color: rgba(50, 115, 220, 0.3);
+    background-color: #ebe9e7;
   }
 
   .align-left{
