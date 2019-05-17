@@ -74,7 +74,6 @@ module.exports = {
 					return obj
 				})
 				.then(function (obj){
-					console.log(obj)
 					var rating = Number(
 						Math.round(
 							obj.rating / obj.count + 'e2'
