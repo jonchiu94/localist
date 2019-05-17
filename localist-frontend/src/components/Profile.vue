@@ -180,26 +180,26 @@
         // this.files = this.$refs.files.files;
       },
       /*
-      Adds a file
+        Adds a file
       */
       addFiles() {
         this.$refs.files.click();
       },
 
       /*
-      Submits files to the server
+        Submits files to the server
       */
       submitFiles() {
         var instance = this;
         /*
-        Initialize the form data
-      */
+          Initialize the form data
+        */
         var updateData = {};
         var fileData = new FormData();
         /*
-        Iteate over any file sent over appending the files
-        to the form data.
-      */
+          Iteate over any file sent over appending the files
+          to the form data.
+        */
         for (let i = 0; i < this.files.length; i++) {
           fileData.append("img", this.files[i]);
         }
@@ -216,8 +216,8 @@
           }
         };
         /*
-        Make the request to the POST /select-files URL
-      */
+          Make the request to the POST /select-files URL
+        */
         if (this.files.length > 0) {
           this.$http
             .post("/user/image/" + this.$store.getters.getUserKey, fileData, {
@@ -244,21 +244,21 @@
       },
 
       /*
-      Handles the uploading of files
+        Handles the uploading of files
       */
       handleFilesUpload() {
         let uploadedFiles = this.$refs.files.files;
 
         /*
-        Adds the uploaded file to the files array
-      */
+          Adds the uploaded file to the files array
+        */
         for (let i = 0; i < uploadedFiles.length; i++) {
           this.files.push(uploadedFiles[i]);
         }
       },
 
       /*
-      Removes a select file the user has uploaded
+        Removes a select file the user has uploaded
       */
       removeFile(key) {
         this.files.splice(key, 1);

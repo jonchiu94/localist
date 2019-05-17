@@ -124,10 +124,4 @@ export default {
     box-shadow: 0 2px 15px rgba(71, 120, 120, 0.5);
     transform: translate3d(0, 0, 0);
 }
-
-.nav-bar.nav-bar--hidden {
-    box-shadow: none;
-    transform: translate3d(0, -100%, 0);
-    top: 120%;
-}
 </style>

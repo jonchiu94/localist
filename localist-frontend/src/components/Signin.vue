@@ -245,7 +245,7 @@ input {
     max-width: 100%;
 
     min-height: 480px;
-    z-index: 5;
+    z-index: 4;
     /*min-height: 480px;*/
 }
 

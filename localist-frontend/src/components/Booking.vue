@@ -26,10 +26,18 @@
             <v-divider></v-divider>
 
             <div>
-              <div v-for="(availability, i) in info.data && info.data.availability" :key="i" :value="i">
-                <input type="radio" id="i"> <input>
-                <label for="i"> {{availability.date}} </label>
-              </div>
+              <v-layout 
+                row wrap  
+                v-for="(availability, i) in info.data && info.data.availability" 
+                :key="i"
+              >
+                <v-flex xs3>
+                  <input type="checkbox" id="i">
+                </v-flex>
+                <v-felx xs3>
+                  <label class="subheading" for="i"> {{availability.date}}, {{availability.time}}</label>
+                </v-felx>
+              </v-layout>
             </div>
             <!-- <v-radio-group v-model="radioGroup">
               <v-radio 
