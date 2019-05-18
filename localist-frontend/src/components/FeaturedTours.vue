@@ -17,6 +17,7 @@
                     >
                         <v-card height="10%" color="white" dark href="#!">
                             <v-img
+                                class="black-shadow"
                                 :src="tour.main_image"
                                 height="300"
                                 gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
@@ -24,8 +25,8 @@
                                 <v-expand-transition>
                                     <div
                                         v-if="hover"
-                                        class="d-flex v-card--reveal display-1 white--text"
-                                        style="height: 100%;"
+                                        class="title"
+                                        style="height: 100%; text-decoration: none;"
                                         :to="'/tours/single/' + tour.key"
                                     >{{tour.tour_description}}</div>
                                 </v-expand-transition>
@@ -40,35 +41,33 @@
                                             small
                                             @click.stop
                                         >{{tour.category}}</v-chip>
-                                        <h3
-                                            class="white--text title font-weight-bold mb-2"
-                                        >{{tour.title}}</h3>
-                                        <div class="white--text caption">
+                                        <h3 class="card-title">{{tour.title}}</h3>
+                                        <div class="additional-data">
                                             ${{tour.price.low}} - {{tour.price.high}}
                                             <br>
                                             {{tour.location.city}}, {{tour.location.country}}
                                         </div>
                                     </v-flex>
                                     <v-flex row align-end justify-end>
-                                        <div class="ratings">({{tour.number_of_ratings}})</div>
                                         <v-rating
                                             size="20px"
                                             color="yellow"
                                             half-increments
-                                            :value="tour.rating"
+                                            :value="tour.rating.average"
                                             readonly
                                         ></v-rating>
+                                        <div class="ratings">({{tour.rating.count}})</div>
                                     </v-flex>
                                 </v-layout>
                             </v-img>
                             <v-card-actions align-self-end>
                                 <v-btn
                                     color="cyan darken-2"
-                                    :to="'/tours/single/' + tour.key"
+                                    :to="'/tours/single/' + tour.tour_key"
                                     flat
                                 >Explore</v-btn>
                                 <v-btn
-                                    :to="'/tours/single/' + tour.key + '/booking'"
+                                    :to="'/tours/single/' + tour.tour_key + '/booking'"
                                     color="cyan darken-2"
                                     flat
                                 >Book Now</v-btn>
@@ -90,7 +89,7 @@ export default {
     methods: {},
     mounted() {
         this.$http
-            .get("/tour/all/featured")
+            .get("/tour/featured")
             .then(response => (this.tours = response.data))
             .catch(error => alert(error));
         // .finally(() => (this.loading = false));
@@ -102,6 +101,18 @@ export default {
 .ratings {
     color: white;
     font-size: 20px;
+}
+
+.additional-data {
+    font-size: 20px;
+}
+
+.card-title {
+    font-size: 30px;
+}
+
+.black-shadow {
+    text-shadow: 1px 1px 2px black;
 }
 </style>
 

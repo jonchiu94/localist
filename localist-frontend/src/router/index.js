@@ -13,6 +13,7 @@ import Admin from '../components/Admin'
 import EditTour from '../components/EditTour'
 import Profile from '../components/Profile'
 import Booking from '../components/Booking'
+import Payment from '../components/Payment'
 import test from '../components/test'
 import Signintest from '../components/Signintest'
 import EditTours from '../components/EditTours'
@@ -61,6 +62,14 @@ const router = new VueRouter({
 			path      : '/tours/single/:id/booking',
 			name      : 'booking',
 			component : Booking,
+			meta      : {
+				requiresAuth : true
+			}
+		},
+		{
+			path      : '/tours/single/:id/booking/payment',
+			name      : 'payment',
+			component : Payment,
 			meta      : {
 				requiresAuth : true
 			}
