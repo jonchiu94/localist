@@ -7,8 +7,9 @@
                         <v-carousel-item
                             v-for="(image, i) in info.data && info.data.images"
                             :key="i"
-                            :src="info.data.images[i]"
-                        ></v-carousel-item>
+                        >
+                            <img class="tour-img" :src="info.data.images[i]">
+                        </v-carousel-item>
                     </v-carousel>
                 </v-flex>
                 <v-flex d-flex lg5>
@@ -94,7 +95,7 @@ export default {
         info: "",
         reviews: false
     }),
-    
+
     computed: {
         // iconUrl () {
         // return require('./assets/img/background.jpg')
@@ -119,30 +120,30 @@ export default {
 </script>
 
 <style scoped>
-    #tour-img {
-        width: 500px;
-    }
+.tour-img {
+    width: 100%;
+}
 
-    #title {
-        font-size: 50px;
-        font-weight: bold;
-    }
+#title {
+    font-size: 50px;
+    font-weight: bold;
+}
 
-    #info {
-        text-align: left;
-    }
+#info {
+    text-align: left;
+}
 
-    .extras {
-        font-size: 20px;
-        font-weight: 450;
-    }
+.extras {
+    font-size: 20px;
+    font-weight: 450;
+}
 
-    .divider-div {
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
+.divider-div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
-    .divider {
-        background-color: black;
-    }
+.divider {
+    background-color: black;
+}
 </style>
