@@ -17,6 +17,7 @@
                     >
                         <v-card height="10%" color="white" dark href="#!">
                             <v-img
+                                class="black-shadow"
                                 :src="tour.main_image"
                                 height="300"
                                 gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
@@ -24,7 +25,7 @@
                                 <v-expand-transition>
                                     <div
                                         v-if="hover"
-                                        class="title white--text"
+                                        class="title"
                                         style="height: 100%; text-decoration: none;"
                                         :to="'/tours/single/' + tour.key"
                                     >{{tour.tour_description}}</div>
@@ -40,10 +41,8 @@
                                             small
                                             @click.stop
                                         >{{tour.category}}</v-chip>
-                                        <h3
-                                            class="white--text title font-weight-bold mb-2"
-                                        >{{tour.title}}</h3>
-                                        <div class="white--text caption">
+                                        <h3 class="card-title">{{tour.title}}</h3>
+                                        <div class="additional-data">
                                             ${{tour.price.low}} - {{tour.price.high}}
                                             <br>
                                             {{tour.location.city}}, {{tour.location.country}}
@@ -102,6 +101,18 @@ export default {
 .ratings {
     color: white;
     font-size: 20px;
+}
+
+.additional-data {
+    font-size: 20px;
+}
+
+.card-title {
+    font-size: 30px;
+}
+
+.black-shadow {
+    text-shadow: 1px 1px 2px black;
 }
 </style>
 
