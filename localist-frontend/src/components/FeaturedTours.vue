@@ -64,7 +64,7 @@
                             </v-img>
                             <v-card-actions align-self-end>
                                 <v-layout row warp justify-space-around>
-                                    <v-flex sm12 md5>
+                                    <v-flex sm12>
                                         <v-btn
                                             width="100%"
                                             color="cyan darken-2"
@@ -73,7 +73,7 @@
                                         >Explore</v-btn>
                                     </v-flex>
                                     
-                                    <v-flex sm12 md5>
+                                    <v-flex sm12>
                                         <v-btn
                                             width="100%"
                                             :to="'/tours/single/' + tour.tour_key + '/booking'"
