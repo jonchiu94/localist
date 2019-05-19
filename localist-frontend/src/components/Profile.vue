@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-xl text-xs-center>
+  <v-container grid-list-xl text-xs-center mb-5>
     <v-layout wrap pt-3 justify-center>
       <v-flex xs8 class="cyan--text text--darken-2 display-2 font-weight-black font-italic">Profile</v-flex>
     </v-layout>

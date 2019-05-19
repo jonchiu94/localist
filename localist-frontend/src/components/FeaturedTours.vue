@@ -9,7 +9,8 @@
                 <v-hover v-for="tour in tours" :key="tour.key">
                     <v-flex
                         xs12
-                        sm2
+                        sm4
+                        lg2
                         mx-1
                         my-2
                         slot-scope="{ hover }"
@@ -62,16 +63,26 @@
                                 </v-layout>
                             </v-img>
                             <v-card-actions align-self-end>
-                                <v-btn
-                                    color="cyan darken-2"
-                                    :to="'/tours/single/' + tour.tour_key"
-                                    flat
-                                >Explore</v-btn>
-                                <v-btn
-                                    :to="'/tours/single/' + tour.tour_key + '/booking'"
-                                    color="cyan darken-2"
-                                    flat
-                                >Book Now</v-btn>
+                                <v-layout row warp justify-space-around>
+                                    <v-flex sm12 md5>
+                                        <v-btn
+                                            width="100%"
+                                            color="cyan darken-2"
+                                            :to="'/tours/single/' + tour.tour_key"
+                                            flat
+                                        >Explore</v-btn>
+                                    </v-flex>
+                                    
+                                    <v-flex sm12 md5>
+                                        <v-btn
+                                            width="100%"
+                                            :to="'/tours/single/' + tour.tour_key + '/booking'"
+                                            color="cyan darken-2"
+                                            flat
+                                        >Book Now</v-btn>
+                                    </v-flex>
+                                    
+                                </v-layout>
                             </v-card-actions>
                         </v-card>
                     </v-flex>

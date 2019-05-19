@@ -146,7 +146,7 @@
         pb-4
         sm10 md5 
         style="text-align: left;"
-        >
+      >
         <v-layout row wrap>
           <v-flex xs12 class="align-center">
             <v-img
@@ -175,29 +175,51 @@
           <v-flex xs10 class="subheading"> "Beautiful journey on the road to Cypress mountain. Ride pass a beautful ocean view and amazing river-carved landscape. Experience what makes British Columbia so beautiful. </v-flex>
         </v-layout>
       </v-flex>
-
     </v-layout>
 
-    
+    <div class="divider-div">
+      <v-divider></v-divider>
+    </div>
+
     <!-- 
       ******************
       ** Guide Review **
       ******************
     -->
-    <v-expansion-panel v-if="reviews">
-      <v-expansion-panel-content v-for="review in info.data.reviews" :key="review.key">
-        <template v-slot:header>
-          <div>
-            <h6>{{review.date=new Date().toISOString().substr(0, 10)}}</h6>
-            <v-rating half-increments :value="review.rating" readonly></v-rating>
-            <p id="reviewTitle">{{review.title}}</p>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text>{{review.comment}}</v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
+
+    <v-layout 
+      pb-5
+      row wrap justify-center
+    >
+      <v-flex 
+        pb-4
+        sm10
+        style="text-align: left;"
+      >
+        <v-expansion-panel v-if="reviews">
+          <v-expansion-panel-content 
+            v-for="review in info.data.reviews" 
+            :key="review.key"
+          >
+            <template v-slot:header>
+              <div>
+                <h6>{{review.date=new Date().toISOString().substr(0, 10)}}</h6>
+                <v-rating half-increments :value="review.rating" readonly></v-rating>
+                <p id="reviewTitle">{{review.title}}</p>
+              </div>
+            </template>
+            
+            <v-card>
+              <v-card-text>{{review.comment}}</v-card-text>
+            </v-card>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+
+      </v-flex>
+    </v-layout>
+
+
+    
   </v-container>
 </template>
 

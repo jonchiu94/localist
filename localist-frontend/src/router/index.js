@@ -15,7 +15,6 @@ import Profile from '../components/Profile'
 import Booking from '../components/Booking'
 import Payment from '../components/Payment'
 import test from '../components/test'
-import Signintest from '../components/Signintest'
 import EditTours from '../components/EditTours'
 
 Vue.use(VueRouter)
@@ -107,11 +106,6 @@ const router = new VueRouter({
 			path      : '/test',
 			name      : 'test',
 			component : test
-		},
-		{
-			path      : '/signintest',
-			name      : 'Signintest',
-			component : Signintest
 		},
 		{
 			path      : '/profile',

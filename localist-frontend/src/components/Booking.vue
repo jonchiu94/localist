@@ -34,9 +34,9 @@
                 <v-flex xs3>
                   <input type="checkbox" id="i">
                 </v-flex>
-                <v-felx xs3>
+                <v-flex xs3>
                   <label class="subheading" for="i"> {{availability.date}}, {{availability.time}}</label>
-                </v-felx>
+                </v-flex>
               </v-layout>
             </div>
             <!-- <v-radio-group v-model="radioGroup">
