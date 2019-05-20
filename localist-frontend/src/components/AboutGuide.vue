@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<section>
-			<v-layout mb-5 column>
+			<v-layout column>
 				<v-flex>
 					<v-img
-						src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+						:src="require('@/assets/community.jpeg')" 
 						gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
 						height="400"
 						max-height="50vh"
@@ -36,7 +36,7 @@
 			************************
 		-->
 		<section px-5>
-			<v-layout mb-5 mx-5 justify-center>
+			<v-layout mx-5 justify-center>
 				<v-flex 
 					mx-5 
 					sm10 lg5
@@ -80,7 +80,7 @@
 					sm10 lg5
 				>
 					<v-img
-						src="https://images.unsplash.com/photo-1515847049296-a281d6401047?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+						:src="require('@/assets/schedule.jpeg')"
 						gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
 						height="80%"
 					>
@@ -95,13 +95,14 @@
 			*****************************
 		-->
 		<section px-5>
-			<v-layout mb-5 mx-5 row justify-center>
+			<v-layout mx-5 row justify-center>
 				<v-flex 
+					mt-5
 					mx-5
-					sm10 md5
+					sm10 lg5
 				>
 					<v-img
-						src="https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+						:src="require('@/assets/people.jpeg')"
 						gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
 						height="80%"
 					>
@@ -155,7 +156,7 @@
 			**************************************
 		-->
 		<section px-5>
-			<v-layout mb-5 mx-5 justify-center>
+			<v-layout mx-5 justify-center>
 				<v-flex 
 					mx-5 
 					sm10 lg5
@@ -165,8 +166,8 @@
 					>
 						<v-flex 
 							mt-5
-							xs10
-							class="subheading font-weight-thin align-left" 
+							mx-5
+							sm10 lg5
 						>
 							Sell your unique tour idea
 						</v-flex>
@@ -200,7 +201,7 @@
 					sm10 lg5
 				>
 					<v-img
-						src="https://images.unsplash.com/photo-1506811238036-c14a9b4e0a83?ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80"
+						:src="require('@/assets/city.jpeg')"
 						gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
 						height="80%"
 					>

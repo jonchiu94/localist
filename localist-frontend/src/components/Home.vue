@@ -92,10 +92,6 @@
 
       <section>
         <v-layout column wrap class="my-4" align-center>
-          <v-flex mb-3 xs12>
-            <h1 class="display-1">We Value ...</h1>
-          </v-flex>
-
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
@@ -107,7 +103,8 @@
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">Customizable</div>
                     </v-card-title>
-                    <v-card-text>
+                    <v-card-text class="justify-spacing">
+                      &nbsp &nbsp &nbsp &nbsp 
                       We are huge believers in customized tours, and bringing unique memories home with you, wherever you go.
                       You needs and interests aren't the same as anyone elses, so why look for the same tours?
                       We support guide-to-tourist communication, so that everyone involved can be certain of what is going to work best for them.
@@ -123,7 +120,13 @@
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline">Fun</div>
                     </v-card-title>
-                    <v-card-text>There's no point in travelling if you aren't going to have some fun, right? Find independent, local experts in your travel destination. There's no doubt that the people who are passionate about their home will want to share all the fun that is to be had there with you! Find your the people that share your niche with you!</v-card-text>
+                    <v-card-text class="justify-spacing">
+                      &nbsp &nbsp &nbsp &nbsp
+                      There's no point in travelling if you aren't going to have some fun, right? 
+                      Find independent, local experts in your travel destination. There's no doubt 
+                      that the people who are passionate about their home will want to share all 
+                      the fun that is to be had there with you! Find your the people that share your niche with you!
+                    </v-card-text>
                   </v-card>
                 </v-flex>
 
@@ -135,7 +138,12 @@
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">Secured</div>
                     </v-card-title>
-                    <v-card-text>We stand behind our guides 100%. We believe in care-free travelling, that should concern you is showing up on time and having fun, or seeing what you came to see! Our secure payment process is risk-free, quick, and allows you to worry about what's important; having a great tour.</v-card-text>
+                    <v-card-text class="justify-spacing">
+                      &nbsp &nbsp &nbsp &nbsp
+                      We stand behind our guides 100%. We believe in care-free travelling, that should concern you 
+                      is showing up on time and having fun, or seeing what you came to see! Our secure payment 
+                      process is risk-free, quick, and allows you to worry about what's important; having a great tour.
+                    </v-card-text>
                   </v-card>
                 </v-flex>
               </v-layout>
@@ -145,7 +153,10 @@
       </section>
 
       <section>
-        <v-parallax :src="require('@/assets/community.jpeg')" height="380">
+        <v-parallax 
+          :src="require('@/assets/community.jpeg')" 
+          height="380"
+        >
           <v-layout column align-center justify-center>
             <div
               class="display-2 font-weight-bold align-left white--text text-capitalize black-shadow "
@@ -174,8 +185,8 @@
           ************************
           -->
           <section px-5>
-            <v-layout mx-5 justify-center>
-              <v-flex mx-5 sm10 lg5>
+            <v-layout row mx-5 justify-center>
+              <v-flex mx-5 sm12 lg5>
                 <v-layout wrap justify-center column>
                   <v-flex
                     mt-5
@@ -192,7 +203,7 @@
 
                   <v-divider></v-divider>
 
-                  <v-flex xs10 class="subheading font-weight-regular align-left linehi-med">
+                  <v-flex xs10 class="subheading font-weight-regular align-left linehi-med justify-spacing">
                     &nbsp &nbsp &nbsp &nbsp Work on your terms Work on your terms. Work on your terms Work on your terms.
                     Work on your terms Work on your terms. Work on your terms Work on your terms.
                     Work on your terms Work on your terms. Work on your terms Work on your terms.
@@ -201,9 +212,9 @@
                 </v-layout>
               </v-flex>
 
-              <v-flex mt-5 mx-5 sm10 lg5>
+              <v-flex mt-5 mx-5 sm12 lg5>
                 <v-img
-                  src="https://images.unsplash.com/photo-1515847049296-a281d6401047?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                  :src="require('@/assets/schedule.jpeg')"
                   gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
                   height="80%"
                 ></v-img>
@@ -218,15 +229,15 @@
           -->
           <section px-5>
             <v-layout mx-5 row justify-center>
-              <v-flex mx-5 sm10 md5>
+              <v-flex mt-5 mx-5 sm12 lg5>
                 <v-img
-                  src="https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                  :src="require('@/assets/people.jpeg')"
                   gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
                   height="80%"
                 ></v-img>
               </v-flex>
 
-              <v-flex mx-5 sm10 md5>
+              <v-flex mx-5 sm12 md5>
                 <v-layout wrap justify-center column>
                   <v-flex
                     mt-5
@@ -241,7 +252,7 @@
 
                   <v-divider></v-divider>
 
-                  <v-flex xs10 class="subheading font-weight-regular align-left linehi-med">
+                  <v-flex xs10 class="subheading font-weight-regular align-left linehi-med justify-spacing">
                     &nbsp &nbsp &nbsp &nbsp Meet Interesting People. Meet Interesting People.
                     Meet Interesting People. Meet Interesting People.
                     Meet Interesting People. Meet Interesting People.
@@ -276,7 +287,7 @@
 
                   <v-divider></v-divider>
 
-                  <v-flex xs10 class="subheading font-weight-regular align-left linehi-med">
+                  <v-flex xs10 class="subheading font-weight-regular align-left linehi-med justify-spacing">
                     &nbsp &nbsp &nbsp &nbsp Make use of your local knowledge. Make use of your local knowledge.
                     Make use of your local knowledge. Make use of your local knowledge.
                     Make use of your local knowledge. Make use of your local knowledge.
@@ -286,9 +297,9 @@
                 </v-layout>
               </v-flex>
 
-              <v-flex mx-5 sm10 lg5>
+              <v-flex mt-5 mx-5 sm10 lg5>
                 <v-img
-                  src="https://images.unsplash.com/photo-1506811238036-c14a9b4e0a83?ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80"
+                  :src="require('@/assets/city.jpeg')"
                   gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
                   height="80%"
                 ></v-img>
@@ -323,13 +334,13 @@
       <section>
         <v-container grid-list-xl>
           <v-layout row wrap justify-center>
-            <v-flex xs12 sm4>
+            <v-flex xs12 sm5>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
                   <div class="headline">Our Story</div>
                 </v-card-title>
-                <v-card-text>
-                  Team24 is a company made of 4 developers and travelers,
+                <v-card-text class="subheading justify-spacing">
+                  &nbsp &nbsp &nbsp &nbsp Team24 is a company made of 4 developers and travelers,
                   all with a common goal: to make tours cheaper, more enjoyable,
                   and more available for everyone. Localist is the product child
                   of a vision where the tourism industry is given back to the person
@@ -338,7 +349,7 @@
               </v-card>
             </v-flex>
 
-            <v-flex xs12 sm4 offset-sm1>
+            <v-flex xs12 sm5 offset-sm1>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
                   <div class="headline">Contact us</div>
@@ -416,6 +427,9 @@
   .none-dec {
     text-decoration: none;
   }
+
+  .justify-spacing {
+    text-align: justify;
+    text-justify: inter-word;
+  }
 </style>
-
-
