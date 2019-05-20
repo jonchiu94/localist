@@ -57,7 +57,7 @@
 								{{tour.title}}
 							</div>
 							<div class="white--text subheading">
-								${{tour.price.low}} - ${{tour.price.high}}
+								${{tour.price.low}} (per guest)
 								<br>
 								<img height="25" src="../assets/img/location_white.png">
 									{{tour.location.city}}, {{tour.location.country}}

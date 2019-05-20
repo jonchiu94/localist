@@ -45,7 +45,7 @@
                                             class="white--text title font-weight-bold mb-2"
                                         >{{tour.title}}</h3>
                                         <div class="white--text caption">
-                                            ${{tour.price.low}} - {{tour.price.high}}
+                                            ${{tour.price.low}} (per guest)
                                             <br>
                                             {{tour.location.city}}, {{tour.location.country}}
                                         </div>

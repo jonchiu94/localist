@@ -1,0 +1,226 @@
+<template>
+	<div>
+		<section>
+			<v-layout mb-5 column>
+				<v-flex>
+					<v-img
+						src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+						gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
+						height="400"
+						max-height="50vh"
+					>
+						<v-layout column justify-center align-center fill-height>
+							<v-felx xs5
+								class="display-2 font-weight-bold align-left white--text text-capitalize"
+							>
+								Become a tour guide
+							</v-felx>
+
+							<v-divider></v-divider>
+
+							<v-felx xs5
+								class="title align-left white--text linehi-med"
+							>
+								You know something different that others want to know. 
+							</v-felx>
+						</v-layout>
+						
+					</v-img>
+				</v-flex>
+			</v-layout>
+		</section>
+
+		<!-- 
+			************************
+			** Work on your terms **
+			************************
+		-->
+		<section px-5>
+			<v-layout mb-5 mx-5 justify-center>
+				<v-flex 
+					mx-5 
+					sm10 lg5
+				>
+					<v-layout 
+						wrap justify-center column
+					>
+						<v-flex 
+							mt-5
+							xs10
+							class="subheading font-weight-thin align-left" 
+						>
+							Join the community
+						</v-flex>
+						<v-flex 
+							mt-2
+							xs10
+							class="display-1 font-weight-bold align-left"
+						>
+							Work on your terms
+						</v-flex>
+
+						<v-divider></v-divider>
+
+						<v-flex
+							xs10
+							class="subheading font-weight-regular align-left linehi-med"
+						>
+							&nbsp &nbsp &nbsp &nbsp Work on your terms Work on your terms. Work on your terms Work on your terms. 
+							Work on your terms Work on your terms. Work on your terms Work on your terms. 
+							Work on your terms Work on your terms. Work on your terms Work on your terms. 
+							Work on your terms Work on your terms. Work on your terms Work on your terms. 
+						</v-flex>
+						
+					</v-layout>
+				</v-flex>
+
+				<v-flex 
+					mt-5
+					mx-5
+					sm10 lg5
+				>
+					<v-img
+						src="https://images.unsplash.com/photo-1515847049296-a281d6401047?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+						gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
+						height="80%"
+					>
+					</v-img>
+				</v-flex>
+			</v-layout>
+		</section>
+
+		<!-- 
+			*****************************
+			** Meet Interesting People **
+			*****************************
+		-->
+		<section px-5>
+			<v-layout mb-5 mx-5 row justify-center>
+				<v-flex 
+					mx-5
+					sm10 md5
+				>
+					<v-img
+						src="https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+						gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
+						height="80%"
+					>
+					</v-img>
+				</v-flex>
+
+				<v-flex 
+					mx-5 
+					sm10 md5
+				>
+					<v-layout 
+						wrap justify-center column
+					>
+						<v-flex 
+							mt-5
+							xs10
+							class="subheading font-weight-thin align-left" 
+						>
+							Learn different culture
+						</v-flex>
+						<v-flex 
+							mt-2
+							xs10
+							class="display-1 font-weight-bold align-left"
+						>
+							Meet Interesting People
+						</v-flex>
+
+						<v-divider></v-divider>
+
+						<v-flex
+							xs10
+							class="subheading font-weight-regular align-left linehi-med"
+						>
+							&nbsp &nbsp &nbsp &nbsp Meet Interesting People. Meet Interesting People.
+							Meet Interesting People. Meet Interesting People.
+							Meet Interesting People. Meet Interesting People.
+							Meet Interesting People. Meet Interesting People.
+							Meet Interesting People. Meet Interesting People.
+							Meet Interesting People. Meet Interesting People.
+						</v-flex>
+						
+					</v-layout>
+				</v-flex>
+			</v-layout>
+		</section>
+
+		<!-- 
+			**************************************
+			** Make use of your local knowledge **
+			**************************************
+		-->
+		<section px-5>
+			<v-layout mb-5 mx-5 justify-center>
+				<v-flex 
+					mx-5 
+					sm10 lg5
+				>
+					<v-layout 
+						wrap justify-center column
+					>
+						<v-flex 
+							mt-5
+							xs10
+							class="subheading font-weight-thin align-left" 
+						>
+							Sell your unique tour idea
+						</v-flex>
+						<v-flex 
+							mt-2
+							xs10
+							class="display-1 font-weight-bold align-left"
+						>
+							Make use of your local knowledge
+						</v-flex>
+
+						<v-divider></v-divider>
+
+						<v-flex
+							xs10
+							class="subheading font-weight-regular align-left linehi-med"
+						>
+							&nbsp &nbsp &nbsp &nbsp Make use of your local knowledge. Make use of your local knowledge. 
+							Make use of your local knowledge. Make use of your local knowledge. 
+							Make use of your local knowledge. Make use of your local knowledge. 
+							Make use of your local knowledge. Make use of your local knowledge. 
+							Make use of your local knowledge. Make use of your local knowledge. 
+						</v-flex>
+						
+					</v-layout>
+				</v-flex>
+
+				<v-flex 
+					mt-5
+					mx-5
+					sm10 lg5
+				>
+					<v-img
+						src="https://images.unsplash.com/photo-1506811238036-c14a9b4e0a83?ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80"
+						gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
+						height="80%"
+					>
+					</v-img>
+				</v-flex>
+			</v-layout>
+		</section>
+
+
+	</div>
+</template>
+
+<script>
+export default {
+	name: "aboutGuide",
+}
+</script>
+
+<style>
+.linehi-med{
+	line-height: 1.6;
+}
+</style>
