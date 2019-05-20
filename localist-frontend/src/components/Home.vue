@@ -10,9 +10,9 @@
           <v-layout column align-center class="white--text">
             <v-flex xs12 mt-5>
               <h1
-                class="white--text text--darken-2 display-3 font-weight-black font-italic text-xs-center"
+                class="white--text display-3 font-weight-black font-italic text-xs-center"
               >Localist</h1>
-              <div class="white--text text--darken-2 subheading text-xs-center">by TEAM 24</div>
+              <div class="white--text subheading text-xs-center">by TEAM 24</div>
             </v-flex>
 
             <v-flex xs12 mt-5>
@@ -91,7 +91,7 @@
       </section>
 
       <section>
-        <v-layout column wrap class="my-4" align-center>
+        <v-layout column wrap align-center>
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
@@ -104,7 +104,7 @@
                       <div class="headline text-xs-center">Customizable</div>
                     </v-card-title>
                     <v-card-text class="justify-spacing">
-                      &nbsp &nbsp &nbsp &nbsp 
+                      &nbsp &nbsp &nbsp &nbsp
                       We are huge believers in customized tours, and bringing unique memories home with you, wherever you go.
                       You needs and interests aren't the same as anyone elses, so why look for the same tours?
                       We support guide-to-tourist communication, so that everyone involved can be certain of what is going to work best for them.
@@ -122,9 +122,9 @@
                     </v-card-title>
                     <v-card-text class="justify-spacing">
                       &nbsp &nbsp &nbsp &nbsp
-                      There's no point in travelling if you aren't going to have some fun, right? 
-                      Find independent, local experts in your travel destination. There's no doubt 
-                      that the people who are passionate about their home will want to share all 
+                      There's no point in travelling if you aren't going to have some fun, right?
+                      Find independent, local experts in your travel destination. There's no doubt
+                      that the people who are passionate about their home will want to share all
                       the fun that is to be had there with you! Find your the people that share your niche with you!
                     </v-card-text>
                   </v-card>
@@ -140,8 +140,8 @@
                     </v-card-title>
                     <v-card-text class="justify-spacing">
                       &nbsp &nbsp &nbsp &nbsp
-                      We stand behind our guides 100%. We believe in care-free travelling, that should concern you 
-                      is showing up on time and having fun, or seeing what you came to see! Our secure payment 
+                      We stand behind our guides 100%. We believe in care-free travelling, that should concern you
+                      is showing up on time and having fun, or seeing what you came to see! Our secure payment
                       process is risk-free, quick, and allows you to worry about what's important; having a great tour.
                     </v-card-text>
                   </v-card>
@@ -153,182 +153,168 @@
       </section>
 
       <section>
-        <v-parallax 
-          :src="require('@/assets/community.jpeg')" 
-          height="380"
-        >
+        <v-parallax :src="require('@/assets/community.jpeg')" height="380">
           <v-layout column align-center justify-center>
             <div
-              class="display-2 font-weight-bold align-left white--text text-capitalize black-shadow "
+              class="display-2 font-weight-bold align-left white--text text-capitalize black-shadow"
             >Join the community</div>
 
             <v-divider></v-divider>
 
             <div
-              class="title align-left white--text linehi-med black-shadow "
-            >You know something different that others want to know.</div>
+              class="title align-left white--text linehi-med black-shadow"
+            >You know something special that others want to know.</div>
             <v-btn
               class="cyan darken-2 mt-5 font-weight-black"
               dark
-              large
               to="/tours/createtour"
             >Host Your Own Tour</v-btn>
           </v-layout>
         </v-parallax>
+      </section>
+
+      <!-- 
+          ************************
+          ** Work on your terms **
+          ************************
+      -->
+      <section>
+        <v-layout mt-5 mx-5 justify-center>
+          <v-flex md5 mx-5>
+            <v-layout wrap justify-center column>
+              <v-flex mt-5 xs10 class="subheading font-weight-thin align-left">Join the community</v-flex>
+              <v-flex mt-2 xs10 class="display-1 font-weight-bold align-left">Work on your terms</v-flex>
+
+              <v-divider width="15%" color="teal"></v-divider>
+
+              <v-flex class="subheading font-weight-regular align-left linehi-med justify-spacing">
+                &nbsp &nbsp &nbsp &nbsp Work on your terms Work on your terms. Work on your terms Work on your terms.
+                Work on your terms Work on your terms. Work on your terms Work on your terms.
+                Work on your terms Work on your terms. Work on your terms Work on your terms.
+                Work on your terms Work on your terms. Work on your terms Work on your terms.
+              </v-flex>
+            </v-layout>
+          </v-flex>
+
+          <v-flex md5 mx-5 align-self-center>
+            <v-img 
+              :src="require('@/assets/schedule.jpeg')"
+              max-height="320"
+            ></v-img>
+          </v-flex>
+        </v-layout>
+      </section>
+
+      <!-- 
+            *****************************
+            ** Meet Interesting People **
+            *****************************
+      -->
+      <section>
+        <v-layout mt-5 mx-5 justify-center>
+          <v-flex md5 mx-5 align-self-center>
+            <v-img 
+            :src="require('@/assets/people.jpeg')"
+            max-height="320"
+          ></v-img>
+          </v-flex>
+
+          <v-flex md5 mx-5>
+            <v-layout wrap justify-center column>
+              <v-flex
+                mt-5
+                xs10
+                class="subheading font-weight-thin align-left"
+              >Learn different culture</v-flex>
+              <v-flex
+                mt-2
+                xs10
+                class="display-1 font-weight-bold align-left"
+              >Meet Interesting People</v-flex>
+
+              <v-divider width="15%" color="teal"></v-divider>
+
+              <v-flex
+                xs10
+                class="subheading font-weight-regular align-left linehi-med justify-spacing"
+              >
+                &nbsp &nbsp &nbsp &nbsp Meet Interesting People. Meet Interesting People.
+                Meet Interesting People. Meet Interesting People.
+                Meet Interesting People. Meet Interesting People.
+                Meet Interesting People. Meet Interesting People.
+                Meet Interesting People. Meet Interesting People.
+                Meet Interesting People. Meet Interesting People.
+              </v-flex>
+            </v-layout>
+          </v-flex>
+        </v-layout>
+      </section>
+
+      <!-- 
+            **************************************
+            ** Make use of your local knowledge **
+            **************************************
+      -->
+      <section>
+        <v-layout my-5 mx-5 justify-center>
+          <v-flex md5 mx-5>
+            <v-layout wrap justify-center column>
+              <v-flex
+                mt-5
+                xs10
+                class="subheading font-weight-thin align-left"
+              >Sell your unique tour idea</v-flex>
+              <v-flex
+                mt-2
+                xs10
+                class="display-1 font-weight-bold align-left"
+              >Make use of your local knowledge</v-flex>
+
+              <v-divider width="15%" color="teal"></v-divider>
+
+              <v-flex
+                xs10
+                class="subheading font-weight-regular align-left linehi-med justify-spacing"
+              >
+                &nbsp &nbsp &nbsp &nbsp Make use of your local knowledge. Make use of your local knowledge.
+                Make use of your local knowledge. Make use of your local knowledge.
+                Make use of your local knowledge. Make use of your local knowledge.
+                Make use of your local knowledge. Make use of your local knowledge.
+                Make use of your local knowledge. Make use of your local knowledge.
+              </v-flex>
+            </v-layout>
+          </v-flex>
+
+          <v-flex md5 mx-5 align-self-center>
+            <v-img
+              :src="require('@/assets/city.jpeg')"
+              max-height="320"
+            ></v-img>
+          </v-flex>
+        </v-layout>
       </section>
 
       <section>
         <div>
-          <!-- 
-          ************************
-          ** Work on your terms **
-          ************************
-          -->
-          <section px-5>
-            <v-layout row mx-5 justify-center>
-              <v-flex mx-5 sm12 lg5>
-                <v-layout wrap justify-center column>
-                  <v-flex
-                    mt-5
-                    xs10
-                    class="subheading font-weight-thin align-left"
-                  >Join the community</v-flex>
-                  <v-flex 
-                    mt-2 
-                    xs10 
-                    class="display-1 font-weight-bold align-left"
-                  >
-                    Work on your terms
-                  </v-flex>
+          <v-parallax :src="require('@/assets/background-camp.jpeg')" height="600">
+            <v-layout column align-center justify-center>
+              <div
+                class="display-2 font-weight-bold align-left white--text text-capitalize"
+              >Become a guide</div>
 
-                  <v-divider></v-divider>
+              <v-divider></v-divider>
 
-                  <v-flex xs10 class="subheading font-weight-regular align-left linehi-med justify-spacing">
-                    &nbsp &nbsp &nbsp &nbsp Work on your terms Work on your terms. Work on your terms Work on your terms.
-                    Work on your terms Work on your terms. Work on your terms Work on your terms.
-                    Work on your terms Work on your terms. Work on your terms Work on your terms.
-                    Work on your terms Work on your terms. Work on your terms Work on your terms.
-                  </v-flex>
-                </v-layout>
-              </v-flex>
-
-              <v-flex mt-5 mx-5 sm12 lg5>
-                <v-img
-                  :src="require('@/assets/schedule.jpeg')"
-                  gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
-                  height="80%"
-                ></v-img>
-              </v-flex>
+              <div
+                class="title align-left white--text linehi-med text-capitalize"
+              >share your passion. create memorable stories.</div>
+              <v-btn
+                class="cyan darken-2 mt-5 font-weight-bold"
+                dark
+                to="/tours/createtour"
+              >Host Your Own Tour</v-btn>
             </v-layout>
-          </section>
-
-          <!-- 
-            *****************************
-            ** Meet Interesting People **
-            *****************************
-          -->
-          <section px-5>
-            <v-layout mx-5 row justify-center>
-              <v-flex mt-5 mx-5 sm12 lg5>
-                <v-img
-                  :src="require('@/assets/people.jpeg')"
-                  gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
-                  height="80%"
-                ></v-img>
-              </v-flex>
-
-              <v-flex mx-5 sm12 md5>
-                <v-layout wrap justify-center column>
-                  <v-flex
-                    mt-5
-                    xs10
-                    class="subheading font-weight-thin align-left"
-                  >Learn different culture</v-flex>
-                  <v-flex
-                    mt-2
-                    xs10
-                    class="display-1 font-weight-bold align-left"
-                  >Meet Interesting People</v-flex>
-
-                  <v-divider></v-divider>
-
-                  <v-flex xs10 class="subheading font-weight-regular align-left linehi-med justify-spacing">
-                    &nbsp &nbsp &nbsp &nbsp Meet Interesting People. Meet Interesting People.
-                    Meet Interesting People. Meet Interesting People.
-                    Meet Interesting People. Meet Interesting People.
-                    Meet Interesting People. Meet Interesting People.
-                    Meet Interesting People. Meet Interesting People.
-                    Meet Interesting People. Meet Interesting People.
-                  </v-flex>
-                </v-layout>
-              </v-flex>
-            </v-layout>
-          </section>
-
-          <!-- 
-            **************************************
-            ** Make use of your local knowledge **
-            **************************************
-          -->
-          <section px-5>
-            <v-layout mx-5 justify-center>
-              <v-flex mx-5 sm10 lg5>
-                <v-layout wrap justify-center column>
-                  <v-flex
-                    mt-5
-                    xs10
-                    class="subheading font-weight-thin align-left"
-                  >Sell your unique tour idea</v-flex>
-                  <v-flex
-                    mt-2
-                    xs10
-                    class="display-1 font-weight-bold align-left"
-                  >Make use of your local knowledge</v-flex>
-
-                  <v-divider></v-divider>
-
-                  <v-flex xs10 class="subheading font-weight-regular align-left linehi-med justify-spacing">
-                    &nbsp &nbsp &nbsp &nbsp Make use of your local knowledge. Make use of your local knowledge.
-                    Make use of your local knowledge. Make use of your local knowledge.
-                    Make use of your local knowledge. Make use of your local knowledge.
-                    Make use of your local knowledge. Make use of your local knowledge.
-                    Make use of your local knowledge. Make use of your local knowledge.
-                  </v-flex>
-                </v-layout>
-              </v-flex>
-
-              <v-flex mt-5 mx-5 sm10 lg5>
-                <v-img
-                  :src="require('@/assets/city.jpeg')"
-                  gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
-                  height="80%"
-                ></v-img>
-              </v-flex>
-            </v-layout>
-          </section>
+          </v-parallax>
         </div>
-      </section>
-
-      <section>
-        <v-parallax :src="require('@/assets/background-camp.jpeg')" height="380">
-          <v-layout column align-center justify-center>
-            <div
-              class="display-2 font-weight-bold align-left white--text text-capitalize"
-            >Become a guide</div>
-
-            <v-divider></v-divider>
-
-            <div
-              class="title align-left white--text linehi-med text-capitalize"
-            >share you passion. create memorable stories.</div>
-            <v-btn
-              class="cyan darken-2 mt-5 font-weight-black"
-              dark
-              large
-              to="/tours/createtour"
-            >Host Your Own Tour</v-btn>
-          </v-layout>
-        </v-parallax>
       </section>
 
       <section>
@@ -379,57 +365,55 @@
           </v-layout>
         </v-container>
       </section>
-
-      
     </v-content>
   </div>
 </template>
 
 <script>
-  import router from "../router";
-  import FeaturedTours from "./FeaturedTours.vue";
-  export default {
-    data: () => ({
-      date: new Date().toISOString().substr(0, 10),
-      search: "",
-      guest: "",
-      menu: false,
-      modal: false,
+import router from "../router";
+import FeaturedTours from "./FeaturedTours.vue";
+export default {
+  data: () => ({
+    date: new Date().toISOString().substr(0, 10),
+    search: "",
+    guest: "",
+    menu: false,
+    modal: false,
 
-      loading: false,
-      items: ["Biking", "Hiking", "Wine"],
-      select: null
-    }),
-    methods: {
-      addSearch() {
-        this.search
-          ? this.$store.commit("setSearchTitle", this.search)
-          : (this.search = "");
-        // this.$store.commit("setSearchTitle", this.search);
-        this.$store.commit("setSearchDate", this.date);
-        this.$store.commit("setSearchGuest", this.guest);
-        router.push("/tours");
-      }
-    },
-    components: { FeaturedTours }
-  };
+    loading: false,
+    items: ["Biking", "Hiking", "Wine"],
+    select: null
+  }),
+  methods: {
+    addSearch() {
+      this.search
+        ? this.$store.commit("setSearchTitle", this.search)
+        : (this.search = "");
+      // this.$store.commit("setSearchTitle", this.search);
+      this.$store.commit("setSearchDate", this.date);
+      this.$store.commit("setSearchGuest", this.guest);
+      router.push("/tours");
+    }
+  },
+  components: { FeaturedTours }
+};
 </script>
 
 <style>
-  .black-shadow {
-    text-shadow: 1px 1px 2px black;
-  }
+.black-shadow {
+  text-shadow: 1px 1px 2px black;
+}
 
-  .rounded-border {
-    border-radius: 5px;
-  }
+.rounded-border {
+  border-radius: 5px;
+}
 
-  .none-dec {
-    text-decoration: none;
-  }
+.none-dec {
+  text-decoration: none;
+}
 
-  .justify-spacing {
-    text-align: justify;
-    text-justify: inter-word;
-  }
+.justify-spacing {
+  text-align: justify;
+  text-justify: inter-word;
+}
 </style>

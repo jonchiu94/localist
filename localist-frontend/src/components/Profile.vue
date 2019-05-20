@@ -163,16 +163,6 @@
         });
     },
     methods: {
-      createGuide() {
-        formData = {
-          first_name: this.first_name,
-          last_name: this.last_name,
-          dob: this.dob,
-          gender: this.gender,
-          city: this.city,
-          country: this.country
-        };
-      },
       onFileChange(e) {
         this.files = [];
         this.files.push(e.target.files[0]);
