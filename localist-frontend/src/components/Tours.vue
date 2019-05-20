@@ -1,29 +1,30 @@
 <template>
-  <div>
-		<v-layout wrap pt-5 justify-center>
-      <v-flex xs8 class="cyan--text text--darken-2 display-2 font-weight-black font-italic">
-        All Tours
-      </v-flex>
-    </v-layout>
+    <div>
+        <v-layout wrap pt-5 justify-center>
+            <v-flex
+                xs8
+                class="cyan--text text--darken-2 display-2 font-weight-black font-italic"
+            >All Tours</v-flex>
+        </v-layout>
 
-		<!-- 
+        <!-- 
 			*************************
 			** Searching Criterias **
 			*************************
-		-->
-		<v-layout pt-5 row wrap justify-center>
-			<v-flex xs12 md3>
-			<v-text-field type="text" v-model="asearchTitle" label="Search tours" clearable></v-text-field>
-			</v-flex>
-			<v-flex xs6 md3 mx-3>
-			<v-text-field type="text" v-model="asearchDate" label="Date" clearable></v-text-field>
-			</v-flex>
-			<v-flex xs6 md3>
-			<v-text-field type="number" v-model="asearchGuest" label="# of guests" clearable></v-text-field>
-			</v-flex>
-		</v-layout>
-		
-		<!-- 
+        -->
+        <v-layout pt-5 row wrap justify-center>
+            <v-flex xs12 md3>
+                <v-text-field type="text" v-model="asearchTitle" label="Search tours" clearable></v-text-field>
+            </v-flex>
+            <v-flex xs6 md3 mx-3>
+                <v-text-field type="text" v-model="asearchDate" label="Date" clearable></v-text-field>
+            </v-flex>
+            <v-flex xs6 md3>
+                <v-text-field type="number" v-model="asearchGuest" label="# of guests" clearable></v-text-field>
+            </v-flex>
+        </v-layout>
+
+        <!-- 
 			************************
 			** Searching Results  **
 			************************
@@ -70,108 +71,114 @@
 						<v-flex row align-end justify-end>
 							<v-layout row wrap >
 
-								<!-- 
+                                <v-flex row align-end justify-end>
+                                    <v-layout row wrap>
+                                        <!-- 
 									** Rating preview  **
-								-->
-								<v-flex pl-2>
-									<v-rating
-									size="13px"
-									color="yellow"
-									class="black-shadow"
-									half-increments
-									:value="tour.rating.average"
-									readonly
-									></v-rating>
-								</v-flex>
-								<v-flex>
-									<div class="ratings subheading align-left">({{tour.rating.count}})</div>
-								</v-flex>
+                                        -->
+                                        <v-flex pl-2>
+                                            <v-rating
+                                                size="20px"
+                                                color="yellow"
+                                                class="black-shadow ratings"
+                                                half-increments
+                                                :value="tour.rating.average"
+                                                readonly
+                                            ></v-rating>
+                                        </v-flex>
+                                        <v-flex>
+                                            <div class="ratings">({{tour.rating.count}})</div>
+                                        </v-flex>
 
-								<v-spacer></v-spacer>
+                                        <v-spacer></v-spacer>
 
-								<v-flex>
-									<v-btn
-									:to="'/tours/single/' + tour.key"
-									class="explore-btn"
-									small
-								>   
-									EXPLORE</v-btn>
-								</v-flex>
-							</v-layout>
-						</v-flex>
-						</v-layout>
-					</v-img>
-				</div>
-			</v-flex>
-			</v-layout>
-		</v-container>
-  </div>
+                                        <v-flex>
+                                            <v-btn
+                                                :to="'/tours/single/' + tour.key"
+                                                class="explore-btn"
+                                                small
+                                            >EXPLORE</v-btn>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-flex>
+                            </v-layout>
+                        </v-img>
+                    </div>
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </div>
 </template>
 
 <script>
 export default {
-  data: () => ({
-	tours: [],
-	search: "",
-	asearchTitle: "",
-	asearchDate: "",
-	asearchGuest: ""
-  }),
-  computed: {
-	filteredTours: function() {
-	  return this.tours.filter(tour => {
-		try {
-		  if (
-			tour.title
-			  .toLowerCase()
-			  .match(this.asearchTitle.toLowerCase())
-		  ) {
-			return true;
-		  } else if (
-			tour.location.city
-			  .toLowerCase()
-			  .match(this.asearchTitle.toLowerCase())
-		  ) {
-			return true;
-		  } else if (
-			tour.category
-			  .toLowerCase()
-			  .match(this.asearchTitle.toLowerCase())
-		  ) {
-			return true;
-		  } else {
-			return false;
-		  }
-		} catch (error) {}
-	  });
-	}
-  },
-  mounted() {
-	this.$http
-	  .get("/tour/all")
-	  .then(response => (this.tours = response.data))
-	  .catch(error => alert(error))
-	  .finally(() => (this.loading = false));
-	this.asearchTitle = this.$store.getters.getSearchTitle;
-	this.asearchDate = this.$store.getters.getSearchDate;
-	this.asearchGuest = this.$store.getters.getSearchGuest;
-  }
+    data: () => ({
+        tours: [],
+        search: "",
+        asearchTitle: "",
+        asearchDate: "",
+        asearchGuest: ""
+    }),
+    computed: {
+        filteredTours: function() {
+            return this.tours.filter(tour => {
+                try {
+                    if (
+                        tour.title
+                            .toLowerCase()
+                            .match(this.asearchTitle.toLowerCase())
+                    ) {
+                        return true;
+                    } else if (
+                        tour.location.city
+                            .toLowerCase()
+                            .match(this.asearchTitle.toLowerCase())
+                    ) {
+                        return true;
+                    } else if (
+                        tour.category
+                            .toLowerCase()
+                            .match(this.asearchTitle.toLowerCase())
+                    ) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } catch (error) {}
+            });
+        }
+    },
+    mounted() {
+        this.$http
+            .get("/tour/all")
+            .then(response => (this.tours = response.data))
+            .catch(error => alert(error))
+            .finally(() => (this.loading = false));
+        this.asearchTitle = this.$store.getters.getSearchTitle;
+        this.asearchDate = this.$store.getters.getSearchDate;
+        this.asearchGuest = this.$store.getters.getSearchGuest;
+    }
 };
 </script>
 
-<style>
 
+<style>
 .ratings {
-  color: white;
-  font-size: 20px;
-  text-shadow: 1px 1px 2px black;
+    color: white;
+    font-size: 20px;
+    text-align: right;
+    text-shadow: 1px 1px 2px black;
 }
 
 .black-shadow {
-  text-shadow: 1px 1px 2px black;
+    text-shadow: 1px 1px 2px black;
+}
+
+.black-shadow.ratings {
+    padding-left: 30px;
 }
 
 .explore-btn {
-  color: white;
+    color: white;
 }
 </style>
