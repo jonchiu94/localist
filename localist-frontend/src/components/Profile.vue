@@ -102,7 +102,7 @@
             class="cyan darken-2 mt-5 "
             dark
             large
-            largev-on:click="submitFiles()">
+            v-on:click="submitFiles()">
             Submit
           </v-btn>
         </div>

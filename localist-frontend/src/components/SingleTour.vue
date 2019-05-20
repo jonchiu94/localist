@@ -203,14 +203,14 @@
           >
             <template v-slot:header>
               <div>
-                <h6>{{review.date=new Date().toISOString().substr(0, 10)}}</h6>
+                <div>{{review.date=new Date().toISOString().substr(0, 10)}}</div>
                 <v-rating half-increments :value="review.rating" readonly></v-rating>
-                <p id="reviewTitle">{{review.title}}</p>
+                <div  id="reviewTitle">{{review.title}}</div>
               </div>
             </template>
             
             <v-card>
-              <v-card-text>{{review.comment}}</v-card-text>
+              <v-card-text class="subheading">{{review.comment}}</v-card-text>
             </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -257,14 +257,6 @@ export default {
 </script>
 
 <style scoped>
-  #tour-img {
-    width: 500px;
-  }
-
-  #title {
-    font-size: 50px;
-    font-weight: bold;
-  }
 
   .divider-div {
     padding-top: 20px;

@@ -53,10 +53,10 @@
 					<div class="white--text subheading">
 					${{tour.price.low}} (per guest)
 					<br>
-					<img height="25" src="../assets/img/location_white.png">
+					<img height="18" src="../assets/img/location_white.png">
 					{{tour.location.city}}, {{tour.location.country}}
 					<br>
-					<img height="25" src="../assets/img/clock_white.png">
+					<img height="15" src="../assets/img/clock_white.png">
 					{{tour.duration.short}} - {{tour.duration.long}} hours
 					</div>
 				</v-flex>
