@@ -16,27 +16,27 @@
                         slot-scope="{ hover }"
                         :class="`elevation-${hover ? 12 : 2}`"
                     >
-                        <v-card height="10%" color="white" dark href="#!">
+                        <v-card height="10%" color="white" dark :to="'/tours/single/' + tour.tour_key">
                             <v-img
                                 class="black-shadow"
                                 :src="tour.main_image"
                                 height="300"
                                 gradient="rgba(0, 0, 0, .32), rgba(0, 0, 0, .32)"
                             >
-                                <v-expand-transition>
+                                <!-- <v-expand-transition>
                                     <div
                                         v-if="hover"
                                         class="title"
                                         style="height: 100%; text-decoration: none;"
                                         :to="'/tours/single/' + tour.key"
                                     >{{tour.tour_description}}</div>
-                                </v-expand-transition>
+                                </v-expand-transition> -->
 
                                 <v-layout fill-height wrap text-xs-right ma-0>
                                     <v-flex xs12>
                                         <v-chip
                                             label
-                                            class="mb-2 text-uppercase"
+                                            class="mb-2 text-uppercase none-dec"
                                             color="cyan darken-2"
                                             text-color="white"
                                             small
