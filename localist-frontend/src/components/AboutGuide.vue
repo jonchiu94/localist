@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-icons" >
     <section>
       <v-layout column>
         <v-flex>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-icons">
     <v-content>
       <section>
         <v-img
@@ -416,4 +416,15 @@ export default {
   text-align: justify;
   text-justify: inter-word;
 }
+
+.bg-icons {
+  background-image: url('https://developer.salesforce.com/resources2/certification-site/images/icons-background.png');
+  background-repeat: repeat;
+  background-position: center;
+  background-size: auto auto;
+  z-index: 0;
+  position: relative;
+}
+
+
 </style>

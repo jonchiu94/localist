@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid grid-list-md>
+  <v-container fluid grid-list-md class="bg-icons" >
     <v-layout row wrap justify-center>
       <v-flex sm10>
         <v-layout row>

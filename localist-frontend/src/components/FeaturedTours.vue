@@ -3,7 +3,7 @@
         <section>
             <v-layout row wrap class="my-5 mx-5" align-center justify-space-around>
                 <v-flex mb-4 xs12>
-                    <h1 class="display-1">Featured Tours</h1>
+                    <h1 class="display-1 font-weight-medium">Featured Tours</h1>
                 </v-flex>
 
                 <v-hover v-for="tour in tours" :key="tour.key">
