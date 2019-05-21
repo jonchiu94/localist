@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-xl text-xs-center>
+  <v-container grid-list-xl text-xs-center mb-5>
     <v-layout wrap pt-3 justify-center>
       <v-flex xs8 class="cyan--text text--darken-2 display-2 font-weight-black font-italic">Profile</v-flex>
     </v-layout>
@@ -102,7 +102,7 @@
             class="cyan darken-2 mt-5 "
             dark
             large
-            largev-on:click="submitFiles()">
+            v-on:click="submitFiles()">
             Submit
           </v-btn>
         </div>
@@ -163,16 +163,6 @@
         });
     },
     methods: {
-      createGuide() {
-        formData = {
-          first_name: this.first_name,
-          last_name: this.last_name,
-          dob: this.dob,
-          gender: this.gender,
-          city: this.city,
-          country: this.country
-        };
-      },
       onFileChange(e) {
         this.files = [];
         this.files.push(e.target.files[0]);

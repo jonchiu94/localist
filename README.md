@@ -15,7 +15,7 @@ sails lift
 ```
 In another terminal:
 ```bash
-cd path/to/project/localist/localist-frontend
+cd localist/localist-frontend
 npm install 
 npm run serve
 ```

@@ -1,5 +1,5 @@
 <template>
-    <v-footer red height="auto">
+    <v-footer mt-3 red height="auto">
         <v-layout row wrap cyan darken-2 white--text text-xs-center>
             <v-flex xs12>
                 <v-card-text class="white--text px-5 subheading">
