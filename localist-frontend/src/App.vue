@@ -42,8 +42,7 @@
     }
 
     #footer {
-        margin-top: 5%;
-        position: absolute;
+        position: static;
         bottom: 0;
         width: 100%;
         height: 10px; /* Height of the footer */
