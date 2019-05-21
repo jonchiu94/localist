@@ -2,11 +2,9 @@
   <div class="bg-icons">
     <v-content>
       <section>
-        <v-img
-          :src="require('@/assets/background-1.jpeg')"
+        <v-parallax :src="require('@/assets/background-1.jpeg')"
           gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
-          height="450"
-        >
+          height="550">
           <v-layout column align-center class="white--text">
             <v-flex xs12 mt-5>
               <h1
@@ -14,7 +12,6 @@
               >Localist</h1>
               <div class="white--text subheading text-xs-center">by TEAM 24</div>
             </v-flex>
-
             <v-flex xs12 mt-5>
               <v-toolbar color="grey lighten-3" floating height="60" class="rounded-border">
                 <v-layout>
@@ -71,7 +68,7 @@
               <p class="subheading">The BEST way to experience local culture.</p>
             </v-flex>
           </v-layout>
-        </v-img>
+        </v-parallax>
       </section>
 
       <section>
