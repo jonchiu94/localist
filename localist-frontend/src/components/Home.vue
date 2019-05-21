@@ -2,19 +2,16 @@
   <div class="bg-icons">
     <v-content>
       <section>
-        <v-img
-          :src="require('@/assets/background-1.jpeg')"
+        <v-parallax :src="require('@/assets/background-1.jpeg')"
           gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
-          height="450"
-        >
+          height="550">
           <v-layout column align-center class="white--text">
             <v-flex xs12 mt-5>
               <h1
-                class="white--text display-3 font-weight-black font-italic text-xs-center"
+                class="white--text display-3 font-weight-black font-italic text-xs-center black-shadow"
               >Localist</h1>
-              <div class="white--text subheading text-xs-center">by TEAM 24</div>
+              <div class="white--text subheading text-xs-center black-shadow">by TEAM 24</div>
             </v-flex>
-
             <v-flex xs12 mt-5>
               <v-toolbar color="grey lighten-3" floating height="60" class="rounded-border">
                 <v-layout>
@@ -58,8 +55,7 @@
 
                   <v-flex ml-3>
                     <v-toolbar-items>
-                      <!-- <v-btn @click="addSearch" large class="cyan darken-2 white--text"> Search </v-btn> -->
-                      <v-btn @click="addSearch" icon large>
+                      <v-btn @click="addSearch" icon large >
                         <v-icon hide-details>search</v-icon>
                       </v-btn>
                     </v-toolbar-items>
@@ -69,10 +65,10 @@
             </v-flex>
 
             <v-flex xs12 align-self-center>
-              <p class="subheading">The BEST way to experience local culture.</p>
+              <p class="subheading black-shadow">The BEST way to experience local culture.</p>
             </v-flex>
           </v-layout>
-        </v-img>
+        </v-parallax>
       </section>
 
       <section>
@@ -104,7 +100,6 @@
                       <div class="headline text-xs-center">Customizable</div>
                     </v-card-title>
                     <v-card-text class="justify-spacing">
-                      &nbsp &nbsp &nbsp &nbsp
                       We are huge believers in customized tours, and bringing unique memories home with you, wherever you go.
                       You needs and interests aren't the same as anyone elses, so why look for the same tours?
                       We support guide-to-tourist communication, so that everyone involved can be certain of what is going to work best for them.
@@ -115,17 +110,16 @@
                 <v-flex align-self-start xs12 md4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
-                      <v-icon x-large class="cyan--text text--darken-2">flash_on</v-icon>
+                      <v-icon x-large class="cyan--text text--darken-2">tag_faces</v-icon>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline">Fun</div>
                     </v-card-title>
                     <v-card-text class="justify-spacing">
-                      &nbsp &nbsp &nbsp &nbsp
                       There's no point in travelling if you aren't going to have some fun, right?
                       Find independent, local experts in your travel destination. There's no doubt
                       that the people who are passionate about their home will want to share all
-                      the fun that is to be had there with you! Find your the people that share your niche with you!
+                      the fun that is to be had there with you! Find the people that share your niche with you!
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -133,16 +127,15 @@
                 <v-flex align-self-start xs12 md4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
-                      <v-icon x-large class="cyan--text text--darken-2">shield</v-icon>
+                      <v-icon x-large class="cyan--text text--darken-2">verified_user</v-icon>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">Secured</div>
                     </v-card-title>
                     <v-card-text class="justify-spacing">
-                      &nbsp &nbsp &nbsp &nbsp
-                      We stand behind our guides 100%. We believe in care-free travelling, that should concern you
+                      We stand behind our guides 100%. We believe in care-free travelling, so the only thing that should concern you
                       is showing up on time and having fun, or seeing what you came to see! Our secure payment
-                      process is risk-free, quick, and allows you to worry about what's important; having a great tour.
+                      process is risk-free, quick, and allows you to worry about what's important; having a great experience.
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -163,7 +156,7 @@
 
             <div
               class="title align-left white--text linehi-med black-shadow"
-            >You know something special that others want to know.</div>
+            >Your experiences and expertise are an asset. Sell them!</div>
             <v-btn
               class="cyan darken-2 mt-5 font-weight-black"
               dark
@@ -182,16 +175,16 @@
         <v-layout mt-5 mx-5 justify-center>
           <v-flex md5 mx-5>
             <v-layout wrap justify-center column>
-              <v-flex mt-5 xs10 class="subheading font-weight-thin align-left">Join the community</v-flex>
-              <v-flex mt-2 xs10 class="display-1 font-weight-bold align-left">Work on your terms</v-flex>
+              <v-flex mt-5 xs10 class="subheading font-weight-thin align-left">Be your own boss</v-flex>
+              <v-flex mt-2 xs10 class="display-1 font-weight-bold align-left">Work when you want to</v-flex>
 
               <v-divider width="15%" color="teal"></v-divider>
 
               <v-flex class="subheading font-weight-regular align-left linehi-med justify-spacing">
-                &nbsp &nbsp &nbsp &nbsp Work on your terms Work on your terms. Work on your terms Work on your terms.
-                Work on your terms Work on your terms. Work on your terms Work on your terms.
-                Work on your terms Work on your terms. Work on your terms Work on your terms.
-                Work on your terms Work on your terms. Work on your terms Work on your terms.
+                Localist lets you set your own days and hours. There are no bosses here to ask when you clocked 
+                in and clocked out.  Making income on Localist as a guide is great, but it's important that our 
+                guides have passion for their cities.  Whether you are into bird-sighting or bike-riding, you 
+                do it because you want to, not because you have to.
               </v-flex>
             </v-layout>
           </v-flex>
@@ -238,12 +231,10 @@
                 xs10
                 class="subheading font-weight-regular align-left linehi-med justify-spacing"
               >
-                &nbsp &nbsp &nbsp &nbsp Meet Interesting People. Meet Interesting People.
-                Meet Interesting People. Meet Interesting People.
-                Meet Interesting People. Meet Interesting People.
-                Meet Interesting People. Meet Interesting People.
-                Meet Interesting People. Meet Interesting People.
-                Meet Interesting People. Meet Interesting People.
+                As a specialist in your city, you've seen and experienced all your favourite things, that's what makes you the expert!
+                But you've probably never experienced your favourite parts of the city while showing them off!  You have the opportunity 
+                to become the connection between travellers and your city.  You get to meet awesome, foreign travellers, and make lifetime
+                connections!
               </v-flex>
             </v-layout>
           </v-flex>
@@ -263,7 +254,7 @@
                 mt-5
                 xs10
                 class="subheading font-weight-thin align-left"
-              >Sell your unique tour idea</v-flex>
+              >Tailor your passions into unique experiences</v-flex>
               <v-flex
                 mt-2
                 xs10
@@ -276,11 +267,9 @@
                 xs10
                 class="subheading font-weight-regular align-left linehi-med justify-spacing"
               >
-                &nbsp &nbsp &nbsp &nbsp Make use of your local knowledge. Make use of your local knowledge.
-                Make use of your local knowledge. Make use of your local knowledge.
-                Make use of your local knowledge. Make use of your local knowledge.
-                Make use of your local knowledge. Make use of your local knowledge.
-                Make use of your local knowledge. Make use of your local knowledge.
+                Everybody has a unique set of skills, experiences, and interests.  At Localist, we believe that there are no cookie-
+                cutter experiences, and that every guide will create something different and exciting for the tourist if given the 
+                freedom to do so.  
               </v-flex>
             </v-layout>
           </v-flex>
@@ -326,7 +315,7 @@
                   <div class="headline">Our Story</div>
                 </v-card-title>
                 <v-card-text class="subheading justify-spacing">
-                  &nbsp &nbsp &nbsp &nbsp Team24 is a company made of 4 developers and travelers,
+                  Team24 is a company made of 4 developers and travelers,
                   all with a common goal: to make tours cheaper, more enjoyable,
                   and more available for everyone. Localist is the product child
                   of a vision where the tourism industry is given back to the person
