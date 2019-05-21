@@ -22,7 +22,7 @@
                 <v-layout row wrap fill-height>
                     <v-flex xs5>
                         <v-rating
-                            size="19px"
+                            size="30px"
                             color="cyan"
                             class="align-left"
                             half-increments
