@@ -58,8 +58,7 @@
 
                   <v-flex ml-3>
                     <v-toolbar-items>
-                      <!-- <v-btn @click="addSearch" large class="cyan darken-2 white--text"> Search </v-btn> -->
-                      <v-btn @click="addSearch" icon large>
+                      <v-btn @click="addSearch" icon large >
                         <v-icon hide-details>search</v-icon>
                       </v-btn>
                     </v-toolbar-items>
