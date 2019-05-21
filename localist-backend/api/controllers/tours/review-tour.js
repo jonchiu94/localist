@@ -42,18 +42,21 @@ module.exports = {
 						.ref('tours_long/' + long_key)
 						.child('reviews')
 						.push({
-							user_key :
+							user_key  :
 								inputs.review
 									.user_key,
-							comment  :
+							comment   :
 								inputs.review
 									.comment,
-							rating   :
+							rating    :
 								inputs.review.rating,
-							date     :
+							date      :
 								inputs.review.date,
-							title    :
-								inputs.review.title
+							title     :
+								inputs.review.title,
+							user_name :
+								inputs.review
+									.user_name
 						})
 					return database
 						.ref('tours_long/' + long_key)
