@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <form v-on:submit.prevent="createTour">
             <v-container fluid grid-list-md>
                 <v-layout row wrap>
@@ -44,9 +44,12 @@
                     </v-layout>
                     <v-flex d-flex lg5>
                         <v-card id="info" flat color="white">
-                            <v-card-title primary class="title">
-                                <v-text-field xs4 label="Category *" v-model="category"></v-text-field>
-                            </v-card-title>
+                            <v-select
+                                v-model="category"
+                                :items="categories"
+                                label="Category"
+                                outline
+                            ></v-select>
                             <v-card-text id="title">
                                 <v-text-field xs4 label="Title *" v-model="title"></v-text-field>
                             </v-card-text>
@@ -135,6 +138,7 @@ export default {
     name: "createTour",
 
     data: () => ({
+        categories: [],
         title: "",
         tour_description: "",
         category: "",
@@ -169,7 +173,14 @@ export default {
         imgURL: "",
         additionalUrl: []
     }),
-
+    created() {
+        var instance = this;
+        this.$http.get("/category").then(function(response) {
+            response.data.forEach(function(cat) {
+                instance.categories.push(cat.category);
+            });
+        });
+    },
     methods: {
         deleteTimeSlot(i) {
             this.availability.splice(i, 1);
@@ -212,8 +223,10 @@ export default {
                 },
                 additional_comments: this.additional_comments,
                 availability: this.availability,
-                user_key: this.$store.getters.getUserKey
+                token: this.$store.getters.getUserToken
             };
+
+            console.log(formData);
 
             this.$http
                 .post("/tour/add", formData)
