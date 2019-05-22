@@ -118,7 +118,7 @@ module.exports = {
 		}
 	},
 
-	fn                  : async function (inputs){
+	fn                  : async function (inputs, exits){
 
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')

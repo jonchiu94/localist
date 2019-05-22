@@ -18,6 +18,8 @@ module.exports = {
   
   
     fn: function (inputs, exits) {
+        var firebase = require('../database/firebase.js')
+		    var database = firebase.database()
         var usersRef = database.ref('users');
         var admin = require('../database/admin.js');
         admin.auth().verifyIdToken(inputs.token)
