@@ -12,13 +12,6 @@ module.exports = {
 			description : 'Title of the tour'
 		},
 
-		user_key            : {
-			required    : true,
-			type        : 'string',
-			description :
-				'The user_key for the user that created the tour.'
-		},
-
 		price               : {
 			required    : true,
 			type        : 'json',
@@ -92,6 +85,11 @@ module.exports = {
 			required    : true,
 			type        : 'ref',
 			description : ''
+		},
+		token               : {
+			required    : true,
+			type        : 'string',
+			description : 'Log in token for firebase authorization.'
 		}
 	},
 
@@ -112,10 +110,15 @@ module.exports = {
 		emailAlreadyInUse : {
 			statusCode  : 409,
 			description : 'The provided email address is already in use.'
+		},
+
+		couldNotVerify    : {
+			statusCode  : 401,
+			description : 'The provided verify logged in user.'
 		}
 	},
 
-	fn                  : async function (inputs){
+	fn                  : async function (inputs, exits){
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
@@ -123,6 +126,13 @@ module.exports = {
 		var toursRefShort = database.ref('tours_short')
 		var usersRef = database.ref('users/' + inputs.user_key)
 		var coord = inputs.coordinates || ''
+		var userKey
+
+		try {
+			userKey = await sails.helpers.authorize(inputs.token)
+		} catch (error) {
+			return exits.couldNotVerify(error)
+		}
 
 		try {
 			var long_tour = await toursRefLong.push({
@@ -134,7 +144,7 @@ module.exports = {
 
 			var short_tour = await toursRefShort.push({
 				title        : inputs.title,
-				user_key     : inputs.user_key,
+				user_key     : userKey,
 				price        : {
 					low  : inputs.price.low,
 					high : inputs.price.high
@@ -171,7 +181,8 @@ module.exports = {
 				tour_id : short_tour.key
 			})
 		} catch (error) {
-			return this.res.status(400).send('Error')
+			console.log(error)
+			return this.res.status(400).send(error)
 		}
 
 		this.res.status(200).json({ id: short_tour.key })

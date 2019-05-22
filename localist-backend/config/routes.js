@@ -53,6 +53,12 @@ module.exports.routes = {
 	},
 	'GET        /tour/featured'              : {
 		action : 'tours/get-featured-tours'
+	},
+	'GET        /category'                   : {
+		action : 'tours/get-categories'
+	},
+	'POST       /category'                   : {
+		action : 'tours/post-categories'
 	}
 
 	//  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
