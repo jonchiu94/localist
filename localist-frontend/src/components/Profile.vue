@@ -242,7 +242,6 @@ export default {
                         console.log(err);
                     });
             }
-            console.log(updateData);
             this.$http
                 .patch(
                     "/user/update/" + this.$store.getters.getUserKey,

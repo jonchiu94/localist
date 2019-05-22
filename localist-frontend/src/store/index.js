@@ -87,6 +87,9 @@ const store = new Vuex.Store({
 		}
 	},
 	getters   : {
+		getUserToken (state) {
+			return state.currentUser.stsTokenManager.accessToken
+		},
 		getUserKey (state) {
 			return state.userKey
 		},

@@ -22,6 +22,7 @@
                 <v-layout row wrap fill-height>
                     <v-flex xs5>
                         <v-rating
+                            v-if="reviews"
                             size="30px"
                             color="cyan"
                             class="align-left"
@@ -30,9 +31,6 @@
                             readonly
                         ></v-rating>
                     </v-flex>
-                    <!-- <v-flex xs7>
-            <div class=" align-left">({{info.data && info.data.rating.count}})</div>
-                    </v-flex>-->
                 </v-layout>
             </v-flex>
 
@@ -41,7 +39,7 @@
         ** Carousel **
         **************
             -->
-            <v-flex sm10 md5 pb-4>
+            <v-flex sm12 md6 pb-4>
                 <v-layout wrap>
                     <v-flex xs12>
                         <v-carousel height="100%">
@@ -101,7 +99,6 @@
                     >$ {{info.data && info.data.price.low}} (per guest)</v-flex>
 
                     <v-flex xs10 pt-3 class="align-right">
-
                         <v-btn
                             dark
                             class="cyan darken-2"
@@ -155,7 +152,28 @@
 
         <!-- 
       ******************
-      ** Guide Review **
+      ** Add Tour Review **
+      ******************
+        -->
+
+        <v-layout>
+            <v-flex sm10 style="text-align: left;">
+                <v-form v-on:submit.prevent="addReview">
+                    <v-rating half-increments :v-model="ratingInput"></v-rating>
+                    <v-text-field v-model="titleInput" label="Title"></v-text-field>
+                    <v-text-field v-model="commentInput" label="Comment"></v-text-field>
+                    <v-btn type="submit">Submit</v-btn>
+                </v-form>
+            </v-flex>
+        </v-layout>
+
+        <div class="divider-div">
+            <v-divider></v-divider>
+        </div>
+
+        <!-- 
+      ******************
+      ** Tour Review **
       ******************
         -->
 
@@ -181,36 +199,22 @@
                 </v-expansion-panel>
             </v-flex>
         </v-layout>
-      <v-layout>
-        <v-flex  sm10 style="text-align: left;">
-          <v-form v-on:submit.prevent="addReview">
-            <v-rating half-increments v-model="ratingInput" ></v-rating>
-            <v-text-field v-model="titleInput" label="Title"></v-text-field>
-            <v-text-field v-model="commentInput" label="Comment"></v-text-field>
-            <v-btn type="submit">Submit</v-btn>
-          </v-form>
-        </v-flex>
-      </v-layout>
     </v-container>
 </template>
 
 
 <script>
-  import router from "../router";
+import router from "../router";
 export default {
-
     name: "SingleTour",
 
     data: () => ({
         info: "",
-      dateInput: new Date().toISOString().substr(0, 10),
+        dateInput: new Date().toISOString().substr(0, 10),
         reviews: false,
         ratingInput: "",
         titleInput: "",
         commentInput: ""
-
-
-
     }),
 
     computed: {
@@ -220,29 +224,27 @@ export default {
         // }
     },
     methods: {
-      addReview(){
-        var instance = this;
-        const formData = {
-          review:{
-            date: this.dateInput,
-            user_key : this.$store.getters.getUserKey,
-            user_name : this.$store.getters.getName,
-            rating: this.ratingInput,
-            title: this.titleInput,
-            comment: this.commentInput
-          }
-        };
-        console.log(formData);
-        this.$http
+        addReview() {
+            var instance = this;
+            const formData = {
+                review: {
+                    date: this.dateInput,
+                    user_key: this.$store.getters.getUserKey,
+                    user_name: this.$store.getters.getName,
+                    rating: this.ratingInput,
+                    title: this.titleInput,
+                    comment: this.commentInput
+                }
+            };
+            this.$http
                 .post("/tour/add/review/" + this.$route.params.id, formData)
                 .then(function(response) {
-                  router.go();
+                    router.go();
                 })
-                .catch(function(error){
-                  alert(error);
+                .catch(function(error) {
+                    alert(error);
                 });
-      }
-
+        }
     },
     mounted() {
         var instance = this;
