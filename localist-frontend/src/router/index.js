@@ -19,6 +19,9 @@ import EditTours from '../components/EditTours'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
+	scrollBehavior() {
+    	return { x: 0, y: 0 };
+  	},
 	mode   : 'history',
 	routes : [
 		{
