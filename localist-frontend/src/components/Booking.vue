@@ -288,7 +288,7 @@
     text-align: right;
   }
 
-  .align-center{
+  /* .align-center{
     text-align: center;
-  }
+  } */
 </style>
