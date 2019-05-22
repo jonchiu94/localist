@@ -8,6 +8,8 @@
                     <div>
                         <input type="email" placeholder="Email" v-model="email">
                         <input type="password" placeholder="Password" v-model="password">
+                        <input type="password" placeholder="Confirm Password" v-model="confirm">
+                        <div id="signUpMessage" >{{ message }}</div>
                         <!--   <div>
                             <input
                                 type="checkbox"
@@ -47,8 +49,8 @@
                         >Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
-                        <h1 class="white-shadow">Hello, Friend!</h1>
-                        <p class="white-shadow">Sign up NOW!</p>
+                        <h1 class="white-shadow">Create an account!</h1>
+                        <p class="white-shadow">Start experiencing or hosting now!</p>
                         <button
                             class="ghost cyan darken-2 white--text"
                             @click="signUpButton"
@@ -69,6 +71,8 @@ export default {
     data: () => ({
         email: "",
         password: "",
+        confirm: "",
+        message: ""
     }),
     props: {
         msg: String
@@ -76,6 +80,11 @@ export default {
     methods: {
         signUp() {
             var r = this;
+
+            if (r.password != r.confirm){
+                r.message = "Passwords do not match. Please try again."
+                return;
+            }
 
             const formData = {
                 email: this.email,
@@ -133,9 +142,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+#signUpMessage {
+    color: red;
+}
+
 .cont {
     padding-top: 65px;
-    background-image: url("https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80");
+    background-image: url("../assets/background-1.jpeg");
     background-size: 100%;
     background-position: 100% 25%;
 }

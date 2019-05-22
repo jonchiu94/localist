@@ -8,8 +8,7 @@
                     style="text-decoration: none"
                 >Localist</v-btn>
 
-                <v-btn flat to="/tours" style="text-decoration: none" > All Tours </v-btn>
-                <v-btn flat to="/aboutguide" style="text-decoration: none" > Become a guide </v-btn>
+                <v-btn flat to="/tours" style="text-decoration: none" > Browse Tours </v-btn>
             </v-toolbar-items>
 
             <v-spacer></v-spacer>
