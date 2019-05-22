@@ -101,17 +101,12 @@
                     >$ {{info.data && info.data.price.low}} (per guest)</v-flex>
 
                     <v-flex xs10 pt-3 class="align-right">
-                        <v-btn
-                            dark
-                            class="cyan darken-2"
-                            :to="'/tours/edit/' + this.$route.params.id"
-                        >Edit</v-btn>
 
                         <v-btn
                             dark
                             class="cyan darken-2"
                             :to="'/tours/single/' + this.$route.params.id + '/booking'"
-                        >Booking Now</v-btn>
+                        >Book Now</v-btn>
                     </v-flex>
                 </v-layout>
             </v-flex>
