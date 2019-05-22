@@ -16,21 +16,18 @@ import Booking from '../components/Booking'
 import Payment from '../components/Payment'
 import test from '../components/test'
 import EditTours from '../components/EditTours'
-import AboutGuide from '../components/AboutGuide'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
+	scrollBehavior() {
+    	return { x: 0, y: 0 };
+  	},
 	mode   : 'history',
 	routes : [
 		{
 			path      : '/',
 			name      : 'home',
 			component : Home
-		},
-		{
-			path      : '/aboutguide',
-			name      : 'aboutGuide',
-			component : AboutGuide
 		},
 		{
 			path      : '/signin',

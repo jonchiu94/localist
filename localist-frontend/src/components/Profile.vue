@@ -13,12 +13,12 @@
             <v-flex xs12>
                 <form v-on:submit.prevent="updateProfile">
                     <v-layout row wrap justify-space-around>
-                        <v-flex xs4>
+                        <v-flex xs6>
                             <v-layout row wrap>
                                 <v-flex xs6 pr-5 class="title align-right">Profile Image</v-flex>
 
-                                <v-layout column wrap>
-                                    <v-flex xs12>
+                                <v-layout row wrap>
+                                    <v-flex xs6>
                                         <div id="preview">
                                             <img v-if="url" :src="url" class="preview">
                                             <img v-else :src="imgURL" class="preview">
@@ -251,7 +251,7 @@ export default {
                     console.log(err);
                 })
                 .then(function(res) {
-                    router.go("/");
+                    router.push("/");
                 });
         },
 
