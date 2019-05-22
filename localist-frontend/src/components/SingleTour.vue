@@ -168,7 +168,7 @@
                     >
                         <template v-slot:header>
                             <div>
-                                <div>{{review.date=new Date().toISOString().substr(0, 10)}}</div>
+                                <div>{{review.user_name}} {{review.date=new Date().toISOString().substr(0, 10)}}</div>
                                 <v-rating half-increments :value="review.rating" readonly></v-rating>
                                 <div id="reviewTitle">{{review.title}}</div>
                             </div>
@@ -181,17 +181,36 @@
                 </v-expansion-panel>
             </v-flex>
         </v-layout>
+      <v-layout>
+        <v-flex  sm10 style="text-align: left;">
+          <v-form v-on:submit.prevent="addReview">
+            <v-rating half-increments v-model="ratingInput" ></v-rating>
+            <v-text-field v-model="titleInput" label="Title"></v-text-field>
+            <v-text-field v-model="commentInput" label="Comment"></v-text-field>
+            <v-btn type="submit">Submit</v-btn>
+          </v-form>
+        </v-flex>
+      </v-layout>
     </v-container>
 </template>
 
 
 <script>
+  import router from "../router";
 export default {
+
     name: "SingleTour",
 
     data: () => ({
         info: "",
-        reviews: false
+      dateInput: new Date().toISOString().substr(0, 10),
+        reviews: false,
+        ratingInput: "",
+        titleInput: "",
+        commentInput: ""
+
+
+
     }),
 
     computed: {
@@ -200,7 +219,31 @@ export default {
         // The path could be '../assets/img.png', etc., which depends on where your vue file is
         // }
     },
+    methods: {
+      addReview(){
+        var instance = this;
+        const formData = {
+          review:{
+            date: this.dateInput,
+            user_key : this.$store.getters.getUserKey,
+            user_name : this.$store.getters.getName,
+            rating: this.ratingInput,
+            title: this.titleInput,
+            comment: this.commentInput
+          }
+        };
+        console.log(formData);
+        this.$http
+                .post("/tour/add/review/" + this.$route.params.id, formData)
+                .then(function(response) {
+                  router.go();
+                })
+                .catch(function(error){
+                  alert(error);
+                });
+      }
 
+    },
     mounted() {
         var instance = this;
         this.$http
