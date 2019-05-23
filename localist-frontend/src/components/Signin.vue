@@ -6,10 +6,10 @@
                     <h1>Sign Up</h1>
                     <br>
                     <div>
-                        <input type="email" placeholder="Email" v-model="email">
-                        <input type="password" placeholder="Password" v-model="password">
-                        <input type="password" placeholder="Confirm Password" v-model="confirm">
-                        <div id="signUpMessage" >{{ message }}</div>
+                        <input type="email" placeholder="Email" v-model="email" required>
+                        <input type="password" placeholder="Password" v-model="password" required>
+                        <input type="password" placeholder="Confirm Password" v-model="confirm" required>
+                        <span class="error-message" >{{ signUpMessage }}</span>
                         <!--   <div>
                             <input
                                 type="checkbox"
@@ -29,8 +29,9 @@
                 <form v-on:submit.prevent="signIn">
                     <h1>Sign In</h1>
                     <br>
-                    <input type="email" placeholder="Email" v-model="email">
-                    <input type="password" placeholder="Password" v-model="password">
+                    <input type="email" placeholder="Email" v-model="email" required>
+                    <input type="password" placeholder="Password" v-model="password" required>
+                    <span class="error-message">{{ signInMessage }}</span>
                     <a href="#">Forgot your password?</a>
                     <button class="cyan darken-2 white--text" type="submit">Sign In</button>
                 </form>
@@ -39,23 +40,13 @@
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
                         <h1 class="white-shadow">Welcome Back!</h1>
-                        <p
-                            class="white-shadow"
-                        >To keep connected with us please login with your personal info</p>
-                        <button
-                            class="ghost cyan darken-2 white--text"
-                            @click="signInButton"
-                            id="signIn"
-                        >Sign In</button>
+                        <p class="white-shadow">To keep connected with us please login with your personal info</p>
+                        <button class="ghost cyan darken-2 white--text" @click="signInButton" id="signIn">Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
                         <h1 class="white-shadow">Create an account!</h1>
                         <p class="white-shadow">Start experiencing or hosting now!</p>
-                        <button
-                            class="ghost cyan darken-2 white--text"
-                            @click="signUpButton"
-                            id="signUp"
-                        >Sign Up</button>
+                        <button class="ghost cyan darken-2 white--text" @click="signUpButton" id="signUp">Sign Up</button>
                     </div>
                 </div>
             </div>
@@ -72,7 +63,8 @@ export default {
         email: "",
         password: "",
         confirm: "",
-        message: ""
+        signInMessage: "",
+        signUpMessage: ""
     }),
     props: {
         msg: String
@@ -82,7 +74,12 @@ export default {
             var r = this;
 
             if (r.password != r.confirm){
-                r.message = "Passwords do not match. Please try again."
+                r.signUpMessage = "Passwords do not match. Please try again."
+                return;
+            }
+
+            if (r.password.length < 6){
+                r.signUpMessage = "Password must be at least 6 characters."
                 return;
             }
 
@@ -102,7 +99,7 @@ export default {
                     }
                 })
                 .catch(function(error) {
-                    alert(error);
+                    r.signUpMessage = "Could not sign up new user. Please try again.";
                 });
         },
         signIn() {
@@ -125,7 +122,7 @@ export default {
                     }
                 })
                 .catch(function(error) {
-                    alert(error);
+                    r.signInMessage = "Wrong username or password, please try again."
                 });
         },
         signUpButton() {
@@ -143,7 +140,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-#signUpMessage {
+.error-message {
     color: red;
 }
 
