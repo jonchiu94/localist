@@ -39,25 +39,47 @@ module.exports = {
 			type        : 'json',
 			description :
 				'the lattitude and the longitude of the users location'
+		},
+
+		description   : {
+			required    : false,
+			type        : 'string',
+			description : 'some stuff'
+		},
+
+		token         : {
+			required    : true,
+			type        : 'string',
+			description : 'Log in token for firebase authorization.'
 		}
 	},
 
 	exits               : {
-		success : {
+		success        : {
 			description : 'Updated user successfully.'
 		},
 
-		invalid : {
+		invalid        : {
 			responseType        : 'badRequest',
 			description         :
 				'The provided fullName, password and/or email address are invalid.',
 			extendedDescription :
 				'If this request was sent from a graphical user interface, the request ' +
 				'parameters should have been validated/coerced _before_ they were sent.'
+		},
+
+		couldNotVerify : {
+			statusCode  : 401,
+			description : 'The provided user is not logged in.'
 		}
 	},
 
 	fn                  : async function (inputs){
+		try {
+			userKey = await sails.helpers.authorize(inputs.token)
+		} catch (error) {
+			return exits.couldNotVerify(error)
+		}
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
@@ -74,7 +96,8 @@ module.exports = {
 				location      : {
 					city    : inputs.location.city,
 					country : inputs.location.country
-				}
+				},
+				description   : inputs.description || ''
 			})
 			if (coordinates) {
 				await usersRef.child(this.req.params.key).update({
