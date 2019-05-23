@@ -133,6 +133,16 @@
                                             <v-text-field single-line v-model="country"></v-text-field>
                                         </v-flex>
                                     </v-layout>
+                                    <v-layout>
+                                        <v-flex>
+                                            Description
+                                            <v-textarea
+                                                    placeholder="Describe yourself"
+                                                    v-model="description"
+                                            >
+                                            </v-textarea>
+                                        </v-flex>
+                                    </v-layout>
                                 </v-flex>
                             </v-layout>
                         </form>
@@ -167,7 +177,9 @@ export default {
         country: "",
         genders: ["Male", "Female", "Other"],
         date_menu: false,
-        imgURL: ""
+        imgURL: "",
+        description: ""
+
     }),
     computed: {
         computedDateFormatted() {
@@ -198,6 +210,9 @@ export default {
                 }
                 if (response.image) {
                     instance.imgURL = response.image;
+                }
+                if (response.description) {
+                    instance.description = response.description;
                 }
             })
             .catch(function(err) {
@@ -245,7 +260,8 @@ export default {
                 location: {
                     country: this.country,
                     city: this.city
-                }
+                },
+                token: this.$store.getters.getUserToken
             };
             /*
           Make the request to the POST /select-files URL
