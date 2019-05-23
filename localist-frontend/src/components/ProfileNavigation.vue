@@ -1,19 +1,19 @@
 <template>
-        <v-card height="350px">
             <v-navigation-drawer
                     v-model="drawer"
                     permanent
                     absolute
+                    class ="profileNavigation"
             >
                 <v-toolbar flat class="transparent">
                     <v-list class="pa-0">
                         <v-list-tile avatar>
                             <v-list-tile-avatar>
-                                <img src="https://randomuser.me/api/portraits/men/85.jpg">
+                                <img v-if="userPic" :src="userPic">
                             </v-list-tile-avatar>
 
                             <v-list-tile-content>
-                                <v-list-tile-title>John Leider</v-list-tile-title>
+                                <v-list-tile-title>{{name}}</v-list-tile-title>
                             </v-list-tile-content>
                         </v-list-tile>
                     </v-list>
@@ -37,16 +37,17 @@
                     </v-list-tile>
                 </v-list>
             </v-navigation-drawer>
-        </v-card>
 </template>
 <script>
     import router from "../router";
     export default{
         data () {
             return {
+                name: "",
+                userPic: "",
                 drawer: true,
                 items: [
-                    { title: 'Account Dashboard', icon: 'dashboard', path:'/'},
+                    { title: 'Account Dashboard', icon: 'dashboard', path:'/account'},
                     { title: 'Profile', icon: 'face', path: '/profile'},
                     { title: 'Your Tours', icon: 'create', path: '/edit'}
                 ],
@@ -57,9 +58,26 @@
             navigate(link){
                 router.push(link);
             }
+        },
+        created(){
+            var instance = this;
+            this.$http
+                .get("/user/find/" + this.$store.getters.getUserKey)
+                .then(function(response) {
+                    response = response.data
+                    if(response.name){
+                        instance.name = response.name.first + " " + response.name.last;
+                    }
+                    if (response.image) {
+                        instance.userPic = response.image;
+                    }
+                });
         }
     }
 </script>
 <style scoped>
-
+    .profileNavigation{
+        padding-top: 5%;
+        position: fixed;
+    }
 </style>

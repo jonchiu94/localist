@@ -44,7 +44,7 @@
                         <v-list-tile-title>{{getName}}</v-list-tile-title>
                     </v-list-tile>
 
-                    <v-list-tile to="/profile" tyle="text-decoration: none">
+                    <v-list-tile to="/account" tyle="text-decoration: none">
                         <v-list-tile-title>
                             <v-icon class="cyan--text text--darken-2">person</v-icon>Profile
                         </v-list-tile-title>

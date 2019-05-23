@@ -11,11 +11,11 @@ import SingleTour from '../components/SingleTour'
 import CreateTour from '../components/CreateTour'
 import Admin from '../components/Admin'
 import EditTour from '../components/EditTour'
-import Profile from '../components/Profile'
+import Account from '../components/Account'
 import Booking from '../components/Booking'
 import Payment from '../components/Payment'
 import EditTours from '../components/EditTours'
-import ProfileNativation from '../components/ProfileNavigation'
+import Profile from '../components/Profile'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -106,9 +106,9 @@ const router = new VueRouter({
 			}
 		},
 		{
-			path      : '/profile',
-			name      : 'profile',
-			component : Profile,
+			path      : '/account',
+			name      : 'account',
+			component : Account,
 			meta      : {
 				requiresAuth : true
 			}
@@ -119,9 +119,9 @@ const router = new VueRouter({
 			component : EditTours
 		},
 		{
-			path      : '/profileNavigation',
-			name      : 'profilenavigation',
-			component : ProfileNativation
+			path      : '/profile',
+			name      : 'profile',
+			component : Profile
 		},
 		{
 			path     : '*',
