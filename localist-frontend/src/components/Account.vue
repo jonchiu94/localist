@@ -9,7 +9,7 @@
             <v-flex
                 xs8
                 class="cyan--text text--darken-2 display-2 font-weight-black font-italic"
-            >Profile</v-flex>
+            >Account Dashboard</v-flex>
         </v-layout>
 
         <v-divider></v-divider>
