@@ -15,6 +15,7 @@ import Profile from '../components/Profile'
 import Booking from '../components/Booking'
 import Payment from '../components/Payment'
 import EditTours from '../components/EditTours'
+import ProfileNativation from '../components/ProfileNavigation'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -116,6 +117,11 @@ const router = new VueRouter({
 			path      : '/edit',
 			name      : 'edit',
 			component : EditTours
+		},
+		{
+			path      : '/profileNavigation',
+			name      : 'profilenavigation',
+			component : ProfileNativation
 		},
 		{
 			path     : '*',

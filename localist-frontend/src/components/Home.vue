@@ -16,7 +16,7 @@
               <v-toolbar color="grey lighten-3" floating height="60" class="rounded-border">
                 <v-layout>
                   <v-flex xs7>
-                    <v-text-field hide-details label="Activities, interests..." v-model="search"></v-text-field>
+                    <v-text-field @keyup.enter="addSearch()" hide-details label="Activities, interests..." v-model="search"></v-text-field>
                   </v-flex>
 
                   <v-flex mx-3 xs3>
