@@ -159,9 +159,9 @@
         <v-layout>
             <v-flex sm10 style="text-align: left;">
                 <v-form v-on:submit.prevent="addReview">
-                    <v-rating half-increments :v-model="ratingInput"></v-rating>
-                    <v-text-field v-model="titleInput" label="Title"></v-text-field>
-                    <v-text-field v-model="commentInput" label="Comment"></v-text-field>
+                    <v-rating half-increments v-model="review.rating"></v-rating>
+                    <v-text-field v-model="review.title" label="Title"></v-text-field>
+                    <v-text-field v-model="review.comment" label="Comment"></v-text-field>
                     <v-btn type="submit">Submit</v-btn>
                 </v-form>
             </v-flex>
@@ -209,12 +209,16 @@ export default {
     name: "SingleTour",
 
     data: () => ({
+        review: {
+            rating: 0,
+            title: "",
+            comment: "",
+            date: new Date().toISOString().substr(0, 10),
+            user_key: "",
+            user_name: "he"
+        },
         info: "",
-        dateInput: new Date().toISOString().substr(0, 10),
-        reviews: false,
-        ratingInput: "",
-        titleInput: "",
-        commentInput: ""
+        reviews: false
     }),
 
     computed: {
@@ -226,16 +230,7 @@ export default {
     methods: {
         addReview() {
             var instance = this;
-            const formData = {
-                review: {
-                    date: this.dateInput,
-                    user_key: this.$store.getters.getUserKey,
-                    user_name: this.$store.getters.getName,
-                    rating: this.ratingInput,
-                    title: this.titleInput,
-                    comment: this.commentInput
-                }
-            };
+            var formData = { review: instance.review };
             this.$http
                 .post("/tour/add/review/" + this.$route.params.id, formData)
                 .then(function(response) {
@@ -258,6 +253,8 @@ export default {
             })
             .catch(error => alert(error))
             .finally(() => (this.loading = false));
+        this.review.user_key = this.$store.getters.getUserKey;
+        this.review.user_name = this.$store.getters.getName;
     }
 };
 </script>
