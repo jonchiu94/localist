@@ -6,6 +6,7 @@
           :src="require('@/assets/background-1.jpeg')"
           gradient="rgba(0, 0, 0, .18), rgba(0, 0, 0, .18)"
           height="550"
+          height="480"
         >
           <v-layout column align-center class="white--text">
             <v-flex xs12 mt-5>
