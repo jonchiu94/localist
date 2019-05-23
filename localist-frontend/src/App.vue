@@ -2,7 +2,9 @@
     <div id="app">
         <v-app>
             <Navigation id="navBar"></Navigation>
-            <router-view id="routerId"></router-view>
+            <transition name="fade" mode="out-in">
+                <router-view id="routerId"></router-view>
+            </transition>
             <Footer id="footer"></Footer>
         </v-app>
     </div>
@@ -46,5 +48,16 @@
         bottom: 0;
         width: 100%;
         height: 10px; /* Height of the footer */
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+    }
+
+    .fade-enter,
+    .fade-leave-active {
+    opacity: 0
     }
 </style>
