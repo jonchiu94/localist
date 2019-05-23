@@ -133,9 +133,15 @@
                                             <v-text-field single-line v-model="country"></v-text-field>
                                         </v-flex>
                                     </v-layout>
-                                    <v-layout>
+
+                                    <v-layout column wrap>
+                                        <v-flex
+                                            pr-5
+                                            align-self-center
+                                            xs6
+                                            class="title align-right"
+                                        >Description</v-flex>
                                         <v-flex>
-                                            Description
                                             <v-textarea
                                                     placeholder="Describe yourself"
                                                     v-model="description"
