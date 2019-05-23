@@ -42,7 +42,7 @@
             <v-flex sm12 md6 pb-4>
                 <v-layout wrap>
                     <v-flex xs12>
-                        <v-carousel height="100%">
+                        <v-carousel height="400px">
                             <v-carousel-item
                                 v-for="(image, i) in info.data && info.data.images"
                                 :key="i"
@@ -123,8 +123,9 @@
                 <v-layout row wrap>
                     <v-flex xs12 class="align-center">
                         <v-img
-                            src="https://media.licdn.com/dms/image/C4E03AQHpOc7og5BUuw/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=FhZQSXGSTx-8BPZljELiwNcUnBb7BCD7NdiZ06OzUoQ"
-                            width="300"
+                            :src="guideImg"
+                            width="100%"
+                            height="500px"
                         ></v-img>
                     </v-flex>
                 </v-layout>
@@ -132,7 +133,7 @@
 
             <v-flex px-5 mx-5 pb-4 sm10 md5 class="bgc-b" style="text-align: left;">
                 <v-layout wrap justify-center my-5>
-                    <v-flex xs10 class="title">Guide Name</v-flex>
+                    <v-flex xs10 class="title">{{guideName}}</v-flex>
 
                     <v-flex xs10>
                         <v-divider></v-divider>
@@ -141,7 +142,7 @@
                     <v-flex
                         xs10
                         class="subheading"
-                    >"Beautiful journey on the road to Cypress mountain. Ride pass a beautful ocean view and amazing river-carved landscape. Experience what makes British Columbia so beautiful.</v-flex>
+                    >{{guideDescription}}</v-flex>
                 </v-layout>
             </v-flex>
         </v-layout>
@@ -215,8 +216,12 @@ export default {
             comment: "",
             date: new Date().toISOString().substr(0, 10),
             user_key: "",
-            user_name: "he"
+            user_name: ""
         },
+        guideKey: "",
+        guideName: "",
+        guideDescription: "",
+        guideImg: "",
         info: "",
         reviews: false
     }),
@@ -250,11 +255,26 @@ export default {
                 if (response.data.reviews) {
                     instance.reviews = true;
                 }
+
+            instance.$http.get("/user/find/" + response.data.user_key)
+                    .then(function(response){
+                        response = response.data;
+                        if (response.name) {
+                            instance.guideName = response.name.first + " " + response.name.last;
+                        }
+                        if (response.description) {
+                            instance.guideDescription = response.description;
+                        }
+                        if (response.image){
+                            instance.guideImg = response.image
+                        }
+                    })
             })
             .catch(error => alert(error))
             .finally(() => (this.loading = false));
         this.review.user_key = this.$store.getters.getUserKey;
         this.review.user_name = this.$store.getters.getName;
+
     }
 };
 </script>
