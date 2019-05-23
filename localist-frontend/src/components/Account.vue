@@ -1,139 +1,155 @@
 <template>
     <v-layout>
-        <v-flex xs2 md2>
-            <ProfileNavigation></ProfileNavigation>
-        </v-flex>
         <v-flex xs10 md10>
-    <v-container grid-list-xl text-xs-center mb-5>
-        <v-layout wrap pt-3 justify-center>
-            <v-flex
-                xs8
-                class="cyan--text text--darken-2 display-2 font-weight-black font-italic"
-            >Profile</v-flex>
-        </v-layout>
+            <v-container grid-list-xl text-xs-center mb-5>
+                <v-layout wrap pt-3 justify-center>
+                    <v-flex
+                        xs8
+                        class="cyan--text text--darken-2 display-2 font-weight-black font-italic"
+                    >Profile</v-flex>
+                </v-layout>
 
-        <v-divider></v-divider>
+                <v-divider></v-divider>
 
-        <v-layout row wrap>
-            <v-flex xs12>
-                <form v-on:submit.prevent="updateProfile">
-                    <v-layout row wrap justify-space-around>
-                        <v-flex xs6>
-                            <v-layout row wrap>
-                                <v-flex xs6 pr-5 class="title align-right">Profile Image</v-flex>
+                <v-layout row wrap>
+                    <v-flex xs12>
+                        <form v-on:submit.prevent="updateProfile">
+                            <v-layout row wrap justify-space-around>
+                                <v-flex xs6>
+                                    <v-layout row wrap>
+                                        <v-flex xs6 pr-5 class="title align-right">Profile Image</v-flex>
 
-                                <v-layout row wrap>
-                                    <v-flex xs6>
-                                        <div id="preview">
-                                            <img v-if="url" :src="url" class="preview">
-                                            <img v-else :src="imgURL" class="preview">
-                                        </div>
-                                    </v-flex>
+                                        <v-layout row wrap>
+                                            <v-flex xs6>
+                                                <div id="preview">
+                                                    <img v-if="url" :src="url" class="preview">
+                                                    <img v-else :src="imgURL" class="preview">
+                                                </div>
+                                            </v-flex>
 
-                                    <v-flex xs6>
-                                        <input
-                                            type="file"
-                                            id="file"
-                                            accept="image/x-png, image/gif, image/jpeg"
-                                            ref="file"
-                                            v-on:change="onFileChange"
-                                        >
-                                    </v-flex>
-                                </v-layout>
-                            </v-layout>
+                                            <v-flex xs6>
+                                                <input
+                                                    type="file"
+                                                    id="file"
+                                                    accept="image/x-png, image/gif, image/jpeg"
+                                                    ref="file"
+                                                    v-on:change="onFileChange"
+                                                >
+                                            </v-flex>
+                                        </v-layout>
+                                    </v-layout>
 
-                            <v-divider></v-divider>
+                                    <v-divider></v-divider>
 
-                            <v-layout row wrap>
-                                <v-flex
-                                    pr-5
-                                    align-self-center
-                                    xs6
-                                    class="title align-right"
-                                >First Name</v-flex>
-                                <v-flex pl-5 xs6>
-                                    <v-text-field single-line v-model="first_name"></v-text-field>
+                                    <v-layout row wrap>
+                                        <v-flex
+                                            pr-5
+                                            align-self-center
+                                            xs6
+                                            class="title align-right"
+                                        >First Name</v-flex>
+                                        <v-flex pl-5 xs6>
+                                            <v-text-field single-line v-model="first_name"></v-text-field>
+                                        </v-flex>
+                                    </v-layout>
+
+                                    <v-layout row wrap>
+                                        <v-flex
+                                            pr-5
+                                            align-self-center
+                                            xs6
+                                            class="title align-right"
+                                        >Last Name</v-flex>
+                                        <v-flex pl-5 xs6>
+                                            <v-text-field single-line v-model="last_name"></v-text-field>
+                                        </v-flex>
+                                    </v-layout>
+
+                                    <v-layout row wrap>
+                                        <v-flex
+                                            pr-5
+                                            align-self-center
+                                            xs6
+                                            class="title align-right"
+                                        >Date of Birth</v-flex>
+                                        <v-flex pl-5 xs6>
+                                            <v-menu
+                                                v-model="date_menu"
+                                                :close-on-content-click="false"
+                                                full-width
+                                                max-width="290"
+                                            >
+                                                <template v-slot:activator="{ on }">
+                                                    <v-text-field
+                                                        :value="computedDateFormatted"
+                                                        clearable
+                                                        readonly
+                                                        v-on="on"
+                                                    ></v-text-field>
+                                                </template>
+                                                <v-date-picker
+                                                    outline
+                                                    v-model="dob"
+                                                    @change="date_menu = false"
+                                                ></v-date-picker>
+                                            </v-menu>
+                                        </v-flex>
+                                    </v-layout>
+
+                                    <v-layout row wrap>
+                                        <v-flex
+                                            pr-5
+                                            align-self-center
+                                            xs6
+                                            class="title align-right"
+                                        >Gender</v-flex>
+                                        <v-flex pl-5 xs6>
+                                            <v-select :items="genders" v-model="gender"></v-select>
+                                        </v-flex>
+                                    </v-layout>
+
+                                    <v-layout row wrap>
+                                        <v-flex
+                                            pr-5
+                                            align-self-center
+                                            xs6
+                                            class="title align-right"
+                                        >City</v-flex>
+                                        <v-flex pl-5 xs6>
+                                            <v-text-field single-line v-model="city"></v-text-field>
+                                        </v-flex>
+                                    </v-layout>
+
+                                    <v-layout row wrap>
+                                        <v-flex
+                                            pr-5
+                                            align-self-center
+                                            xs6
+                                            class="title align-right"
+                                        >Country</v-flex>
+                                        <v-flex pl-5 xs6>
+                                            <v-text-field single-line v-model="country"></v-text-field>
+                                        </v-flex>
+                                    </v-layout>
                                 </v-flex>
                             </v-layout>
-
-                            <v-layout row wrap>
-                                <v-flex
-                                    pr-5
-                                    align-self-center
-                                    xs6
-                                    class="title align-right"
-                                >Last Name</v-flex>
-                                <v-flex pl-5 xs6>
-                                    <v-text-field single-line v-model="last_name"></v-text-field>
-                                </v-flex>
-                            </v-layout>
-
-                            <v-layout row wrap>
-                                <v-flex
-                                    pr-5
-                                    align-self-center
-                                    xs6
-                                    class="title align-right"
-                                >Date of Birth</v-flex>
-                                <v-flex pl-5 xs6>
-                                    <v-menu
-                                        v-model="date_menu"
-                                        :close-on-content-click="false"
-                                        full-width
-                                        max-width="290"
-                                    >
-                                        <template v-slot:activator="{ on }">
-                                            <v-text-field
-                                                :value="computedDateFormatted"
-                                                clearable
-                                                readonly
-                                                v-on="on"
-                                            ></v-text-field>
-                                        </template>
-                                        <v-date-picker
-                                            outline
-                                            v-model="dob"
-                                            @change="date_menu = false"
-                                        ></v-date-picker>
-                                    </v-menu>
-                                </v-flex>
-                            </v-layout>
-
-                            <v-layout row wrap>
-                                <v-flex pr-5 align-self-center xs6 class="title align-right">Gender</v-flex>
-                                <v-flex pl-5 xs6>
-                                    <v-select :items="genders" v-model="gender"></v-select>
-                                </v-flex>
-                            </v-layout>
-
-                            <v-layout row wrap>
-                                <v-flex pr-5 align-self-center xs6 class="title align-right">City</v-flex>
-                                <v-flex pl-5 xs6>
-                                    <v-text-field single-line v-model="city"></v-text-field>
-                                </v-flex>
-                            </v-layout>
-
-                            <v-layout row wrap>
-                                <v-flex pr-5 align-self-center xs6 class="title align-right">Country</v-flex>
-                                <v-flex pl-5 xs6>
-                                    <v-text-field single-line v-model="country"></v-text-field>
-                                </v-flex>
-                            </v-layout>
-                        </v-flex>
-                    </v-layout>
-                </form>
-                <div class="large-12 medium-12 small-12 cell">
-                    <v-btn class="cyan darken-2 mt-5" dark large v-on:click="submitFiles()">Submit</v-btn>
-                </div>
-            </v-flex>
-        </v-layout>
-    </v-container>
-            </v-flex>
+                        </form>
+                        <div class="large-12 medium-12 small-12 cell">
+                            <v-btn
+                                class="cyan darken-2 mt-5"
+                                dark
+                                large
+                                v-on:click="submitFiles()"
+                            >Submit</v-btn>
+                        </div>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-flex>
     </v-layout>
 </template>
 
 <script>
-    import ProfileNavigation from "./ProfileNavigation.vue";
 import moment from "moment";
 import router from "../router";
 export default {
@@ -283,9 +299,7 @@ export default {
         removeFile(key) {
             this.files.splice(key, 1);
         }
-
-    },
-    components: { ProfileNavigation }
+    }
 };
 </script>
 <style scoped>
