@@ -74,7 +74,7 @@ module.exports = {
 		}
 	},
 
-	fn                  : async function (inputs){
+	fn                  : async function (inputs, exits){
 		try {
 			userKey = await sails.helpers.authorize(inputs.token)
 		} catch (error) {
