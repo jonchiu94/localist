@@ -1,5 +1,9 @@
 <template>
-    <div>
+    <v-layout>
+        <v-flex xs2 md2>
+            <ProfileNavigation></ProfileNavigation>
+        </v-flex>
+        <v-flex xs10 md10>
         <v-card>
             <v-card-title>
                 Your Tours
@@ -46,11 +50,14 @@
                 </template>
             </v-data-table>
         </v-card>
-    </div>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
+    import ProfileNavigation from "./ProfileNavigation.vue";
 export default {
+    components: { ProfileNavigation },
     data: () => ({
         search: "",
         headers: [
