@@ -261,6 +261,7 @@ export default {
                     country: this.country,
                     city: this.city
                 },
+                description: this.description,
                 token: this.$store.getters.getUserToken
             };
             /*
@@ -293,7 +294,7 @@ export default {
                     console.log(err);
                 })
                 .then(function(res) {
-                    router.push("/");
+                    router.push("/profile/" + instance.$store.getters.getUserKey);
                 });
         },
 
