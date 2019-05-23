@@ -33,6 +33,9 @@
                     <td>
                         <v-btn :to="'/tours/edit/' + props.item.key">Edit</v-btn>
                     </td>
+                    <td>
+                        <v-btn color="red" @click="deleteTour(props.item.key)">Delete</v-btn>
+                    </td>
                 </template>
                 <template v-slot:no-results>
                     <v-alert
@@ -72,6 +75,12 @@ export default {
             .then(response => (this.tours = response.data))
             .catch(error => alert(error));
         // .finally(() => (this.loading = false));
+    },
+    methods: {
+        deleteTour(tour_key) {
+            var formData = { token: this.$store.getters.getUserToken };
+            this.$http.post("/tour/delete/" + tour_key, formData);
+        }
     }
 };
 </script>

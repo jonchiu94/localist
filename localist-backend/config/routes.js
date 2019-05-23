@@ -37,7 +37,7 @@ module.exports.routes = {
 	'GET        /tour/all'                   : { action: 'tours/get-all-tours' },
 	'GET        /user/find/:key'             : { action: 'users/get-user' },
 	'GET        /tour/find/:key/:long'       : { action: 'tours/single-tour' },
-	'DELETE     /tour/delete/:key'           : { action: 'tours/delete-tour' },
+	'POST     /tour/delete/:key'             : { action: 'tours/delete-tour' },
 	'DELETE     /user/delete/:key'           : { action: 'users/delete-user' },
 	'PATCH      /tour/update/:key'           : { action: 'tours/update-tour' },
 	'PATCH      /user/update/:key'           : { action: 'users/update-user' },
