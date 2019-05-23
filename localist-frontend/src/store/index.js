@@ -99,9 +99,6 @@ const store = new Vuex.Store({
 		getCurrentUser (state) {
 			return state.currentUser
 		},
-		getUsername (state) {
-			return state.username
-		},
 		getSearchTitle (state) {
 			return state.searchTitle
 		},

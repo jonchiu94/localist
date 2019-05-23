@@ -14,7 +14,6 @@ import EditTour from '../components/EditTour'
 import Profile from '../components/Profile'
 import Booking from '../components/Booking'
 import Payment from '../components/Payment'
-import test from '../components/test'
 import EditTours from '../components/EditTours'
 
 Vue.use(VueRouter)
@@ -104,11 +103,6 @@ const router = new VueRouter({
 			meta      : {
 				requiresAdmin : true
 			}
-		},
-		{
-			path      : '/test',
-			name      : 'test',
-			component : test
 		},
 		{
 			path      : '/profile',
