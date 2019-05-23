@@ -226,8 +226,6 @@ export default {
                 token: this.$store.getters.getUserToken
             };
 
-            console.log(formData);
-
             this.$http
                 .post("/tour/add", formData)
                 .then(function(response) {
