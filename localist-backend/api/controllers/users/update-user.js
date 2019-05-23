@@ -99,16 +99,16 @@ module.exports = {
 				},
 				description   : inputs.description || ''
 			})
-			if (coordinates) {
-				await usersRef.child(this.req.params.key).update({
-					coordinates : {
-						lattitude :
-							inputs.coordinates.lattitude,
-						longitude :
-							inputs.coordinates.longitude
-					}
-				})
-			}
+			// if (coordinates) {
+			// 	await usersRef.child(this.req.params.key).update({
+			// 		coordinates : {
+			// 			lattitude :
+			// 				inputs.coordinates.lattitude,
+			// 			longitude :
+			// 				inputs.coordinates.longitude
+			// 		}
+			// 	})
+			// }
 		} catch (error) {
 			return error
 		}

@@ -1,15 +1,13 @@
 <template>
     <v-layout>
         <v-flex xs10 md10>
-
-    <v-container grid-list-xl text-xs-center mb-5>
-        <v-layout wrap pt-3 justify-center>
-            <v-flex
-                xs8
-                class="cyan--text text--darken-2 display-2 font-weight-black font-italic"
-            >Account Dashboard</v-flex>
-        </v-layout>
-
+            <v-container grid-list-xl text-xs-center mb-5>
+                <v-layout wrap pt-3 justify-center>
+                    <v-flex
+                        xs8
+                        class="cyan--text text--darken-2 display-2 font-weight-black font-italic"
+                    >Account Dashboard</v-flex>
+                </v-layout>
 
                 <v-divider></v-divider>
 
@@ -137,10 +135,9 @@
                                         <v-flex>
                                             Description
                                             <v-textarea
-                                                    placeholder="Describe yourself"
-                                                    v-model="description"
-                                            >
-                                            </v-textarea>
+                                                placeholder="Describe yourself"
+                                                v-model="description"
+                                            ></v-textarea>
                                         </v-flex>
                                     </v-layout>
                                 </v-flex>
@@ -179,7 +176,6 @@ export default {
         date_menu: false,
         imgURL: "",
         description: ""
-
     }),
     computed: {
         computedDateFormatted() {
@@ -287,14 +283,16 @@ export default {
             }
             this.$http
                 .patch(
-                    "/user/update/" + this.$store.getters.getUserKey,
+                    `/user/update/${this.$store.getters.getUserKey}`,
                     updateData
                 )
+                .then(function(res) {
+                    router.push(
+                        "/profile/" + instance.$store.getters.getUserKey
+                    );
+                })
                 .catch(function(err) {
                     console.log(err);
-                })
-                .then(function(res) {
-                    router.push("/profile/" + instance.$store.getters.getUserKey);
                 });
         },
 
