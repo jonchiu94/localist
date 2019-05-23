@@ -11,16 +11,19 @@ import SingleTour from '../components/SingleTour'
 import CreateTour from '../components/CreateTour'
 import Admin from '../components/Admin'
 import EditTour from '../components/EditTour'
-import Profile from '../components/Profile'
+import AccountDashboard from '../components/AccountDashboard'
 import Booking from '../components/Booking'
 import Payment from '../components/Payment'
-import test from '../components/test'
 import EditTours from '../components/EditTours'
+import Profile from '../components/Profile'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
-	mode   : 'history',
-	routes : [
+	scrollBehavior () {
+		return { x: 0, y: 0 }
+	},
+	mode           : 'history',
+	routes         : [
 		{
 			path      : '/',
 			name      : 'home',
@@ -103,14 +106,9 @@ const router = new VueRouter({
 			}
 		},
 		{
-			path      : '/test',
-			name      : 'test',
-			component : test
-		},
-		{
-			path      : '/profile',
-			name      : 'profile',
-			component : Profile,
+			path      : '/account',
+			name      : 'AccountDashboard',
+			component : AccountDashboard,
 			meta      : {
 				requiresAuth : true
 			}
@@ -119,6 +117,11 @@ const router = new VueRouter({
 			path      : '/edit',
 			name      : 'edit',
 			component : EditTours
+		},
+		{
+			path      : '/profile/:id',
+			name      : 'profile',
+			component : Profile
 		},
 		{
 			path     : '*',

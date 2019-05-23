@@ -10,30 +10,18 @@
           <v-layout column align-center class="white--text">
             <v-flex xs12 mt-5>
               <h1
-                class="white--text display-3 font-weight-black font-italic text-xs-center black-shadow"
+                class="white--text display-3 font-weight-black text-xs-center black-shadow"
               >Localist</h1>
               <div class="white--text subheading text-xs-center black-shadow">by TEAM 24</div>
             </v-flex>
             <v-flex xs12 mt-5>
-              <v-toolbar color="grey lighten-3" floating height="60" class="rounded-border">
+              <v-toolbar color="grey lighten-3" floating height="60" class="rounded-border" v-on:keyup.enter="addSearch">
                 <v-layout>
-                  <v-flex>
-                    <!-- <v-autocomplete
-                        v-model="select"
-                        :loading="loading"
-                        :items="items"
-                        :search-input.sync="search"
-                        cache-items
-                        class="mx-3"
-                        flat
-                        hide-no-data
-                        hide-details
-                        label="Search"
-                    ></v-autocomplete>-->
-                    <v-text-field hide-details label="Search" v-model="search"></v-text-field>
+                  <v-flex xs7>
+                    <v-text-field @keyup.enter="addSearch()" hide-details label="Activities, interests..." v-model="search"></v-text-field>
                   </v-flex>
 
-                  <v-flex mx-3>
+                  <v-flex mx-3 xs3>
                     <v-menu
                       v-model="menu"
                       :close-on-content-click="false"
@@ -42,17 +30,20 @@
                       transition="scale-transition"
                       offset-y
                       full-width
-                      min-width="290px"
-                    >
+                      min-width="290px">
                       <template v-slot:activator="{ on }">
-                        <v-text-field hide-details v-model="date" readonly v-on="on"></v-text-field>
+                        <v-text-field hide-details v-model="date" readonly v-on="on" label="Date" clearable></v-text-field>
                       </template>
                       <v-date-picker v-model="date" @input="menu = false" no-title></v-date-picker>
                     </v-menu>
                   </v-flex>
 
-                  <v-flex>
-                    <v-text-field hide-details v-model="guest" type="number" label="#. of guest"></v-text-field>
+                  <v-flex xs3>
+                    <v-select
+                      :items="guestNo"
+                      label="Guests"
+                      clearable
+                    ></v-select>
                   </v-flex>
 
                   <v-flex ml-3>
@@ -356,7 +347,7 @@ import router from "../router";
 import FeaturedTours from "./FeaturedTours.vue";
 export default {
   data: () => ({
-    date: new Date().toISOString().substr(0, 10),
+    date: "",
     search: "",
     guest: "",
     menu: false,
@@ -364,7 +355,9 @@ export default {
 
     loading: false,
     items: ["Biking", "Hiking", "Wine"],
-    select: null
+    select: null,
+
+    guestNo: [1,2,3,4,5,6,7,8,9,10]
   }),
   methods: {
     addSearch() {

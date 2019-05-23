@@ -77,7 +77,7 @@ module.exports = {
 					return obj
 				})
 				.then(function (obj){
-					var rating = Number(
+					var ratingAvg = Number(
 						Math.round(
 							obj.rating / obj.count + 'e2'
 						) + 'e-2'
@@ -85,7 +85,7 @@ module.exports = {
 					toursRefShort.child(short_key).update({
 						rating : {
 							count   : obj.count,
-							average : rating
+							average : ratingAvg
 						}
 					})
 				})

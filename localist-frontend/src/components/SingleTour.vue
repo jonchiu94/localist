@@ -22,6 +22,7 @@
                 <v-layout row wrap fill-height>
                     <v-flex xs5>
                         <v-rating
+                            v-if="reviews"
                             size="30px"
                             color="cyan"
                             class="align-left"
@@ -30,9 +31,6 @@
                             readonly
                         ></v-rating>
                     </v-flex>
-                    <!-- <v-flex xs7>
-            <div class=" align-left">({{info.data && info.data.rating.count}})</div>
-                    </v-flex>-->
                 </v-layout>
             </v-flex>
 
@@ -41,7 +39,7 @@
         ** Carousel **
         **************
             -->
-            <v-flex sm10 md5 pb-4>
+            <v-flex sm12 md6 pb-4>
                 <v-layout wrap>
                     <v-flex xs12>
                         <v-carousel height="100%">
@@ -104,14 +102,8 @@
                         <v-btn
                             dark
                             class="cyan darken-2"
-                            :to="'/tours/edit/' + this.$route.params.id"
-                        >Edit</v-btn>
-
-                        <v-btn
-                            dark
-                            class="cyan darken-2"
                             :to="'/tours/single/' + this.$route.params.id + '/booking'"
-                        >Booking Now</v-btn>
+                        >Book Now</v-btn>
                     </v-flex>
                 </v-layout>
             </v-flex>
@@ -160,7 +152,28 @@
 
         <!-- 
       ******************
-      ** Guide Review **
+      ** Add Tour Review **
+      ******************
+        -->
+
+        <v-layout>
+            <v-flex sm10 style="text-align: left;">
+                <v-form v-on:submit.prevent="addReview">
+                    <v-rating half-increments v-model="review.rating"></v-rating>
+                    <v-text-field v-model="review.title" label="Title"></v-text-field>
+                    <v-text-field v-model="review.comment" label="Comment"></v-text-field>
+                    <v-btn type="submit">Submit</v-btn>
+                </v-form>
+            </v-flex>
+        </v-layout>
+
+        <div class="divider-div">
+            <v-divider></v-divider>
+        </div>
+
+        <!-- 
+      ******************
+      ** Tour Review **
       ******************
         -->
 
@@ -173,7 +186,7 @@
                     >
                         <template v-slot:header>
                             <div>
-                                <div>{{review.date=new Date().toISOString().substr(0, 10)}}</div>
+                                <div>{{review.user_name}} {{review.date=new Date().toISOString().substr(0, 10)}}</div>
                                 <v-rating half-increments :value="review.rating" readonly></v-rating>
                                 <div id="reviewTitle">{{review.title}}</div>
                             </div>
@@ -191,10 +204,19 @@
 
 
 <script>
+import router from "../router";
 export default {
     name: "SingleTour",
 
     data: () => ({
+        review: {
+            rating: 0,
+            title: "",
+            comment: "",
+            date: new Date().toISOString().substr(0, 10),
+            user_key: "",
+            user_name: "he"
+        },
         info: "",
         reviews: false
     }),
@@ -205,7 +227,20 @@ export default {
         // The path could be '../assets/img.png', etc., which depends on where your vue file is
         // }
     },
-
+    methods: {
+        addReview() {
+            var instance = this;
+            var formData = { review: instance.review };
+            this.$http
+                .post("/tour/add/review/" + this.$route.params.id, formData)
+                .then(function(response) {
+                    router.go();
+                })
+                .catch(function(error) {
+                    alert(error);
+                });
+        }
+    },
     mounted() {
         var instance = this;
         this.$http
@@ -218,6 +253,8 @@ export default {
             })
             .catch(error => alert(error))
             .finally(() => (this.loading = false));
+        this.review.user_key = this.$store.getters.getUserKey;
+        this.review.user_name = this.$store.getters.getName;
     }
 };
 </script>

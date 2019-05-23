@@ -87,6 +87,9 @@ const store = new Vuex.Store({
 		}
 	},
 	getters   : {
+		getUserToken (state) {
+			return state.currentUser.stsTokenManager.accessToken
+		},
 		getUserKey (state) {
 			return state.userKey
 		},
@@ -95,9 +98,6 @@ const store = new Vuex.Store({
 		},
 		getCurrentUser (state) {
 			return state.currentUser
-		},
-		getUsername (state) {
-			return state.username
 		},
 		getSearchTitle (state) {
 			return state.searchTitle
