@@ -8,7 +8,7 @@
                     style="text-decoration: none"
                 >Localist</v-btn>
 
-                <v-btn flat to="/tours" style="text-decoration: none" > Browse Tours </v-btn>
+                <v-btn flat to="/tours" style="text-decoration: none">Browse Tours</v-btn>
             </v-toolbar-items>
 
             <v-spacer></v-spacer>
@@ -46,7 +46,7 @@
 
                     <v-list-tile to="/account" tyle="text-decoration: none">
                         <v-list-tile-title>
-                            <v-icon class="cyan--text text--darken-2">person</v-icon>Profile
+                            <v-icon class="cyan--text text--darken-2">person</v-icon>Account
                         </v-list-tile-title>
                     </v-list-tile>
 
