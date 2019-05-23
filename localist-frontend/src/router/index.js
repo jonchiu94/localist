@@ -119,7 +119,7 @@ const router = new VueRouter({
 			component : EditTours
 		},
 		{
-			path      : '/profile',
+			path      : '/profile/:id',
 			name      : 'profile',
 			component : Profile
 		},

@@ -48,7 +48,7 @@
                 drawer: true,
                 items: [
                     { title: 'Account Dashboard', icon: 'dashboard', path:'/account'},
-                    { title: 'Profile', icon: 'face', path: '/profile'},
+                    { title: 'Profile', icon: 'face', path: '/profile/' + this.$store.getters.getUserKey},
                     { title: 'Your Tours', icon: 'create', path: '/edit'}
                 ],
                 right: null
