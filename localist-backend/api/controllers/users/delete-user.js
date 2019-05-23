@@ -26,10 +26,10 @@ module.exports = {
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
-		var guidesRef = database.ref('users')
+		var usersRef = database.ref('users')
 
 		try {
-			guidesRef.child(this.req.params.key).remove()
+			usersRef.child(this.req.params.key).remove()
 		} catch (error) {
 			return this.res.status(404).send('User not found')
 		}
