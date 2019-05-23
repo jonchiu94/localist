@@ -114,25 +114,25 @@ module.exports = {
 
 		couldNotVerify    : {
 			statusCode  : 401,
-			description : 'The provided verify logged in user.'
+			description : 'The provided user is not logged in.'
 		}
 	},
 
 	fn                  : async function (inputs, exits){
-		// Initialize Firebase
-		var firebase = require('../../database/firebase.js')
-		var database = firebase.database()
-		var toursRefLong = database.ref('tours_long')
-		var toursRefShort = database.ref('tours_short')
-		var usersRef = database.ref('users/' + inputs.user_key)
-		var coord = inputs.coordinates || ''
-		var userKey
-
+		var userKey = ''
 		try {
 			userKey = await sails.helpers.authorize(inputs.token)
 		} catch (error) {
 			return exits.couldNotVerify(error)
 		}
+
+		// Initialize Firebase
+		var firebase = require('../../database/firebase.js')
+		var database = firebase.database()
+		var toursRefLong = database.ref('tours_long')
+		var toursRefShort = database.ref('tours_short')
+		var usersRef = database.ref('users/' + userKey)
+		var coord = inputs.coordinates || ''
 
 		try {
 			var long_tour = await toursRefLong.push({
