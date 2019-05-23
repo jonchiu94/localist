@@ -11,7 +11,7 @@ import SingleTour from '../components/SingleTour'
 import CreateTour from '../components/CreateTour'
 import Admin from '../components/Admin'
 import EditTour from '../components/EditTour'
-import Account from '../components/Account'
+import AccountDashboard from '../components/AccountDashboard'
 import Booking from '../components/Booking'
 import Payment from '../components/Payment'
 import EditTours from '../components/EditTours'
@@ -19,11 +19,11 @@ import Profile from '../components/Profile'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
-	scrollBehavior() {
-    	return { x: 0, y: 0 };
-  	},
-	mode   : 'history',
-	routes : [
+	scrollBehavior () {
+		return { x: 0, y: 0 }
+	},
+	mode           : 'history',
+	routes         : [
 		{
 			path      : '/',
 			name      : 'home',
@@ -107,8 +107,8 @@ const router = new VueRouter({
 		},
 		{
 			path      : '/account',
-			name      : 'account',
-			component : Account,
+			name      : 'AccountDashboard',
+			component : AccountDashboard,
 			meta      : {
 				requiresAuth : true
 			}

@@ -80,22 +80,38 @@ module.exports = {
 			required    : true,
 			type        : 'json',
 			description : 'the range of number of guests allowed on tour'
+		},
+
+		token               : {
+			required    : true,
+			type        : 'string',
+			description : 'Log in token for firebase authorization.'
 		}
 	},
 
 	exits        : {
-		success : {
+		success        : {
 			description : 'Tour updated successfully.'
 		},
 
-		invalid : {
+		invalid        : {
 			responseType : 'badRequest',
 			description  :
 				'The provided fullName, password and/or email address are invalid.'
+		},
+
+		couldNotVerify : {
+			statusCode  : 401,
+			description : 'The provided user is not logged in.'
 		}
 	},
 
-	fn           : async function (inputs){
+	fn           : async function (inputs, exits){
+		try {
+			await sails.helpers.authorize(inputs.token)
+		} catch (error) {
+			return exits.couldNotVerify(error)
+		}
 		// Initialize Firebase
 		var firebase = require('../../database/firebase.js')
 		var database = firebase.database()
