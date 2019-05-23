@@ -13,7 +13,7 @@
               <div class="white--text subheading text-xs-center black-shadow">by TEAM 24</div>
             </v-flex>
             <v-flex xs12 mt-5>
-              <v-toolbar color="grey lighten-3" floating height="60" class="rounded-border">
+              <v-toolbar color="grey lighten-3" floating height="60" class="rounded-border" v-on:keyup.enter="addSearch">
                 <v-layout>
                   <v-flex xs7>
                     <v-text-field @keyup.enter="addSearch()" hide-details label="Activities, interests..." v-model="search"></v-text-field>

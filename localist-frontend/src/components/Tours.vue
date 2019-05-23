@@ -17,10 +17,27 @@
 			<v-text-field type="text" v-model="asearchTitle" label="Search tours" v-on:change="searchResult"></v-text-field>
 			</v-flex>
 			<v-flex xs6 md3 mx-3>
-			<v-text-field type="text" v-model="asearchDate" label="Date"></v-text-field>
+				<v-menu
+                      v-model="menu"
+                      :close-on-content-click="false"
+                      :nudge-right="40"
+                      lazy
+                      transition="scale-transition"
+                      offset-y
+                      full-width
+                      min-width="290px">
+                      <template v-slot:activator="{ on }">
+                        <v-text-field hide-details v-model="date" readonly v-on="on" label="Date" clearable></v-text-field>
+                      </template>
+					  <v-date-picker v-model="date" @input="menu = false" no-title></v-date-picker>
+				</v-menu>
 			</v-flex>
 			<v-flex xs6 md3>
-			<v-text-field type="number" v-model="asearchGuest" label="# of guests"></v-text-field>
+                    <v-select
+                      :items="guestNo"
+                      label="Guests"
+                      clearable
+                    ></v-select>
 			</v-flex>
 		</v-layout>
 
@@ -89,11 +106,14 @@
 <script>
 export default {
 	data: () => ({
-	tours: [],
-	search: "",
-	asearchTitle: "",
-	asearchDate: "",
-	asearchGuest: ""
+		tours: [],
+		search: "",
+		asearchTitle: "",
+		asearchDate: "",
+		asearchGuest: "",
+		guestNo: [1,2,3,4,5,6,7,8,9,10],
+		menu: false,
+		date: ""
 	}),
 	methods:{
 		searchResult(){
