@@ -2,9 +2,11 @@
   <div class="bg-icons">
     <v-content>
       <section>
-        <v-parallax :src="require('@/assets/background-1.jpeg')"
-          gradient="rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)"
-          height="550">
+        <v-parallax
+          :src="require('@/assets/background-1.jpeg')"
+          gradient="rgba(0, 0, 0, .18), rgba(0, 0, 0, .18)"
+          height="480"
+        >
           <v-layout column align-center class="white--text">
             <v-flex xs12 mt-5>
               <h1
@@ -46,7 +48,7 @@
 
                   <v-flex ml-3>
                     <v-toolbar-items>
-                      <v-btn @click="addSearch" icon large >
+                      <v-btn @click="addSearch" icon large>
                         <v-icon hide-details>search</v-icon>
                       </v-btn>
                     </v-toolbar-items>
@@ -172,19 +174,16 @@
               <v-divider width="15%" color="teal"></v-divider>
 
               <v-flex class="subheading font-weight-regular align-left linehi-med justify-spacing">
-                Localist lets you set your own days and hours. There are no bosses here to ask when you clocked 
-                in and clocked out.  Making income on Localist as a guide is great, but it's important that our 
-                guides have passion for their cities.  Whether you are into bird-sighting or bike-riding, you 
+                Localist lets you set your own days and hours. There are no bosses here to ask when you clocked
+                in and clocked out. Making income on Localist as a guide is great, but it's important that our
+                guides have passion for their cities. Whether you are into bird-sighting or bike-riding, you
                 do it because you want to, not because you have to.
               </v-flex>
             </v-layout>
           </v-flex>
 
           <v-flex md5 mx-5 align-self-center>
-            <v-img 
-              :src="require('@/assets/schedule.jpeg')"
-              max-height="320"
-            ></v-img>
+            <v-img :src="require('@/assets/schedule.jpeg')" max-height="320"></v-img>
           </v-flex>
         </v-layout>
       </section>
@@ -197,10 +196,7 @@
       <section>
         <v-layout mt-5 mx-5 justify-center>
           <v-flex md5 mx-5 align-self-center>
-            <v-img 
-            :src="require('@/assets/people.jpeg')"
-            max-height="320"
-          ></v-img>
+            <v-img :src="require('@/assets/people.jpeg')" max-height="320"></v-img>
           </v-flex>
 
           <v-flex md5 mx-5>
@@ -223,8 +219,8 @@
                 class="subheading font-weight-regular align-left linehi-med justify-spacing"
               >
                 As a specialist in your city, you've seen and experienced all your favourite things, that's what makes you the expert!
-                But you've probably never experienced your favourite parts of the city while showing them off!  You have the opportunity 
-                to become the connection between travellers and your city.  You get to meet awesome, foreign travellers, and make lifetime
+                But you've probably never experienced your favourite parts of the city while showing them off! You have the opportunity
+                to become the connection between travellers and your city. You get to meet awesome, foreign travellers, and make lifetime
                 connections!
               </v-flex>
             </v-layout>
@@ -258,18 +254,15 @@
                 xs10
                 class="subheading font-weight-regular align-left linehi-med justify-spacing"
               >
-                Everybody has a unique set of skills, experiences, and interests.  At Localist, we believe that there are no cookie-
-                cutter experiences, and that every guide will create something different and exciting for the tourist if given the 
-                freedom to do so.  
+                Everybody has a unique set of skills, experiences, and interests. At Localist, we believe that there are no cookie-
+                cutter experiences, and that every guide will create something different and exciting for the tourist if given the
+                freedom to do so.
               </v-flex>
             </v-layout>
           </v-flex>
 
           <v-flex md5 mx-5 align-self-center>
-            <v-img
-              :src="require('@/assets/city.jpeg')"
-              max-height="320"
-            ></v-img>
+            <v-img :src="require('@/assets/city.jpeg')" max-height="320"></v-img>
           </v-flex>
         </v-layout>
       </section>
@@ -400,13 +393,11 @@ export default {
 }
 
 .bg-icons {
-  background-image: url('https://developer.salesforce.com/resources2/certification-site/images/icons-background.png');
+  background-image: url("https://developer.salesforce.com/resources2/certification-site/images/icons-background.png");
   background-repeat: repeat;
   background-position: center;
   background-size: auto auto;
   z-index: 0;
   position: relative;
 }
-
-
 </style>
