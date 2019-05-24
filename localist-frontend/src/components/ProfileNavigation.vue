@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-navigation-drawer v-model="drawer" permanent class="profileNavigation">
+        <v-navigation-drawer height="200vh" v-model="drawer" permanent class="profileNavigation">
             <v-toolbar flat class="transparent">
                 <v-list class="pa-0">
                     <v-list-tile avatar>
