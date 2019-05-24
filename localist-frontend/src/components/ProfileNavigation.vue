@@ -32,7 +32,6 @@
     </div>
 </template>
 <script>
-
 import router from "../router";
 export default {
     data() {
@@ -42,11 +41,15 @@ export default {
             drawer: true,
             items: [
                 {
-                    title: "Account Dashboard",
+                    title: "Profile",
+                    icon: "face",
+                    path: "/profile/" + this.$store.getters.getUserKey
+                },
+                {
+                    title: "Edit Profile",
                     icon: "dashboard",
                     path: "/account"
                 },
-                { title: "Profile", icon: "face", path: "/profile/" + this.$store.getters.getUserKey },
                 { title: "Your Tours", icon: "create", path: "/edit" }
             ],
             right: null
